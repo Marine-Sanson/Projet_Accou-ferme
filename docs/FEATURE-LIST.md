@@ -10,11 +10,9 @@ Galerie photos mosaique de photos, cliquables pour les agrandir
 
 Produits -- voir si je fais juste une liste avec sous liste ou sous forme de menu déroulant
 
-Resa paniers avec espace de connexion
+Resa paniers avec espace de connexion + envoie de mails
 
-Idées recettes en liste, avec possibilité de trier par légume principal et de voir une recette en détail
-
-Actus : nouveau produit dispo, fin de tel produit, article intéressant....
+Actus : nouveau produit dispo, fin de tel produit, article intéressant, idées recettes (en liste, avec possibilité de trier par légume principal et de voir une recette en détail)
 
 Contact : voir si affiche tel, mail, adresse, liste marchés, et formulaire de contact mail
 

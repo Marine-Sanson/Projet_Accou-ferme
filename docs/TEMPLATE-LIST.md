@@ -1,6 +1,7 @@
 Template-List :
 
 layout
+layoutadmin
 
 home
 aboutMe
@@ -9,7 +10,10 @@ products
 resa
 formNewUser
 formConnect
-ideasList
-ideaDetail
-contact
-admin
+NewsList
+NewsDetail
+Contact
+
+adminProductsManager
+adminNewsManager
+adminResa
