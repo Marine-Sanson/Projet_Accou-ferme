@@ -1,7 +1,7 @@
 Template-List :
 
 layout
-layoutadmin
+layoutAdmin
 
 home
 aboutMe
