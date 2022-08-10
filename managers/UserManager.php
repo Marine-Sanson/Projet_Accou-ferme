@@ -15,6 +15,8 @@ class UserManager
             // if error try "'user'"
         ];
         $query->execute($parameters);
+        
+        $user = [];
 
         return $user;
     }
@@ -35,6 +37,20 @@ class UserManager
         
     }
     
+    public function getUserByName(string $name) : User
+    {
+        $query = $this->db->prepare('SELECT id, email, password, tel FROM users WHERE user.name = :name');
+        $parameters = [
+            'name' => $name
+        ];
+        $query->execute($parameters);
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        
+        $user = [];
+        
+        return $user;
+    }
+    
     public function updateUser(User $user) : User
     {
         
@@ -53,19 +69,15 @@ class UserManager
         
     }
     
-    public function deleteUser(User $user) : User
+    public function deleteUser(User $user) : void
     {
         
-        $query = $this->db->prepare('DELETE id, name, email, password, tel, role FROM users');
+        $query = $this->db->prepare('DELETE id, name, email, password, tel, role FROM users WHERE user.name = :name');
         $parameters = [
-            
+            'name' => $name
         ];
         $query->execute($parameters);
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        
-        $user = [];
-        
-        return $user;
         
     }
     
