@@ -1,0 +1,16 @@
+{
+  "name": "assets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "normal": "sass ./sass/style.scss:./css/style.css",
+    "minify": "sass ./sass/style.scss:./css/style.css --style compressed",
+    "watch": "sass ./sass/style.scss:./css/style.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.54.4"
+  }
+}
