@@ -21,7 +21,7 @@ class UserManager
         return $user;
     }
     
-    public function connectUser() : array
+    public function connectUser() : User
     {
         
         $query = $this->db->prepare('SELECT name, email, password, tel FROM users WHERE user.name = :name');

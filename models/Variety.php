@@ -9,9 +9,9 @@ class Variety
     private string $seasonStart;
     private string $seasonEnd;
     private string $description;
-    private int $imgId;
+    private int $mediaId;
 
-    function __construct(?int $id, int $produceId, string $name, bool $availablity, string $seasonStart, string $seasonEnd, string $description, int $imgId)
+    function __construct(?int $id, int $produceId, string $name, bool $availablity, string $seasonStart, string $seasonEnd, string $description, int $mediaId)
     {
         $this->id = $id;
         $this->produceId = $produceId;
@@ -20,7 +20,7 @@ class Variety
         $this->seasonStart = $seasonStart;
         $this->seasonEnd = $seasonEnd;
         $this->description = $description;
-        $this->imgId = $imgId;
+        $this->mediaId = $mediaId;
     }
     
     public function getId() : ?int
@@ -53,34 +53,54 @@ class Variety
         $this->id = $name;
     }
     
-    public function getEmail() : string
+    public function getAvailablity() : bool
     {
-        return $this->email;
+        return $this->availablity;
     }
     
-    public function setEmail(string $email) : void
+    public function setAvailablity(string $availablity) : void
     {
-        $this->email = $email;
+        $this->availablity = $availablity;
     }
     
-    public function getPassword() : string
+    public function getSeasonStart() : string
     {
-        return $this->password;
+        return $this->seasonStart;
     }
     
-    public function setPassword(string $password) : void
+    public function setSeasonStart(string $seasonStart) : void
     {
-        $this->password = $password;
+        $this->seasonStart = $seasonStart;
     }
     
-    public function getTel() : int
+    public function getSeasonEnd() : string
     {
-        return $this->tel;
+        return $this->seasonEnd;
     }
     
-    public function setTel(int $tel) : void
+    public function setSeasonEnd(string $seasonEnd) : void
     {
-        $this->tel = $tel;
+        $this->seasonEnd = $seasonEnd;
+    }
+    
+    public function getDescription() : string
+    {
+        return $this->description;
+    }
+    
+    public function setDescription(string $description) : void
+    {
+        $this->description = $description;
+    }
+    
+    public function getMediaId() : int
+    {
+        return $this->mediaId;
+    }
+    
+    public function setMediaId(int $mediaId) : void
+    {
+        $this->mediaId = $mediaId;
     }
     
 }

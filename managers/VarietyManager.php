@@ -33,13 +33,13 @@ class VarietyManager
         
         $variety = [];
 
-        return $variety;
+        return $variety['id'];
         
     }
     
     public function getVarietyById(Variety $id) : Variety
     {
-        $query = $this->db->prepare('SELECT produce_id, name, availablity, season_start, season_end, description FROM varieties WHERE variety.id = :id');
+        $query = $this->db->prepare('SELECT produce_id, name, availablity, season_start, season_end, description, media_id FROM varieties WHERE variety.id = :id');
         $parameters = [
             'id' => $id
         ];
@@ -54,14 +54,13 @@ class VarietyManager
     public function updateVariety(Variety $variety) : Variety
     {
         
-        $query = $this->db->prepare('UPDATE variety SET produce_id = :produce_id, availablity = :availablity, season_start = :season_start season_end = :season_end, description = :description FROM varieties WHERE variety.name = :name');
+        $query = $this->db->prepare('UPDATE variety SET produce_id = :produce_id, availablity = :availablity, season_start = :season_start, season_end = :season_end, description = :description FROM varieties WHERE variety.name = :name');
         $parameters = [
             'produce_id' => $produceId,
             'availablity' => $availablity,
             'season_start' => $seasonStart,
             'season_end' => $seasonEnd,
             'description' => $description
-
         ];
         $query->execute($parameters);
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -75,7 +74,7 @@ class VarietyManager
     public function deleteVariety(Variety $variety) : void
     {
         
-        $query = $this->db->prepare('DELETE id, produce_id, name, availablity, season_start, season_end, description, img_id FROM varieties WHERE varietv.name = :name');
+        $query = $this->db->prepare('DELETE id, produce_id, name, availablity, season_start, season_end, description, media_id FROM varieties WHERE varietv.name = :name');
         $parameters = [
             'name' => $name
         ];

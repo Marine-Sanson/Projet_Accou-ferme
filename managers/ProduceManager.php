@@ -27,13 +27,13 @@ class ProduceManager
         
         $produce = [];
 
-        return $produce;
+        return $produce['id'];
     }
     
     public function deleteProduce(Produce $produce) : void
     {
         
-        $query = $this->db->prepare('DELETE id, name FROM produce WHERE Produce.name = :name');
+        $query = $this->db->prepare('DELETE id, name FROM produce WHERE produce.name = :name');
         $parameters = [
             'name' => $name
         ];

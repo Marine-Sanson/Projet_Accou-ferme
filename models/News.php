@@ -5,15 +5,15 @@ class News
     private ?int $id;
     private ?int $categoryId;
     private string $name;
-    private int $imgId;
+    private ?int $mediaId;
     private string $content;
     
-    function __construct (?int $id, int $categoryId, string $name, int $imgId, string $content)
+    function __construct (?int $id, int $categoryId, string $name, int $mediaId, string $content)
     {
         $this->id = $id;
         $this->categoryId = $categoryId;
         $this->name = $name;
-        $this->imgId = $imgId;
+        $this->mediaId = $mediaId;
         $this->content = $content;
     }
     
@@ -44,17 +44,17 @@ class News
     
     public function setName(string $name) : void
     {
-        $this->id = $name;
+        $this->name = $name;
     }
     
-    public function getImgId() : int
+    public function getMediaId() : int
     {
-        return $this->imgId;
+        return $this->mediaId;
     }
     
-    public function setImgId(string $imgId) : void
+    public function setMediaId(string $mediaId) : void
     {
-        $this->imgId = $imgId;
+        $this->mediaId = $mediaId;
     }
     
     public function getContent() : string
