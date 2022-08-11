@@ -1,21 +1,22 @@
 .welcomeParent{
+    display:flex;
+    flex-direction:column;
     margin-top: 0;
-    width: 100vw;
+    width: 100%;
     justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .welcomeParent>h2{
     color: $mainColor;
     text-align: center;
-    
 }
 
 .welcomeParent>img{
     max-width: 60vw;
-    
     border-radius: 8% / 12%;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .textePresentation{

@@ -8,7 +8,7 @@
 body {
   box-sizing: border-box;
   font-family: "Rubik", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   line-height: 2rem;
   background-color: rgb(128, 237, 153);
   color: rgb(34, 87, 122);
@@ -17,9 +17,9 @@ body {
 .main {
   display: flex;
   max-width: 1140px;
+  margin: 0;
+  flex-direction: column;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 h1,
@@ -27,6 +27,7 @@ h2,
 h3 {
   font-family: "Rubik", sans-serif;
   color: rgb(34, 87, 122);
+  text-align: center;
 }
 
 p,
@@ -41,19 +42,22 @@ p {
 }
 
 h1 {
-  font-size: 3.6rem;
+  font-size: 2.4rem;
   padding: 2%;
+}
+
+h1:not(#mainGalleryTitle) {
   margin: 2%;
 }
 
 h2 {
-  font-size: 2.4rem;
+  font-size: 2rem;
   padding: 2%;
   margin: 2%;
 }
 
 h3 {
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   padding: 0.5rem;
   margin: 0.5rem;
 }
@@ -64,6 +68,9 @@ a {
 
 /* ****** FIN DE General ****** */
 /* **********
+Header
+********** */
+/* **********
 Toolbar
 ********** */
 .toolbar {
@@ -73,11 +80,10 @@ Toolbar
   top: 0px;
   left: 0px;
   right: 0px;
-  margin-bottom: 2%;
   background-image: url("../img/legumes.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .innerToolbar {
@@ -98,6 +104,10 @@ Toolbar
   align-items: center;
 }
 
+.logoHeaderh1 {
+  font-weight: 600;
+}
+
 .logoImg {
   display: flex;
   align-items: center;
@@ -111,7 +121,7 @@ Toolbar
 }
 
 .menu {
-  margin: auto 3vw auto auto;
+  margin: auto 2vw auto auto;
 }
 
 .menu > ul {
@@ -125,7 +135,9 @@ Toolbar
 }
 
 .menu > ul > li > a {
-  padding: 1rem;
+  line-height: 2rem;
+  font-size: 1.1rem;
+  padding: 0.2rem;
   margin: 0.5rem;
   color: rgb(34, 87, 122);
   font-weight: 600;
@@ -155,11 +167,11 @@ Toolbar
 }
 
 .welcomeParent {
+  display: flex;
+  flex-direction: column;
   margin-top: 0;
-  width: 100vw;
+  width: 100%;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .welcomeParent > h2 {
@@ -170,10 +182,59 @@ Toolbar
 .welcomeParent > img {
   max-width: 60vw;
   border-radius: 8%/12%;
+  justify-content: center;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .textePresentation {
   margin: 2rem auto 1rem auto;
+}
+
+/* **********
+About
+********** */
+.about {
+  display: flex;
+  flex-direction: column;
+}
+
+.about > img {
+  width: 60vw;
+  justify-content: center;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.about > h1 {
+  font-weight: 800;
+}
+
+.about > h2 {
+  font-weight: 600;
+}
+
+.mainGallery {
+  background-color: black;
+}
+
+.mainGallery > h1 {
+  color: rgb(199, 249, 204);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 2rem;
+  width: 80vw;
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+.gallery > img {
+  width: 20vw;
+  height: 10rem;
+  object-fit: cover;
 }
 
 /*# sourceMappingURL=style.css.map */

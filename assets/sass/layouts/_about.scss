@@ -1,0 +1,26 @@
+/* **********
+About
+********** */
+
+.about{
+    display:flex;
+    flex-direction:column;
+}
+
+.about>img{
+    width: 60vw;
+    justify-content:center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.about>h1{
+    font-weight:800;
+}
+
+.about>h2{
+    font-weight:600;
+}
+
+
+

@@ -1,0 +1,24 @@
+.mainGallery{
+    background-color: black;
+}
+
+.mainGallery>h1{
+    color:$blanc;
+}
+
+.gallery{
+    display:grid;
+	grid-template-columns: repeat(4, auto);
+	gap: 2rem;
+    width: 80vw;
+
+    padding:2rem;
+    margin: 0 auto;
+}
+
+.gallery>img{
+    width:20vw;
+    height:10rem;
+    object-fit: cover;
+
+}

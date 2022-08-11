@@ -12,10 +12,9 @@ body{
 .main{
     display: flex;
     max-width: $maxWidth;
+    margin: 0;
+    flex-direction:column;
     justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-
 }
 
 h1,
@@ -23,6 +22,7 @@ h2,
 h3{
     font-family: $fontTitles;
     color: $mainColor;
+    text-align: center;
 }
 
 p,
@@ -39,6 +39,9 @@ p{
 h1{
     font-size: $fontSizeh1;
     padding: $pDef;
+}
+
+h1:not(#mainGalleryTitle){
     margin: $mDef;
 }
 
