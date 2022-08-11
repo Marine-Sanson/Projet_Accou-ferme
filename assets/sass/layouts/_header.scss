@@ -1,0 +1,92 @@
+/* **********
+Toolbar
+********** */
+
+.toolbar{
+    width: 100vw;
+    z-index: 2;
+    position: sticky;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: $mDef;
+    background-image: url("../img/legumes.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 2rem 0;
+}
+
+.innerToolbar{
+    padding: 0;
+    display: flex;
+    height: 5rem;
+    background-color: $blancTpt;
+}
+
+.logoHeader{
+    display: flex;
+    padding-top: $pDef;
+    padding-bottom: $pDef;
+}
+
+
+.logoHeader>h1{
+    display: flex;
+    align-items: center;
+}
+
+.logoImg{
+    display: flex;
+    align-items: center;
+    padding: $pDef;
+}
+
+.logoImg>img{
+    min-width: $logoWidth;
+    max-width : $logoWidth;
+    height: auto;
+}
+
+.menu{
+    margin: auto 3vw auto auto;
+}
+
+.menu>ul{
+    display: flex;
+}
+
+.menu>ul>li{
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.menu>ul>li>a{
+    padding: 1rem;
+    margin: 0.5rem;
+    color: $mainColor;
+    font-weight: 600;
+}
+
+.tpt{
+    background-color: $blancTpt;
+    border-radius: 1rem;
+}
+
+.contact{
+    background-color: $blanc;
+    border-radius: 1rem;
+}
+
+.menu>ul>li>a:hover{
+    background-color: $blanc;
+    border-radius: 1rem;
+    color: $noir;
+    font-weight: 600;
+}
+
+.menu>ul>li>.contact:hover{
+    color: $blanc;
+    background-color: $mainColor;
+    font-weight: 600;
+}

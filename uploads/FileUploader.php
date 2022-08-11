@@ -3,6 +3,7 @@
 /**
  * File Uploader class used for media upload
  * @author Mari Doucet
+ * @author Marine Sanson
 */
 
 require "Media.php";

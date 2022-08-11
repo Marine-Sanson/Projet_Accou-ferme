@@ -5,22 +5,24 @@ class Variety
     private ?int $id;
     private int $produceId;
     private string $name;
-    private bool $availablity;
     private string $seasonStart;
     private string $seasonEnd;
     private string $description;
     private int $mediaId;
+    private bool $availablity;
+    private ?int $quantity_available;
 
-    function __construct(?int $id, int $produceId, string $name, bool $availablity, string $seasonStart, string $seasonEnd, string $description, int $mediaId)
+    function __construct(?int $id, int $produceId, string $name, string $seasonStart, string $seasonEnd, string $description, int $mediaId, bool $availablity, int $quantityAvailable)
     {
         $this->id = $id;
         $this->produceId = $produceId;
         $this->name = $name;
-        $this->availablity = $availablity;
         $this->seasonStart = $seasonStart;
         $this->seasonEnd = $seasonEnd;
         $this->description = $description;
         $this->mediaId = $mediaId;
+        $this->availablity = $availablity;
+        $this->quantityAvailable = $quantityAvailable;
     }
     
     public function getId() : ?int
@@ -101,6 +103,16 @@ class Variety
     public function setMediaId(int $mediaId) : void
     {
         $this->mediaId = $mediaId;
+    }
+    
+    public function getQuantityAvailable() : int
+    {
+        return $this->quantityAvailable;
+    }
+    
+    public function setQuantityAvailable(int $quantityAvailable) : void
+    {
+        $this->quantityAvailable = $quantityAvailable;
     }
     
 }

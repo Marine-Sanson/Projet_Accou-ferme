@@ -1,3 +1,179 @@
+/* ********** VARIABLES ********** */
+/* *** COLORS *** */
+/* ****** FONTS ****** */
+/* ****** line height ****** */
+/* ****** PADDING - MARGIN - WIDTH ****** */
+/* ****** FIN DE VARIABLES ****** */
+/* ********** General ********** */
+body {
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  background-color: rgb(128, 237, 153);
+  color: rgb(34, 87, 122);
+}
 
+.main {
+  display: flex;
+  max-width: 1140px;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Rubik", sans-serif;
+  color: rgb(34, 87, 122);
+}
+
+p,
+a,
+li,
+span {
+  color: rgb(34, 87, 122);
+}
+
+p {
+  text-align: justify;
+}
+
+h1 {
+  font-size: 3.6rem;
+  padding: 2%;
+  margin: 2%;
+}
+
+h2 {
+  font-size: 2.4rem;
+  padding: 2%;
+  margin: 2%;
+}
+
+h3 {
+  font-size: 1.8rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ****** FIN DE General ****** */
+/* **********
+Toolbar
+********** */
+.toolbar {
+  width: 100vw;
+  z-index: 2;
+  position: sticky;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 2%;
+  background-image: url("../img/legumes.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 2rem 0;
+}
+
+.innerToolbar {
+  padding: 0;
+  display: flex;
+  height: 5rem;
+  background-color: rgba(199, 249, 204, 0.5);
+}
+
+.logoHeader {
+  display: flex;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.logoHeader > h1 {
+  display: flex;
+  align-items: center;
+}
+
+.logoImg {
+  display: flex;
+  align-items: center;
+  padding: 2%;
+}
+
+.logoImg > img {
+  min-width: 4vw;
+  max-width: 4vw;
+  height: auto;
+}
+
+.menu {
+  margin: auto 3vw auto auto;
+}
+
+.menu > ul {
+  display: flex;
+}
+
+.menu > ul > li {
+  display: flex;
+  text-align: center;
+  align-items: center;
+}
+
+.menu > ul > li > a {
+  padding: 1rem;
+  margin: 0.5rem;
+  color: rgb(34, 87, 122);
+  font-weight: 600;
+}
+
+.tpt {
+  background-color: rgba(199, 249, 204, 0.5);
+  border-radius: 1rem;
+}
+
+.contact {
+  background-color: rgb(199, 249, 204);
+  border-radius: 1rem;
+}
+
+.menu > ul > li > a:hover {
+  background-color: rgb(199, 249, 204);
+  border-radius: 1rem;
+  color: #333;
+  font-weight: 600;
+}
+
+.menu > ul > li > .contact:hover {
+  color: rgb(199, 249, 204);
+  background-color: rgb(34, 87, 122);
+  font-weight: 600;
+}
+
+.welcomeParent {
+  margin-top: 0;
+  width: 100vw;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.welcomeParent > h2 {
+  color: rgb(34, 87, 122);
+  text-align: center;
+}
+
+.welcomeParent > img {
+  max-width: 60vw;
+  border-radius: 8%/12%;
+}
+
+.textePresentation {
+  margin: 2rem auto 1rem auto;
+}
 
 /*# sourceMappingURL=style.css.map */
