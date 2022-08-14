@@ -6,4 +6,10 @@ class ProduceController extends AbstractController
     {
         $this->render("produce");
     }
+    
+    public function displayProduce()
+    {
+        
+    }
+    
 }

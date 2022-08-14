@@ -2,6 +2,18 @@
 /**
  * @author : Gaellan
  */
+
+require "classes/DBConnect.php";
+
+require "./managers/UserManager.php";
+require "./managers/VarietyManager.php";
+require "./managers/ProduceManager.php";
+require "./managers/BasketManager.php";
+require "./managers/NewsManager.php";
+require "./managers/CategoryManager.php";
+require "./managers/MediaManager.php";
+require "./managers/RecipeManager.php";
+
 require "./controllers/AbstractController.php";
 require "./controllers/HomeController.php";
 require "./controllers/AboutController.php";
@@ -10,6 +22,7 @@ require "./controllers/ProduceController.php";
 require "./controllers/BasketController.php";
 require "./controllers/NewsController.php";
 require "./controllers/ContactController.php";
+
 require "./services/Router.php";
 
 $routes = [];

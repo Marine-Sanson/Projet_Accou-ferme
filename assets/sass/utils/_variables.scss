@@ -2,11 +2,11 @@
 
 /* *** COLORS *** */
 
-$blanc: rgba(199, 249, 204, 1); // attention pas blanc changer le nom de variable
-$noir: #333;
-$blancTpt: rgba(199, 249, 204, 0.5);
-$mainColor: rgba(34, 87, 122, 1);
-$mainBgColor: rgba(128, 237, 153, 1);
+$blanc: rgba(255, 255, 255, 1);
+$red: rgba(204, 28, 0, 1);
+$noir: rgba(0, 0, 0, 1);
+$mainColor: rgba(6, 14, 11, 1);
+$mainBgColor: rgba(0, 167, 150, 1);
 
 /* ****** FONTS ****** */
 
@@ -16,6 +16,8 @@ $fontSizeDefault: 1.2rem;
 $fontSizeh1: 2.4rem;
 $fontSizeh2: 2rem;
 $fontSizeh3: 1.4rem;
+$fontweighth1: 800;
+$fontweighth2: 600;
 
 /* ****** line height ****** */
 
@@ -29,3 +31,10 @@ $mDef: 2%;
 $logoWidth: 4vw;
 
 /* ****** FIN DE VARIABLES ****** */
+
+// $blanc: rgba(255, 255, 255, 1);
+// $red: rgba(192, 53, 53, 1); // attention pas blanc changer le nom de variable
+// $noir: rgba(0, 0, 0, 1);
+// $blancTpt: rgba(199, 249, 204, 0.5);
+// $mainColor: rgba(6, 14, 11, 1);
+// $mainBgColor: rgba(173, 255, 216, 1);

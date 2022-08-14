@@ -6,69 +6,66 @@ Header
 Toolbar
 ********** */
 
-.toolbar{
+#toolbar{
     width: 100vw;
     z-index: 2;
     position: sticky;
     top: 0px;
     left: 0px;
     right: 0px;
-    background-image: url("../img/legumes.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-color:$red;
     padding: 1rem 0;
 }
 
-.innerToolbar{
+#innerToolbar{
     padding: 0;
     display: flex;
     height: 5rem;
-    background-color: $blancTpt;
 }
 
-.logoHeader{
+#logoHeader{
     display: flex;
     padding-top: $pDef;
     padding-bottom: $pDef;
 }
 
 
-.logoHeader>h1{
+#logoHeader > h1{
     display: flex;
     align-items: center;
 }
 
-.logoHeaderh1{
-    font-weight:600;
+#logoHeader > h1{
+    font-weight:500;
 }
 
-.logoImg{
+#logoImg{
     display: flex;
     align-items: center;
     padding: $pDef;
 }
 
-.logoImg>img{
+#logoImg > img{
     min-width: $logoWidth;
     max-width : $logoWidth;
     height: auto;
 }
 
-.menu{
+#menu{
     margin: auto 2vw auto auto;
 }
 
-.menu>ul{
+#menu > ul{
     display: flex;
 }
 
-.menu>ul>li{
+#menu > ul > li{
     display: flex;
     text-align: center;
     align-items: center;
 }
 
-.menu>ul>li>a{
+#menu > ul > li > a{
     line-height:2rem;
     font-size:1.1rem;
     padding: 0.2rem;
@@ -77,25 +74,20 @@ Toolbar
     font-weight: 600;
 }
 
-.tpt{
-    background-color: $blancTpt;
-    border-radius: 1rem;
-}
-
-.contact{
+#contact{
     background-color: $blanc;
     border-radius: 1rem;
 }
 
-.menu>ul>li>a:hover{
+#menu > ul > li > a:hover{
     background-color: $blanc;
     border-radius: 1rem;
     color: $noir;
     font-weight: 600;
 }
 
-.menu>ul>li>.contact:hover{
-    color: $blanc;
+#menu > ul > li > #contact:hover{
+    color: $red;
     background-color: $mainColor;
     font-weight: 600;
 }

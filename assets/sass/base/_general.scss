@@ -9,12 +9,12 @@ body{
     color: $mainColor;
 }
 
-.main{
+main{
+    background-color:$blanc;
     display: flex;
     max-width: $maxWidth;
-    margin: 0;
     flex-direction:column;
-    justify-content: center;
+    margin: auto;
 }
 
 h1,
@@ -33,12 +33,14 @@ span{
 }
 
 p{
+    margin: 2rem;
     text-align : justify;
 }
 
 h1{
     font-size: $fontSizeh1;
     padding: $pDef;
+    font-weight:$fontweighth1;
 }
 
 h1:not(#mainGalleryTitle){
@@ -49,6 +51,7 @@ h2{
     font-size: $fontSizeh2;
     padding: $pDef;
     margin: $mDef;
+    font-weight:$fontweighth2;
 }
 
 h3{

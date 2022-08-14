@@ -1,24 +1,26 @@
-.mainGallery{
+#mainGallery{
     background-color: black;
 }
 
-.mainGallery>h1{
+#mainGallery > h1{
     color:$blanc;
 }
 
-.gallery{
+#gallery{
     display:grid;
 	grid-template-columns: repeat(4, auto);
 	gap: 2rem;
-    width: 80vw;
-
-    padding:2rem;
-    margin: 0 auto;
+    max-width: 80vw;
+    padding:2rem 0;
+    margin: auto;
 }
 
-.gallery>img{
-    width:20vw;
+#gallery > figure{
+    max-width:100%;
+}
+
+#gallery > figure > img{
+    width:100%;
     height:10rem;
     object-fit: cover;
-
 }

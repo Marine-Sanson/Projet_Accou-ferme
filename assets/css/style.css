@@ -10,23 +10,23 @@ body {
   font-family: "Rubik", sans-serif;
   font-size: 1.2rem;
   line-height: 2rem;
-  background-color: rgb(128, 237, 153);
-  color: rgb(34, 87, 122);
+  background-color: rgb(0, 167, 150);
+  color: rgb(6, 14, 11);
 }
 
-.main {
+main {
+  background-color: rgb(255, 255, 255);
   display: flex;
   max-width: 1140px;
-  margin: 0;
   flex-direction: column;
-  justify-content: center;
+  margin: auto;
 }
 
 h1,
 h2,
 h3 {
   font-family: "Rubik", sans-serif;
-  color: rgb(34, 87, 122);
+  color: rgb(6, 14, 11);
   text-align: center;
 }
 
@@ -34,16 +34,18 @@ p,
 a,
 li,
 span {
-  color: rgb(34, 87, 122);
+  color: rgb(6, 14, 11);
 }
 
 p {
+  margin: 2rem;
   text-align: justify;
 }
 
 h1 {
   font-size: 2.4rem;
   padding: 2%;
+  font-weight: 800;
 }
 
 h1:not(#mainGalleryTitle) {
@@ -54,6 +56,7 @@ h2 {
   font-size: 2rem;
   padding: 2%;
   margin: 2%;
+  font-weight: 600;
 }
 
 h3 {
@@ -67,172 +70,148 @@ a {
 }
 
 /* ****** FIN DE General ****** */
+.page404 > img {
+  justify-content: center;
+  margin: auto;
+  max-width: 60vw;
+}
+
 /* **********
 Header
 ********** */
 /* **********
 Toolbar
 ********** */
-.toolbar {
+#toolbar {
   width: 100vw;
   z-index: 2;
   position: sticky;
   top: 0px;
   left: 0px;
   right: 0px;
-  background-image: url("../img/legumes.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: rgb(204, 28, 0);
   padding: 1rem 0;
 }
 
-.innerToolbar {
+#innerToolbar {
   padding: 0;
   display: flex;
   height: 5rem;
-  background-color: rgba(199, 249, 204, 0.5);
 }
 
-.logoHeader {
+#logoHeader {
   display: flex;
   padding-top: 2%;
   padding-bottom: 2%;
 }
 
-.logoHeader > h1 {
+#logoHeader > h1 {
   display: flex;
   align-items: center;
 }
 
-.logoHeaderh1 {
-  font-weight: 600;
+#logoHeader > h1 {
+  font-weight: 500;
 }
 
-.logoImg {
+#logoImg {
   display: flex;
   align-items: center;
   padding: 2%;
 }
 
-.logoImg > img {
+#logoImg > img {
   min-width: 4vw;
   max-width: 4vw;
   height: auto;
 }
 
-.menu {
+#menu {
   margin: auto 2vw auto auto;
 }
 
-.menu > ul {
+#menu > ul {
   display: flex;
 }
 
-.menu > ul > li {
+#menu > ul > li {
   display: flex;
   text-align: center;
   align-items: center;
 }
 
-.menu > ul > li > a {
+#menu > ul > li > a {
   line-height: 2rem;
   font-size: 1.1rem;
   padding: 0.2rem;
   margin: 0.5rem;
-  color: rgb(34, 87, 122);
+  color: rgb(6, 14, 11);
   font-weight: 600;
 }
 
-.tpt {
-  background-color: rgba(199, 249, 204, 0.5);
+#contact {
+  background-color: rgb(255, 255, 255);
   border-radius: 1rem;
 }
 
-.contact {
-  background-color: rgb(199, 249, 204);
+#menu > ul > li > a:hover {
+  background-color: rgb(255, 255, 255);
   border-radius: 1rem;
-}
-
-.menu > ul > li > a:hover {
-  background-color: rgb(199, 249, 204);
-  border-radius: 1rem;
-  color: #333;
+  color: rgb(0, 0, 0);
   font-weight: 600;
 }
 
-.menu > ul > li > .contact:hover {
-  color: rgb(199, 249, 204);
-  background-color: rgb(34, 87, 122);
+#menu > ul > li > #contact:hover {
+  color: rgb(204, 28, 0);
+  background-color: rgb(6, 14, 11);
   font-weight: 600;
 }
 
-.welcomeParent {
-  display: flex;
-  flex-direction: column;
-  margin-top: 0;
-  width: 100%;
-  justify-content: center;
+#home > figure {
+  max-width: 50vw;
+  margin: auto;
 }
 
-.welcomeParent > h2 {
-  color: rgb(34, 87, 122);
-  text-align: center;
-}
-
-.welcomeParent > img {
-  max-width: 60vw;
+#home > figure > img {
   border-radius: 8%/12%;
-  justify-content: center;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.textePresentation {
-  margin: 2rem auto 1rem auto;
+  margin: auto;
 }
 
 /* **********
 About
 ********** */
-.about {
-  display: flex;
-  flex-direction: column;
+#about > figure {
+  max-width: 40vw;
+  margin: auto;
 }
 
-.about > img {
-  width: 60vw;
-  justify-content: center;
-  margin-right: auto;
-  margin-left: auto;
+#about > figure > img {
+  margin: auto;
 }
 
-.about > h1 {
-  font-weight: 800;
-}
-
-.about > h2 {
-  font-weight: 600;
-}
-
-.mainGallery {
+#mainGallery {
   background-color: black;
 }
 
-.mainGallery > h1 {
-  color: rgb(199, 249, 204);
+#mainGallery > h1 {
+  color: rgb(255, 255, 255);
 }
 
-.gallery {
+#gallery {
   display: grid;
   grid-template-columns: repeat(4, auto);
   gap: 2rem;
-  width: 80vw;
-  padding: 2rem;
-  margin: 0 auto;
+  max-width: 80vw;
+  padding: 2rem 0;
+  margin: auto;
 }
 
-.gallery > img {
-  width: 20vw;
+#gallery > figure {
+  max-width: 100%;
+}
+
+#gallery > figure > img {
+  width: 100%;
   height: 10rem;
   object-fit: cover;
 }

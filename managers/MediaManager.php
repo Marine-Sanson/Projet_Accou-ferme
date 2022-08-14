@@ -4,7 +4,7 @@ class MediaManager
 {
     public function createMedia(Media $media) : Media
     {
-        $query = $this->db->prepare('INSERT INTO medias ( original_name, file_name, file_type, url, alt' ) VALUES ( ':original_name, :file_name, :file_type, :url, :alt');
+        $query = $this->db->prepare('INSERT INTO medias ( original_name, file_name, file_type, url, alt ) VALUES ( :original_name, :file_name, :file_type, :url, :alt');
         $parameters = [
             'original_name' => $originalName->getoriginalName() ,
             'file_name' => $fileName->getfileName(),
@@ -19,7 +19,7 @@ class MediaManager
         return $media;
     }
     
-    public function getMediaById(Media $id : Media
+    public function getMediaById(Media $id) :Media
     {
         $query = $this->db->prepare('SELECT original_name, file_name, file_type, url, alt FROM medias WHERE media.id = :id');
         $parameters = [
