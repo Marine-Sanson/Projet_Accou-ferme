@@ -1,7 +1,7 @@
 / HomeController:index
 /about AboutController:index
 /gallery GalleryController:index
-/produce ProduceController:index
+/produce ProduceController:displayProduce
 /basket BasketController:index
 /news NewsController:index
 /contact ContactController:index

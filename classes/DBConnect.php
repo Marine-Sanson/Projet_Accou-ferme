@@ -1,9 +1,10 @@
 <?php
 
-class DBConnect
+abstract class DBConnect
 {
-    private PDO $db;
+    protected PDO $db;
     
+    // fonction qui initialise la connexion à la DB
     function __construct()
     {
         $this->db = new PDO(
@@ -11,6 +12,12 @@ class DBConnect
         'marinesanson',
         '5f7c3646a479ca2518aadd0dbe6ac514'
         );
+    }
+    
+    // getter de la DB
+    public function getDb()
+    {
+        return $this->db;
     }
 }
 

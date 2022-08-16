@@ -6,7 +6,16 @@
     
         <p>Retrouvez ici la liste des Fruits et légumes que nous proposons</p>
         
-        
+        <?php
+            // Affiche la liste des différents produits proposés d'après le tableau de pm getAllProduce
+            foreach ($data['products'] as $key => $product)
+            {
+        	
+        	echo "<ul>";   
+            echo "<li><h2>" . $product['name'] . "<h2></li>";
+        	echo "</ul>";
+            }
+        ?>
 
     </section>
 
