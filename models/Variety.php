@@ -3,7 +3,7 @@
 class Variety
 {
     private ?int $id;
-    private int $produceId;
+    private int $productId;
     private string $name;
     private string $seasonStart;
     private string $seasonEnd;
@@ -12,10 +12,10 @@ class Variety
     private bool $availablity;
     private ?int $quantity_available;
 
-    function __construct(?int $id, int $produceId, string $name, string $seasonStart, string $seasonEnd, string $description, int $mediaId, bool $availablity, int $quantityAvailable)
+    function __construct(?int $id, int $productId, string $name, string $seasonStart, string $seasonEnd, string $description, int $mediaId, bool $availablity, int $quantityAvailable)
     {
         $this->id = $id;
-        $this->produceId = $produceId;
+        $this->productId = $productId;
         $this->name = $name;
         $this->seasonStart = $seasonStart;
         $this->seasonEnd = $seasonEnd;
@@ -35,14 +35,14 @@ class Variety
         $this->id = $id;
     }
     
-    public function getProduceId() : ?int
+    public function getProductId() : ?int
     {
-        return $this->produceId;
+        return $this->productId;
     }
     
-    public function setProduceId(int $produceId) : void
+    public function setProductId(int $productId) : void
     {
-        $this->produceId = $produceId;
+        $this->productId = $productId;
     }
     
     public function getName() : string

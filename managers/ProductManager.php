@@ -1,13 +1,13 @@
 <?php
 
-class ProduceManager extends DBConnect
+class ProductManager extends DBConnect
 {
     
     // permet de créer un nouveau produit
-    public function createProduce(Produce $produce) : Produce
+    public function createProduct(Product $product) : Product
     {
         
-        $query = $this->db->prepare('INSERT INTO produce ( name ) VALUES ( :name )');
+        $query = $this->db->prepare('INSERT INTO products ( name ) VALUES ( :name )');
         $parameters = [
             'name' => $name->getName(),
         ];
@@ -19,19 +19,29 @@ class ProduceManager extends DBConnect
     }
     
     // va chercher un tableau avec tous les produits
-    public function getAllProduce() :array
+    public function getAllProducts() :array
     {
-        $query = $this->db->prepare('SELECT name FROM produce');
+        $query = $this->db->prepare('SELECT name, id FROM products');
         $query->execute();
         $products = $query->fetchAll(PDO::FETCH_ASSOC);
         
-        return $products;
+        $fullProducts = [];
+        foreach ($products as $product)
+        {
+            $fullProduct = [];
+            $fullProduct["product"] = $product;
+            $vm = new VarietyManager();
+            $fullProduct["varieties"] = $vm->getVarietyByProduct($product['name']);
+            $fullProducts[] = $fullProduct;
+        }
+        
+        return $fullProducts;
     }
     
     // va chercher un tableau avec tous les id des produits
-    public function getAllIdProduce() :array
+    public function getAllIdProduct() :array
     {
-        $query = $this->db->prepare('SELECT id FROM produce');
+        $query = $this->db->prepare('SELECT id FROM products');
         $query->execute();
         $idProducts = $query->fetchAll(PDO::FETCH_ASSOC);
         
@@ -41,39 +51,39 @@ class ProduceManager extends DBConnect
     // va chercher l'id d'un produit d'après son nom
     public function getProduceId(string $name) : int
     {
-        $query = $this->db->prepare('SELECT id FROM produce WHERE produce.name = :name');
+        $query = $this->db->prepare('SELECT id FROM products WHERE products.name = :name');
         $parameters = [
             'name' => $name
         ];
         $query->execute($parameters);
         $result = $query->fetch(PDO::FETCH_ASSOC);
         
-        $produce = [];
+        $product = [];
 
-        return $produce['id'];
+        return $product['id'];
     }
     
     // va chercher le nom d'un produit d'après son id
-    public function getProduceName(int $id) : string
+    public function getProductName(int $id) : string
     {
-        $query = $this->db->prepare('SELECT name FROM produce WHERE produce.id = :id');
+        $query = $this->db->prepare('SELECT name FROM products WHERE products.id = :id');
         $parameters = [
             'id' => $id
         ];
         $query->execute($parameters);
         $result = $query->fetch(PDO::FETCH_ASSOC);
         
-        $produce = [];
-        $produceName = $produce['name'];
+        $product = [];
+        $productName = $product['name'];
 
-        return $produceName;
+        return $productName;
     }
     
     // permet de supprimer un produit
-    public function deleteProduce(Produce $produce) : void
+    public function deleteProduct(Product $product) : void
     {
         
-        $query = $this->db->prepare('DELETE id, name FROM produce WHERE produce.name = :name');
+        $query = $this->db->prepare('DELETE id, name FROM products WHERE products.name = :name');
         $parameters = [
             'name' => $name
         ];

@@ -1,5 +1,9 @@
 /* ********** General ********** */
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     box-sizing: border-box;
     font-family: $fontDefault;

@@ -1,0 +1,33 @@
+<main id="produce">
+
+    <h1>Produits</h1>
+    
+    <section>
+    
+        <p>Retrouvez ici la liste des Fruits et légumes que nous proposons</p>
+        
+        <?php
+        
+        // Affiche la liste des différents produits proposés d'après le tableau renvoyé par pm getAllProduce
+            foreach($data['products'] as $key => $product)
+            {
+        	
+        	echo "<ul>";   
+            echo "<li><h2>" . $product["product"]["name"] . "</h2>";
+            
+            // affiche la liste des variétés d'après le nom du produit
+            
+                foreach($product["varieties"] as $key => $variety)
+                {
+                    echo "<li class='varietyDetail'><h3>" . $variety['name'] . "</h3>";
+                    echo "<p>" . $variety['description'] . "</p>";
+                    echo "<p>Disponible de " . $variety['season_start'] . " à " . $variety['season_end'] . "</p></li>";
+                }
+            echo "</li>";
+            echo "</ul>";
+            }
+        ?>
+
+    </section>
+
+</main>

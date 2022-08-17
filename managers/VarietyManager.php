@@ -1,13 +1,13 @@
 <?php
 
-class VarietyManager
+class VarietyManager extends DBConnect
 {
     
     public function createVariety(Variety $variety) : Variety
     {
-        $query = $this->db->prepare('INSERT INTO varieties ( produce_id, name, season_start ,season_end , description, availablity, quantity_available ) VALUES ( :produce_id, :name, :availablity, :season_start, :season_end, :description, :quantity_available )');
+        $query = $this->db->prepare('INSERT INTO varieties ( product_id, name, season_start ,season_end , description, availablity, quantity_available ) VALUES ( :product_id, :name, :availablity, :season_start, :season_end, :description, :quantity_available )');
         $parameters = [
-            'produce_id' => $produce_id ,
+            'product_id' => $product_id ,
             'name' => $name->getName(),
             'season_start' => $seasonStart->getSeasonStart(),
             '$season_End' => $seasonEnd->getSeasonEnd(),
@@ -17,9 +17,9 @@ class VarietyManager
         ];
         $query->execute($parameters);
         
-        $variety = [];
+        $varieties = [];
 
-        return $variety;
+        return $varieties;
     }
     
     public function getVarietyId(string $name) : int
@@ -38,9 +38,23 @@ class VarietyManager
         
     }
     
+    public function getVarietyByProduct($productName) :array
+    {
+        $query = $this->db->prepare("SELECT varieties.id, varieties.name, varieties.season_start, varieties.season_end, varieties.description, varieties.media_id, varieties.availablity, varieties.quantity_available FROM varieties JOIN products ON products.id = varieties.product_id WHERE products.name = :name") or die($this->db->errorInfo());
+        $parameters = [
+            'name' => $productName
+        ];
+        $query->execute($parameters) or die($this->db->errorInfo());
+        $varieties = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $varieties;
+        
+        // varieties.id, varieties.name, varieties.season_start, varieties.season_end, varieties.description, varieties.media_id, varieties.availablity, varieties.quantity_available
+    }
+    
+    
     public function getVarietyById(Variety $id) : Variety
     {
-        $query = $this->db->prepare('SELECT produce_id, name, season_start, season_end, description, media_id, availablity, quantity_available FROM varieties WHERE variety.id = :id');
+        $query = $this->db->prepare('SELECT product_id, name, season_start, season_end, description, media_id, availablity, quantity_available FROM varieties WHERE variety.id = :id');
         $parameters = [
             'id' => $id
         ];
@@ -55,9 +69,9 @@ class VarietyManager
     public function updateVariety(Variety $variety) : Variety
     {
         
-        $query = $this->db->prepare('UPDATE variety SET produce_id = :produce_id, season_start = :season_start, season_end = :season_end, description = :description, availablity = :availablity, quantity_available = :quantity_available FROM varieties WHERE variety.name = :name');
+        $query = $this->db->prepare('UPDATE variety SET product_id = :product_id, season_start = :season_start, season_end = :season_end, description = :description, availablity = :availablity, quantity_available = :quantity_available FROM varieties WHERE variety.name = :name');
         $parameters = [
-            'produce_id' => $produceId,
+            'product_id' => $productId,
             'season_start' => $seasonStart,
             'season_end' => $seasonEnd,
             'description' => $description,
@@ -76,7 +90,7 @@ class VarietyManager
     public function deleteVariety(Variety $variety) : void
     {
         
-        $query = $this->db->prepare('DELETE id, produce_id, name, season_start, season_end, description, media_id, availablity, quantity_available FROM varieties WHERE varietv.name = :name');
+        $query = $this->db->prepare('DELETE id, product_id, name, season_start, season_end, description, media_id, availablity, quantity_available FROM varieties WHERE varietv.name = :name');
         $parameters = [
             'name' => $name
         ];

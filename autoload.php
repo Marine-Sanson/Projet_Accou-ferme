@@ -8,7 +8,7 @@ require "./controllers/AbstractController.php";
 require "./services/Router.php";
 
 require "./managers/UserManager.php";
-require "./managers/ProduceManager.php";
+require "./managers/ProductManager.php";
 require "./managers/VarietyManager.php";
 require "./managers/BasketManager.php";
 require "./managers/CategoryManager.php";
@@ -19,7 +19,8 @@ require "./managers/MediaManager.php";
 require "./controllers/HomeController.php";
 require "./controllers/AboutController.php";
 require "./controllers/GalleryController.php";
-require "./controllers/ProduceController.php";
+require "./controllers/ProductController.php";
+require "./controllers/VarietyController.php";
 require "./controllers/ContactController.php";
 require "./controllers/BasketController.php";
 require "./controllers/NewsController.php";

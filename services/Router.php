@@ -49,7 +49,7 @@ class Router {
                     $cm = new CategoryManager();
                     $mm = new MediaManager();
                     $nm = new NewsManager();
-                    $pm = new ProduceManager();
+                    $pm = new ProductManager();
                     $rm = new RecipeManager();
                     $um = new UserManager();
                     $vm = new VarietyManager();
@@ -66,7 +66,7 @@ class Router {
                     $cm = new CategoryManager();
                     $mm = new MediaManager();
                     $nm = new NewsManager();
-                    $pm = new ProduceManager();
+                    $pm = new ProductManager();
                     $rm = new RecipeManager();
                     $um = new UserManager();
                     $vm = new VarietyManager();
@@ -77,7 +77,7 @@ class Router {
                 }
             }
         }
-// exception au cas où il n'ai pas trouvé de route
+        // exception au cas où il n'ai pas trouvé de route
         if(!$routeFound)
         {
             throw new Exception("Route not found", 404);
