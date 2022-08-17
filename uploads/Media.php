@@ -16,7 +16,7 @@ class Media
     private string $alt;
 
     
-    function __construct(int $id, string $originalName, string $fileName, string $fileType, string $url, string $alt)
+    function __construct(?int $id, string $originalName, string $fileName, string $fileType, string $url, string $alt)
     {
         $this->id = $id;
         $this->originalName = $originalName;

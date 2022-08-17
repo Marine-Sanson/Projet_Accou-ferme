@@ -1,4 +1,4 @@
-<main id="produce">
+<main id="product">
 
     <h1>Produits</h1>
     
@@ -6,10 +6,71 @@
     
         <p>Retrouvez ici la liste des Fruits et légumes que nous proposons</p>
         
+        
         <?php
+        foreach($data['products'] as $key => $product)
+        {
+            ?>
+        <ul>
+            <li>
+                <h2>
+                    <?= $product["product"]["name"]; ?>
+                </h2>
+                <ul>
+                    <?php foreach($product["varieties"] as $key => $variety) 
+                    {
+                    ?>
+                    <li class="varietyDetail">
+                        <article>
+                            <header>
+                                <?php 
+                                $medias = $data["medias"];
+                                foreach($medias as $item)
+                                {
+                                    if($item["variety"]["id"] === $variety["id"])
+                                    {
+                                        if(!is_null($item["media"]))
+                                        {
+                                            ?>
+                                            <figure>
+                                                <img src="<?= $item["media"]->getUrl(); ?>" alt="<?= $item["media"]->getAlt(); ?>" />
+                                            </figure>
+                                            <?php
+                                        }
+                                        else
+                                        {
+                                           ?>
+                                            <img src="./assets/img/varieties/panierVide.jpg" alt="Photo non disponible" />
+                                        <?php 
+                                        }
+                                    }
+                                }
+                                ?>
+                                <h3>
+                                    <?= $variety['name']; ?>
+                                </h3>
+                            </header>
+                            <main>
+                                <p>
+                                    <?= $variety['description']; ?>
+                                </p>
+                                <p>
+                                    Disponible de <?= $variety['season_start']; ?> à <?= $variety['season_end']; ?>
+                                </p>
+                            </main>
+                        </article>
+                    </li>
+                    <?php
+                    }
+                    ?>
+                </ul>
+            </li>
+        </ul>
+            <?php
+        }
         
         // Affiche la liste des différents produits proposés d'après le tableau renvoyé par pm getAllProduce
-            foreach($data['products'] as $key => $product)
+            /*foreach($data['products'] as $key => $product)
             {
         	
         	echo "<ul>";   
@@ -17,15 +78,21 @@
             
             // affiche la liste des variétés d'après le nom du produit
             
+            var_dump($product["varieties"]);
+            
                 foreach($product["varieties"] as $key => $variety)
                 {
-                    echo "<li class='varietyDetail'><h3>" . $variety['name'] . "</h3>";
+                    var_dump($media['url']);
+                    if(!is_null($media['url'])){
+                        echo "<li class='varietyDetail'><figure><img src=" . $media['url'] . "alt=" . $media['alt'] . " /></figure>";
+                    }
+                    echo "<h3>" . $variety['name'] . "</h3>";
                     echo "<p>" . $variety['description'] . "</p>";
                     echo "<p>Disponible de " . $variety['season_start'] . " à " . $variety['season_end'] . "</p></li>";
                 }
             echo "</li>";
             echo "</ul>";
-            }
+            }*/
         ?>
 
     </section>

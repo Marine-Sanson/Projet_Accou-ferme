@@ -1,6 +1,8 @@
 <?php
 
-class MediaManager
+require "./uploads/Media.php";
+
+class MediaManager extends DBConnect
 {
     public function createMedia(Media $media) : Media
     {
@@ -19,18 +21,22 @@ class MediaManager
         return $media;
     }
     
-    public function getMediaById(Media $id) :Media
+    public function getMediaById(int $id) :Media
     {
-        $query = $this->db->prepare('SELECT original_name, file_name, file_type, url, alt FROM medias WHERE media.id = :id');
+        $query = $this->db->prepare('SELECT original_name, file_name, file_type, url, alt FROM medias WHERE medias.id = :id');
         $parameters = [
             'id' => $id
         ];
         $query->execute($parameters);
-        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $fullMedia = $query->fetchAll(PDO::FETCH_ASSOC);
         
-        $media = [];
+        $originalName = $fullMedia[0]['original_name'];
+        $fileName = $fullMedia[0]['file_name'];
+        $fileType = $fullMedia[0]['file_type'];
+        $url = $fullMedia[0]['url'];
+        $alt = $fullMedia[0]['alt'];
 
-        return $media;
+        return new Media($id, $originalName, $fileName, $fileType, $url, $alt);
     }
     
     public function updateMedia(Media $media) : Media

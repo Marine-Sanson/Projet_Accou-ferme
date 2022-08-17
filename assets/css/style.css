@@ -237,4 +237,8 @@ li > p {
   margin-bottom: 2rem;
 }
 
+img {
+  max-width: 25rem;
+}
+
 /*# sourceMappingURL=style.css.map */
