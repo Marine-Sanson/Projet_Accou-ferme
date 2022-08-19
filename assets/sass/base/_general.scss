@@ -13,7 +13,7 @@ body{
     color: $mainColor;
 }
 
-main{
+body > main{
     background-color:$blanc;
     display: flex;
     max-width: $maxWidth;

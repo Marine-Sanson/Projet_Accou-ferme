@@ -71,9 +71,8 @@ class ProductManager extends DBConnect
             'id' => $id
         ];
         $query->execute($parameters);
-        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $product = $query->fetch(PDO::FETCH_ASSOC);
         
-        $product = [];
         $productName = $product['name'];
 
         return $productName;

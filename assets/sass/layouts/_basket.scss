@@ -1,0 +1,19 @@
+table{
+    margin:auto;
+    border-collapse: collapse;
+}
+
+td,
+th{
+    border: 1px solid $borderTableColor;
+    line-height: 3em;
+    padding: 0.2rem 1rem;
+}
+
+caption{
+        border: 1px solid $borderTableColor;
+}
+
+.right{
+    text-align:right;
+}

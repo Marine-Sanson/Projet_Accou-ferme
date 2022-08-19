@@ -1,6 +1,6 @@
 <?php
 
-class BasketManager
+class BasketManager extends DBConnect
 {
     
     public function createBasket(Basket $news) : Basket

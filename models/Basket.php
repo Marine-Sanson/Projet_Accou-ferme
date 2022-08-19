@@ -8,8 +8,8 @@ class Basket
     private DateTime $dateRetrait;
     private ?int $varietyId;
     private int $quantity;
-    
-    function __construct (int $id, int $userId, DateTime $dateCommande, DateTime $dateRetrait, int $varietyId, int $quantity)
+
+    function __construct (int $id, int $userId, DateTime $dateCommande, DateTime $dateRetrait, int $varietyId, int $quantity, string $units)
     {
         $this->id = $id;
         $this->userId = $userId;
@@ -44,7 +44,7 @@ class Basket
         return $this->dateCommande;
     }
     
-    public function setDateCommande(string $dateCommande) : void
+    public function setDateCommande(DateTime $dateCommande) : void
     {
         $this->dateCommande = $dateCommande;
     }
@@ -54,7 +54,7 @@ class Basket
         return $this->dateRetrait;
     }
     
-    public function setDateRetrait(string $dateRetrait) : void
+    public function setDateRetrait(DateTime $dateRetrait) : void
     {
         $this->dateRetrait = $dateRetrait;
     }
@@ -64,7 +64,7 @@ class Basket
         return $this->varietyId;
     }
     
-    public function setVarietyId(string $varietyId) : void
+    public function setVarietyId(int $varietyId) : void
     {
         $this->varietyId = $varietyId;
     }
@@ -74,7 +74,7 @@ class Basket
         return $this->quantity;
     }
     
-    public function setQuantity(string $quantity) : void
+    public function setQuantity(int $quantity) : void
     {
         $this->quantity = $quantity;
     }

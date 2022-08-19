@@ -1,1 +1,82 @@
-<h1>basket</h1>
+<main id="basket">
+    
+        <h1>Produits disponibles</h1>
+    
+    <section>
+        
+        <table>
+            <caption>
+                <h2>En ce moment</h2>
+            </caption>
+            
+            <thead>
+                <tr>
+                    <th>Famille</th>
+    				<th>Variété</th>
+    				<th>Unité</th>
+    				<th>Prix</th>
+    				<th>Ajouter au panier</th>
+			    </tr>
+			</thead>
+			
+			<tbody>
+			    
+			    <?php
+                foreach($data['allAvailableVarieties'] as $key => $availableVariety)
+                {
+                ?>
+				<tr>
+				    <td>
+				        <?= 
+                        $availableVariety["product_name"];
+                        ?>
+				    </td>
+    				<td>
+	                    <?= 
+                        $availableVariety['name'];
+                        ?>
+    				</td>
+    				<td>
+    				    <?php 
+                        switch($availableVariety['units'])
+                        {
+                            case "kilo":
+                                echo "au " . $availableVariety['units'];
+                                break;
+                            case "pièce":
+                                echo "à la " . $availableVariety['units'];
+                                break;
+                            case "botte":
+                                echo "en " . $availableVariety['units'];
+                                break;
+                        }
+                        ?>
+    				</td>
+    				<td>
+                        <?=
+                        $availableVariety['price'];
+                        ?>
+                        euros
+    				</td>
+    				<td>
+    				    <form>
+    				        <button type="button">+</buton>
+    				        <button type="button">-</buton>
+    				    </form>
+    				</td>
+    			</tr>
+    			<?php
+                }
+                ?>
+    		</tbody>
+			
+        </table>   
+        
+            
+            </li>
+        </ul>
+        
+        
+    </section>
+        
+</main>

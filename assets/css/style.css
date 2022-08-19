@@ -14,11 +14,11 @@ body {
   font-family: "Rubik", sans-serif;
   font-size: 1.2rem;
   line-height: 2rem;
-  background-color: rgb(0, 167, 150);
+  background-color: rgba(0, 217, 130, 0.6);
   color: rgb(6, 14, 11);
 }
 
-main {
+body > main {
   background-color: rgb(255, 255, 255);
   display: flex;
   max-width: 1140px;
@@ -220,25 +220,72 @@ About
   object-fit: cover;
 }
 
-li > h2,
-li > h3 {
+.productName {
   text-align: left;
-}
-
-li > h3 {
   margin-left: 4rem;
 }
 
-li > p {
-  margin: 0 6rem;
+#product > section > ul > li {
+  justify-content: center;
+  margin: auto;
 }
 
 .varietyDetail {
-  margin-bottom: 2rem;
+  border-radius: 6rem;
+  background-color: rgba(0, 217, 130, 0.2);
+  justify-content: center;
+  padding: 1rem;
+  margin: 4rem;
+  display: grid;
+  grid-template-columns: 30% 60%;
+  grid-template-rows: auto;
+  gap: 1rem;
 }
 
-img {
-  max-width: 25rem;
+.varietyDetailFigure {
+  margin: auto;
+  grid-column: 1;
+  grid-row: 1/5;
+}
+
+.varietyDetailTitle {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.varietyDetailTitle > h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.varietyDetailDescription {
+  grid-column: 2;
+  grid-row: 2/4;
+}
+
+.varietyDetailSeason {
+  grid-column: 2;
+  grid-row: 4;
+}
+
+table {
+  margin: auto;
+  border-collapse: collapse;
+}
+
+td,
+th {
+  border: 1px solid rgb(221, 221, 211);
+  line-height: 3em;
+  padding: 0.2rem 1rem;
+}
+
+caption {
+  border: 1px solid rgb(221, 221, 211);
+}
+
+.right {
+  text-align: right;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -13,51 +13,55 @@
             ?>
         <ul>
             <li>
-                <h2>
+                <h2 class="productName">
                     <?= $product["product"]["name"]; ?>
                 </h2>
                 <ul>
                     <?php foreach($product["varieties"] as $key => $variety) 
                     {
                     ?>
-                    <li class="varietyDetail">
-                        <article>
-                            <header>
-                                <?php 
-                                $medias = $data["medias"];
-                                foreach($medias as $item)
+                    <li>
+                        <article class="varietyDetail">
+                            <?php 
+                            $medias = $data["medias"];
+                            foreach($medias as $item)
+                            {
+                                if($item["variety"]["id"] === $variety["id"])
                                 {
-                                    if($item["variety"]["id"] === $variety["id"])
+                                    if(!is_null($item["media"]))
                                     {
-                                        if(!is_null($item["media"]))
-                                        {
-                                            ?>
-                                            <figure>
-                                                <img src="<?= $item["media"]->getUrl(); ?>" alt="<?= $item["media"]->getAlt(); ?>" />
-                                            </figure>
-                                            <?php
-                                        }
-                                        else
-                                        {
-                                           ?>
+                                        ?>
+                                        <figure class="varietyDetailFigure">
+                                            <img src="<?= $item["media"]->getUrl(); ?>" alt="<?= $item["media"]->getAlt(); ?>" />
+                                        </figure>
+                                        <?php
+                                    }
+                                    else
+                                    {
+                                       ?>
+                                        <figure class="varietyDetailFigure">
                                             <img src="./assets/img/varieties/panierVide.jpg" alt="Photo non disponible" />
-                                        <?php 
-                                        }
+                                        </figure>
+                                    <?php 
                                     }
                                 }
-                                ?>
+                            }
+                            ?>
+                            <header class="varietyDetailTitle">
                                 <h3>
                                     <?= $variety['name']; ?>
                                 </h3>
                             </header>
-                            <main>
+                            <main class="varietyDetailDescription">
                                 <p>
                                     <?= $variety['description']; ?>
                                 </p>
+                            </main>
+                            <footer class="varietyDetailSeason">
                                 <p>
                                     Disponible de <?= $variety['season_start']; ?> à <?= $variety['season_end']; ?>
                                 </p>
-                            </main>
+                            </footer>
                         </article>
                     </li>
                     <?php
