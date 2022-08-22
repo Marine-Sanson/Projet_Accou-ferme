@@ -1,7 +1,4 @@
 <?php
-/**
- * @author : Gaellan
- */
 
 require "classes/DBConnect.php";
 require "autoload.php";

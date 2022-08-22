@@ -4,6 +4,10 @@ html{
     scroll-behavior:smooth;
 }
 
+.sr-only{
+    display:none;
+}
+
 body{
     box-sizing: border-box;
     font-family: $fontDefault;

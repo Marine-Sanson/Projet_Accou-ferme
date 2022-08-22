@@ -7,96 +7,107 @@
         <p>Retrouvez ici la liste des Fruits et légumes que nous proposons</p>
         
         
+        <select name="
+        <?= $productId ?>
+        ">
+        <option value = "0">Selectionner un produit</option>
         <?php
-        foreach($data['products'] as $key => $product)
-        {
-            ?>
-        <ul>
-            <li>
-                <h2 class="productName">
-                    <?= $product["product"]["name"]; ?>
-                </h2>
-                <ul>
-                    <?php foreach($product["varieties"] as $key => $variety) 
-                    {
-                    ?>
-                    <li>
-                        <article class="varietyDetail">
-                            <?php 
-                            $medias = $data["medias"];
-                            foreach($medias as $item)
-                            {
-                                if($item["variety"]["id"] === $variety["id"])
+
+        foreach($data['products'] as $key => $product){
+    		?>
+    		<option value = "
+    		<?= $product["product"]["id"]; ?>
+    		">
+    		<?=$product["product"]["name"]; ?>
+    		</option>
+    		<?php $idProduct = $product["product"]['id'];
+        }
+        ?>
+        </select>
+
+        <?php
+        // if($productId === "0"){
+            
+            foreach($data['products'] as $key => $product)
+            {
+                ?>
+            <ul>
+                <li>
+                    <h2 class="productName">
+                        <?= $product["product"]["name"]; ?>
+                    </h2>
+                    <ul>
+                        <?php foreach($product["varieties"] as $key => $variety) 
+                        {
+                        ?>
+                        <li>
+                            <article class="varietyDetail">
+                                <?php 
+                                $medias = $data["medias"];
+                                foreach($medias as $item)
                                 {
-                                    if(!is_null($item["media"]))
+                                    if($item["variety"]["id"] === $variety["id"])
                                     {
-                                        ?>
-                                        <figure class="varietyDetailFigure">
-                                            <img src="<?= $item["media"]->getUrl(); ?>" alt="<?= $item["media"]->getAlt(); ?>" />
-                                        </figure>
-                                        <?php
-                                    }
-                                    else
-                                    {
-                                       ?>
-                                        <figure class="varietyDetailFigure">
-                                            <img src="./assets/img/varieties/panierVide.jpg" alt="Photo non disponible" />
-                                        </figure>
-                                    <?php 
+                                        if(!is_null($item["media"]))
+                                        {
+                                            ?>
+                                            <figure class="varietyDetailFigure">
+                                                <img src="<?= $item["media"]->getUrl(); ?>" alt="<?= $item["media"]->getAlt(); ?>" />
+                                            </figure>
+                                            <?php
+                                        }
+                                        else
+                                        {
+                                           ?>
+                                            <figure class="varietyDetailFigure">
+                                                <img src="./assets/img/varieties/panierVide.jpg" alt="Photo non disponible" />
+                                            </figure>
+                                        <?php 
+                                        }
                                     }
                                 }
-                            }
-                            ?>
-                            <header class="varietyDetailTitle">
-                                <h3>
-                                    <?= $variety['name']; ?>
-                                </h3>
-                            </header>
-                            <main class="varietyDetailDescription">
-                                <p>
-                                    <?= $variety['description']; ?>
-                                </p>
-                            </main>
-                            <footer class="varietyDetailSeason">
-                                <p>
-                                    Disponible de <?= $variety['season_start']; ?> à <?= $variety['season_end']; ?>
-                                </p>
-                            </footer>
-                        </article>
-                    </li>
-                    <?php
-                    }
-                    ?>
-                </ul>
-            </li>
-        </ul>
-            <?php
-        }
-        
-        // Affiche la liste des différents produits proposés d'après le tableau renvoyé par pm getAllProduce
-            /*foreach($data['products'] as $key => $product)
-            {
-        	
-        	echo "<ul>";   
-            echo "<li><h2>" . $product["product"]["name"] . "</h2>";
-            
-            // affiche la liste des variétés d'après le nom du produit
-            
-            var_dump($product["varieties"]);
-            
-                foreach($product["varieties"] as $key => $variety)
-                {
-                    var_dump($media['url']);
-                    if(!is_null($media['url'])){
-                        echo "<li class='varietyDetail'><figure><img src=" . $media['url'] . "alt=" . $media['alt'] . " /></figure>";
-                    }
-                    echo "<h3>" . $variety['name'] . "</h3>";
-                    echo "<p>" . $variety['description'] . "</p>";
-                    echo "<p>Disponible de " . $variety['season_start'] . " à " . $variety['season_end'] . "</p></li>";
-                }
-            echo "</li>";
-            echo "</ul>";
-            }*/
+                                ?>
+                                <header class="varietyDetailTitle">
+                                    <h3>
+                                        <?= $variety['name']; ?>
+                                    </h3>
+                                </header>
+                                <main>
+                                    <p class="varietyDetailDescription">
+                                        <?= $variety['description']; ?>
+                                    </p>
+                                </main>
+                                <footer class="varietyDetailFooter">
+                                    <p class="varietyDetailSeason">
+                                        De
+                                        <?= $variety['season_start']; ?>
+                                        à 
+                                        <?= $variety['season_end']; ?>
+                                    </p>
+                                    <p class="varietyDetailAvailablity">
+                                        <?php
+                                        if($variety['availablity'] === 1){
+                                            echo "Disponible actuellement";
+                                        }
+                                        else {
+                                            echo "Indisponible actuellement";
+                                        }
+                                        ?>
+                                    </p>
+                                </footer>
+                                
+                            </article>
+                        </li>
+                        <?php
+                        }
+                        ?>
+                    </ul>
+                </li>
+            </ul>
+                <?php
+            }
+        // }
+
         ?>
 
     </section>

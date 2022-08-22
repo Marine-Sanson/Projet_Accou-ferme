@@ -2,16 +2,29 @@
 
 class Recipe extends News
 {
+    private ?int $newsId;
     private ?int $productId;
     private string $ingredients;
     private string $steps;
     
-    function __construct (?int $productId, string $ingredients, string $steps)
+    function __construct (?int $newsId, ?int $productId, string $ingredients, string $steps)
     {
+        $this->newsId = $newsId;
         $this->productId = $productId;
         $this->ingredients = $ingredients;
         $this->steps = $steps;
     }
+    
+    public function getNewsId() : ?int
+    {
+        return $this->newsId;
+    }
+    
+    public function setNewsId(int $newsId) : void
+    {
+        $this->newsId = $newsId;
+    }
+
     
     public function getProductId() : ?int
     {

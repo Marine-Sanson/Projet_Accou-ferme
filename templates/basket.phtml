@@ -1,82 +1,91 @@
 <main id="basket">
     
-        <h1>Produits disponibles</h1>
+        <h1>Produits disponibles en ce moment</h1>
     
-    <section>
-        
-        <table>
-            <caption>
-                <h2>En ce moment</h2>
-            </caption>
+    <section class="availableVarietySection">
+
+		    <?php
+            foreach($data['allAvailableVarieties'] as $key => $availableVariety)
+            {
+            ?>
+            <article class="availableVariety">
+                <header class="availableVarietyHeader">
             
-            <thead>
-                <tr>
-                    <th>Famille</th>
-    				<th>Variété</th>
-    				<th>Unité</th>
-    				<th>Prix</th>
-    				<th>Ajouter au panier</th>
-			    </tr>
-			</thead>
-			
-			<tbody>
+			        <?= $availableVariety["product_name"]; ?>
+			        
+			    </header>
 			    
-			    <?php
-                foreach($data['allAvailableVarieties'] as $key => $availableVariety)
-                {
-                ?>
-				<tr>
-				    <td>
-				        <?= 
-                        $availableVariety["product_name"];
-                        ?>
-				    </td>
-    				<td>
-	                    <?= 
-                        $availableVariety['name'];
-                        ?>
-    				</td>
-    				<td>
-    				    <?php 
-                        switch($availableVariety['units'])
+			    <main class="availableVarietyMain">
+                    
+                    <?php
+                    $medias = $data["medias"];
+                    foreach($medias as $item)
+                    {
+                        if($item["availableVariety"]["id"] === $availableVariety["id"])
                         {
-                            case "kilo":
-                                echo "au " . $availableVariety['units'];
-                                break;
-                            case "pièce":
-                                echo "à la " . $availableVariety['units'];
-                                break;
-                            case "botte":
-                                echo "en " . $availableVariety['units'];
-                                break;
+                            if(!is_null($item["media"]))
+                            {
+                            ?>
+                            <figure class="availableVarietyFigure">
+                                <img src="<?= $item["media"]->getUrl(); ?>" alt="<?= $item["media"]->getAlt(); ?>" />
+                            </figure>
+                            <?php
+                            }
+                            else
+                            {
+                               ?>
+                                <figure class="availableVarietyFigure">
+                                    <img src="./assets/img/varieties/panierVide.jpg" alt="Photo non disponible" />
+                                </figure>
+                            <?php 
+                            }
                         }
-                        ?>
-    				</td>
-    				<td>
-                        <?=
-                        $availableVariety['price'];
-                        ?>
-                        euros
-    				</td>
-    				<td>
-    				    <form>
-    				        <button type="button">+</buton>
-    				        <button type="button">-</buton>
-    				    </form>
-    				</td>
-    			</tr>
-    			<?php
-                }
-                ?>
-    		</tbody>
-			
-        </table>   
-        
+                    }
+                    ?>
+                    
+			        <h3 class="availableVarietyTitle"><?= $availableVariety['name']; ?></h3>
+                    
+                </main>
+                <footer class="availableVarietyFooter">
+                    <p class="availableVarietyPrice">
+                    <?= $availableVariety['price']; ?> €
+				    <?php 
+                    switch($availableVariety['units'])
+                    {
+                        case "kilo":
+                            echo "/ " . $availableVariety['units'];
+                            break;
+                        case "pièce":
+                            echo "/ " . $availableVariety['units'];
+                            break;
+                        case "botte":
+                            echo "/ " . $availableVariety['units'];
+                            break;
+                    }
+                    ?>
+                    </p>
+                    
+				    <form class="availableVarietyButton" method="POST" action="/basket-previewer/basket-preview">
+				        <fieldset class="availableVarietyId">
+                            <input type="hidden" name="availableVarietyId" value="
+                            <?= $availableVariety["id"] ?>
+                            " />
+                        </fieldset>
+				        <fieldset class="availableVarietyButtonAdd">
+                            <button type="submit" name="buttonAdd" id="buttonAdd">  +  </buton>
+                        </fieldset>
+				        <fieldset class="availableVarietyButtonMinus">
+                            <button type="submit" name="buttonMinus" id="buttonMinus">  -  </buton>
+                        </fieldset>
+                        
+				    </form>
+				    
+				</footer>
+			</article>
+			<?php
+            }
+            ?>
             
-            </li>
-        </ul>
-        
-        
     </section>
         
 </main>

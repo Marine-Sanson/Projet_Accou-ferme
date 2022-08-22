@@ -9,8 +9,8 @@ class ProductController extends AbstractController
             $products = $this->pm->getAllProducts();
             $medias = [];
             
-            foreach($products as $key => $product){
-                
+            foreach($products as $key => $product)
+            {
                 foreach($product["varieties"] as $key => $variety)
                 {
                     if(!is_null($variety['media_id'])){

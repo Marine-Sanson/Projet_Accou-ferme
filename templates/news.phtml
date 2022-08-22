@@ -1,1 +1,109 @@
-<h1>news</h1>
+<main id="news">
+    
+    <h1>Actu et recettes</h1>
+    
+    <section>
+
+        <select name="
+            <?= $newsId ?>
+            ">
+            <option value = "0">Selectionner une catégorie</option>
+            <?php
+    
+            foreach($data['news'] as $key => $singleNews){
+        		?>
+        		<option value = "
+        		<?= $singleNews["category_id"]; ?>
+        		">
+        		<?=$singleNews["category_name"]; ?>
+        		</option>
+        		<?php $idNews = $singleNews['category_id'];
+            }
+            ?>
+        </select>
+
+        <?php
+            foreach($data["news"] as $key => $singleNews)
+            {
+
+            ?>
+            <article class="newsArticle">
+                <header class="newsHeader">
+                    <h2> <?= $singleNews["name"] ?> <h2>
+                </header>
+                <main class="newsMain">
+                    <?php
+                        if(!is_null($data["medias"][0]['media']))
+                        {
+                            ?>
+                            <figure class="newsImg">
+                                <img src="<?= $item["media"]->getUrl(); ?>" alt="<?= $item["media"]->getAlt(); ?>" />
+                            </figure>
+                            <?php
+                        }
+                        else if($singleNews["category_name"] === 'Actu')
+                        {
+                           ?>
+                            <figure class="newsImg">
+                                <img src="./assets/img/news/news.jpg" alt="Photo non disponible" />
+                            </figure>
+                        <?php 
+                        }
+                        else if($singleNews["category_name"] === 'Divers')
+                        {
+                           ?>
+                            <figure class="newsImg">
+                                <img src="./assets/img/legumes.jpg" alt="Photo non disponible" />
+                            </figure>
+                        <?php 
+                        }
+                        else if($singleNews["category_name"] === 'Recette')
+                        {
+                           ?>
+                            <figure class="newsImg">
+                                <img src="./assets/img/news/recette.jpg" alt="Photo non disponible" />
+                            </figure>
+                            <?php
+                        }
+                        else
+                        {
+                            ?>
+                            <figure class="newsImg">
+                                <img src="./assets/img/panierVide.jpg" alt="Photo non disponible" />
+                            </figure>
+                            <?php
+                        }
+                        
+                    ?>
+                    <p class="newsContent">
+                    <?= $singleNews["content"] ?>
+                    </p>
+                </main>
+                <footer  class="newsFooter">
+                    <h3 class="newsH3">Catégorie : <?= $singleNews["category_name"] ?> </h3>
+                    <form class="newsButton">
+                        <button>
+                            <?php 
+                            if($singleNews["category_name"] === 'Recette'){
+                            ?>
+                            Voir la recette
+                            <?php 
+                            }
+                            else{
+                            ?>
+                            En savoir plus
+                            <?php
+                            }
+                            ?>
+                        </button>
+                    </form>
+                </footer>
+
+        </article>
+        <?php
+            }
+        ?>
+    </section>
+    
+</main>
+

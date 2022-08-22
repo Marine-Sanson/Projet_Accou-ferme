@@ -2,92 +2,149 @@
 Header
 ********** */
 
-/* **********
-Toolbar
-********** */
+// Light mode 
+// @media (prefere-color-scheme: light){
+    body > header{
+        background-color: $red;
+        color: $mainColor;
+    }
+    
+    body > header a{
+        color:$blanc;
+    }
+    
+    body > header h1 {
+        color: $mainColor;
+    }
+    
+    #mobile-header-button {
+        color:$blanc;
+    }
+    
+// }
 
-#toolbar{
-    width: 100vw;
-    z-index: 2;
-    position: sticky;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    background-color:$red;
-    padding: 1rem 0;
+/* Dark mode */
+// @media (prefers-color-scheme: dark) {
+
+    // body > header {
+    //     background-color: #343434;
+    //     color:#ffffff;
+    // }
+
+    // body > header a {
+    //     color:#ffffff;
+    // }
+
+    // body > header h1{
+    //     color: #6fffe9;
+    // }
+
+    // #mobile-header-button {
+    //     color: #ffffff;
+    // }
+// }
+
+/* Phones */
+@media (min-width: 0px) {
+
+    #mobile-header-button {
+        background-color: transparent;
+        border: none;
+        font-size: 1.5rem;
+    }
+
+    body > header ul{
+        text-align: center;
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        font-size: 1.3rem;
+    }
+
+    body > header ul li {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    #main-nav:not(.open)
+    {
+        display: none;
+    }
 }
 
-#innerToolbar{
-    padding: 0;
-    display: flex;
-    height: 5rem;
+/* Desktops */
+@media (min-width: 992px) {
+
+    #main-nav:not(.open)
+    {
+        display: block;
+    }
+
+    #mobile-header-button {
+        display:none;
+    }
+
+    body > header h1 {
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+    
+    body > header ul {
+        text-align: left;
+        display:grid;
+        grid-template-columns: 0.3fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
+        grid-template-rows: none;
+    }
+
+    body > header ul li{
+        padding-top: 0;
+        padding-bottom: 0;
+        margin:auto;
+    }
+
+    body > header h1:hover {
+        text-decoration: underline;
+    }
+    
+    #containerLogo{
+    display:flex;
+    justify-content:center;
+    margin:auto;
+    }
+
+    #containerLogo > #logoImg{
+    display:inline-block;
+    margin:auto;
+    }
+    
+    #containerLogo > a{
+    margin:auto;
+    }
+    
 }
 
-#logoHeader{
-    display: flex;
-    padding-top: $pDef;
-    padding-bottom: $pDef;
+/* General */
+
+body > header {
+padding:1rem;
 }
 
-
-#logoHeader > h1{
-    display: flex;
-    align-items: center;
+body > header a {
+text-decoration: none;
 }
 
-#logoHeader > h1{
-    font-weight:500;
+body > header a {
+text-decoration: none;
 }
 
-#logoImg{
-    display: flex;
-    align-items: center;
-    padding: $pDef;
+body > header a:hover {
+text-decoration: underline;
 }
 
-#logoImg > img{
-    min-width: $logoWidth;
-    max-width : $logoWidth;
-    height: auto;
+.logoImg{
+    max-width: 3vw;
+    height:auto;
 }
 
-#menu{
-    margin: auto 2vw auto auto;
-}
-
-#menu > ul{
-    display: flex;
-}
-
-#menu > ul > li{
-    display: flex;
-    text-align: center;
-    align-items: center;
-}
-
-#menu > ul > li > a{
-    line-height:2rem;
-    font-size:1.1rem;
-    padding: 0.2rem;
-    margin: 0.5rem;
-    color: $mainColor;
-    font-weight: 600;
-}
-
-#contact{
-    background-color: $blanc;
-    border-radius: 1rem;
-}
-
-#menu > ul > li > a:hover{
-    background-color: $blanc;
-    border-radius: 1rem;
-    color: $noir;
-    font-weight: 600;
-}
-
-#menu > ul > li > #contact:hover{
-    color: $red;
-    background-color: $mainColor;
-    font-weight: 600;
+.logoImg > img{
+    max-width:100%;
 }

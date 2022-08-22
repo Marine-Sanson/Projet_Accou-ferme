@@ -1,21 +1,22 @@
 <!doctype html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Accou'ferme</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css" type="text/css" />
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet"> 
-</head>
-<body id="top">
+    <head>
+        <meta charset="UTF-8">
+        <title>Accou'ferme</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css">
+        <link rel="stylesheet" href="./assets/css/style.css" type="text/css" />
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet"> 
+    </head>
+    <body id="top">
+        
+        <?php
+        
+            require "./templates/_header.phtml";
+        	require "templates/$template.phtml";
+            require "./templates/_footer.phtml";
     
-<?php
-    
-    require "./templates/_header.phtml";
-	require "templates/$template.phtml";
-    require "./templates/_footer.phtml";
-
-?>
-
-</body>
+        ?>
+        <script src="https://cdn.ckeditor.com/ckeditor5/35.0.1/classic/ckeditor.js"></script>
+        <script type="application/javascript" src="assets/javascript/index.js"></script>
+    </body>
 </html>

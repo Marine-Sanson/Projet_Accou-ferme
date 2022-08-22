@@ -1,6 +1,7 @@
 <?php
 /**
  * @author : Gaellan
+ * @author : Marine Sanson
  */
 
 class Router {

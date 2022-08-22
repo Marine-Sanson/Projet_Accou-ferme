@@ -67,7 +67,7 @@ class VarietyManager extends DBConnect
     }
     
     public function getAllAvailableVarieties() :array{
-        $query = $this->db->prepare('SELECT products.name AS product_name, varieties.name, varieties.quantity_available, varieties.units, varieties.price FROM varieties JOIN products ON varieties.product_id = products.id WHERE varieties.quantity_available > 0');
+        $query = $this->db->prepare('SELECT products.name AS product_name, varieties.id, varieties.name, varieties.media_id, varieties.quantity_available, varieties.units, varieties.price FROM varieties JOIN products ON varieties.product_id = products.id WHERE varieties.quantity_available > 0 ');
         $query->execute();
         $allAvailableVarieties = $query->fetchAll(PDO::FETCH_ASSOC);
         
