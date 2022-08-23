@@ -6,7 +6,7 @@
 
 class HomeController extends AbstractController
 {
-    public function index()
+    public function index(array $post)
     {
         $this->render("home");
     }

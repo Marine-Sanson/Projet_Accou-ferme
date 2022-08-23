@@ -57,7 +57,7 @@ class Router {
 
                     $ctrl = new $controller();
                     $ctrl->init($bm, $cm, $mm, $nm, $pm, $rm, $um, $vm);
-                    $ctrl->$method($requestData["parameter"]);
+                    $ctrl->$method($_POST, $requestData["parameter"]);
                 }
                 else if(!$route["parameter"] && $requestData["parameter"] === null)
                 {
@@ -74,7 +74,7 @@ class Router {
 
                     $ctrl = new $controller();
                     $ctrl->init($bm, $cm, $mm, $nm, $pm, $rm, $um, $vm);
-                    $ctrl->$method();
+                    $ctrl->$method($_POST);
                 }
             }
         }

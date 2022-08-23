@@ -44,6 +44,19 @@ class NewsManager extends DBConnect
         
     }
     
+    public function getAllNewsByCategoryId($categoryId) :array
+    {
+        $query = $this->db->prepare('SELECT id, name, media_id, content FROM news WHERE category_id = :categories.id ');
+        $parameters = [
+            'categories.id' => $categoryId
+        ];
+        $query->execute($parameters);
+        $NewsByCategoryId = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        return $NewsByCategoryId;
+        
+    }
+    
     public function getNewsById(News $id) : News
     {
         $query = $this->db->prepare('SELECT category_id, name, media_id, content FROM news WHERE news.id = :id');

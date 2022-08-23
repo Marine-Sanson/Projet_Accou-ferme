@@ -2,11 +2,9 @@
     
     <h1>Actu et recettes</h1>
     
-    <section>
+    <section id="newsSection">
 
-        <select name="
-            <?= $newsId ?>
-            ">
+        <select id="selectNews">
             <option value = "0">Selectionner une catégorie</option>
             <?php
     
@@ -21,13 +19,17 @@
             }
             ?>
         </select>
+        
+    </section>
+    
+    <section id="displayArticles">
 
         <?php
             foreach($data["news"] as $key => $singleNews)
             {
 
             ?>
-            <article class="newsArticle">
+            <article class="newsArticle" data-category="<?= $singleNews["category_id"] ?>">
                 <header class="newsHeader">
                     <h2> <?= $singleNews["name"] ?> <h2>
                 </header>

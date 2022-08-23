@@ -3,6 +3,8 @@
 /gallery GalleryController:index
 /product ProductController:index
 /basket BasketController:index
+/basket_update BasketController:update
 /news NewsController:index
+/news_detail NewsController:getAllNewsByCategoryId
 /contact ContactController:index
 /admin AdminController:index

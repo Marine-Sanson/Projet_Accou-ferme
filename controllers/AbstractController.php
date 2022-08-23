@@ -24,6 +24,13 @@ abstract class AbstractController
         $this->vm = $vm;
     }
 
+    protected function renderPartial(string $template, array $values)
+    {
+        $data = $values;
+        
+        require "templates/".$template.".phtml";
+    }
+    
     protected function render(string $template, array $data = null){
         
         $data = $data;

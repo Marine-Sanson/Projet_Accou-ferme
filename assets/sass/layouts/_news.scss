@@ -1,5 +1,9 @@
+#newsSection{
+    margin:1rem 6rem;
+}
+
 .newsArticle{
-    max-width:80%;
+    max-width:70vw;
     display:grid;
     grid-template-columns:30% repeat 3;
     grid-template-rows:4rem auto 4rem;
@@ -63,4 +67,12 @@
     grid-column: 3;
     grid-row: 1;
     margin:auto;
+}
+
+#displayArticles article.hide{
+    display:none!important;
+}
+
+#displayArticles article.show{
+    display:grid!important;
 }

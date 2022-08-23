@@ -1,6 +1,10 @@
 <main id="basket">
     
-        <h1>Produits disponibles en ce moment</h1>
+    <h1>Produits disponibles en ce moment</h1>
+    
+    <section id="basketPreview">
+
+    </section>
     
     <section class="availableVarietySection">
 
@@ -65,17 +69,17 @@
                     ?>
                     </p>
                     
-				    <form class="availableVarietyButton" method="POST" action="/basket-previewer/basket-preview">
-				        <fieldset class="availableVarietyId">
-                            <input type="hidden" name="availableVarietyId" value="
+				    <form class="availableVarietyButton" method="POST" action="/Projet_Accou-ferme/basket-update">
+				        <fieldset class="availableVarietyName">
+                            <input type="hidden" name="availableVarietyName" value="
                             <?= $availableVariety["id"] ?>
                             " />
                         </fieldset>
 				        <fieldset class="availableVarietyButtonAdd">
                             <button type="submit" name="buttonAdd" id="buttonAdd">  +  </buton>
                         </fieldset>
-				        <fieldset class="availableVarietyButtonMinus">
-                            <button type="submit" name="buttonMinus" id="buttonMinus">  -  </buton>
+				        <fieldset class="availableVarietyButtonRemove">
+                            <button type="submit" name="buttonRemove" id="buttonRemove">  -  </buton>
                         </fieldset>
                         
 				    </form>

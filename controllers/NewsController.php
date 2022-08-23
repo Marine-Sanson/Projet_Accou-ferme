@@ -33,4 +33,17 @@ class NewsController extends AbstractController
 
         $this->render("news", ["news" => $news, "medias" => $medias]);
     }
+    
+    public function displayAllNewsByCategoryId($categoryId)
+    {
+        if(isset($POST['category-id']))
+        {
+            $categoryId = $POST['category-id'];
+            $nm = new NewsManager();
+            $AllNewsByCategoryId = $nm->getAllNewsByCategoryId($categoryId);
+            
+            $this->render("news_detail", ["AllNewsByCategoryId" => $AllNewsByCategoryId]);
+        }
+    }
+    
 }
