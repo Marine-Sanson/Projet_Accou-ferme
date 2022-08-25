@@ -34,33 +34,40 @@ class BasketController extends AbstractController
 
         $this->render("basket", ["allAvailableVarieties" => $allAvailableVarieties, "medias" => $medias]);
         
-        
     }
     
-    public function update(array $post){
-        if(isset($_POST["data"])) // the form has been submitted
+    public function basketUpdate(array $post)
+    {
+
+        if($_POST["data"]) // the form has been submitted
         {
-            $availableVariety = $_POST["availableVarietyId"];
-            $buttonAdd = $_POST["buttonAdd"];
-            $buttonRemove = $_POST["buttonRemove"];
-            $update = $this->renderPartial("_update", [
-                "availableVarietyId" => $availableVariety,
-                "buttonAdd" => $buttonAdd,
-                "buttonRemove" => $buttonRemove
-            ]);
+            
+            // récupère le post de la variété ajoutée
+            $availableVariety = $_POST["availableVarietyName"];
+
+
+            // Ajoute la variété cliquée au panier
+            $_SESSION["basket"][] = [
+                "variety" => $availableVariety,
+                "amount" => 1
+                ];
+            
+            $basket = $_SESSION["basket"];
+            
+            echo json_encode($basket);
+            
+            $this->renderPartial("basket_update", $basket);
         }
         else
         {
-            $this->render("basket_update", [
-            
-            ]);
+            echo json_encode($_POST);
         }
     }
     
     
-    public function updateQuantity(array $post)
+    public function updateAmount(array $basket)
     {
-        echo "wdskgn";
+        var_dump($basket['0']['variety']);
     }
 
 }

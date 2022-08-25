@@ -1,5 +1,14 @@
 <?php
 
+// initialise la session
+session_start();
+
+// si il n'y a pas de panier, en initialise un
+if(!isset($_SESSION["basket"]))
+{
+    $_SESSION["basket"] = [];
+}
+
 require "classes/DBConnect.php";
 require "autoload.php";
 

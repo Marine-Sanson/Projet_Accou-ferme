@@ -1,9 +1,16 @@
-<section id="basketPreview">
 
     <h1>Panier</h1>
     
-    <p>
-        <?= $availableVariety ?>
-    </p> 
-    
-</section>
+    <ul>
+    <?php
+    foreach($basket as $key => $basketItem)
+    {
+    ?>
+        <li>
+            <p><?= $basket["variety"] ?> <?= $basket["variety"] ?></p>
+        </li>
+    <?php
+    }
+    ?>
+    </ul>
+

@@ -246,7 +246,7 @@ About
   margin-left: 4rem;
 }
 
-#product > section > ul > li {
+#product > section {
   justify-content: center;
   margin: auto;
 }
@@ -302,6 +302,14 @@ About
 .varietyDetailAvailablity {
   grid-column: 2;
   grid-row: 1;
+}
+
+.hide {
+  display: none !important;
+}
+
+.show {
+  display: block !important;
 }
 
 .availableVarietySection {

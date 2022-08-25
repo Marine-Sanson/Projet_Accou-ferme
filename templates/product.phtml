@@ -6,10 +6,7 @@
     
         <p>Retrouvez ici la liste des Fruits et légumes que nous proposons</p>
         
-        
-        <select name="
-        <?= $productId ?>
-        ">
+        <select id="selectProduct">
         <option value = "0">Selectionner un produit</option>
         <?php
 
@@ -24,6 +21,9 @@
         }
         ?>
         </select>
+    
+    </section>
+    <section>
 
         <?php
         // if($productId === "0"){
@@ -31,17 +31,13 @@
             foreach($data['products'] as $key => $product)
             {
                 ?>
-            <ul>
-                <li>
-                    <h2 class="productName">
+                    <h2 class="productName" data-product="<?=$product["product"]["id"];?>">
                         <?= $product["product"]["name"]; ?>
                     </h2>
-                    <ul>
                         <?php foreach($product["varieties"] as $key => $variety) 
                         {
                         ?>
-                        <li>
-                            <article class="varietyDetail">
+                            <article class="varietyDetail" data-product="<?=$product["product"]["id"];?>">
                                 <?php 
                                 $medias = $data["medias"];
                                 foreach($medias as $item)
@@ -97,13 +93,9 @@
                                 </footer>
                                 
                             </article>
-                        </li>
                         <?php
                         }
                         ?>
-                    </ul>
-                </li>
-            </ul>
                 <?php
             }
         // }

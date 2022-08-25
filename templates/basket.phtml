@@ -69,19 +69,14 @@
                     ?>
                     </p>
                     
-				    <form class="availableVarietyButton" method="POST" action="/Projet_Accou-ferme/basket-update">
+				    <form class="availableVarietyForm" method="POST" action="/Projet_Accou-ferme/basket-update">
 				        <fieldset class="availableVarietyName">
-                            <input type="hidden" name="availableVarietyName" value="
-                            <?= $availableVariety["id"] ?>
-                            " />
+                            <input type="hidden" name="availableVarietyName" value="<?=$availableVariety["name"]?>" />
                         </fieldset>
 				        <fieldset class="availableVarietyButtonAdd">
-                            <button type="submit" name="buttonAdd" id="buttonAdd">  +  </buton>
+                            <button type="submit" data-productAdded="<?= $availableVariety["name"]?>" name="buttonAdd" class="buttonAdd" value="<?= $availableVariety["name"]?>">Ajouter au panier</button>
                         </fieldset>
-				        <fieldset class="availableVarietyButtonRemove">
-                            <button type="submit" name="buttonRemove" id="buttonRemove">  -  </buton>
-                        </fieldset>
-                        
+
 				    </form>
 				    
 				</footer>
