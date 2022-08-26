@@ -397,6 +397,30 @@ About
   display: none;
 }
 
+.update {
+  display: grid;
+  grid-template-rows: 1fr 2fr 4fr;
+}
+
+.update > ul {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.update > ul > li {
+  display: grid;
+  grid-template-columns: repeat(2, 2fr) repeat(3, 0.7fr);
+}
+
+.update > ul > li > h3,
+.update > ul > li > p {
+  margin: auto;
+}
+
+.update > a {
+  align-self: end;
+}
+
 #newsSection {
   margin: 1rem 6rem;
 }

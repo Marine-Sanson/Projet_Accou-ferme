@@ -19,32 +19,33 @@ function listenButtonAdd(event){
         method: 'POST',
         body: $formData
     };
-    console.log("avant le fetch");
+    
     fetch('/Projet_Accou-ferme/basket_update', options)
         .then(response => response.json())
         .then(data => {
-            createBasketDisplay(data);
+            console.log(data);
+            // createBasketDisplay(data);
         })
         .catch( error => {
         });
         
 }
 
-function createBasketDisplay(data){
+// function createBasketDisplay(data){
     
-    var $basket = data;
+//     var $basket = data;
     
-    for (var i=0; i<$basket.length; i++){
-        var newLi = document.createElement("li");
-        var newContent = document.createTextNode($basket[i]['variety'] + $basket[i]['amount']);
+//     for (var i=0; i<$basket.length; i++){
+//         var newLi = document.createElement("li");
+//         var newContent = document.createTextNode($basket[i]['variety'] + $basket[i]['amount']);
         
-        newLi.appendChild(newContent);
+//         newLi.appendChild(newContent);
         
-          var $buttonNewBasket = document.getElementById('submitBasket');
+//           var $buttonNewBasket = document.getElementById('submitBasket');
           
-  document.body.insertBefore(newLi, $buttonNewBasket);
-    }
-}
+//   document.body.insertBefore(newLi, $buttonNewBasket);
+//     }
+// }
 
 window.addEventListener("DOMContentLoaded", (event) => {
     

@@ -41,7 +41,6 @@ class BasketController extends AbstractController
         // Pour pouvoir vider le panier pour test
         // A ENLEVER ***************************
         // $_SESSION["basket"]=[];
-            
 
         if($_POST["data"]) // the form has been submitted
         {
@@ -52,8 +51,6 @@ class BasketController extends AbstractController
             $availableVarietyPrice = $_POST["availableVarietyPrice"];
             
             $baskets = $_SESSION["basket"];
-            
-            //var_dump($baskets);
             
             if(count($baskets) < 1)
             {
@@ -67,25 +64,14 @@ class BasketController extends AbstractController
             }
             else 
             {
-                foreach($baskets as $key => $basket){
+                foreach($_SESSION["basket"] as $key => $basket){
                     
-                    $this->verifyVariety($key, $basket, $availableVariety);
+                    $this->verifyVariety($key, $basket, $availableVariety, $availableVarietyUnits, $availableVarietyPrice);
                 
                 }
             }
             
-
-            // Ajoute la variété cliquée au panier
-            // $_SESSION["basket"][] = [
-            //     "variety" => $availableVariety,
-            //     "amount" => 1,
-            //     "units" => $availableVarietyUnits,
-            //     "price" => $availableVarietyPrice
-            //     ];
-            
-            $basket = $_SESSION["basket"];
-            
-            echo json_encode($basket);
+            echo json_encode($_SESSION["basket"]);
             
         }
         else
@@ -94,16 +80,23 @@ class BasketController extends AbstractController
         }
     }
     
-    public function verifyVariety(int $key, array $basket, string $availableVariety) :void
+    private function containsVariety(array $basket, string $variety)
     {
-        //var_dump($basket);
-        if($basket["variety"] === $availableVariety)
+        foreach($basket as $key => $item)
         {
-            $amount = $basket["amount"] + 1;
-            $baskets[$key]["amount"] = $amount;
-            $_SESSION["basket"][$key]["amount"] = $amount;
+            if($item["variety"] === $variety)
+            {
+                return $key;
+            }
         }
-        else
+        
+        return null;
+    }
+    
+    public function verifyVariety(int $key, array $basket, string $availableVariety, string $availableVarietyUnits, int $availableVarietyPrice) :void
+    {
+        $keyB = $this->containsVariety($_SESSION["basket"], $availableVariety);
+        if($keyB === null)
         {
             $_SESSION["basket"][] = [
                 "variety" => $availableVariety,
@@ -111,6 +104,15 @@ class BasketController extends AbstractController
                 "units" => $availableVarietyUnits,
                 "price" => $availableVarietyPrice
                 ];
+        }
+        else
+        {
+            if($key === $keyB)
+            {
+                $_SESSION["basket"][$key]["amount"]++;
+            }
+            
+            
         }
     
         
