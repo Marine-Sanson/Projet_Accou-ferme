@@ -3,7 +3,7 @@
     <h1>Produits disponibles en ce moment</h1>
     
     <section id="basketPreview">
-
+        <?php require "basket_update.phtml" ?>
     </section>
     
     <section class="availableVarietySection">
@@ -70,11 +70,11 @@
                     </p>
                     
 				    <form class="availableVarietyForm" method="POST" action="/Projet_Accou-ferme/basket-update">
-				        <fieldset class="availableVarietyName">
-                            <input type="hidden" name="availableVarietyName" value="<?=$availableVariety["name"]?>" />
-                        </fieldset>
 				        <fieldset class="availableVarietyButtonAdd">
-                            <button type="submit" data-productAdded="<?= $availableVariety["name"]?>" name="buttonAdd" class="buttonAdd" value="<?= $availableVariety["name"]?>">Ajouter au panier</button>
+				            <input id="variety-units-<?= $availableVariety["id"] ?>" type="hidden" name="availableVarietyUnits" value="<?=$availableVariety["units"]?>" />
+				            <input id="variety-price-<?= $availableVariety["id"] ?>" type="hidden" name="availableVarietyPrice" value="<?= $availableVariety["price"]?>" />
+
+                            <button type="submit" data-productAdded="<?= $availableVariety["name"]?>" data-product-id="<?= $availableVariety["id"] ?>" name="buttonAdd" class="buttonAdd" value="<?= $availableVariety["name"]?>">Ajouter au panier</button>
                         </fieldset>
 
 				    </form>

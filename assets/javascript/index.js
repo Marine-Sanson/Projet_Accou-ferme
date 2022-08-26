@@ -1,42 +1,49 @@
 function listenButtonAdd(event){
     event.preventDefault();
-    
     // qui a été cliqué
     var $clickedButton = event.target;
-    console.log(event.target.value);
     
-// VARIABLES
-    // je récupère la zone qui sera mise à jour
-    var updateBasket = document.querySelector( '#basketPreview' )
-        
-    // Je cible le formulaire
-    // var $availableVarietyForm = document.getElementsByClassName(".availableVarietyForm");// :-p
+    var $idVariety = $clickedButton.getAttribute("data-product-id");
     
-    // le nom de la variete
-    // var $availableVarietyName = document.getElementsByClassName(".availableVarietyName").value;
-
+    var $varietyUnits = document.getElementById("variety-units-"+$idVariety);
+    var $varietyPrice = document.getElementById("variety-price-"+$idVariety);
+    
     var $formData = new FormData();
     $formData.append('data', true);
     $formData.append('availableVarietyName', event.target.value);
-    //formData.append('buttonAdd', $buttonAdd);//:-p
-
-    console.log($formData);
-    console.log($formData['data']);
-    console.log($formData['availableVarietyName']);
+    $formData.append('availableVarietyUnits', $varietyUnits.value);
+    $formData.append('availableVarietyPrice', $varietyPrice.value);
     
+
     const options = {
         method: 'POST',
         body: $formData
     };
-    
+    console.log("avant le fetch");
     fetch('/Projet_Accou-ferme/basket_update', options)
         .then(response => response.json())
         .then(data => {
-            options
+            createBasketDisplay(data);
         })
         .catch( error => {
         });
         
+}
+
+function createBasketDisplay(data){
+    
+    var $basket = data;
+    
+    for (var i=0; i<$basket.length; i++){
+        var newLi = document.createElement("li");
+        var newContent = document.createTextNode($basket[i]['variety'] + $basket[i]['amount']);
+        
+        newLi.appendChild(newContent);
+        
+          var $buttonNewBasket = document.getElementById('submitBasket');
+          
+  document.body.insertBefore(newLi, $buttonNewBasket);
+    }
 }
 
 window.addEventListener("DOMContentLoaded", (event) => {
