@@ -1,0 +1,70 @@
+@media(min-width: 0px) and (max-width: 767.99px)
+{
+    .productName{
+        text-align:left;
+        margin-left:4rem;
+    }
+    
+    #product > section{
+        justify-content:center;
+        margin:auto;
+    }
+    
+    .varietyDetail{
+        border-radius: 6rem;
+        justify-content:center;
+        padding:2rem;
+        margin:4rem;
+        display: grid;
+        grid-template-columns: 1;
+        grid-template-rows: 1fr 4fr auto 1fr 1fr;
+        gap: 1rem;
+    }
+    
+    .varietyDetailFigure{
+        margin:auto;
+        max-width:60vw;
+        grid-row: 2;
+    }
+    
+    .varietyDetailTitle{
+        grid-row: 1;
+    }
+    
+    .varietyDetailTitle > h3{
+        font-size:1.5rem;
+        font-weight:600;
+    }
+    
+    .varietyDetailDescription{
+        grid-row: 3;
+    }
+    
+    .varietyDetailFooter{
+        grid-row: 4/6;
+        display:grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, auto);
+        gap: 1rem;
+    }
+    
+    .varietyDetailSeason{
+        grid-row: 1/2;
+    }
+    
+    .varietyDetailAvailablity{
+        grid-row: 2/3;
+    }
+    
+    .varietyDetailFooter > p{
+        margin:auto;
+        text-align:center;
+    }
+    
+    .hide{
+        display:none!important;
+    }
+    
+    .show{
+        display:block!important;
+    }}

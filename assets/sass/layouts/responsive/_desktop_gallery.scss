@@ -1,0 +1,26 @@
+@media(min-width: 992px)
+{
+
+    #mainGallery > h1{
+        color:$blanc;
+    }
+    
+    #gallery{
+        display:grid;
+    	grid-template-columns: repeat(4, auto);
+    	gap: 2rem;
+        max-width: 80vw;
+        padding:2rem 0;
+        margin: auto;
+    }
+    
+    #gallery > figure{
+        max-width:100%;
+    }
+    
+    #gallery > figure > img{
+        width:100%;
+        height:10rem;
+        object-fit: cover;
+    }
+}

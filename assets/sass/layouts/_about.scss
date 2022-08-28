@@ -1,13 +1,7 @@
 /* **********
-About
+    About
 ********** */
 
-#about > figure{
-    max-width: 40vw;
-    margin: auto;
-}
-
-#about > figure > img{
-    margin: auto;
-}
-
+@import "responsive/mobile_about";
+@import "responsive/tablet_about";
+@import "responsive/desktop_about";

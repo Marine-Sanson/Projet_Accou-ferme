@@ -1,0 +1,29 @@
+/* **********
+Header
+********** */
+
+@media(min-width: 0px) and (max-width: 767.99px)
+{
+    #mobile-header-button {
+        background-color: transparent;
+        border: none;
+        font-size: 1.5rem;
+    }
+
+    body > header ul{
+        text-align: center;
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        font-size: 1.3rem;
+    }
+
+    body > header ul li {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    #main-nav:not(.open)
+    {
+        display: none;
+    }
+}

@@ -39,6 +39,18 @@ class MediaManager extends DBConnect
         return new Media($id, $originalName, $fileName, $fileType, $url, $alt);
     }
     
+    public function getMediaUrlAlt(int $id) :array
+    {
+        $query = $this->db->prepare('SELECT url, alt FROM medias WHERE medias.id = :id');
+        $parameters = [
+            'id' => $id
+        ];
+        $query->execute($parameters);
+        $mediaUrlAlt = $query->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $mediaUrlAlt;
+    }
+    
     public function updateMedia(Media $media) : Media
     {
         $query = $this->db->prepare('UPDATE media SET original_name = :original_name, file_name = :file_name, file_type = :file_type, url = :url, alt = :alt FROM medias WHERE media.id = :id');

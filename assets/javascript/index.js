@@ -7,12 +7,14 @@ function listenButtonAdd(event){
     
     var $varietyUnits = document.getElementById("variety-units-"+$idVariety);
     var $varietyPrice = document.getElementById("variety-price-"+$idVariety);
+    var $varietyMedia = document.getElementById("variety-media-"+$idVariety);
     
     var $formData = new FormData();
     $formData.append('data', true);
     $formData.append('availableVarietyName', event.target.value);
     $formData.append('availableVarietyUnits', $varietyUnits.value);
     $formData.append('availableVarietyPrice', $varietyPrice.value);
+    $formData.append('availableVarietyMedia', $varietyMedia.value);
     
 
     const options = {
@@ -31,21 +33,19 @@ function listenButtonAdd(event){
         
 }
 
-// function createBasketDisplay(data){
+function createBasketDisplay(data){
     
-//     var $basket = data;
+    var $basket = data;
     
-//     for (var i=0; i<$basket.length; i++){
-//         var newLi = document.createElement("li");
-//         var newContent = document.createTextNode($basket[i]['variety'] + $basket[i]['amount']);
+    for (var i=0; i<$basket.length; i++){
+        var newLi = document.createElement("li");
+        var newContent = document.createTextNode($basket[i]['variety'] + $basket[i]['amount']);
         
-//         newLi.appendChild(newContent);
+        newLi.appendChild(newContent);
         
-//           var $buttonNewBasket = document.getElementById('submitBasket');
-          
-//   document.body.insertBefore(newLi, $buttonNewBasket);
-//     }
-// }
+
+    }
+}
 
 window.addEventListener("DOMContentLoaded", (event) => {
     

@@ -31,7 +31,6 @@ class BasketController extends AbstractController
                     }
                   
                 }
-
         $this->render("basket", ["allAvailableVarieties" => $allAvailableVarieties, "medias" => $medias]);
         
     }
@@ -49,7 +48,20 @@ class BasketController extends AbstractController
             $availableVariety = $_POST["availableVarietyName"];
             $availableVarietyUnits = $_POST["availableVarietyUnits"];
             $availableVarietyPrice = $_POST["availableVarietyPrice"];
+            $availableVarietyMediaId = $_POST["availableVarietyMedia"];
             
+            if($availableVarietyMediaId !== ""){
+                $getMedia = $this -> mm -> getMediaUrlAlt($availableVarietyMediaId);
+                
+                $mediaUrl = $getMedia[0]["url"];
+                $mediaAlt = $getMedia[0]["alt"];
+            }
+            else
+            {
+                $mediaUrl = "./assets/img/varieties/panierVide.jpg";
+                $mediaAlt = "pas de photo disponible";
+            }
+
             $baskets = $_SESSION["basket"];
             
             if(count($baskets) < 1)
@@ -58,7 +70,9 @@ class BasketController extends AbstractController
                     "variety" => $availableVariety,
                     "amount" => 1,
                     "units" => $availableVarietyUnits,
-                    "price" => $availableVarietyPrice
+                    "price" => $availableVarietyPrice,
+                    "media_url" => $mediaUrl,
+                    "media_alt" => $mediaAlt
                 ];
 
             }
@@ -66,8 +80,7 @@ class BasketController extends AbstractController
             {
                 foreach($_SESSION["basket"] as $key => $basket){
                     
-                    $this->verifyVariety($key, $basket, $availableVariety, $availableVarietyUnits, $availableVarietyPrice);
-                
+                    $this->verifyVariety($key, $basket, $availableVariety, $availableVarietyUnits, $availableVarietyPrice, $mediaUrl, $mediaAlt);
                 }
             }
             
@@ -93,7 +106,7 @@ class BasketController extends AbstractController
         return null;
     }
     
-    public function verifyVariety(int $key, array $basket, string $availableVariety, string $availableVarietyUnits, int $availableVarietyPrice) :void
+    public function verifyVariety(int $key, array $basket, string $availableVariety, string $availableVarietyUnits, int $availableVarietyPrice, ?string $mediaUrl, ?string $mediaAlt) :void
     {
         $keyB = $this->containsVariety($_SESSION["basket"], $availableVariety);
         if($keyB === null)
@@ -102,7 +115,9 @@ class BasketController extends AbstractController
                 "variety" => $availableVariety,
                 "amount" => 1,
                 "units" => $availableVarietyUnits,
-                "price" => $availableVarietyPrice
+                "price" => $availableVarietyPrice,
+                "media_url" => $mediaUrl,
+                    "media_alt" => $mediaAlt
                 ];
         }
         else
@@ -114,30 +129,8 @@ class BasketController extends AbstractController
             
             
         }
-    
-        
+
     }
     
-    // public function verifyAmount(array $basket, string $availableVariety) :array
-    // {
-    //     if($basket["variety"] === $availableVariety)
-    //     {
-    //         $_SESSION["basket"][] = [
-    //             "variety" => $availableVariety,
-    //             "amount" => $amount++,
-    //             "units" => $availableVarietyUnits,
-    //             "price" => $availableVarietyPrice
-    //             ];
-    //     }
-    //     else
-    //     {
-    //         $_SESSION["basket"][] = [
-    //             "variety" => $availableVariety,
-    //             "amount" => 1,
-    //             "units" => $availableVarietyUnits,
-    //             "price" => $availableVarietyPrice
-    //             ];
-    //     }
-    // }
 
 }

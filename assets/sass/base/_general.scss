@@ -9,11 +9,12 @@ html{
 }
 
 body{
+    margin:0;
     box-sizing: border-box;
     font-family: $fontDefault;
     font-size: $fontSizeDefault;
     line-height: $lineHeight;
-    background-color: $mainBgColor;
+    background-color: $blanc;
     color: $mainColor;
 }
 
@@ -72,5 +73,28 @@ a{
     text-decoration: none;
 }
 
+/* Dark mode */
+@media (prefers-color-scheme: dark)
+{
+    body{
+        background-color: $darkMainBgColor;
+        color: $mainBgColor;
+    }
+    
+    body > main{
+        background-color:$darkMainBgColor;
+    }
 
-/* ****** FIN DE General ****** */
+    h1,
+    h2,
+    h3{
+        color: $blanc;
+    }
+    
+    p,
+    a,
+    li,
+    span{
+        color: $blanc;
+    }
+}

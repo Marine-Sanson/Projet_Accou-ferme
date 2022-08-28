@@ -56,14 +56,14 @@
 				    <?php 
                     switch($availableVariety['units'])
                     {
-                        case "kilo":
-                            echo "/ " . $availableVariety['units'];
+                        case "kilo(s)":
+                            echo "/ " . trim($availableVariety['units'], "(s)");
                             break;
-                        case "pièce":
-                            echo "/ " . $availableVariety['units'];
+                        case "pièce(s)":
+                            echo "/ " . trim($availableVariety['units'], "(s)");
                             break;
-                        case "botte":
-                            echo "/ " . $availableVariety['units'];
+                        case "botte(s)":
+                            echo "/ " . trim($availableVariety['units'], "(s)");
                             break;
                     }
                     ?>
@@ -73,10 +73,11 @@
 				        <fieldset class="availableVarietyButtonAdd">
 				            <input id="variety-units-<?= $availableVariety["id"] ?>" type="hidden" name="availableVarietyUnits" value="<?=$availableVariety["units"]?>" />
 				            <input id="variety-price-<?= $availableVariety["id"] ?>" type="hidden" name="availableVarietyPrice" value="<?= $availableVariety["price"]?>" />
+				            <input id="variety-media-<?= $availableVariety["id"] ?>" type="hidden" name="availableVarietyMedia" value="<?= $availableVariety["media_id"]?>" />
 
                             <button type="submit" data-productAdded="<?= $availableVariety["name"]?>" data-product-id="<?= $availableVariety["id"] ?>" name="buttonAdd" class="buttonAdd" value="<?= $availableVariety["name"]?>">Ajouter au panier</button>
+                            
                         </fieldset>
-
 				    </form>
 				    
 				</footer>

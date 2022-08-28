@@ -1,0 +1,56 @@
+/* **********
+Header
+********** */
+
+@media (min-width: 992px) {
+
+    #main-nav:not(.open)
+    {
+        display: block;
+    }
+
+    #mobile-header-button {
+        display:none;
+    }
+
+    body > header h1 {
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+    
+    body > header ul {
+        text-align: left;
+        display:grid;
+        grid-template-columns: 0.3fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
+        grid-template-rows: none;
+    }
+
+    body > header ul li{
+        padding-top: 0;
+        padding-bottom: 0;
+        margin:auto;
+        text-align:center;
+    }
+
+    body > header h1:hover {
+        text-decoration: underline;
+    }
+    
+    #containerLogo{
+    display:flex;
+    justify-content:center;
+    margin:auto;
+    }
+
+    #containerLogo > #logoImg{
+    display:inline-block;
+    margin:auto;
+    }
+    
+    #containerLogo > a{
+    margin:auto;
+    }
+    
+}
+
+

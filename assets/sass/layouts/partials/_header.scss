@@ -1,0 +1,73 @@
+@import "responsive/mobile_header";
+@import "responsive/tablet_header";
+@import "responsive/desktop_header";
+
+// Light mode 
+// @media (prefere-color-scheme: light)
+// {
+    body > header{
+        background-color: $red;
+        color: $mainColor;
+    }
+    
+    body > header a{
+        color:$blanc;
+    }
+    
+    body > header h1 {
+        color: $noir;
+    }
+    
+    #mobile-header-button {
+        color:$blanc;
+    }
+    
+// }
+
+/* Dark mode */
+@media (prefers-color-scheme: dark)
+{
+    body > header {
+        background-color: $noir;
+        color:$red;
+    }
+
+    body > header a {
+        color:$blanc;
+    }
+
+    body > header h1{
+        color: $red;
+    }
+
+    #mobile-header-button {
+        color: $blanc;
+    }
+}
+
+/* General */
+
+body > header {
+padding:1rem;
+}
+
+body > header a {
+text-decoration: none;
+}
+
+body > header a {
+text-decoration: none;
+}
+
+body > header a:hover {
+text-decoration: underline;
+}
+
+.logoImg{
+    max-width: 3vw;
+    height:auto;
+}
+
+.logoImg > img{
+    max-width:100%;
+}
