@@ -1,0 +1,37 @@
+// @media(min-width: 992px)
+// {
+
+    #order > h2{
+        text-align:center;
+        margin:auto;
+    }
+    
+    .orderVariety{
+        display:grid;
+        grid-template-columns:2.2fr repeat(2, 1fr) 1.2fr 1fr;
+        grid-template-rows:1fr;
+        align-items:center;
+    }
+    
+    .total > p{
+        text-align:right;
+    }
+    
+    .email{
+        text-align:center;
+        margin:auto;
+    }
+    
+    .retrait{
+        display:grid;
+        grid-template-columns:repeat(5, auto);
+        grid-template-rows:1fr;
+        align-items:center;
+        margin:auto;
+    }
+    
+    .radio{
+        height:0.8rem;
+    }
+    
+// }

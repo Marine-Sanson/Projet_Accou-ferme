@@ -132,5 +132,9 @@ class BasketController extends AbstractController
 
     }
     
+    public function basketOrder(array $post) :void
+    {
+        require "templates/_order.phtml";
+    }
 
 }

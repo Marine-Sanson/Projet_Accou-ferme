@@ -1,50 +1,92 @@
 function listenButtonAdd(event){
     event.preventDefault();
     // qui a été cliqué
-    var $clickedButton = event.target;
+    let $clickedButton = event.target;
     
-    var $idVariety = $clickedButton.getAttribute("data-product-id");
+    let $idVariety = $clickedButton.getAttribute("data-product-id");
     
-    var $varietyUnits = document.getElementById("variety-units-"+$idVariety);
-    var $varietyPrice = document.getElementById("variety-price-"+$idVariety);
-    var $varietyMedia = document.getElementById("variety-media-"+$idVariety);
+    let $varietyUnits = document.getElementById("variety-units-"+$idVariety);
+    let $varietyPrice = document.getElementById("variety-price-"+$idVariety);
+    let $varietyMedia = document.getElementById("variety-media-"+$idVariety);
     
-    var $formData = new FormData();
+    let $asideUpdate = document.getElementById("basketPreview");
+    $asideUpdate.classList.add("showUpdate");
+    $asideUpdate.classList.remove("hideUpdate");
+    
+    let $formData = new FormData();
     $formData.append('data', true);
     $formData.append('availableVarietyName', event.target.value);
     $formData.append('availableVarietyUnits', $varietyUnits.value);
     $formData.append('availableVarietyPrice', $varietyPrice.value);
     $formData.append('availableVarietyMedia', $varietyMedia.value);
     
-
     const options = {
         method: 'POST',
         body: $formData
     };
     
-    fetch('/Projet_Accou-ferme/basket_update', options)
+    fetch('/Projet_Accou-ferme/_update', options)
         .then(response => response.json())
         .then(data => {
+            createBasketDisplay(data);
             console.log(data);
-            // createBasketDisplay(data);
         })
         .catch( error => {
         });
-        
 }
 
 function createBasketDisplay(data){
+    console.log("je rentre dans createBasketDisplay");
+    // je récupère les data
+    let $basket = data;
     
-    var $basket = data;
+    let $section = document.getElementById("updateContentSection");
+        
+        let $ul = document.getElementById("updateContent");
+        
+        $section.removeChild($ul);
     
+    // pour chaque produit dans le panier je crée un li et son contenu auquel j'ajoute une classe, un contenu, et éventuellement des attributs
     for (var i=0; i<$basket.length; i++){
-        var newLi = document.createElement("li");
-        var newContent = document.createTextNode($basket[i]['variety'] + $basket[i]['amount']);
         
-        newLi.appendChild(newContent);
+        let $newUL = document.createElement("ul");
+        $newUL.setAttribute("id", "updateContent");
+        $section.appendChild($newUL);
         
-
+        let $newLi = document.createElement("li");
+        $newLi.classList.add("updateDetail");
+        
+        let $newImg = document.createElement("img");
+        $newImg.classList.add("updateImg");
+        $newImg.setAttribute("src", $basket[i]['media_url']);
+        $newImg.setAttribute("alt", $basket[i]['media_alt']);
+        
+        let $newH3 = document.createElement("h3");
+        
+        $newH3.classList.add("updateH3");
+        
+        let $text = document.createTextNode($basket[i]['variety']);
+        $newH3.appendChild($text);
+        
+        let $newP1 = document.createElement("p");
+        $newP1.classList.add("updateP1");
+        let $text2 = document.createTextNode($basket[i]['amount'] + " " + $basket[i]['units'] + " " + $basket[i]['price'] + "€");
+        $newP1.appendChild($text2);
+        
+        let $newP2 = document.createElement("p");
+        $newP2.classList.add("updateP2");
+        let $text3 = document.createTextNode($basket[i]['price'] + "€ / " + $basket[i]['units'].slice(0, -3));
+        $newP2.appendChild($text3);
+        
+        $newLi.appendChild($newImg);
+        $newLi.appendChild($newH3);
+        $newLi.appendChild($newP1);
+        $newLi.appendChild($newP2);
+        
+        let $newUlAgain = document.getElementById("updateContent");
+        $newUlAgain.appendChild($newLi);
     }
+
 }
 
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -63,7 +105,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 // Maj du panier
 
     // le bouton plus
-    var $buttonsAdd = document.getElementsByClassName("buttonAdd");
+    let $buttonsAdd = document.getElementsByClassName("buttonAdd");
     //console.log($buttonsAdd);
     // console.log($buttonsAdd.getAttribute(data-productAdded));
     
@@ -78,35 +120,35 @@ window.addEventListener("DOMContentLoaded", (event) => {
     
 // Trie des produits par famille
 
-    // var $selectProduct = document.getElementById("selectProduct");
+    // let $selectProduct = document.getElementById("selectProduct");
     
     // $selectProduct.addEventListener('change', function(event){
         
     // // VARIABLES
     //     // je récupère la liste complète des produits
-    //     var $allProducts = document.querySelectorAll(".productName");
+    //     let $allProducts = document.querySelectorAll(".productName");
     //     console.log($allProducts);
         
     //     // je récupère la liste complète des variétés
-    //     var $allVarieties = document.querySelectorAll(".varietyDetail");
+    //     let $allVarieties = document.querySelectorAll(".varietyDetail");
         
     //     //  je récupère le produit actuel
-    //     var $productId = $selectProduct.value.trim();
+    //     let $productId = $selectProduct.value.trim();
     //     console.log($productId);
         
     //     // je récupère la liste des produits qui dépendent du produit actuel
-    //     var $productsShow = document.querySelectorAll(".productName[data-product='"+$productId+"']");
+    //     let $productsShow = document.querySelectorAll(".productName[data-product='"+$productId+"']");
     //     console.log($productsShow);
         
     //     // je récupère la liste des variétés qui dépendent du produit actuel
-    //     var $varietyShow = document.querySelectorAll(".varietyDetail[data-product='"+$productId+"']");
+    //     let $varietyShow = document.querySelectorAll(".varietyDetail[data-product='"+$productId+"']");
         
     //     //  je récupère la liste des produits qui ne dépendent pas du produit actuel
-    //     var $productsHide = document.querySelectorAll(".productName:not([data-product='"+$productId+"'])");
+    //     let $productsHide = document.querySelectorAll(".productName:not([data-product='"+$productId+"'])");
     //     console.log($productsHide);
         
     //     //  je récupère la liste des variétés qui ne dépendent pas du produit actuel
-    //     var $varietyHide = document.querySelectorAll(".varietyDetail:not([data-product='"+$productId+"'])");
+    //     let $varietyHide = document.querySelectorAll(".varietyDetail:not([data-product='"+$productId+"'])");
         
     // // Pour les variétés qui dépendent du produit actuel:
     //         for(var i=0; i<$productsShow.length; i++){
@@ -167,25 +209,25 @@ window.addEventListener("DOMContentLoaded", (event) => {
     
 // Trie des articles par catégorie
     
-    // var $selectNews = document.getElementById("selectNews");
+    // let $selectNews = document.getElementById("selectNews");
     
     // $selectNews.addEventListener('change', function(event){
         
     // // VARIABLES
     //     // je récupère la liste complète des news
-    //     var $allNews = document.querySelectorAll(".newsArticle");
+    //     let $allNews = document.querySelectorAll(".newsArticle");
     //     console.log($allNews);
         
     //     //  je récupère la catégorie actuelle
-    //     var $categoryId = $selectNews.value.trim();
+    //     let $categoryId = $selectNews.value.trim();
     //     console.log($categoryId);
         
     //     // je récupère la liste des news qui ont la catégorie actuelle
-    //     var $newsShow = document.querySelectorAll(".newsArticle[data-category='"+$categoryId+"']");
+    //     let $newsShow = document.querySelectorAll(".newsArticle[data-category='"+$categoryId+"']");
     //     console.log($newsShow);
         
     //     //  je récupère la liste des news qui n'ont pas la catégorie actuelle
-    //     var $newsHide = document.querySelectorAll(".newsArticle:not([data-category='"+$categoryId+"'])");
+    //     let $newsHide = document.querySelectorAll(".newsArticle:not([data-category='"+$categoryId+"'])");
     //     console.log($newsHide);
 
         

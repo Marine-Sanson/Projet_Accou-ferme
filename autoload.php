@@ -25,6 +25,8 @@ require "./controllers/ContactController.php";
 require "./controllers/BasketController.php";
 require "./controllers/NewsController.php";
 require "./controllers/AdminController.php";
+require "./controllers/OrderController.php";
+
 
 $routes = [];
 

@@ -3,7 +3,8 @@
 /gallery GalleryController:index
 /product ProductController:index
 /basket BasketController:index
-/basket_update BasketController:basketUpdate
+/_update BasketController:basketUpdate
+/_order OrderController:index
 /news NewsController:index
 /contact ContactController:index
 /admin AdminController:index

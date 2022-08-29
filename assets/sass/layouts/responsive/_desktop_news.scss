@@ -1,15 +1,20 @@
 @media(min-width: 992px)
 {
     #newsSection{
-        margin:1rem 6rem;
+        margin:1rem auto;
+    }
+    
+    #displayArticles{
+        max-width:70vw;
+        margin:auto;
     }
     
     .newsArticle{
-        max-width:70vw;
         display:grid;
-        grid-template-columns:30% repeat 3;
+        grid-template-columns: repeat(3, 30%);
         grid-template-rows:4rem auto 4rem;
         gap: 1rem;
+        justify-content:center;
         margin:4rem auto;
     }
     
@@ -21,9 +26,11 @@
     .newsMain{
         grid-column: 1/4;
         grid-row: 2;
+        justify-content:center;
+        margin:auto;
         
         display:grid;
-        grid-template-columns:minmax(30%, 30%) repeat 3;
+        grid-template-columns: repeat(3, minmax(30%, 30%));
         grid-template-rows:auto;
         gap: 1rem;
     }
@@ -31,9 +38,11 @@
     .newsFooter{
         grid-column: 1/4;
         grid-row: 3;
+        justify-content:center;
+        margin:auto;
     
         display:grid;
-        grid-template-columns: 30% repeat 3;
+        grid-template-columns:repeat(2, 35vw);
         grid-template-rows:auto;
         gap: 1rem;
     }
@@ -65,7 +74,7 @@
     }
     
     .newsButton{
-        grid-column: 3;
+        grid-column: 2;
         grid-row: 1;
         margin:auto;
     }
