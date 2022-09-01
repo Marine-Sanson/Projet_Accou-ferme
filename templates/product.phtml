@@ -12,10 +12,7 @@
 
         foreach($data['products'] as $key => $product){
     		?>
-    		<option value = "
-    		<?= $product["product"]["id"]; ?>
-    		">
-    		<?=$product["product"]["name"]; ?>
+    		<option value = " <?= $product["product"]["id"]; ?>	"> <?=$product["product"]["name"]; ?>
     		</option>
     		<?php $idProduct = $product["product"]['id'];
         }

@@ -24,6 +24,6 @@
 
 @import "layouts/page404";
 
-/* MODULES */
-@import "modules/update";
-@import "modules/order";
+/* PARTIALS */
+@import "layouts/partials/update";
+@import "layouts/partials/order";

@@ -5,6 +5,7 @@
 /basket BasketController:index
 /_update BasketController:basketUpdate
 /_order OrderController:index
+/_validationOrder OrderController:validationOrder
 /news NewsController:index
 /contact ContactController:index
 /admin AdminController:index

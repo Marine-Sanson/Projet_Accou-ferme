@@ -1,16 +1,17 @@
 <aside id="update">
-    
-    <h2>Mon panier</h2>
-    
-    <section id="updateContentSection">
-
+    <header id="basketHeader">
+        <h2>Mon panier</h2>
+    </header>
+    <main id="updateContentSection">
         <ul id="updateContent">
 
         </ul>
-
-    </section>
-    
-    <a href="basket">Continuer mes achats</a>
-    <a href="_order">Voir mon panier</a>
+    <?php var_dump($_SESSION); ?>
+    </main>
+    <footer id="basketFooter">
+        <p>Total : <span id="totalOrderPrice">25</span> €</p>
+        <a id="totalOrderContinue" href="basket">Continuer mes achats</a>
+        <a id="totalOrderShowBasket" href="_order">Voir mon panier</a>
+    </footer>
 
 </aside>

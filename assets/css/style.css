@@ -54,24 +54,24 @@ span {
 }
 
 p {
-  margin: 2rem;
+  margin: 1rem;
   text-align: justify;
 }
 
 h1 {
   font-size: 2.4rem;
-  padding: 2%;
+  padding: 1rem;
   font-weight: 800;
 }
 
 h1:not(#mainGalleryTitle) {
-  margin: 2%;
+  margin: 1rem;
 }
 
 h2 {
   font-size: 2rem;
-  padding: 2%;
-  margin: 2%;
+  padding: 1rem;
+  margin: 1rem;
   font-weight: 600;
 }
 
@@ -110,91 +110,6 @@ span {
 /* **********
 Header
 ********** */
-@media (min-width: 0px) and (max-width: 767.99px) {
-  #mobile-header-button {
-    background-color: transparent;
-    border: none;
-    font-size: 1.5rem;
-  }
-  body > header ul {
-    text-align: center;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    font-size: 1.3rem;
-  }
-  body > header ul li {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-  #main-nav:not(.open) {
-    display: none;
-  }
-}
-/* **********
-Header
-********** */
-@media (min-width: 768px) and (max-width: 991px) {
-  #mobile-header-button {
-    background-color: transparent;
-    border: none;
-    font-size: 1.5rem;
-  }
-  body > header ul {
-    text-align: center;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    font-size: 1.3rem;
-  }
-  body > header ul li {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-  }
-  #main-nav:not(.open) {
-    display: none;
-  }
-}
-/* **********
-Header
-********** */
-@media (min-width: 992px) {
-  #main-nav:not(.open) {
-    display: block;
-  }
-  #mobile-header-button {
-    display: none;
-  }
-  body > header h1 {
-    font-size: 1.3rem;
-    font-weight: bold;
-  }
-  body > header ul {
-    text-align: left;
-    display: grid;
-    grid-template-columns: 0.3fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
-    grid-template-rows: none;
-  }
-  body > header ul li {
-    padding-top: 0;
-    padding-bottom: 0;
-    margin: auto;
-    text-align: center;
-  }
-  body > header h1:hover {
-    text-decoration: underline;
-  }
-  #containerLogo {
-    display: flex;
-    justify-content: center;
-    margin: auto;
-  }
-  #containerLogo > #logoImg {
-    display: inline-block;
-    margin: auto;
-  }
-  #containerLogo > a {
-    margin: auto;
-  }
-}
 body > header {
   background-color: rgb(204, 28, 0);
   color: rgb(10, 36, 20);
@@ -254,6 +169,85 @@ body > header a:hover {
   max-width: 100%;
 }
 
+@media (min-width: 0px) and (max-width: 767.99px) {
+  #mobile-header-button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+  }
+  body > header ul {
+    text-align: center;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    font-size: 1.3rem;
+  }
+  body > header ul li {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  #main-nav:not(.open) {
+    display: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  #mobile-header-button {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5rem;
+  }
+  body > header ul {
+    text-align: center;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    font-size: 1.3rem;
+  }
+  body > header ul li {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  #main-nav:not(.open) {
+    display: none;
+  }
+}
+@media (min-width: 992px) {
+  #main-nav:not(.open) {
+    display: block;
+  }
+  #mobile-header-button {
+    display: none;
+  }
+  body > header h1 {
+    font-size: 1.3rem;
+    font-weight: bold;
+  }
+  body > header ul {
+    text-align: left;
+    display: grid;
+    grid-template-columns: 0.3fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
+    grid-template-rows: none;
+  }
+  body > header ul li {
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: auto;
+    text-align: center;
+  }
+  body > header h1:hover {
+    text-decoration: underline;
+  }
+  #containerLogo {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+  }
+  #containerLogo > #logoImg {
+    display: inline-block;
+    margin: auto;
+  }
+  #containerLogo > a {
+    margin: auto;
+  }
+}
 /* FOOTER */
 /* LAYOUTS */
 /* **********
@@ -388,6 +382,16 @@ body > header a:hover {
 /* **********
     Products
 ********** */
+.varietyDetail {
+  background-color: rgba(0, 217, 130, 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+  .varietyDetail {
+    background-color: rgb(10, 36, 20);
+    border: 1px solid rgb(255, 255, 255);
+  }
+}
 @media (min-width: 0px) and (max-width: 767.99px) {
   .productName {
     text-align: left;
@@ -564,16 +568,6 @@ body > header a:hover {
   }
   .show {
     display: block !important;
-  }
-}
-.varietyDetail {
-  background-color: rgba(0, 217, 130, 0.6);
-}
-
-@media (prefers-color-scheme: dark) {
-  .varietyDetail {
-    background-color: rgb(10, 36, 20);
-    border: 1px solid rgb(255, 255, 255);
   }
 }
 /* **********
@@ -801,6 +795,15 @@ body > header a:hover {
 /* **********
     News
 ********** */
+.newsArticle {
+  border: 1px solid rgb(0, 0, 0);
+}
+
+@media (prefers-color-scheme: dark) {
+  .newsArticle {
+    border: 1px solid rgb(255, 255, 255);
+  }
+}
 @media (min-width: 0px) and (max-width: 767.99px) {
   #newsSection {
     margin: 1rem 6rem;
@@ -1018,79 +1021,119 @@ body > header a:hover {
     display: grid !important;
   }
 }
-.newsArticle {
-  border: 1px solid rgb(0, 0, 0);
-}
-
-@media (prefers-color-scheme: dark) {
-  .newsArticle {
-    border: 1px solid rgb(255, 255, 255);
-  }
-}
 .page404 > img {
   justify-content: center;
   margin: auto;
   max-width: 60vw;
 }
 
-/* MODULES */
+/* PARTIALS */
 /* **********
     _update
 ********** */
 @media (min-width: 0px) and (max-width: 767.99px) {
   #update {
-    width: 30vw;
+    width: 90vw;
     display: grid;
-    grid-template-rows: 0.5fr auto 0.7fr 0.7fr;
+    grid-template-rows: 0.5fr auto 3fr;
     margin: 1rem;
     border: 1px solid black;
     border-radius: 2rem;
   }
-  #update > h2 {
+  #basketHeader {
     font-size: 1.4rem;
     margin: auto;
   }
-  #update > ul {
+  #updateContentSection {
     display: grid;
     grid-template-rows: 1fr 1fr;
   }
-  #update > ul > li {
+  .containerSection {
     display: grid;
-    grid-template-rows: 0.5fr auto 0.7fr 0.7fr;
-    grid-template-columns: 1fr;
+    grid-template-rows: 6fr 1fr 0.6fr 1fr;
+    grid-template-columns: 1.6fr 0.5fr;
     gap: 0.5rem;
     justify-content: center;
     margin: auto;
   }
-  #update > ul > li > img {
-    width: 20vw;
-    justify-content: center;
+  .updateImg {
+    grid-row: 1;
+    grid-column: 1/3;
+    margin: 1rem;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+  }
+  .updateImg > img {
+    grid-row: 1;
+    grid-column: 1;
+    width: 60vw;
     margin: auto;
   }
-  #updateImg {
+  .varietyInfo {
+    margin: auto;
     grid-row: 2;
-  }
-  #updateH3 {
-    grid-row: 1;
+    grid-column: 1/3;
     font-size: 1.2rem;
     flex: wrap;
   }
-  #updateP1 {
+  .amountAddRemove {
+    margin: auto;
     text-align: center;
-    grid-row: 3;
+    grid-row: 4;
+    grid-column: 1;
     font-size: 0.8rem;
   }
-  #updateP2 {
-    grid-row: 4;
-    font-size: 0.5rem;
-    text-align: end;
+  .unitPrice {
+    grid-row: 3;
+    grid-column: 2;
+    font-size: 0.7rem;
+    text-align: center;
     align-self: end;
+    margin: auto 0.3rem;
   }
-  #update > ul > li > h3,
-#update > ul > li > p {
+  .updateTotalPrice {
     margin: auto;
+    text-align: center;
+    grid-row: 4;
+    grid-column: 2;
+    font-size: 0.8rem;
   }
-  #update > a {
+  .amountAddRemove {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, auto);
+    gap: 0.5rem;
+  }
+  .updateButtonAdd {
+    margin: auto;
+    grid-column: 1;
+    height: 1.5rem;
+  }
+  .amountAddRemove > p {
+    margin: auto;
+    grid-column: 2;
+  }
+  .updateButtonRemove {
+    margin: auto;
+    grid-column: 3;
+    height: 1.5rem;
+  }
+  #basketFooter {
+    display: grid;
+    grid-template-rows: repaet(3, 1fr);
+    grid-template-columns: 1fr;
+  }
+  #totalOrderPrice {
+    grid-row: 1;
+  }
+  #totalOrderContinue {
+    grid-row: 2;
+  }
+  #totalOrderShowBasket {
+    grid-row: 3;
+  }
+  #basketFooter > a {
     align-self: end;
     width: 80%;
     text-align: center;
@@ -1109,62 +1152,107 @@ body > header a:hover {
 }
 @media (min-width: 768px) and (max-width: 991px) {
   #update {
-    width: 30vw;
+    width: 40vw;
     display: grid;
-    grid-template-rows: 0.5fr auto 1fr;
+    grid-template-rows: 0.5fr auto 3fr;
     margin: 1rem;
     border: 1px solid black;
     border-radius: 2rem;
   }
-  #update > h2 {
+  #basketHeader {
     font-size: 1.4rem;
     margin: auto;
   }
-  #update > ul {
+  #updateContentSection {
     display: grid;
     grid-template-rows: 1fr 1fr;
   }
-  #update > ul > li {
+  .containerSection {
     display: grid;
-    grid-template-rows: 0.5fr auto 1fr;
-    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1.6fr 1.6fr 0.5fr;
     gap: 0.5rem;
     justify-content: center;
     margin: auto;
   }
-  #update > ul > li > img {
-    width: 20vw;
-    justify-content: center;
+  .updateImg {
+    grid-row: 1/4;
+    grid-column: 1;
+    margin: 1rem;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+  .updateImg > img {
+    grid-row: 1/4;
+    grid-column: 1;
+    width: 30vw;
     margin: auto;
   }
-  #updateImg {
-    grid-row: 2;
-    grid-column: 1/3;
-  }
-  #updateH3 {
+  .varietyInfo {
+    margin: auto;
     grid-row: 1;
-    grid-column: 1/3;
+    grid-column: 2/4;
     font-size: 1.2rem;
     flex: wrap;
   }
-  #updateP1 {
+  .amountAddRemove {
+    margin: auto;
     text-align: center;
     grid-row: 3;
-    grid-column: 1;
+    grid-column: 2;
     font-size: 0.8rem;
   }
-  #updateP2 {
-    grid-row: 3;
+  .unitPrice {
+    grid-row: 2;
     grid-column: 2;
-    font-size: 0.5rem;
+    font-size: 0.7rem;
     text-align: end;
     align-self: end;
+    margin: auto 0.3rem;
   }
-  #update > ul > li > h3,
-#update > ul > li > p {
+  .updateTotalPrice {
     margin: auto;
+    text-align: center;
+    grid-row: 3;
+    grid-column: 3;
+    font-size: 0.8rem;
   }
-  #update > a {
+  .amountAddRemove {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, auto);
+    gap: 0.5rem;
+  }
+  .updateButtonAdd {
+    margin: auto;
+    grid-column: 1;
+    height: 1.5rem;
+  }
+  .amountAddRemove > p {
+    margin: auto;
+    grid-column: 2;
+  }
+  .updateButtonRemove {
+    margin: auto;
+    grid-column: 3;
+    height: 1.5rem;
+  }
+  #basketFooter {
+    display: grid;
+    grid-template-rows: repaet(3, 1fr);
+    grid-template-columns: 1fr;
+  }
+  #totalOrderPrice {
+    grid-row: 1;
+  }
+  #totalOrderContinue {
+    grid-row: 2;
+  }
+  #totalOrderShowBasket {
+    grid-row: 3;
+  }
+  #basketFooter > a {
     align-self: end;
     width: 80%;
     text-align: center;
@@ -1183,59 +1271,105 @@ body > header a:hover {
 }
 @media (min-width: 992px) {
   #update {
-    width: 30vw;
+    width: 40vw;
     display: grid;
-    grid-template-rows: 0.5fr auto 2fr;
+    grid-template-rows: 0.5fr auto 3fr;
     margin: 1rem;
     border: 1px solid black;
     border-radius: 2rem;
   }
-  #update > h2 {
+  #basketHeader {
     font-size: 1.4rem;
     margin: auto;
   }
-  #update > ul {
+  #updateContentSection {
+    display: grid;
+    grid-template-rows: auto;
+  }
+  .containerSection {
     display: grid;
     grid-template-rows: 1fr 1fr;
-  }
-  #update > ul > li {
-    display: grid;
-    grid-template-rows: repeat(2, 1fr) 0.5fr;
-    grid-template-columns: 2fr repeat(3, 1fr);
+    grid-template-columns: 1.6fr 0.8fr 1.2fr 0.8fr;
     gap: 0.5rem;
   }
-  #update > ul > li > img {
-    width: 20vw;
-    margin: auto 1rem;
-  }
-  #updateImg {
-    grid-row: 1/4;
+  .updateImg {
+    grid-row: 1/3;
     grid-column: 1;
+    margin: 1rem;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
-  #updateH3 {
+  .updateImg > img {
+    grid-row: 1/3;
+    grid-column: 1;
+    width: 20vw;
+    margin: auto;
+  }
+  .varietyInfo {
+    margin: auto;
     grid-row: 1;
     grid-column: 2/5;
     font-size: 1.2rem;
     flex: wrap;
   }
-  #updateP1 {
+  .amountAddRemove {
+    margin: auto;
     text-align: center;
     grid-row: 2;
-    grid-column: 2/5;
+    grid-column: 3;
     font-size: 0.8rem;
   }
-  #updateP2 {
-    grid-row: 3;
-    grid-column: 3/5;
-    font-size: 0.5rem;
+  .unitPrice {
+    grid-row: 2;
+    grid-column: 2;
+    font-size: 0.7rem;
     text-align: end;
     align-self: end;
+    margin: auto 0.3rem;
   }
-  #update > ul > li > h3,
-#update > ul > li > p {
+  .updateTotalPrice {
     margin: auto;
+    text-align: center;
+    grid-row: 2;
+    grid-column: 4;
+    font-size: 0.8rem;
   }
-  #update > a {
+  .amountAddRemove {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, auto);
+    gap: 0.5rem;
+  }
+  .updateButtonAdd {
+    margin: auto;
+    grid-column: 1;
+    height: 1.5rem;
+  }
+  .amountAddRemove > p {
+    margin: auto;
+    grid-column: 2;
+  }
+  .updateButtonRemove {
+    margin: auto;
+    grid-column: 3;
+    height: 1.5rem;
+  }
+  #basketFooter {
+    display: grid;
+    grid-template-rows: repaet(3, 1fr);
+    grid-template-columns: 1fr;
+  }
+  #totalOrderPrice {
+    grid-row: 1;
+  }
+  #totalOrderContinue {
+    grid-row: 2;
+  }
+  #totalOrderShowBasket {
+    grid-row: 3;
+  }
+  #basketFooter > a {
     align-self: end;
     width: 80%;
     text-align: center;
@@ -1255,37 +1389,429 @@ body > header a:hover {
 /* **********
     _order
 ********** */
-#order > h2 {
-  text-align: center;
-  margin: auto;
+@media (min-width: 0px) and (max-width: 767.99px) {
+  #order {
+    width: 80vw;
+    margin: auto;
+  }
+  #order > h2 {
+    text-align: center;
+    margin: auto;
+  }
+  #orderForm > fieldset {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid black;
+  }
+  #orderDetail > form > fieldset > p {
+    margin: 0.5rem;
+  }
+  .orderVariety {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    align-items: center;
+  }
+  .orderVarietyH3 {
+    grid-column: 1/3;
+    grid-row: 1;
+  }
+  .orderVarietyP1 {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: right;
+  }
+  .orderVarietyP2 {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .orderVarietyP3 {
+    grid-column: 1;
+    grid-row: 3;
+    text-align: right;
+  }
+  .orderVarietyP4 {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  input {
+    height: 1.8rem;
+  }
+  .total {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+  }
+  .totalReturn {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: center;
+  }
+  .totalP {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: center;
+  }
+  #client {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, 1fr);
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  #client > label {
+    text-align: center;
+    margin: auto;
+    padding: 1rem;
+  }
+  #client > input {
+    ailgn-self: center;
+    margin: auto;
+    width: 40vw;
+    padding: 1rem;
+  }
+  #clientFirstNameLab {
+    grid-row: 1;
+  }
+  #clientFirstNameIn {
+    grid-row: 2;
+  }
+  #clientNameLab {
+    grid-row: 3;
+  }
+  #clientNameIn {
+    grid-row: 4;
+  }
+  #clientEmailLab {
+    grid-row: 5;
+  }
+  #clientEmailIn {
+    grid-row: 6;
+  }
+  #clientTelLab {
+    grid-row: 7;
+  }
+  #clientTelIn {
+    grid-row: 8;
+  }
+  #retrait {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 0.5fr 2fr;
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+    margin: auto;
+  }
+  #retraitP {
+    grid-column: 1/5;
+    grid-row: 1;
+  }
+  #retraitMercIn {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 0.5rem;
+  }
+  #retraitMercLab {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  #retraitMarIn {
+    grid-column: 3;
+    grid-row: 2;
+    padding: 0.5rem;
+  }
+  #retraitMarLab {
+    grid-column: 4;
+    grid-row: 2;
+  }
+  .radio {
+    height: 0.8rem;
+  }
+  #orderSubmit {
+    text-align: center;
+    margin: auto;
+    padding-top: 1rem;
+    height: 3.5rem;
+  }
 }
-
-.orderVariety {
-  display: grid;
-  grid-template-columns: 2.2fr repeat(2, 1fr) 1.2fr 1fr;
-  grid-template-rows: 1fr;
-  align-items: center;
+@media (min-width: 768px) and (max-width: 991px) {
+  #order {
+    width: 80vw;
+    margin: auto;
+  }
+  #order > h2 {
+    text-align: center;
+    margin: auto;
+  }
+  #orderForm > fieldset {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid black;
+  }
+  #orderDetail > form > fieldset > p {
+    margin: 0.5rem;
+  }
+  .orderVariety {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.8fr 1fr 1fr 0.5fr;
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+  }
+  .orderVarietyH3 {
+    grid-column: 1/7;
+    grid-row: 1;
+    text-align: center;
+  }
+  .orderVarietyP1 {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: right;
+  }
+  .orderVarietyP2 {
+    grid-column: 3;
+    grid-row: 2;
+  }
+  .orderVarietyP3 {
+    grid-column: 4;
+    grid-row: 2;
+    text-align: right;
+  }
+  .orderVarietyP4 {
+    grid-column: 5;
+    grid-row: 2;
+  }
+  input {
+    height: 1.8rem;
+  }
+  .total {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+  }
+  .totalReturn {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: right;
+    margin: auto 0.5rem;
+  }
+  .totalP {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: right;
+  }
+  #client {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+  }
+  #client > label {
+    text-align: right;
+    padding: 1rem;
+  }
+  #client > input {
+    width: 40vw;
+    padding: 1rem;
+  }
+  #clientFirstNameLab {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  #clientFirstNameIn {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  #clientNameLab {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  #clientNameIn {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  #clientEmailLab {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  #clientEmailIn {
+    grid-column: 2;
+    grid-row: 3;
+  }
+  #clientTelLab {
+    grid-column: 1;
+    grid-row: 4;
+  }
+  #clientTelIn {
+    grid-column: 2;
+    grid-row: 4;
+  }
+  #retrait {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 0.5fr 2fr;
+    grid-template-rows: repeat(2, 1fr);
+    align-items: center;
+    margin: auto;
+  }
+  #retraitP {
+    grid-column: 1/5;
+    grid-row: 1;
+  }
+  #retraitMercIn {
+    grid-column: 1;
+    grid-row: 2;
+    padding: 0.5rem;
+  }
+  #retraitMercLab {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  #retraitMarIn {
+    grid-column: 3;
+    grid-row: 2;
+    padding: 0.5rem;
+  }
+  #retraitMarLab {
+    grid-column: 4;
+    grid-row: 2;
+  }
+  .radio {
+    height: 0.8rem;
+  }
+  #orderSubmit {
+    text-align: center;
+    margin: auto;
+    padding-top: 1rem;
+    height: 3.5rem;
+  }
 }
-
-.total > p {
-  text-align: right;
-}
-
-.email {
-  text-align: center;
-  margin: auto;
-}
-
-.retrait {
-  display: grid;
-  grid-template-columns: repeat(5, auto);
-  grid-template-rows: 1fr;
-  align-items: center;
-  margin: auto;
-}
-
-.radio {
-  height: 0.8rem;
+@media (min-width: 992px) {
+  #order {
+    width: 80vw;
+    margin: auto;
+  }
+  #order > h2 {
+    text-align: center;
+    margin: auto;
+  }
+  #orderForm > fieldset {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid black;
+  }
+  #orderDetail > form > fieldset > p {
+    margin: 0.5rem;
+  }
+  .orderVariety {
+    display: grid;
+    grid-template-columns: 2.2fr repeat(2, 1fr) 1.2fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+  }
+  input {
+    height: 1.8rem;
+  }
+  .total {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+  }
+  .totalReturn {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: right;
+    margin: auto 0.5rem;
+  }
+  .totalP {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: right;
+  }
+  #client {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  #client > label {
+    text-align: right;
+    padding: 1rem;
+  }
+  #clientFirstNameLab {
+    grid-column: 1;
+    grid-row: 1;
+  }
+  #clientFirstNameIn {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  #clientNameLab {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  #clientNameIn {
+    grid-column: 4;
+    grid-row: 1;
+  }
+  #clientEmailLab {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  #clientEmailIn {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  #clientTelLab {
+    grid-column: 3;
+    grid-row: 2;
+  }
+  #clientTelIn {
+    grid-column: 4;
+    grid-row: 2;
+  }
+  #retrait {
+    display: grid;
+    grid-template-columns: 2.5fr 3fr 0.5fr 1.5fr 0.5fr 1.5fr 2.5fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    margin: auto;
+  }
+  #retraitP {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  #retraitMercIn {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  #retraitMercLab {
+    grid-column: 4;
+    grid-row: 1;
+  }
+  #retraitMarIn {
+    grid-column: 5;
+    grid-row: 1;
+  }
+  #retraitMarLab {
+    grid-column: 6;
+    grid-row: 1;
+  }
+  .radio {
+    height: 0.8rem;
+  }
+  #orderSubmit {
+    text-align: center;
+    margin: auto;
+    padding-top: 1rem;
+    height: 3.5rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
