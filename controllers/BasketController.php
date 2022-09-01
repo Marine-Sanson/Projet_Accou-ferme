@@ -31,7 +31,7 @@ class BasketController extends AbstractController
                     }
                   
                 }
-        $this->render("basket", ["allAvailableVarieties" => $allAvailableVarieties, "medias" => $medias]);
+        $this->render("commande", ["allAvailableVarieties" => $allAvailableVarieties, "medias" => $medias]);
         
     }
     
@@ -132,9 +132,32 @@ class BasketController extends AbstractController
 
     }
     
+    public function buttonAddRemove() :void
+    {
+        $baskets = json_decode($_POST["data"]);
+        
+        var_dump($baskets);
+        
+        $_SESSION["basket"] = [];
+        
+        foreach($baskets as $key => $basket){
+            $_SESSION["basket"][] = [
+                "variety" => $basket[$key]["variety"],
+                "amount" => $basket[$key]["amount"],
+                "units" => $basket[$key]["units"],
+                "price" => $basket[$key]["price"],
+                "media_url" => $basket[$key]["media_url"],
+                "media_alt" => $basket[$key]["media_alt"]
+                ];
+        }
+        
+    }
+
+    
     public function basketOrder(array $post) :void
     {
         require "templates/_order.phtml";
     }
+    
 
 }

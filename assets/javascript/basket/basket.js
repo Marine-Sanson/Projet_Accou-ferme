@@ -1,6 +1,44 @@
+function getData()
+{
+    console.log("getData");
+    console.log(JSON.parse(sessionStorage.getItem("data")));
+    return JSON.parse(sessionStorage.getItem("data"));
+}
+
+// update the cart in session storage
+function saveData(data)
+{
+    console.log("saveData");
+
+    sessionStorage.setItem("data", JSON.stringify(data));
+}
+
+function newFetch($basket){
+    
+    console.log($basket);
+    
+    let $formData = new FormData();
+        $formData.append("data", JSON.stringify($basket));
+
+        const options = {
+            method: 'POST',
+            body: $formData
+        };
+    
+    fetch('/Projet_Accou-ferme/buttonAddRemove', options)
+        .then(response => response.json())
+        
+        .catch( error => {
+        });
+
+}
+
 function listenButtonAdd(event){
+    
+    console.log("listenButtonAdd");
+
     event.preventDefault();
-    // qui a été cliqué
+
     let $clickedButton = event.target;
     
     let $idVariety = $clickedButton.getAttribute("data-product-id");
@@ -28,18 +66,123 @@ function listenButtonAdd(event){
     fetch('/Projet_Accou-ferme/_update', options)
         .then(response => response.json())
         .then(data => {
-            renderBasket(data);
-            console.log(data);
+            saveData(data);
+            renderBasket();
         })
         .catch( error => {
         });
 }
 
+function computeBasketTotal()
+{
+    
+    console.log("computeBasketTotal");
+
+    let $basket = getData();
+    let $price = 0;
+
+    for(var i = 0; i < $basket.length; i++)
+    {
+        $price += ($basket[i].price * $basket[i].amount);
+    }
+
+    $basket.totalPrice = $price;
+    saveData($basket);
+}
+
+
+
+// get the item key in the cart.items array
+function findItem($varietyName)
+{
+    
+    console.log("findItem");
+    
+    let $basket = getData();
+
+    console.log($basket);
+
+    for(var i = 0; i < $basket.length; i++)
+    {
+        console.log("je rentre dans le for de find item");
+        console.log($basket[i].variety);
+        console.log($varietyName);
+
+        if($basket[i].variety === $varietyName)
+        {
+        console.log("je rentre dans le if de find item")
+            console.log(i);
+            return i;
+        }
+    }
+
+    return null;
+}
+
+// update the item amount to + 1
+function addItem(event)
+{
+    
+    console.log("addItem");
+    
+    let $varietyName = event.target.getAttribute("data-variety-name");
+    let $itemKey = findItem($varietyName);
+    let $basket = getData();
+
+    if($itemKey !== null)
+    {
+        $basket[$itemKey].amount += 1;
+        saveData($basket);
+        computeBasketTotal();
+        renderBasket();
+        newFetch($basket);
+    }
+
+}
+
+// update the item amount to - 1
+function removeItem(event)
+{
+    
+    console.log("removeItem");
+    
+    let $varietyName = event.target.getAttribute("data-variety-name");
+    let $itemKey = findItem($varietyName);
+    let $basket = getData();
+
+    if($itemKey !== null)
+    {
+        $basket[$itemKey].amount -= 1;
+        saveData($basket);
+        computeBasketTotal();
+        renderBasket();
+        newFetch($basket);
+    }
+
+}
+
+
+function loadListeners()
+{
+    
+    console.log("loadListeners");
+    
+    let $addButtons = document.getElementsByClassName("updateButtonAdd");
+    let $removeButtons = document.getElementsByClassName("updateButtonRemove");
+
+    for(var i = 0; i < $addButtons.length; i++)
+    {
+        $addButtons[i].addEventListener("click", addItem);
+        $removeButtons[i].addEventListener("click", removeItem);
+    }
+}
+
 function createBasketItem($item){
+    
+    console.log("createBasketItem");
+    
     let $containerSection = document.createElement("section");
     $containerSection.classList.add("containerSection");
-
-    console.log($item);
 
     // création de figure et image
     let $figure = document.createElement("figure");
@@ -57,7 +200,7 @@ function createBasketItem($item){
     $varietyInfo.classList.add("varietyInfo");
     let $varietyName = document.createElement("h3");
     $varietyName.classList.add("updateTitle");
-    let $text = document.createTextNode($item['variety']);
+    let $text = document.createTextNode($item.variety);
     $varietyName.appendChild($text);
     $varietyInfo.appendChild($varietyName);
     
@@ -69,19 +212,19 @@ function createBasketItem($item){
 
     let $newButtonAdd = document.createElement("button");
     $newButtonAdd.classList.add("updateButtonAdd");
-    $newButtonAdd.setAttribute("id", "button-Add-"+$item["variety"]);
-    $newButtonAdd.setAttribute("data-variety-name", $item["variety"]);
+    $newButtonAdd.setAttribute("id", "button-Add-"+$item.variety);
+    $newButtonAdd.setAttribute("data-variety-name", $item.variety);
     let $textButtonAdd = document.createTextNode("+");
     $newButtonAdd.appendChild($textButtonAdd);
     
     let $newAmount = document.createElement("p");
-    let $textNewAmount = document.createTextNode($item["amount"]);
+    let $textNewAmount = document.createTextNode($item.amount);
     $newAmount.appendChild($textNewAmount);
 
     let $newButtonRemove = document.createElement("button");
     $newButtonRemove.classList.add("updateButtonRemove");
-    $newButtonRemove.setAttribute("id", "button-Remove-"+$item['variety']);
-    $newButtonRemove.setAttribute("data-variety-name", $item["variety"]);
+    $newButtonRemove.setAttribute("id", "button-Remove-"+$item.variety);
+    $newButtonRemove.setAttribute("data-variety-name", $item.variety);
     let $textButtonRemove = document.createTextNode("-");
     $newButtonRemove.appendChild($textButtonRemove);
     
@@ -96,8 +239,8 @@ function createBasketItem($item){
 
     let $newPrice = document.createElement("span");
     $newPrice.classList.add("updatePrice");
-    $newPrice.setAttribute("data-variety-name", $item["variety"]);
-    let $textNewPrice = document.createTextNode($item['price']);
+    $newPrice.setAttribute("data-variety-name", $item.variety);
+    let $textNewPrice = document.createTextNode($item.price);
     $newPrice.appendChild($textNewPrice);
 
     let $newEuros = document.createElement("span");
@@ -110,8 +253,8 @@ function createBasketItem($item){
 
     let $newUnits = document.createElement("span");
     $newUnits.classList.add("updateUnits");
-    $newUnits.setAttribute("data-product-name", $item["variety"]);
-    let $textNewUnits = document.createTextNode($item['units'].slice(0, -3));
+    $newUnits.setAttribute("data-product-name", $item.variety);
+    let $textNewUnits = document.createTextNode($item.units.slice(0, -3));
     $newUnits.appendChild($textNewUnits);
 
     $unitPrice.appendChild($newPrice);
@@ -125,7 +268,7 @@ function createBasketItem($item){
     $totalVarietyPrice.classList.add("updateTotalPrice");
 
     let $productPriceSpan = document.createElement("p");
-    let $productPriceSpanContent = document.createTextNode("" + $item['amount'] * $item['price']);
+    let $productPriceSpanContent = document.createTextNode("" + $item.amount * $item.price);
     $productPriceSpan.appendChild($productPriceSpanContent);
     $productPriceSpan.appendChild($newEuros);
 
@@ -136,9 +279,11 @@ function createBasketItem($item){
     return $containerSection;
 }
 
-function renderBasket(data){
+function renderBasket(){
+    
+    console.log("renderBasket");
     // je récupère les data
-    let $basket = data;
+    let $basket = getData();
     
     // je vais chercher la section
     let $section = document.getElementById("updateContentSection");
@@ -150,10 +295,11 @@ function renderBasket(data){
     let $newUL = document.createElement("ul");
     $newUL.setAttribute("id", "updateContent");
 
-        
     // pour chaque produit dans le panier je crée un li et son contenu auquel j'ajoute une classe, un contenu, et éventuellement des attributs
-    for (var i=0; i<$basket.length; i++){
-        if($basket[i]["amount"] > 0){
+    for(var i=0; i<$basket.length; i++){
+
+        if($basket[i].amount > 0){
+            
             console.log("je rentre dans le if");
             let $item = $basket[i];
             let $newLi = document.createElement("li");
@@ -166,20 +312,19 @@ function renderBasket(data){
         // je renvoie le ul dans la section
         $section.appendChild($newUL);
 
-        // ----- mettre le prix à jour et ecouter le click
-        
         // je mets à jour le prix total du panier
         let $totalOrderPrice = document.getElementById("totalOrderPrice");
-        $totalOrderPrice.innerText = "Total : " + $cart.totalPrice;
+        $totalOrderPrice.innerText = "Total : " + $basket.totalPrice;
     
-        loadListeners();
 
     }
+        loadListeners();
 }
 
 // Maj du panier
 function initBasket(){
     // le bouton Ajouter au panier
+    console.log("initBasket");
     let $buttonsAddToBasket = document.getElementsByClassName("buttonAddToBasket");
 
     for(var i = 0; i < $buttonsAddToBasket.length; i++)

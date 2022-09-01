@@ -4,6 +4,8 @@ class OrderController extends AbstractController
 {
     public function index()
     {
+        // $orderVarieties = $this->BasketController->buttonAddRemove();
+        
         $orderVarieties = $_SESSION["basket"];
 
         $order = [];

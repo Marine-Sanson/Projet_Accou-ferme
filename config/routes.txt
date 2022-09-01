@@ -3,6 +3,7 @@
 /gallery GalleryController:index
 /product ProductController:index
 /basket BasketController:index
+/buttonAddRemove BasketController:buttonAddRemove
 /_update BasketController:basketUpdate
 /_order OrderController:index
 /_validationOrder OrderController:validationOrder
