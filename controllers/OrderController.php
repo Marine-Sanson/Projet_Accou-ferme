@@ -6,13 +6,18 @@ class OrderController extends AbstractController
     {
         // $orderVarieties = $this->BasketController->buttonAddRemove();
         
+        if(!is_array($_SESSION["basket"]))
+        {
+            $tmp = $this->basketToArray($_SESSION["basket"]);
+        
+            $_SESSION["basket"] = $tmp;
+        }
+
         $orderVarieties = $_SESSION["basket"];
 
         $order = [];
 
-        $totalOrder = 0;
-        
-        foreach($orderVarieties as $key => $orderVariety)
+        foreach($orderVarieties["items"] as $key => $orderVariety)
         {
             $orderVarietyName = $orderVariety["variety"];
             $orderVarietyAmount = $orderVariety["amount"];
@@ -21,37 +26,41 @@ class OrderController extends AbstractController
         
             $totalVariety = $this->totalVariety($orderVarietyAmount, $orderVarietyPrice);
 
-            $totalOrder = $this->totalOrder($totalVariety, $totalOrder);
+            // $totalOrder = $this->totalOrder($totalVariety, $totalOrder);
             
-            $order[]= [
+            $order["items"][]= [
                 "variety" => $orderVarietyName,
                 "amount" => $orderVarietyAmount,
                 "units" => $orderVarietyUnits,
                 "price" => $orderVarietyPrice,
-                "totalVariety" => $totalVariety,
-                "totalOrder" => $totalOrder
+                "totalVariety" => $totalVariety
                 ];
         }
+        
+        $order["totalPrice"] = $_SESSION["basket"]["totalPrice"];
         
         $this->render("_order", ["order" => $order]);
     }
     
     public function totalVariety(int $orderVarietyAmount, int $orderVarietyPrice) :int
     {
+
         $totalVariety = $orderVarietyAmount * $orderVarietyPrice;
+
         return $totalVariety;
 
     }
     
     public function totalOrder(int $totalVariety, int $totalOrder) :int
     {
+
         $totalOrder = $totalOrder + $totalVariety;
+        
         return $totalOrder;
     }
     
     public function validationOrder()
     {
-        var_dump($_POST);
         $this->render("_validationOrder");
     }
 }

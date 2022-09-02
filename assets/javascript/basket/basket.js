@@ -9,16 +9,17 @@ function getData()
 function saveData(data)
 {
     console.log("saveData");
-
+    console.log(data);
     sessionStorage.setItem("data", JSON.stringify(data));
 }
 
-function newFetch($basket){
+function newFetch(){
     
-    console.log($basket);
+    let $basket = getData();
     
     let $formData = new FormData();
         $formData.append("data", JSON.stringify($basket));
+    // attention JSON.stringify transforme les data en class d'ou la function basketToArray dans l'abstractController
 
         const options = {
             method: 'POST',
@@ -27,26 +28,21 @@ function newFetch($basket){
     
     fetch('/Projet_Accou-ferme/buttonAddRemove', options)
         .then(response => response.json())
-        
         .catch( error => {
         });
 
 }
 
 function listenButtonAdd(event){
-    
-    console.log("listenButtonAdd");
-
     event.preventDefault();
-
+    console.log("listenButtonAdd");
     let $clickedButton = event.target;
     
     let $idVariety = $clickedButton.getAttribute("data-product-id");
-    
     let $varietyUnits = document.getElementById("variety-units-"+$idVariety);
     let $varietyPrice = document.getElementById("variety-price-"+$idVariety);
     let $varietyMedia = document.getElementById("variety-media-"+$idVariety);
-    
+
     let $asideUpdate = document.getElementById("basketPreview");
     $asideUpdate.classList.add("showUpdate");
     $asideUpdate.classList.remove("hideUpdate");
@@ -57,7 +53,7 @@ function listenButtonAdd(event){
     $formData.append('availableVarietyUnits', $varietyUnits.value);
     $formData.append('availableVarietyPrice', $varietyPrice.value);
     $formData.append('availableVarietyMedia', $varietyMedia.value);
-    
+
     const options = {
         method: 'POST',
         body: $formData
@@ -67,6 +63,7 @@ function listenButtonAdd(event){
         .then(response => response.json())
         .then(data => {
             saveData(data);
+            computeBasketTotal();
             renderBasket();
         })
         .catch( error => {
@@ -81,34 +78,33 @@ function computeBasketTotal()
     let $basket = getData();
     let $price = 0;
 
-    for(var i = 0; i < $basket.length; i++)
+    for(var i = 0; i < $basket.items.length; i++)
     {
-        $price += ($basket[i].price * $basket[i].amount);
+        $price += ($basket.items[i].price * $basket.items[i].amount);
+        $basket.totalPrice = $price;
     }
-
-    $basket.totalPrice = $price;
     saveData($basket);
+    newFetch($basket);
 }
-
-
 
 // get the item key in the cart.items array
 function findItem($varietyName)
 {
     
     console.log("findItem");
+    console.log($varietyName);
     
     let $basket = getData();
 
     console.log($basket);
 
-    for(var i = 0; i < $basket.length; i++)
+    for(var i = 0; i < $basket.items.length; i++)
     {
         console.log("je rentre dans le for de find item");
-        console.log($basket[i].variety);
+        console.log($basket.items[i].variety);
         console.log($varietyName);
 
-        if($basket[i].variety === $varietyName)
+        if($basket.items[i].variety === $varietyName)
         {
         console.log("je rentre dans le if de find item")
             console.log(i);
@@ -131,7 +127,7 @@ function addItem(event)
 
     if($itemKey !== null)
     {
-        $basket[$itemKey].amount += 1;
+        $basket.items[$itemKey].amount += 1;
         saveData($basket);
         computeBasketTotal();
         renderBasket();
@@ -152,7 +148,7 @@ function removeItem(event)
 
     if($itemKey !== null)
     {
-        $basket[$itemKey].amount -= 1;
+        $basket.items[$itemKey].amount -= 1;
         saveData($basket);
         computeBasketTotal();
         renderBasket();
@@ -160,7 +156,6 @@ function removeItem(event)
     }
 
 }
-
 
 function loadListeners()
 {
@@ -180,6 +175,7 @@ function loadListeners()
 function createBasketItem($item){
     
     console.log("createBasketItem");
+    console.log($item);
     
     let $containerSection = document.createElement("section");
     $containerSection.classList.add("containerSection");
@@ -284,6 +280,7 @@ function renderBasket(){
     console.log("renderBasket");
     // je récupère les data
     let $basket = getData();
+    console.log($basket);
     
     // je vais chercher la section
     let $section = document.getElementById("updateContentSection");
@@ -296,26 +293,30 @@ function renderBasket(){
     $newUL.setAttribute("id", "updateContent");
 
     // pour chaque produit dans le panier je crée un li et son contenu auquel j'ajoute une classe, un contenu, et éventuellement des attributs
-    for(var i=0; i<$basket.length; i++){
+    
 
-        if($basket[i].amount > 0){
+    for(var i=0; i<$basket.items.length; i++){
+
+        if($basket.items[i].amount > 0){
             
             console.log("je rentre dans le if");
-            let $item = $basket[i];
+            let $item = $basket.items[i];
             let $newLi = document.createElement("li");
             $newLi.classList.add("updateDetail");
             $newLi.appendChild(createBasketItem($item));
             $newUL.appendChild($newLi);
         }
         
-        
         // je renvoie le ul dans la section
         $section.appendChild($newUL);
-
+        
         // je mets à jour le prix total du panier
         let $totalOrderPrice = document.getElementById("totalOrderPrice");
-        $totalOrderPrice.innerText = "Total : " + $basket.totalPrice;
-    
+        $totalOrderPrice.innerText = $basket.totalPrice;
+        
+        console.log($basket.totalPrice);
+        
+        saveData($basket);
 
     }
         loadListeners();

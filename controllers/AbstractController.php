@@ -38,4 +38,19 @@ abstract class AbstractController
 
     }
     
+    protected function basketToArray(StdClass $data) :array
+    {
+        $tmp = (array) $data;
+        $items = [];
+        
+        foreach($tmp["items"] as $key => $item)
+        {
+            $tmpItem = (array) $item;
+            $items[] = $tmpItem;
+        }
+        
+        $tmp["items"] = $items;
+        return $tmp;
+    }
+
 }

@@ -7,8 +7,7 @@
 
             <?php 
             $orderVarieties = $data["order"];
-
-            foreach($orderVarieties as $key => $orderVariety)
+            foreach($orderVarieties["items"] as $key => $orderVariety)
             {
             ?>
                 
@@ -36,8 +35,8 @@
 
             <fieldset class="total">
                 <a class="totalReturn" href="basket">Continuer mes achats</a>
-                <p class="totalP">Prix total : <?= $orderVariety["totalOrder"] ?> €</p>
-                <input id="variety-totalOrder-<?= $orderVariety["totalOrder"] ?>" type="hidden" name="totalOrder" value="<?= $orderVariety["totalOrder"] ?>" />
+                <p class="totalP">Prix total : <?= $orderVarieties["totalPrice"] ?> €</p>
+                <input id="variety-totalPrice-<?= $orderVarieties["totalPrice"] ?>" type="hidden" name="totalPrice" value="<?= $orderVarieties["totalPrice"] ?>" />
             </fieldset>
             <fieldset id="client">
                 <label id="clientFirstNameLab" for="firstName">Entrez votre prénom </label>
