@@ -24,19 +24,16 @@ class VarietyManager extends DBConnect
         return $varieties;
     }
     
-    public function getVarietyId(string $name) : int
+    public function getVarietyId(string $varietyName) : array
     {
-        $query = $this->db->prepare('SELECT id FROM varieties WHERE variety.name = :name');
+        $query = $this->db->prepare('SELECT id FROM varieties WHERE varieties.name = :name');
         $parameters = [
-            'name' => $name
+            'name' => $varietyName
         ];
         $query->execute($parameters);
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $varietyId = $query->fetch(PDO::FETCH_ASSOC);
         
-        $variety = [];
-
-        return $variety['id'];
-        
+        return $varietyId;
     }
     
     public function getVarietyByProduct($productName) :array

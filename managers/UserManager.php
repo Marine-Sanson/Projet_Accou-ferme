@@ -1,11 +1,11 @@
 <?php
 
-class UserManager
+class UserManager extends DBConnect
 {
     
     public function createUser(User $user) : User
     {
-        $query = $this->db->prepare('INSERT INTO users ( name, email, password ,tel, role ) VALUES ( :name, :email, :password, :tel, :role )');
+        $query = $this->db->prepare('INSERT INTO admin ( name, email, password ,tel, role ) VALUES ( :name, :email, :password, :tel, :role )');
         $parameters = [
             'name' => $name->getName(),
             'email' => $email->getEmail(),
@@ -21,25 +21,22 @@ class UserManager
         return $user;
     }
     
-    public function connectUser() : User
+    public function connectUser($name) :array
     {
-        
-        $query = $this->db->prepare('SELECT name, email, password, tel FROM users WHERE user.name = :name');
+        $query = $this->db->prepare('SELECT name, password, role FROM admin WHERE name = :name');
         $parameters = [
             'name' => $name
         ];
         $query->execute($parameters);
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $connectedAdmin = $query->fetch(PDO::FETCH_ASSOC);
         
-        $user = [];
-        
-        return $user;
+        return $connectedAdmin;
         
     }
     
     public function getUserByName(string $name) : User
     {
-        $query = $this->db->prepare('SELECT id, email, password, tel FROM users WHERE user.name = :name');
+        $query = $this->db->prepare('SELECT id, email, password, tel FROM admin WHERE user.name = :name');
         $parameters = [
             'name' => $name
         ];
@@ -54,7 +51,7 @@ class UserManager
     public function updateUser(User $user) : User
     {
         
-        $query = $this->db->prepare('UPDATE user SET email = :email, password = :password, tel = :tel FROM users WHERE user.name = :name');
+        $query = $this->db->prepare('UPDATE admin SET email = :email, password = :password, tel = :tel FROM admin WHERE admin.name = :name');
         $parameters = [
             'email' => $email,
             'password' => $password,
@@ -72,7 +69,7 @@ class UserManager
     public function deleteUser(User $user) : void
     {
         
-        $query = $this->db->prepare('DELETE id, name, email, password, tel, role FROM users WHERE user.name = :name');
+        $query = $this->db->prepare('DELETE id, name, email, password, tel, role FROM admins WHERE admin.name = :name');
         $parameters = [
             'name' => $name
         ];

@@ -325,7 +325,6 @@ function renderBasket(){
 // Maj du panier
 function initBasket(){
     // le bouton Ajouter au panier
-    console.log("initBasket");
     let $buttonsAddToBasket = document.getElementsByClassName("buttonAddToBasket");
 
     for(var i = 0; i < $buttonsAddToBasket.length; i++)

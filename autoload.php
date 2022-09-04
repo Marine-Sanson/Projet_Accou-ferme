@@ -6,15 +6,18 @@
 
 require "./controllers/AbstractController.php";
 require "./services/Router.php";
+require "./uploads/Media.php";
 
 require "./managers/UserManager.php";
 require "./managers/ProductManager.php";
 require "./managers/VarietyManager.php";
-require "./managers/BasketManager.php";
+require "./managers/OrderManager.php";
 require "./managers/CategoryManager.php";
 require "./managers/NewsManager.php";
 require "./managers/RecipeManager.php";
 require "./managers/MediaManager.php";
+
+require "./uploads/FileUploader.php";
 
 require "./controllers/HomeController.php";
 require "./controllers/AboutController.php";
@@ -23,10 +26,13 @@ require "./controllers/ProductController.php";
 require "./controllers/VarietyController.php";
 require "./controllers/ContactController.php";
 require "./controllers/BasketController.php";
+require "./controllers/OrderController.php";
 require "./controllers/NewsController.php";
 require "./controllers/AdminController.php";
-require "./controllers/OrderController.php";
-
+require "./controllers/AdminMediasController.php";
+require "./controllers/AdminProductsController.php";
+require "./controllers/AdminOrdersController.php";
+require "./controllers/AdminNewsController.php";
 
 $routes = [];
 

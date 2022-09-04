@@ -1021,6 +1021,26 @@ body > header a:hover {
     display: grid !important;
   }
 }
+/* **********
+    Admin
+********** */
+#adminForm > fieldset {
+  display: grid;
+  border: none;
+  justify-content: center;
+  margin: auto;
+}
+
+#adminForm > fieldset > label,
+#adminForm > fieldset > input {
+  margin: 0.5rem;
+  text-align: center;
+}
+
+#adminForm > fieldset > button {
+  margin: 1rem;
+}
+
 .page404 > img {
   justify-content: center;
   margin: auto;
@@ -1398,7 +1418,8 @@ body > header a:hover {
     text-align: center;
     margin: auto;
   }
-  #orderForm > fieldset {
+  #orderForm > fieldset,
+#orderForm > fieldset {
     border-top: none;
     border-left: none;
     border-right: none;
@@ -1812,6 +1833,11 @@ body > header a:hover {
     padding-top: 1rem;
     height: 3.5rem;
   }
+}
+.validation > p,
+.validation > button {
+  text-align: center;
+  margin: 2rem auto;
 }
 
 /*# sourceMappingURL=style.css.map */

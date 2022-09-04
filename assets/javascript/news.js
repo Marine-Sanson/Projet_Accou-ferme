@@ -1,5 +1,7 @@
 // Trie des articles par catégorie
     
+function initNews(){
+    
     let $selectNews = document.getElementById("selectNews");
     
     $selectNews.addEventListener('change', function(event){
@@ -54,6 +56,6 @@
         
     });
     
+}
 
-    
-});
+export { initNews };

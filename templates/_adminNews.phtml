@@ -1,0 +1,38 @@
+<main id="adminNews">
+    
+    <h1>AdminNews</h1>
+    
+    <h2>Créer une news</h2>
+    
+    <form class="adminNewsForm" method="POST" action="/Projet_Accou-ferme/_newsCreated">
+        <select id="selectNewsCategory">
+            <option value = "0">Creer une catégorie</option>
+            <?php
+    
+            foreach($data['news'] as $key => $singleNews){
+        		?>
+        		<option value = "
+        		<?= $singleNews["category_id"]; ?>
+        		">
+        		<?=$singleNews["category_name"]; ?>
+        		</option>
+        		<?php $idNews = $singleNews['category_id'];
+            }
+            ?>
+        </select>
+
+        <fieldset>
+            <label for="name">Titre</label>
+            <input type="text" name="name"/>
+            <label for="content">Contenu</label>
+            <input type="textarea" name="content"/>
+            <button type="submit">Valider</button>
+        </fieldset>
+        
+    </form>
+    
+    <h2>Mettre à jour une news</h2>
+    
+    <h2>supprimer une news</h2>
+    
+</main>

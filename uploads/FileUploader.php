@@ -6,8 +6,6 @@
  * @author Marine Sanson
 */
 
-require "Media.php";
-
 class FileUploader
 {
     private string $uploadFile = "/uploads/";

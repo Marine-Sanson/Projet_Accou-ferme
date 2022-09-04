@@ -1,5 +1,7 @@
 <?php
 
+require "./models/Order.php";
+
 class OrderController extends AbstractController
 {
     public function index()
@@ -59,8 +61,41 @@ class OrderController extends AbstractController
         return $totalOrder;
     }
     
-    public function validationOrder()
+    public function validationOrder(array $post)
     {
+        var_dump($_SESSION["basket"]);
+        $baskets = $_SESSION["basket"]["items"];
+        
+        $name = $_POST['name'];
+        $firstName = $_POST['firstName'];
+        $email = $_POST['email'];
+        $tel = $_POST['tel'];
+        $day = $_POST['date_retrait'];
+        $totalPrice = $_POST['totalPrice'];
+        $dateCommande = date("d.m.y");;
+
+        $order = New Order(null, $name, $firstName, $email, $tel, $dateCommande, $day, $totalPrice);
+
+        $id = $this->om->createOrder($order);
+
+        var_dump($baskets);
+
+        foreach($baskets as $key => $basket)
+        {
+            $idOrder = $id;
+            $varietyName = $basket["variety"];
+            $amount = $basket["amount"];
+            $units = $basket["units"];
+            $price = $basket["price"];
+            $totalVariety = $amount * $price;
+            $varietyId = $this->vm->getVarietyId($varietyName);
+            $varietyId = $varietyId["id"];
+
+            $this->om->createVarietyOrdered($idOrder, $varietyId, $varietyName, $amount, $units, $price, $totalVariety);
+        }
+        
+        $_SESSION["basket"] = [];
+
         $this->render("_validationOrder");
     }
 }

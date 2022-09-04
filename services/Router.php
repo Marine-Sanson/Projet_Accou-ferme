@@ -46,7 +46,7 @@ class Router {
                 {
                     $routeFound = true;
                     
-                    $bm = new BasketManager();
+                    $om = new OrderManager();
                     $cm = new CategoryManager();
                     $mm = new MediaManager();
                     $nm = new NewsManager();
@@ -56,14 +56,14 @@ class Router {
                     $vm = new VarietyManager();
 
                     $ctrl = new $controller();
-                    $ctrl->init($bm, $cm, $mm, $nm, $pm, $rm, $um, $vm);
+                    $ctrl->init($om, $cm, $mm, $nm, $pm, $rm, $um, $vm);
                     $ctrl->$method($_POST, $requestData["parameter"]);
                 }
                 else if(!$route["parameter"] && $requestData["parameter"] === null)
                 {
                     $routeFound = true;
                     
-                    $bm = new BasketManager();
+                    $om = new OrderManager();
                     $cm = new CategoryManager();
                     $mm = new MediaManager();
                     $nm = new NewsManager();
@@ -73,7 +73,7 @@ class Router {
                     $vm = new VarietyManager();
 
                     $ctrl = new $controller();
-                    $ctrl->init($bm, $cm, $mm, $nm, $pm, $rm, $um, $vm);
+                    $ctrl->init($om, $cm, $mm, $nm, $pm, $rm, $um, $vm);
                     $ctrl->$method($_POST);
                 }
             }

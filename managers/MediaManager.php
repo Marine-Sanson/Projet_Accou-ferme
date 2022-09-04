@@ -1,7 +1,5 @@
 <?php
 
-require "./uploads/Media.php";
-
 class MediaManager extends DBConnect
 {
     public function createMedia(Media $media) : Media

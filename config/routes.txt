@@ -10,3 +10,9 @@
 /news NewsController:index
 /contact ContactController:index
 /admin AdminController:index
+/_adminMenu AdminController:loginCheck
+/_adminProducts AdminProductsController:index
+/_adminOrders AdminOrdersController:index
+/_adminNews AdminNewsController:index
+/_newsCreated AdminNewsController:newsCreated
+/_adminMedias AdminMediasController:index

@@ -21,9 +21,15 @@
 @import "layouts/product";
 @import "layouts/basket";
 @import "layouts/news";
+@import "layouts/admin";
 
 @import "layouts/page404";
 
 /* PARTIALS */
 @import "layouts/partials/update";
 @import "layouts/partials/order";
+@import "layouts/partials/validation";
+@import "layouts/partials/_adminProducts";
+@import "layouts/partials/_adminOrders";
+@import "layouts/partials/_adminNews";
+@import "layouts/partials/_adminMedias";

@@ -1,0 +1,20 @@
+/* **********
+    Admin
+********** */
+
+#adminForm > fieldset{
+    display:grid;
+    border:none;
+    justify-content:center;
+    margin:auto;
+}
+
+#adminForm > fieldset > label,
+#adminForm > fieldset > input{
+    margin:0.5rem;
+    text-align:center;
+}
+
+#adminForm > fieldset > button{
+    margin:1rem;
+}

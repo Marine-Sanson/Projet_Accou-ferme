@@ -11,24 +11,18 @@
             {
             ?>
                 
-                <fieldset class="orderVariety">
-                    <h3 class="orderVarietyH3">Variété : <?= $orderVariety["variety"] ?>
-                    </h3>
-                    <input id="variety-name-<?= $orderVariety["variety"] ?>" type="hidden" name="variety-<?= $orderVariety["variety"] ?>" value="<?= $orderVariety["variety"] ?>" />
-                    
+                <section class="orderVariety">
+                    <h3 class="orderVarietyH3">Variété : <?= $orderVariety["variety"] ?></h3>
+
                     <p class="orderVarietyP1">prix <?= $orderVariety["price"] ?> €</p>
-                    <input id="variety-price-<?= $orderVariety["variety"] ?>" type="hidden" name="price-<?= $orderVariety["variety"] ?>" value="<?= $orderVariety["price"] ?>" />
-    
+
                     <p class="orderVarietyP2">par <?= trim($orderVariety["units"], "(s)") ?></p>
-                    <input id="variety-units-<?= $orderVariety["variety"] ?>" type="hidden" name="units-<?= $orderVariety["variety"] ?>" value="<?= $orderVariety["units"] ?>" />
-    
+
                     <p class="orderVarietyP3">Quantité : <?= $orderVariety["amount"] ?></p>
-                    <input id="variety-amount-<?= $orderVariety["variety"] ?>" type="hidden" name="amount-<?= $orderVariety["variety"] ?>" value="<?= $orderVariety["amount"] ?>" />
-    
+
                     <p class="orderVarietyP4">soit : <?= ($orderVariety["totalVariety"]) ?> €</p>
-                    <input id="variety-totalVariety-<?= $orderVariety["variety"] ?>" type="hidden" name="totalVariety-<?= $orderVariety["variety"] ?>" value="<?= $orderVariety["totalVariety"] ?>" />
-    
-                </fieldset>
+
+                </section>
             <?php
             }
             ?>
