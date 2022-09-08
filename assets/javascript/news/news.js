@@ -2,10 +2,12 @@
     
 function initNews(){
     
+    console.log("je rentre dans initNews");
     let $selectNews = document.getElementById("selectNews");
     
     $selectNews.addEventListener('change', function(event){
-        
+        event.preventDefault();
+
     // VARIABLES
         // je récupère la liste complète des news
         let $allNews = document.querySelectorAll(".newsArticle");

@@ -14,7 +14,7 @@ function saveData(data)
 }
 
 function newFetch(){
-    
+    console.log("je rentre dans newFetch");
     let $basket = getData();
     
     let $formData = new FormData();

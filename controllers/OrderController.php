@@ -61,9 +61,8 @@ class OrderController extends AbstractController
         return $totalOrder;
     }
     
-    public function validationOrder(array $post)
+    public function validationOrder(array $post) :void
     {
-        var_dump($_SESSION["basket"]);
         $baskets = $_SESSION["basket"]["items"];
         
         $name = $_POST['name'];
@@ -77,8 +76,6 @@ class OrderController extends AbstractController
         $order = New Order(null, $name, $firstName, $email, $tel, $dateCommande, $day, $totalPrice);
 
         $id = $this->om->createOrder($order);
-
-        var_dump($baskets);
 
         foreach($baskets as $key => $basket)
         {
@@ -95,6 +92,8 @@ class OrderController extends AbstractController
         }
         
         $_SESSION["basket"] = [];
+        
+        
 
         $this->render("_validationOrder");
     }

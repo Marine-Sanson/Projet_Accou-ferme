@@ -4,7 +4,14 @@ class AdminProductsController extends AbstractController
 {
     public function index()
     {
-        $this->render("_adminProducts");
+        if($_SESSION["connectAdmin"] === true)
+        {
+            $this->render("adminProducts");
+        }
+        else
+        {
+            $this->render("admin");
+        }
     }
     
 }

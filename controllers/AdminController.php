@@ -14,18 +14,17 @@ class AdminController extends AbstractController
         $password = $_POST["password"];
         
         $um = new UserManager();
-        $user = $um->connectUser($username);
-        
+        $user = $um->connectAdmin($username);
+
         if($user !== null){
-            if($password === $user["password"]){
-                $_SESSION["user"] = $user;
-                $this->render("_adminMenu");            }
+            if($username === $user[0]["name"] && password_verify($password, $user[0]["password"]))
+            {
+                $_SESSION["connectAdmin"] = true;
+                $this->render("adminMenu");            }
             }
             else
             {
                 $this->render("admin");
             }
-        
-        $this->render("admin");
     }
 }

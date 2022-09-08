@@ -1,0 +1,15 @@
+<main id="adminMedias">
+    
+    <?php require "_adminNav.phtml"; ?>
+    
+    <h1>Téléchargement d'images</h1>
+    
+    <form action="/Projet_Accou-ferme/_adminMedias" method="post" enctype="multipart/form-data">
+            Choisi une image à télécharger:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <label for="alt">Description de l'image</label>
+        <input type="text" name="alt" id="fileAlt">
+        <input type="submit" value="Upload Image" name="submit">
+    </form>
+    
+</main>

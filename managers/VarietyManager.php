@@ -8,19 +8,17 @@ class VarietyManager extends DBConnect
         $query = $this->db->prepare('INSERT INTO varieties ( product_id, name, season_start ,season_end , description, availablity, quantity_available ) VALUES ( :product_id, :name, :availablity, :season_start, :season_end, :description, :quantity_available, :units, ;price');
         $parameters = [
             'product_id' => $product_id ,
-            'name' => $name->getName(),
-            'season_start' => $seasonStart->getSeasonStart(),
-            '$season_End' => $seasonEnd->getSeasonEnd(),
-            'description' => $description->getDescription(),
+            'name' => $variety->getName(),
+            'season_start' => $variety->getSeasonStart(),
+            '$season_End' => $variety->getSeasonEnd(),
+            'description' => $variety->getDescription(),
             'availablity' => "0",
-            'quantity_available' => $quantityAvailable->getQuantityAvailable(),
-            'units' => $units->getUnits(),
-            'price' => $price->getPrice()
+            'quantity_available' => $variety->getQuantityAvailable(),
+            'units' => $variety->getUnits(),
+            'price' => $variety->getPrice()
         ];
         $query->execute($parameters);
         
-        $varieties = [];
-
         return $varieties;
     }
     
@@ -51,15 +49,13 @@ class VarietyManager extends DBConnect
     
     public function getVarietyById(Variety $id) : Variety
     {
-        $query = $this->db->prepare('SELECT product_id, name, season_start, season_end, description, media_id, availablity, quantity_available, units, price FROM varieties WHERE variety.id = :id');
+        $query = $this->db->prepare('SELECT product_id, name, season_start, season_end, description, media_id, availablity, quantity_available, units, price FROM varieties WHERE varieties.id = :id');
         $parameters = [
             'id' => $id
         ];
         $query->execute($parameters);
-        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $variety = $query->fetch(PDO::FETCH_ASSOC);
         
-        $variety = [];
-
         return $variety;
     }
     
@@ -82,7 +78,7 @@ class VarietyManager extends DBConnect
     public function updateVariety(Variety $variety) : Variety
     {
         
-        $query = $this->db->prepare('UPDATE variety SET product_id = :product_id, season_start = :season_start, season_end = :season_end, description = :description, availablity = :availablity, quantity_available, = :quantity_available, units = :units, price = :price FROM varieties WHERE variety.name = :name');
+        $query = $this->db->prepare('UPDATE varieties SET product_id = :product_id, season_start = :season_start, season_end = :season_end, description = :description, availablity = :availablity, quantity_available, = :quantity_available, units = :units, price = :price FROM varieties WHERE varieties.name = :name');
         $parameters = [
             'product_id' => $productId,
             'season_start' => $seasonStart,
@@ -94,10 +90,8 @@ class VarietyManager extends DBConnect
             'price' => $price
         ];
         $query->execute($parameters);
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        $variety = $query->fetchAll(PDO::FETCH_ASSOC);
         
-        $variety = [];
-
         return $variety;
         
     }
@@ -105,7 +99,7 @@ class VarietyManager extends DBConnect
     public function deleteVariety(Variety $variety) : void
     {
         
-        $query = $this->db->prepare('DELETE id, product_id, name, season_start, season_end, description, media_id, availablity, quantity_available, units, price FROM varieties WHERE varietv.name = :name');
+        $query = $this->db->prepare('DELETE id, product_id, name, season_start, season_end, description, media_id, availablity, quantity_available, units, price FROM varieties WHERE varieties.name = :name');
         $parameters = [
             'name' => $name
         ];

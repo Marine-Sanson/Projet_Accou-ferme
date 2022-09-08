@@ -8,7 +8,7 @@ class News
     private ?int $mediaId;
     private string $content;
     
-    function __construct (?int $id, int $categoryId, string $name, int $mediaId, string $content)
+    function __construct (?int $id, int $categoryId, string $name, ?int $mediaId, string $content)
     {
         $this->id = $id;
         $this->categoryId = $categoryId;

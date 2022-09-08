@@ -1,22 +1,21 @@
 <?php
 
+require "./models/Media.php";
+
 class MediaManager extends DBConnect
 {
-    public function createMedia(Media $media) : Media
+    public function createMedia(Media $media) : void
     {
-        $query = $this->db->prepare('INSERT INTO medias ( original_name, file_name, file_type, url, alt ) VALUES ( :original_name, :file_name, :file_type, :url, :alt');
+        $query = $this->db->prepare('INSERT INTO medias ( original_name, file_name, file_type, url, alt ) VALUES ( :original_name, :file_name, :file_type, :url, :alt)');
         $parameters = [
-            'original_name' => $originalName->getoriginalName() ,
-            'file_name' => $fileName->getfileName(),
-            'file_type' => $fileType->getFileType,
-            'url' => $url->getUrl,
-            'alt' => $alt->getAlt
+            'original_name' => $media->getoriginalName() ,
+            'file_name' => $media->getfileName(),
+            'file_type' => $media->getFileType(),
+            'url' => $media->getUrl(),
+            'alt' => $media->getAlt()
         ];
         $query->execute($parameters);
         
-        $media = [];
-
-        return $media;
     }
     
     public function getMediaById(int $id) :Media

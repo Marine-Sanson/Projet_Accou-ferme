@@ -3,3 +3,31 @@
     <p>test footer</p>
     
 </footer>
+
+<?php
+
+if ($template === "product")
+{
+?>
+    <script type="module" src="/Projet_Accou-ferme/assets/javascript/products/index.js"></script>
+<?php
+}
+else if($template === "basket")
+{
+?>
+    <script type="module" src="/Projet_Accou-ferme/assets/javascript/basket/index.js"></script>
+<?php
+}
+else if($template === "news")
+{
+?>
+    <script type="module" src="/Projet_Accou-ferme/assets/javascript/news/index.js"></script>
+<?php
+}
+else
+{
+?>
+    <script type="module" src="/Projet_Accou-ferme/assets/javascript/header/index.js"></script>
+<?php
+}
+?>

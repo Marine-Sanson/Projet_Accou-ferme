@@ -3,7 +3,8 @@ function initProducts(){
     let $selectProduct = document.getElementById("selectProduct");
     
     $selectProduct.addEventListener('change', function(event){
-        
+        event.preventDefault();
+
         // Trie des produits par famille
 
     // VARIABLES

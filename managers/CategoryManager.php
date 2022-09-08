@@ -1,20 +1,26 @@
 <?php
 
-class CategoryManager
+class CategoryManager extends DBConnect
 {
     
-    public function createCategory(Category $category) : Category
+    public function createCategory(Category $category) : void
     {
         $query = $this->db->prepare('INSERT INTO categories ( name ) VALUES ( :name )');
         $parameters = [
-            'name' => $name->getName(),
+            'name' => $category->getName(),
         ];
         $query->execute($parameters);
+    }
+    
+    public function getAllCategories() :array
+    {
+        $query = $this->db->prepare('SELECT id, name FROM categories');
+        $query->execute();
+        $category = $query->fetchAll(PDO::FETCH_ASSOC);
         
-        $produce = [];
-
         return $category;
     }
+
     
     public function getCategoryId(string $name) : int
     {

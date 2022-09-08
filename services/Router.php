@@ -54,9 +54,10 @@ class Router {
                     $rm = new RecipeManager();
                     $um = new UserManager();
                     $vm = new VarietyManager();
+                    $fu = new FileUploader();
 
                     $ctrl = new $controller();
-                    $ctrl->init($om, $cm, $mm, $nm, $pm, $rm, $um, $vm);
+                    $ctrl->init($om, $cm, $mm, $nm, $pm, $rm, $um, $vm, $fu);
                     $ctrl->$method($_POST, $requestData["parameter"]);
                 }
                 else if(!$route["parameter"] && $requestData["parameter"] === null)
@@ -71,9 +72,10 @@ class Router {
                     $rm = new RecipeManager();
                     $um = new UserManager();
                     $vm = new VarietyManager();
+                    $fu = new FileUploader();
 
                     $ctrl = new $controller();
-                    $ctrl->init($om, $cm, $mm, $nm, $pm, $rm, $um, $vm);
+                    $ctrl->init($om, $cm, $mm, $nm, $pm, $rm, $um, $vm, $fu);
                     $ctrl->$method($_POST);
                 }
             }

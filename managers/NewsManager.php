@@ -2,20 +2,17 @@
 
 class NewsManager extends DBConnect
 {
-    
-    public function createNews(Recipe $news) : News
+
+    public function createNews(News $news) :void
     {
         $query = $this->db->prepare('INSERT INTO news ( category_id, name, content ) VALUES ( :category_id, :name, :content )');
         $parameters = [
-            'category_id' => $categoryId->getCategoryId() ,
-            'name' => $name->getName(),
-            'content' => $content->getContent
+            'category_id' => $news->getCategoryId() ,
+            'name' => $news->getName(),
+            'content' => $news->getContent()
         ];
         $query->execute($parameters);
         
-        $news = [];
-
-        return $news;
     }
     
     public function getNewsId(string $name) : int

@@ -21,14 +21,14 @@ class UserManager extends DBConnect
         return $user;
     }
     
-    public function connectUser($name) :array
+    public function connectAdmin($name) :array
     {
-        $query = $this->db->prepare('SELECT name, password, role FROM admin WHERE name = :name');
+        $query = $this->db->prepare('SELECT name, password FROM admin WHERE name = :name');
         $parameters = [
             'name' => $name
         ];
         $query->execute($parameters);
-        $connectedAdmin = $query->fetch(PDO::FETCH_ASSOC);
+        $connectedAdmin = $query->fetchAll(PDO::FETCH_ASSOC);
         
         return $connectedAdmin;
         

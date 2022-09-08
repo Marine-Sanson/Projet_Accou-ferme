@@ -6,7 +6,6 @@
 
 require "./controllers/AbstractController.php";
 require "./services/Router.php";
-require "./uploads/Media.php";
 
 require "./managers/UserManager.php";
 require "./managers/ProductManager.php";
@@ -17,7 +16,7 @@ require "./managers/NewsManager.php";
 require "./managers/RecipeManager.php";
 require "./managers/MediaManager.php";
 
-require "./uploads/FileUploader.php";
+require "./services/FileUploader.php";
 
 require "./controllers/HomeController.php";
 require "./controllers/AboutController.php";
