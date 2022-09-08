@@ -13,8 +13,8 @@ class AdminController extends AbstractController
         $username = $_POST["username"];
         $password = $_POST["password"];
         
-        $um = new UserManager();
-        $user = $um->connectAdmin($username);
+        $am = new AdminManager();
+        $user = $am->connectAdmin($username);
 
         if($user !== null){
             if($username === $user[0]["name"] && password_verify($password, $user[0]["password"]))

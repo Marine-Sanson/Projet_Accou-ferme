@@ -52,12 +52,12 @@ class Router {
                     $nm = new NewsManager();
                     $pm = new ProductManager();
                     $rm = new RecipeManager();
-                    $um = new UserManager();
+                    $am = new AdminManager();
                     $vm = new VarietyManager();
                     $fu = new FileUploader();
 
                     $ctrl = new $controller();
-                    $ctrl->init($om, $cm, $mm, $nm, $pm, $rm, $um, $vm, $fu);
+                    $ctrl->init($om, $cm, $mm, $nm, $pm, $rm, $am, $vm, $fu);
                     $ctrl->$method($_POST, $requestData["parameter"]);
                 }
                 else if(!$route["parameter"] && $requestData["parameter"] === null)
@@ -70,12 +70,12 @@ class Router {
                     $nm = new NewsManager();
                     $pm = new ProductManager();
                     $rm = new RecipeManager();
-                    $um = new UserManager();
+                    $am = new AdminManager();
                     $vm = new VarietyManager();
                     $fu = new FileUploader();
 
                     $ctrl = new $controller();
-                    $ctrl->init($om, $cm, $mm, $nm, $pm, $rm, $um, $vm, $fu);
+                    $ctrl->init($om, $cm, $mm, $nm, $pm, $rm, $am, $vm, $fu);
                     $ctrl->$method($_POST);
                 }
             }

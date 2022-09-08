@@ -1,21 +1,19 @@
 <?php
 
-class User
+class Admin
 {
     private ?int $id;
     private string $name;
     private string $email;
     private string $password;
-    private int $tel;
     private string $role;
 
-    function __construct(?int $id, string $name, string $email, string $password, int $tel, string $role)
+    function __construct(?int $id, string $name, string $email, string $password, string $role)
     {
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
-        $this->tel = $tel;
         $this->role = $role;
     }
     

@@ -1,16 +1,15 @@
 <?php
 
-class UserManager extends DBConnect
+class AdminManager extends DBConnect
 {
     
-    public function createUser(User $user) : User
+    public function createAdmin(Admin $admin) : Admin
     {
-        $query = $this->db->prepare('INSERT INTO admin ( name, email, password ,tel, role ) VALUES ( :name, :email, :password, :tel, :role )');
+        $query = $this->db->prepare('INSERT INTO admin ( name, email, password, role ) VALUES ( :name, :email, :password, :role )');
         $parameters = [
-            'name' => $name->getName(),
-            'email' => $email->getEmail(),
-            'password' => $password->getPassword(),
-            'tel' => $tel->getTel(),
+            'name' => $admin->getName(),
+            'email' => $admin->getEmail(),
+            'password' => $admin->getPassword(),
             'role' => "user"
             // if error try "'user'"
         ];
@@ -34,9 +33,9 @@ class UserManager extends DBConnect
         
     }
     
-    public function getUserByName(string $name) : User
+    public function getAdminByName(string $name) : User
     {
-        $query = $this->db->prepare('SELECT id, email, password, tel FROM admin WHERE user.name = :name');
+        $query = $this->db->prepare('SELECT id, email, password, tel FROM admin WHERE admin.name = :name');
         $parameters = [
             'name' => $name
         ];
@@ -48,14 +47,13 @@ class UserManager extends DBConnect
         return $user;
     }
     
-    public function updateUser(User $user) : User
+    public function updateAdmin(User $user) : User
     {
         
-        $query = $this->db->prepare('UPDATE admin SET email = :email, password = :password, tel = :tel FROM admin WHERE admin.name = :name');
+        $query = $this->db->prepare('UPDATE admin SET email = :email, password = :password FROM admin WHERE admin.name = :name');
         $parameters = [
             'email' => $email,
             'password' => $password,
-            'tel' => $tel
         ];
         $query->execute($parameters);
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -66,10 +64,10 @@ class UserManager extends DBConnect
         
     }
     
-    public function deleteUser(User $user) : void
+    public function deleteAdmin(Admin $admin) : void
     {
         
-        $query = $this->db->prepare('DELETE id, name, email, password, tel, role FROM admins WHERE admin.name = :name');
+        $query = $this->db->prepare('DELETE id, name, email, password, role FROM admin WHERE admin.name = :name');
         $parameters = [
             'name' => $name
         ];
