@@ -2,11 +2,12 @@
 
 class NewsController extends AbstractController
 {
-    public function index()
+    public function index() :void
     {
+        $allCategories = $this->cm->getAllCategories();
         $news = $this->nm->getAllNews();
         $medias = [];
-            
+        
         foreach($news as $key => $singleNews)
         {
             if(!is_null($singleNews['media_id'])){
@@ -30,19 +31,21 @@ class NewsController extends AbstractController
                 $medias[] = $item;
             }
         }
+        
+        $template = "news";
 
-        $this->render("news", ["news" => $news, "medias" => $medias]);
+        $this->render($template, ["allCategories" => $allCategories, "news" => $news, "medias" => $medias]);
     }
     
-    public function displayAllNewsByCategoryId($categoryId)
+    public function displayAllNewsByCategoryId($categoryId) :void
     {
         if(isset($POST['category-id']))
         {
             $categoryId = $POST['category-id'];
             $nm = new NewsManager();
-            $AllNewsByCategoryId = $nm->getAllNewsByCategoryId($categoryId);
+            $allNewsByCategoryId = $nm->getAllNewsByCategoryId($categoryId);
             
-            $this->render("news_detail", ["AllNewsByCategoryId" => $AllNewsByCategoryId]);
+            $this->render("news_detail", ["allNewsByCategoryId" => $allNewsByCategoryId]);
         }
     }
     

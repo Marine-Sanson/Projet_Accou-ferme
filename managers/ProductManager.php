@@ -1,6 +1,6 @@
 <?php
 
-class ProductManager extends DBConnect
+class ProductManager extends AbstractManager
 {
     
     // permet de créer un nouveau produit

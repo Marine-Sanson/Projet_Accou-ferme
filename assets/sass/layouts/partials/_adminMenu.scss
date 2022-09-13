@@ -1,0 +1,10 @@
+#adminMenu > nav > ul{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    margin:auto;
+}
+
+#adminMenu > nav > ul > li{
+    margin:1rem;
+}

@@ -1,6 +1,6 @@
 <?php
 
-class RecipeManager extends DBConnect
+class RecipeManager extends AbstractManager
 {
     
     public function createRecipe(Recipe $recipe) : Recipe

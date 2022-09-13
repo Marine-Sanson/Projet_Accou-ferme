@@ -1,6 +1,6 @@
 <?php
 
-class AdminManager extends DBConnect
+class AdminManager extends AbstractManager
 {
     
     public function createAdmin(Admin $admin) : Admin

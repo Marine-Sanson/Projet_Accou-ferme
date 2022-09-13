@@ -94,8 +94,13 @@ a{
     p,
     a,
     li,
-    span{
+    span,
+    label{
         color: $blanc;
+    }
+    
+    input{
+        background-color:$blanc;
     }
     
 }

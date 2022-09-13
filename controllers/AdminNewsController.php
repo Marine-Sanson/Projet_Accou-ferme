@@ -6,7 +6,7 @@ require "./models/News.php";
 
 class AdminNewsController extends AbstractController
 {
-    public function index()
+    public function index() :void
     {
         if($_SESSION["connectAdmin"] === true)
         {

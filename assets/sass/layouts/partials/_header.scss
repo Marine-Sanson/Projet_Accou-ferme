@@ -63,12 +63,9 @@ body > header a:hover {
 text-decoration: underline;
 }
 
-.logoImg{
-    max-width: 3vw;
+#logoImg > img{
+    width:8vw;
     height:auto;
-}
-
-.logoImg > img{
     max-width:100%;
 }
 
@@ -144,34 +141,19 @@ text-decoration: underline;
     body > header ul {
         text-align: left;
         display:grid;
-        grid-template-columns: 0.3fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
+        grid-template-columns: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
         grid-template-rows: none;
     }
 
     body > header ul li{
         padding-top: 0;
         padding-bottom: 0;
-        margin:auto;
         text-align:center;
+        margin:auto;
     }
 
     body > header h1:hover {
         text-decoration: underline;
-    }
-    
-    #containerLogo{
-    display:flex;
-    justify-content:center;
-    margin:auto;
-    }
-
-    #containerLogo > #logoImg{
-    display:inline-block;
-    margin:auto;
-    }
-    
-    #containerLogo > a{
-    margin:auto;
     }
     
 }

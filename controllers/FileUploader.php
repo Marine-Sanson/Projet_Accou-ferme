@@ -19,7 +19,7 @@ class FileUploader
         return $randomString;
     }
     
-    private function checkFileSize(int $fileSize)
+    private function checkFileSize(int $fileSize) :bool
     {
 
         $maxFileSize = $this->maxFileSize;
@@ -35,7 +35,7 @@ class FileUploader
         }
     }
     
-    private function checkFileType(string $fileType) : bool
+    private function checkFileType(string $fileType) :bool
     {
         // vérifier que le type est bien l'un des types autorisés
         $allowedFileTypes = $this->allowedFileTypes;

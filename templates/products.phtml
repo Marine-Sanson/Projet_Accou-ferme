@@ -1,0 +1,104 @@
+<main id="product">
+
+    <h1>Produits</h1>
+    
+    <section>
+    
+        <p>Retrouvez ici la liste des Fruits et légumes que nous proposons</p>
+        
+        <select id="selectProduct">
+        <option value = "0">Selectionner un produit</option>
+        <?php
+
+        foreach($data['products'] as $key => $product){
+    		?>
+    		<option value = " <?= $product["product"]["id"]; ?>	"> <?=$product["product"]["name"]; ?>
+    		</option>
+    		<?php $idProduct = $product["product"]['id'];
+        }
+        ?>
+        </select>
+    
+    </section>
+    <section>
+
+        <?php
+        // if($productId === "0"){
+            
+            foreach($data['products'] as $key => $product)
+            {
+                ?>
+                    <h2 class="productName" data-product="<?=$product["product"]["id"];?>">
+                        <?= $product["product"]["name"]; ?>
+                    </h2>
+                        <?php foreach($product["varieties"] as $key => $variety) 
+                        {
+                        ?>
+                            <article class="varietyDetail" data-product="<?=$product["product"]["id"];?>">
+                                <?php 
+                                $medias = $data["medias"];
+                                foreach($medias as $item)
+                                {
+                                    if($item["variety"]["id"] === $variety["id"])
+                                    {
+                                        if(!is_null($item["media"]))
+                                        {
+                                            ?>
+                                            <figure class="varietyDetailFigure">
+                                                <img src="<?= $item["media"]->getUrl(); ?>" alt="<?= $item["media"]->getAlt(); ?>" />
+                                            </figure>
+                                            <?php
+                                        }
+                                        else
+                                        {
+                                           ?>
+                                            <figure class="varietyDetailFigure">
+                                                <img src="./assets/img/varieties/panierVide.jpg" alt="Photo non disponible" />
+                                            </figure>
+                                        <?php 
+                                        }
+                                    }
+                                }
+                                ?>
+                                <header class="varietyDetailTitle">
+                                    <h3>
+                                        <?= $variety['name']; ?>
+                                    </h3>
+                                </header>
+                                <main>
+                                    <p class="varietyDetailDescription">
+                                        <?= $variety['description']; ?>
+                                    </p>
+                                </main>
+                                <footer class="varietyDetailFooter">
+                                    <p class="varietyDetailSeason">
+                                        De
+                                        <?= $variety['season_start']; ?>
+                                        à 
+                                        <?= $variety['season_end']; ?>
+                                    </p>
+                                    <p class="varietyDetailAvailablity">
+                                        <?php
+                                        if($variety['availablity'] === 1){
+                                            echo "Disponible actuellement";
+                                        }
+                                        else {
+                                            echo "Indisponible actuellement";
+                                        }
+                                        ?>
+                                    </p>
+                                </footer>
+                                
+                            </article>
+                        <?php
+                        }
+                        ?>
+                <?php
+            }
+        // }
+
+        ?>
+
+    </section>
+
+</main>

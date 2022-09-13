@@ -7,7 +7,7 @@ class AdminController extends AbstractController
         $this->render("admin");
     }
     
-    public function loginCheck(array $post)
+    public function loginCheck(array $post) :void
     {
         // reçoit le formulaire
         $username = $_POST["username"];

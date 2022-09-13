@@ -2,7 +2,7 @@
 
 abstract class AbstractController
 {
-    protected OrderManager $om;
+    protected OrdersManager $om;
     protected CategoryManager $cm;
     protected MediaManager $mm;
     protected NewsManager $nm;
@@ -12,7 +12,7 @@ abstract class AbstractController
     protected VarietyManager $vm;
 
 // fonction qui initialise chacun des managers de façon à les rendre accessibles ensuite
-    public function init(OrderManager $om, CategoryManager $cm, MediaManager $mm, NewsManager $nm, ProductManager $pm, RecipeManager $rm, AdminManager $am, VarietyManager $vm)
+    public function init(OrdersManager $om, CategoryManager $cm, MediaManager $mm, NewsManager $nm, ProductManager $pm, RecipeManager $rm, AdminManager $am, VarietyManager $vm)
     {
         $this->om = $om;
         $this->cm = $cm;

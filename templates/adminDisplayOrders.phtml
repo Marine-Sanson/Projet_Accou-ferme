@@ -1,0 +1,78 @@
+<main id="adminDisplayOrders">
+
+    <?php require "_adminNav.phtml"; ?>
+    
+    <h1>AdminDisplayOrders</h1>
+    
+    <h2>Voir les prochaines commandes</h2>
+    
+    <form class="choseOrders" method="POST" action="/Projet_Accou-ferme/adminDisplayOrdersByDay">
+
+        <input type="radio" id="mercredi" name="day" value="mercredi">
+        <label for="mercredi">Mercredi</label>
+        <input type="radio" id="samedi" name="day" value="samedi">
+        <label for="samedi">Samedi</label>
+        
+        <input type="submit" value="Valider"/>
+    </form>
+    
+    <section id="displayOrders">
+        
+        <?php
+        if(isset($_POST["day"])){
+            $allorders = $data;
+            var_dump($allorders);
+            ?>
+            <p>commandes pour <?= $_POST["day"]; ?></p>
+            
+            <?php
+            foreach($allorders as $key => $order)
+            {
+                foreach($order as $key => $orderDetail)
+                {
+                ?>
+                    <p>Date de commande : <?= $orderDetail["date_commande"]; ?></p>
+                    <p><?= $orderDetail["name"]; ?> <?= $orderDetail["first_name"]; ?> <?= $orderDetail["email"]; ?> <?= $orderDetail["tel"]; ?>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Variété</th>
+                                <th>Quantité</th>
+                                <th>Unité</th>
+                                <th>Prix</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th colspan="4">Total commande : </th>
+                                <td><?= $orderDetail["total_price"]; ?> €</td>
+                            </tr>
+                        </tfoot>
+                    <?php
+                    $varieties = $allorders["varieties"];
+                    foreach($varieties as $key => $varietyDetail){
+                    ?>
+                        <tbody>
+                            <tr>
+                                <td><?= $varietyDetail["variety_name"]; ?></td>
+                                <td><?= $varietyDetail["amount"]; ?></td>
+                                <td><?= $varietyDetail["units"]; ?></td>
+                                <td><?= $varietyDetail["price"]; ?> €</td>
+                                <td><?= $varietyDetail["total_variety"]; ?> €</td>
+                            </tr>
+                        </tbody>
+                    <?php
+                    }
+                    ?>
+                </table>
+                <?php
+                }
+            }
+        }
+        ?>
+        
+        
+    </section>
+    
+</main>

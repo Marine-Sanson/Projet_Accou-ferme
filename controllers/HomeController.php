@@ -1,13 +1,11 @@
 <?php
-/**
- * @author : Gaellan
- * @Marine Sanson
- */
 
 class HomeController extends AbstractController
 {
-    public function index(array $post)
+    public function index(array $post) :void
     {
-        $this->render("home");
+        $template = "home";
+        
+        $this->render($template);
     }
 }

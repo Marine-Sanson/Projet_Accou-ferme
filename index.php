@@ -9,7 +9,7 @@ if(!isset($_SESSION["basket"]))
     $_SESSION["basket"] = [];
 }
 
-require "classes/DBConnect.php";
+require "managers/AbstractManager.php";
 require "autoload.php";
 
 try {

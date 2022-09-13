@@ -7,11 +7,11 @@ class Order
     private string $firstName;
     private string $email;
     private int $tel;
-    private string $dateCommande;
+    private DateTime $dateCommande;
     private string $day;
     private int $totalPrice;
 
-    function __construct (?int $id, string $name, string $firstName, string $email, int $tel, string $dateCommande, string $day, int $totalPrice)
+    function __construct (?int $id, string $name, string $firstName, string $email, int $tel, DateTime $dateCommande, string $day, int $totalPrice)
     {
         $this->id = $id;
         $this->name = $name;
@@ -73,12 +73,12 @@ class Order
         $this->tel = $tel;
     }
 
-    public function getDateCommande() : string
+    public function getDateCommande() : DateTime
     {
         return $this->dateCommande;
     }
     
-    public function setDateCommande(string $dateCommande) : void
+    public function setDateCommande(DateTime $dateCommande) : void
     {
         $this->dateCommande = $dateCommande;
     }

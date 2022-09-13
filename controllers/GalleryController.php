@@ -2,8 +2,11 @@
 
 class GalleryController extends AbstractController
 {
-    public function index()
+    public function index() :void
     {
-        $this->render("gallery");
+        $template="gallery";
+
+        $this->render($template);
+
     }
 }

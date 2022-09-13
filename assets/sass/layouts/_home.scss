@@ -4,40 +4,57 @@
 
 @media(min-width: 0px) and (max-width: 767.99px)
 {
-    #home > figure{
-    max-width: 50vw;
+    #mainHome > figure{
+    max-width: 80vw;
     margin: auto;
     }
     
-    #home > figure > img{
-        border-radius: 8% / 12%;
+    #mainHome > figure > img{
+        background-image:url("../img/legumes.jpg");
+        background-size:cover;
+        background-position: right;
         margin: auto;
     }
 }
 
 @media(min-width: 768px) and (max-width: 991px)
 {
-    #home > figure{
-        max-width: 50vw;
+    #mainHome > figure{
+        max-width: 60vw;
         margin: auto;
     }
     
-    #home > figure > img{
-        border-radius: 8% / 12%;
+    #mainHome > figure > img{
+        background-image:url("../img/legumes.jpg");
+        background-size:cover;
+        background-position: right;
         margin: auto;
     }
 }
 
 @media(min-width: 992px)
 {
-    #home > figure{
-    max-width: 50vw;
-    margin: auto;
+    #mainHome{
+        display: grid;
+        grid-template-columns:repeat(12, 1fr);
+        grid-template-rows:1fr;
+        gap:1rem;
     }
     
-    #home > figure > img{
-        border-radius: 8% / 12%;
+    #mainHome > figure{
+        grid-column:1/6;
+        max-width: 50vw;
         margin: auto;
+    }
+    
+    #mainHome > figure > img{
+        background-image:url("../img/legumes.jpg");
+        background-size:cover;
+        background-position: right;
+    }
+    
+    #mainHome > article{
+        grid-column:6/13;
     }
 }
 

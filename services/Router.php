@@ -46,7 +46,7 @@ class Router {
                 {
                     $routeFound = true;
                     
-                    $om = new OrderManager();
+                    $om = new OrdersManager();
                     $cm = new CategoryManager();
                     $mm = new MediaManager();
                     $nm = new NewsManager();
@@ -64,7 +64,7 @@ class Router {
                 {
                     $routeFound = true;
                     
-                    $om = new OrderManager();
+                    $om = new OrdersManager();
                     $cm = new CategoryManager();
                     $mm = new MediaManager();
                     $nm = new NewsManager();

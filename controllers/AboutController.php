@@ -6,8 +6,10 @@
 
 class AboutController extends AbstractController
 {
-    public function index()
+    public function index() :void
     {
-        $this->render("about");
+        $template="about";
+
+        $this->render($template);
     }
 }

@@ -2,7 +2,7 @@
 
 require "./models/Media.php";
 
-class MediaManager extends DBConnect
+class MediaManager extends AbstractManager
 {
     public function createMedia(Media $media) : void
     {

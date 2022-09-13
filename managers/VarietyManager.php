@@ -1,6 +1,6 @@
 <?php
 
-class VarietyManager extends DBConnect
+class VarietyManager extends AbstractManager
 {
     
     public function createVariety(Variety $variety) : Variety

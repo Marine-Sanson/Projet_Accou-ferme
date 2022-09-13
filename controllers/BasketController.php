@@ -2,7 +2,13 @@
 
 class BasketController extends AbstractController
 {
-    public function index(array $post)
+
+    /**
+     * Renders the basket index page
+     * @param array $post
+     * @return void
+     */
+    public function index(array $post) :void
     {
         $allAvailableVarieties = $this->vm->getAllAvailableVarieties();
         $medias = [];
@@ -31,34 +37,20 @@ class BasketController extends AbstractController
                     }
                   
                 }
-        $this->render("basket", ["allAvailableVarieties" => $allAvailableVarieties, "medias" => $medias]);
+                
+        $template = "basket";
+        
+        $this->render($template, ["allAvailableVarieties" => $allAvailableVarieties, "medias" => $medias]);
         
     }
     
-// $_SESSION["basket"]  = 
-//     [
-//         "items" => [
-//             [
-//             "variety" => Ndc,
-//             "amount" => 2,
-//             "units" => Kilo(s),
-//             "price" => 5,
-//             "media_url" => url,
-//             "media_alt" => alt
-//             ],
-//             [
-//             "variety" => Charlotte,
-//             "amount" => 1,
-//             "units" => Kilo(s),
-//             "price" => 3,
-//             "media_url" => url,
-//             "media_alt" => alt
-//             ]
-//         ],
-//         "totalPrice" => 28
-//     ];
-
-    public function basketUpdate(array $post)
+    
+    /**
+     * initialize $_SESSION["basket"]
+     * @param array $post
+     * @return void
+     */
+    public function basketUpdate(array $post) :void
     {
         // Pour pouvoir vider le panier pour test
         // A ENLEVER ***************************
@@ -133,7 +125,15 @@ class BasketController extends AbstractController
         }
     }
     
-    private function containsVariety(array $basket, string $variety)
+    
+    /**
+     * Return variety key
+     * @param array $basket
+     * @param string $variety
+     * @return null | int
+     */
+
+    private function containsVariety(array $basket, string $variety) :?int
     {
         foreach($basket as $key => $item)
         {
@@ -146,6 +146,12 @@ class BasketController extends AbstractController
         return null;
     }
     
+    /**
+     * Initialize a new variety in $_SESSION["basket"] or update amount
+     * @param array ------------------- a finir
+     * @param string
+     * @return null | int
+     */
     public function verifyVariety(int $key, array $basket, string $availableVariety, string $availableVarietyUnits, int $availableVarietyPrice, ?string $mediaUrl, ?string $mediaAlt) :void
     {
         $keyB = $this->containsVariety($_SESSION["basket"]["items"], $availableVariety);
@@ -166,8 +172,6 @@ class BasketController extends AbstractController
             {
                 $_SESSION["basket"]["items"][$key]["amount"]++;
             }
-            
-            
         }
 
     }
@@ -198,14 +202,11 @@ class BasketController extends AbstractController
         $_SESSION["basket"]["totalPrice"] = [
             $baskets[$key]["totalPrice"]
         ];
-
     }
-
     
     public function basketOrder(array $post) :void
     {
-        require "templates/_order.phtml";
+        require "templates/order.phtml";
     }
     
-
 }

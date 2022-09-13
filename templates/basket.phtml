@@ -48,10 +48,8 @@
                     ?>
                     
 			        <h3 class="availableVarietyTitle"><?= $availableVariety['name']; ?></h3>
-                    
-                </main>
-                <footer class="availableVarietyFooter">
-                    <p class="availableVarietyPrice">
+			        
+			        <p class="availableVarietyPrice">
                     <?= $availableVariety['price']; ?> €
 				    <?php 
                     switch($availableVariety['units'])
@@ -68,6 +66,9 @@
                     }
                     ?>
                     </p>
+                    
+                </main>
+                <footer class="availableVarietyFooter">
                     
 				    <form class="availableVarietyForm" method="POST" action="/Projet_Accou-ferme/basket-update">
 				        <fieldset class="availableVarietyButtonAdd">

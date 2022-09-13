@@ -1,6 +1,6 @@
 <?php
 
-class CategoryManager extends DBConnect
+class CategoryManager extends AbstractManager
 {
     
     public function createCategory(Category $category) : void

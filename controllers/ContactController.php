@@ -2,7 +2,7 @@
 
 class ContactController extends AbstractController
 {
-    public function index()
+    public function index() :void
     {
         $this->render("contact");
     }

@@ -1,21 +1,20 @@
 <main id="news">
     
     <h1>Actu et recettes</h1>
-    
-    <section id="newsSection">
 
+    <section id="newsSection">
         <select id="selectNews">
             <option value = "0">Selectionner une catégorie</option>
             <?php
-    
-            foreach($data['news'] as $key => $singleNews){
+            
+            $allCategories = $data['allCategories'];
+            
+            foreach($allCategories as $key => $singleCat){
         		?>
-        		<option value = "
-        		<?= $singleNews["category_id"]; ?>
-        		">
-        		<?=$singleNews["category_name"]; ?>
+        		<option value = " <?= $singleCat["id"]; ?> ">
+        		<?=$singleCat["name"]; ?>
         		</option>
-        		<?php $idNews = $singleNews['category_id'];
+        		<?php $idNews = $singleCat['id'];
             }
             ?>
         </select>
@@ -25,6 +24,7 @@
     <section id="displayArticles">
 
         <?php
+
             foreach($data["news"] as $key => $singleNews)
             {
 

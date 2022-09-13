@@ -1,6 +1,6 @@
 <?php
 
-class NewsManager extends DBConnect
+class NewsManager extends AbstractManager
 {
 
     public function createNews(News $news) :void
@@ -38,7 +38,6 @@ class NewsManager extends DBConnect
         $fullNews = $query->fetchAll(PDO::FETCH_ASSOC);
 
         return $fullNews;
-        
     }
     
     public function getAllNewsByCategoryId($categoryId) :array
