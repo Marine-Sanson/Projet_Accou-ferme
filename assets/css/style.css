@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* FONTS */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
 /* VARIABLES */
@@ -85,6 +86,28 @@ a {
   text-decoration: none;
 }
 
+button,
+.button {
+  font-weight: 900;
+  color: rgb(255, 255, 255);
+  background-color: rgb(204, 28, 0);
+  padding: 0.5rem;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 4px;
+  box-shadow: 5px 5px 5px rgb(0, 0, 0);
+}
+
+button:hover,
+.button:hover {
+  color: rgb(204, 28, 0);
+  background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(204, 28, 0);
+}
+
+fieldset {
+  border: none;
+}
+
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   body {
@@ -108,6 +131,20 @@ label {
   }
   input {
     background-color: rgb(255, 255, 255);
+  }
+  button,
+.button {
+    color: rgb(204, 28, 0);
+    background-color: rgb(255, 255, 255);
+    border: 2px solid rgb(204, 28, 0);
+    box-shadow: 5px 5px 5px rgb(255, 255, 255);
+  }
+  button:hover,
+.button:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(204, 28, 0);
+    border: 2px solid rgb(255, 255, 255);
+    box-shadow: 5px 5px 5px rgb(204, 28, 0);
   }
 }
 /* HEADER */
@@ -238,6 +275,114 @@ body > header a:hover {
   }
 }
 /* FOOTER */
+/* **********
+footer
+********** */
+/* Général */
+footer > p {
+  margin: 1rem;
+  text-align: center;
+}
+
+#footerNav > ul > li > a:hover {
+  text-decoration: underline;
+}
+
+#logoImg {
+  text-align: center;
+  margin-left: auto;
+}
+
+#homeLink {
+  display: grid;
+  justify-content: center;
+  margin: auto;
+}
+
+footer {
+  background-color: rgb(204, 28, 0);
+}
+
+footer > p {
+  color: rgb(255, 255, 255);
+}
+
+#footerNav > ul > li > a {
+  color: rgb(255, 255, 255);
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  footer {
+    background-color: rgb(0, 0, 0);
+  }
+  footer > p {
+    color: rgb(204, 28, 0);
+  }
+  #footerNav > ul > li > a {
+    color: rgb(204, 28, 0);
+  }
+}
+@media (min-width: 0px) and (max-width: 767.99px) {
+  footer > p {
+    font-size: 1rem;
+  }
+  #footerNav > ul > li > a {
+    font-size: 1rem;
+  }
+  #footerNav > ul {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 0.5fr 1fr;
+    grid-template-rows: repeat(8, 1fr);
+  }
+  #containerLogo {
+    margin: auto;
+    grid-column: 1;
+    grid-row: 1/10;
+  }
+  #footerNav > ul {
+    padding-bottom: 1.5rem;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  footer > p {
+    font-size: 1rem;
+  }
+  #footerNav > ul > li > a {
+    font-size: 1rem;
+  }
+  #footerNav > ul {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 0.8fr repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+  }
+  #containerLogo {
+    margin: auto;
+    grid-column: 1;
+    grid-row: 1/6;
+  }
+  #footerNav > ul {
+    padding-bottom: 1.5rem;
+  }
+}
+@media (min-width: 992px) {
+  #footerNav > ul {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+  #containerLogo {
+    margin-left: 2rem;
+    grid-column: 1;
+    grid-row: 1/4;
+  }
+  #footerNav > ul {
+    padding-bottom: 2rem;
+  }
+}
 /* LAYOUTS */
 /* **********
     Home
@@ -1157,18 +1302,18 @@ body > header a:hover {
     gap: 0.5rem;
   }
   .updateButtonAdd {
-    margin: auto;
     grid-column: 1;
-    height: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
   .amountAddRemove > p {
-    margin: auto;
+    margin: auto 1rem;
     grid-column: 2;
   }
   .updateButtonRemove {
-    margin: auto;
     grid-column: 3;
-    height: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
   #basketFooter {
     display: grid;
@@ -1188,11 +1333,7 @@ body > header a:hover {
     align-self: end;
     width: 80%;
     text-align: center;
-    border: 1px solid black;
-    border-radius: 0.4rem;
-    background-color: lightgrey;
     margin: 0.5rem auto;
-    padding: 0.4rem;
   }
   .hideUpdate {
     display: none;
@@ -1276,18 +1417,18 @@ body > header a:hover {
     gap: 0.5rem;
   }
   .updateButtonAdd {
-    margin: auto;
     grid-column: 1;
-    height: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
   .amountAddRemove > p {
-    margin: auto;
+    margin: auto 1rem;
     grid-column: 2;
   }
   .updateButtonRemove {
-    margin: auto;
     grid-column: 3;
-    height: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
   #basketFooter {
     display: grid;
@@ -1380,7 +1521,6 @@ body > header a:hover {
     margin: auto 0.3rem;
   }
   .updateTotalPrice {
-    margin: auto;
     text-align: center;
     grid-row: 2;
     grid-column: 4;
@@ -1393,18 +1533,19 @@ body > header a:hover {
     gap: 0.5rem;
   }
   .updateButtonAdd {
-    margin: auto;
     grid-column: 1;
-    height: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
   .amountAddRemove > p {
-    margin: auto;
+    margin: auto 1rem;
     grid-column: 2;
   }
   .updateButtonRemove {
     margin: auto;
     grid-column: 3;
-    height: 1.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
   #basketFooter {
     display: grid;
@@ -1894,7 +2035,12 @@ body > header a:hover {
 }
 
 #displayOrders > p {
-  margin: 0.5rem 2rem;
+  text-align: left;
+  margin: 0.5rem;
+}
+
+#displayOrders > table {
+  margin-bottom: 2rem;
 }
 
 /*# sourceMappingURL=style.css.map */

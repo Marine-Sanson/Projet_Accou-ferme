@@ -10,8 +10,8 @@
 /* HEADER */
 @import "layouts/partials/header";
 
-
 /* FOOTER */
+@import "layouts/partials/footer";
 
 /* LAYOUTS */
 
@@ -29,9 +29,9 @@
 @import "layouts/partials/update";
 @import "layouts/partials/order";
 @import "layouts/partials/validation";
-@import "layouts/partials/_adminMenu";
-@import "layouts/partials/_adminNav";
-@import "layouts/partials/_adminProducts";
-@import "layouts/partials/_adminOrders";
-@import "layouts/partials/_adminNews";
-@import "layouts/partials/_adminMedias";
+@import "layouts/partials/adminMenu";
+@import "layouts/partials/adminNav";
+@import "layouts/partials/adminProducts";
+@import "layouts/partials/adminOrders";
+@import "layouts/partials/adminNews";
+@import "layouts/partials/adminMedias";

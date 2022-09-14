@@ -31,7 +31,7 @@ class AdminDisplayOrdersController extends AbstractController
                     }
                 }
 
-                $this->render("adminDisplayOrders", ["allOrders" => $allOrders, "order" => $order, "varieties" => $varieties]);
+                $this->render("adminDisplayOrders", ["allOrders" => $allOrders, "varieties" => $varieties]);
             }
             else
             {

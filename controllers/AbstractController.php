@@ -10,9 +10,10 @@ abstract class AbstractController
     protected RecipeManager $rm;
     protected AdminManager $am;
     protected VarietyManager $vm;
+    protected ContactManager $ctm;
 
 // fonction qui initialise chacun des managers de façon à les rendre accessibles ensuite
-    public function init(OrdersManager $om, CategoryManager $cm, MediaManager $mm, NewsManager $nm, ProductManager $pm, RecipeManager $rm, AdminManager $am, VarietyManager $vm)
+    public function init(OrdersManager $om, CategoryManager $cm, MediaManager $mm, NewsManager $nm, ProductManager $pm, RecipeManager $rm, AdminManager $am, VarietyManager $vm, ContactManager $ctm)
     {
         $this->om = $om;
         $this->cm = $cm;
@@ -22,6 +23,7 @@ abstract class AbstractController
         $this->rm = $rm;
         $this->am = $am;
         $this->vm = $vm;
+        $this->ctm = $ctm;
     }
 
     protected function renderPartial(string $template, array $values)
@@ -51,6 +53,14 @@ abstract class AbstractController
         
         $tmp["items"] = $items;
         return $tmp;
+    }
+    
+    protected function test_input($data){
+        $data = trim($data); //delete before and after space on string
+        $data = stripslashes($data); // delete '\' on string
+        $data = htmlspecialchars($data); //block html code of users
+
+        return $data;
     }
 
 }

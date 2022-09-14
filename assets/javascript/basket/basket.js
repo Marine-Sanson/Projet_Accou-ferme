@@ -1,20 +1,15 @@
 function getData()
 {
-    console.log("getData");
-    console.log(JSON.parse(sessionStorage.getItem("data")));
     return JSON.parse(sessionStorage.getItem("data"));
 }
 
 // update the cart in session storage
 function saveData(data)
 {
-    console.log("saveData");
-    console.log(data);
     sessionStorage.setItem("data", JSON.stringify(data));
 }
 
 function newFetch(){
-    console.log("je rentre dans newFetch");
     let $basket = getData();
     
     let $formData = new FormData();
@@ -35,7 +30,6 @@ function newFetch(){
 
 function listenButtonAdd(event){
     event.preventDefault();
-    console.log("listenButtonAdd");
     let $clickedButton = event.target;
     
     let $idVariety = $clickedButton.getAttribute("data-product-id");
@@ -73,8 +67,6 @@ function listenButtonAdd(event){
 function computeBasketTotal()
 {
     
-    console.log("computeBasketTotal");
-
     let $basket = getData();
     let $price = 0;
 
@@ -91,23 +83,13 @@ function computeBasketTotal()
 function findItem($varietyName)
 {
     
-    console.log("findItem");
-    console.log($varietyName);
-    
     let $basket = getData();
-
-    console.log($basket);
 
     for(var i = 0; i < $basket.items.length; i++)
     {
-        console.log("je rentre dans le for de find item");
-        console.log($basket.items[i].variety);
-        console.log($varietyName);
 
         if($basket.items[i].variety === $varietyName)
         {
-        console.log("je rentre dans le if de find item")
-            console.log(i);
             return i;
         }
     }
@@ -118,8 +100,6 @@ function findItem($varietyName)
 // update the item amount to + 1
 function addItem(event)
 {
-    
-    console.log("addItem");
     
     let $varietyName = event.target.getAttribute("data-variety-name");
     let $itemKey = findItem($varietyName);
@@ -140,8 +120,6 @@ function addItem(event)
 function removeItem(event)
 {
     
-    console.log("removeItem");
-    
     let $varietyName = event.target.getAttribute("data-variety-name");
     let $itemKey = findItem($varietyName);
     let $basket = getData();
@@ -160,8 +138,6 @@ function removeItem(event)
 function loadListeners()
 {
     
-    console.log("loadListeners");
-    
     let $addButtons = document.getElementsByClassName("updateButtonAdd");
     let $removeButtons = document.getElementsByClassName("updateButtonRemove");
 
@@ -173,9 +149,6 @@ function loadListeners()
 }
 
 function createBasketItem($item){
-    
-    console.log("createBasketItem");
-    console.log($item);
     
     let $containerSection = document.createElement("section");
     $containerSection.classList.add("containerSection");
@@ -208,6 +181,7 @@ function createBasketItem($item){
 
     let $newButtonAdd = document.createElement("button");
     $newButtonAdd.classList.add("updateButtonAdd");
+    $newButtonAdd.classList.add("button");
     $newButtonAdd.setAttribute("id", "button-Add-"+$item.variety);
     $newButtonAdd.setAttribute("data-variety-name", $item.variety);
     let $textButtonAdd = document.createTextNode("+");
@@ -219,6 +193,7 @@ function createBasketItem($item){
 
     let $newButtonRemove = document.createElement("button");
     $newButtonRemove.classList.add("updateButtonRemove");
+    $newButtonRemove.classList.add("button");
     $newButtonRemove.setAttribute("id", "button-Remove-"+$item.variety);
     $newButtonRemove.setAttribute("data-variety-name", $item.variety);
     let $textButtonRemove = document.createTextNode("-");
@@ -277,11 +252,9 @@ function createBasketItem($item){
 
 function renderBasket(){
     
-    console.log("renderBasket");
     // je récupère les data
     let $basket = getData();
-    console.log($basket);
-    
+
     // je vais chercher la section
     let $section = document.getElementById("updateContentSection");
     // et son ul 
@@ -313,8 +286,6 @@ function renderBasket(){
         // je mets à jour le prix total du panier
         let $totalOrderPrice = document.getElementById("totalOrderPrice");
         $totalOrderPrice.innerText = $basket.totalPrice;
-        
-        console.log($basket.totalPrice);
         
         saveData($basket);
 

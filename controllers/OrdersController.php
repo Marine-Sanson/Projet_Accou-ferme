@@ -67,16 +67,16 @@ class OrdersController extends AbstractController
     {
         $baskets = $_SESSION["basket"]["items"];
         
-        $name = $_POST['name'];
-        $firstName = $_POST['firstName'];
-        $email = $_POST['email'];
-        $tel = $_POST['tel'];
-        $day = $_POST['date_retrait'];
-        $totalPrice = $_POST['totalPrice'];
+        $name = $this->test_input($_POST['name']);
+        $firstName = $this->test_input($_POST['firstName']);
+        $email = $this->test_input($_POST['email']);
+        $tel = $this->test_input($_POST['tel']);
+        $day = $this->test_input($_POST['date_retrait']);
+        $totalPrice = $this->test_input($_POST['totalPrice']);
         $dateCommande = DateTime::createFromFormat("Y-m-d H:i:s", date("Y-m-d H:i:s"));
 
-        $order = New Order(null, $name, $firstName, $email, $tel, $dateCommande, $day, $totalPrice);
-
+        $order = new Order(null, $name, $firstName, $email, $tel, $dateCommande, $day, $totalPrice);
+        var_dump($order);
         $id = $this->om->createOrder($order);
 
         foreach($baskets as $key => $basket)

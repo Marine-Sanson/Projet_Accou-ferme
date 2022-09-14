@@ -15,6 +15,7 @@ require "./managers/CategoryManager.php";
 require "./managers/NewsManager.php";
 require "./managers/RecipeManager.php";
 require "./managers/MediaManager.php";
+require "./managers/ContactManager.php";
 
 require "./controllers/FileUploader.php";
 

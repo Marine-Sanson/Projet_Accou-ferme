@@ -2,23 +2,28 @@
     
     <h1>Contactez moi</h1>
     
-    <form class="contact" method="POST" action="/Projet_Accou-ferme/_envoye">
+    <form class="contact" method="POST" action="/Projet_Accou-ferme/envoye">
         <fieldset>
-            <input type="text" name="firstname" value="prénom" />
-            <input type="text" name="name" value="nom" />
-            <input type="email" name="email" value="email" />
-            <input type="tel" name="tel" value="téléphone"/>
+            <label id="contactFirstNameLab" for="first_name">Entrez votre prénom </label>
+            <input type="text" name="first_name" />
+            <label id="contactNameLab" for="name">Entrez votre nom </label>
+            <input type="text" name="name" />
+            <label id="contactEmailLab" for="email">Entrez votre email </label>
+            <input type="email" name="email" />
+            <label id="contactTelLab" for="tel">Entrez votre numéro de téléphone </label>
+            <input type="tel" name="tel" />
         </fieldset>
         
         <fieldset>
-            <textarea type="textarea" name="content">
+            <label id="contactMesLab" for="textarea">Entrez votre message</label>
+            <textarea type="textarea" name="message">
                 
                 
             </textarea>
         </fieldset>
 
         <fieldset class="">
-            <button type="submit" name="send" class="">Envoyer</button>
+            <button type="submit" class="button">Envoyer</button>
         </fieldset>
     </form>
     

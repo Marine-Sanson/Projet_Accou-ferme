@@ -73,6 +73,28 @@ a{
     text-decoration: none;
 }
 
+button,
+.button{
+    font-weight:900;
+    color:$blanc;
+    background-color:$red;
+    padding:0.5rem;
+    border: 2px solid $blanc;
+    border-radius:4px;
+    box-shadow: 5px 5px 5px $noir;
+}
+
+button:hover,
+.button:hover{
+    color:$red;
+    background-color:$blanc;
+    border: 2px solid $red;
+}
+
+fieldset{
+    border:none;
+}
+
 /* Dark mode */
 @media (prefers-color-scheme: dark)
 {
@@ -103,4 +125,20 @@ a{
         background-color:$blanc;
     }
     
+    button,
+    .button{
+        color:$red;
+        background-color:$blanc;
+        border: 2px solid $red;
+        box-shadow: 5px 5px 5px $blanc;
+    }
+    
+    button:hover,
+    .button:hover{
+        color:$blanc;
+        background-color:$red;
+        border: 2px solid $blanc;
+        box-shadow: 5px 5px 5px $red;
+    }
+
 }

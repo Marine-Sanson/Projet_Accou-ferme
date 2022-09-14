@@ -9,6 +9,7 @@
 /_validationOrder OrdersController:validationOrder
 /actus NewsController:index
 /contact ContactController:index
+/envoye ContactController:sentMessage
 /admin AdminController:index
 /adminMenu AdminController:loginCheck
 /adminProducts AdminProductsController:index

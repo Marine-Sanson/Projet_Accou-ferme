@@ -1,0 +1,134 @@
+/* **********
+footer
+********** */
+
+/* Général */
+
+footer > p{
+    margin:1rem;
+    text-align:center;
+}    
+
+#footerNav > ul > li > a:hover{
+    text-decoration: underline;
+}
+
+#logoImg{
+    text-align:center;
+    margin-left:auto;
+}
+
+#homeLink{
+    display: grid;
+    justify-content: center;
+    margin: auto;
+}
+
+// Light mode 
+// @media (prefere-color-scheme: light)
+// {
+    footer{
+        background-color:$red;
+    }
+    
+    footer > p{
+        color:$blanc;
+    }
+    
+    #footerNav > ul > li > a{
+        color:$blanc;
+    }
+
+// }
+
+/* Dark mode */
+@media (prefers-color-scheme: dark)
+{
+    footer{
+        background-color:$noir;
+    }
+    
+    footer > p{
+        color:$red;
+    }
+    
+    #footerNav > ul > li > a{
+        color:$red;
+    }
+}
+
+@media(min-width: 0px) and (max-width: 767.99px)
+{
+    footer > p{
+        font-size:1rem;
+    }
+    
+    #footerNav > ul > li > a{
+        font-size:1rem;
+    }
+    
+    #footerNav > ul{
+        display:grid;
+        grid-auto-flow: column;
+        grid-template-columns:0.5fr 1fr;
+        grid-template-rows:repeat(8, 1fr);
+    }
+    
+    #containerLogo{
+        margin:auto;
+        grid-column:1;
+        grid-row:1/10;
+    }
+    
+    #footerNav > ul{
+        padding-bottom:1.5rem;
+    }
+}
+
+@media(min-width: 768px) and (max-width: 991px)
+{
+    footer > p{
+        font-size:1rem;
+    }
+    
+    #footerNav > ul > li > a{
+        font-size:1rem;
+    }
+    
+    #footerNav > ul{
+        display:grid;
+        grid-auto-flow: column;
+        grid-template-columns:0.8fr repeat(2,1fr);
+        grid-template-rows:repeat(4, 1fr);
+    }
+    
+    #containerLogo{
+        margin:auto;
+        grid-column:1;
+        grid-row:1/6;
+    }
+    
+    #footerNav > ul{
+        padding-bottom:1.5rem;
+    }
+}
+
+@media (min-width: 992px)
+{
+    #footerNav > ul{
+        display:grid;
+        grid-auto-flow: column;
+        grid-template-columns:repeat(5,1fr);
+        grid-template-rows:repeat(3, 1fr);
+    }
+    
+    #containerLogo{
+        margin-left:2rem;
+        grid-column:1;
+        grid-row:1/4;
+    }
+
+    #footerNav > ul{
+        padding-bottom:2rem;
+    }
+}
