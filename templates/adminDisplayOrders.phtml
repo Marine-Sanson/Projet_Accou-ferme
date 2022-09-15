@@ -21,17 +21,19 @@
         <?php
         if(isset($_POST["day"])){
             $allorders = $data;
-            var_dump($allorders);
             ?>
             <p>commandes pour <?= $_POST["day"]; ?></p>
             
             <?php
+            var_dump($allorders);
+            var_dump($varieties);
             foreach($allorders as $key => $order)
             {
                 foreach($order as $key => $orderDetail)
                 {
                 ?>
                     <p>Date de commande : <?= $orderDetail["date_commande"]; ?></p>
+                    <p>Id : <?= $orderDetail["id"]; ?></p>
                     <p><?= $orderDetail["name"]; ?> <?= $orderDetail["first_name"]; ?> <?= $orderDetail["email"]; ?> <?= $orderDetail["tel"]; ?>
                     <table>
                         <thead>

@@ -60,10 +60,6 @@
         grid-row:3;
     }
     
-    input{
-        height:1.8rem;
-    }
-    
     .total{
         display:grid;
         grid-template-columns:1fr;
@@ -241,10 +237,6 @@
         grid-row:2;
     }
 
-    input{
-        height:1.8rem;
-    }
-    
     .total{
         display:grid;
         grid-template-columns:repeat(2, 1fr);
@@ -399,10 +391,6 @@
         align-items:center;
     }
     
-    input{
-        height:1.8rem;
-    }
-    
     .total{
         display:grid;
         grid-template-columns:repeat(2, 1fr);
@@ -412,8 +400,6 @@
     .totalReturn{
         grid-column:1;
         grid-row:1;
-        text-align: right;
-        margin:auto 0.5rem;
     }
     
     .totalP{
@@ -518,7 +504,6 @@
         text-align:center;
         margin:auto;
         padding-top:1rem;   
-        height:3.5rem;
     }
     
 }

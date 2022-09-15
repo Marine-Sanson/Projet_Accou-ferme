@@ -75,7 +75,7 @@ class OrdersController extends AbstractController
         $totalPrice = $this->test_input($_POST['totalPrice']);
         $dateCommande = DateTime::createFromFormat("Y-m-d H:i:s", date("Y-m-d H:i:s"));
 
-        $order = new Order(null, $name, $firstName, $email, $tel, $dateCommande, $day, $totalPrice);
+        $order = new Order(null, $name, $firstName, $email, $tel, $dateCommande, $day, $totalPrice, null);
         var_dump($order);
         $id = $this->om->createOrder($order);
 

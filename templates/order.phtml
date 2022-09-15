@@ -28,19 +28,19 @@
             ?>
 
             <fieldset class="total">
-                <a class="totalReturn" href="commandes">Continuer mes achats</a>
+                <a class="totalReturn button" href="commandes">Continuer mes achats</a>
                 <p class="totalP">Prix total : <?= $orderVarieties["totalPrice"] ?> €</p>
                 <input id="variety-totalPrice-<?= $orderVarieties["totalPrice"] ?>" type="hidden" name="totalPrice" value="<?= $orderVarieties["totalPrice"] ?>" />
             </fieldset>
             <fieldset id="client">
                 <label id="clientFirstNameLab" for="firstName">Entrez votre prénom </label>
-                <input id="clientFirstNameIn" type="text" name="firstName" value="prenom" />
+                <input id="clientFirstNameIn" type="text" name="firstName" />
                 <label id="clientNameLab" for="name">Entrez votre nom </label>
-                <input id="clientNameIn" type="text" name="name" value="nom" />
+                <input id="clientNameIn" type="text" name="name" />
                 <label id="clientEmailLab" for="email">Entrez votre Email </label>
-                <input id="clientEmailIn" type="email" name="email" value="email" />
+                <input id="clientEmailIn" type="email" name="email" />
                 <label id="clientTelLab" for="tel">Entrez votre numéro de téléphone </label>
-                <input id="clientTelIn" type="tel" name="tel" value="telephone" />
+                <input id="clientTelIn" type="tel" name="tel" />
             </fieldset>
             <fieldset id="retrait">
                 <p id="retraitP">Choisissez le jour de retrait :</p>
@@ -50,7 +50,7 @@
                 <label id="retraitMarLab" for="samedi">Samedi</label>
             </fieldset>
             <fieldset id="orderSubmit">
-                <input id="orderSubmitIn" type="submit" value="Valider la commande" />
+                <input id="orderSubmitIn" class="button" type="submit" value="Valider la commande" />
             </fieldset>
             
         </form>

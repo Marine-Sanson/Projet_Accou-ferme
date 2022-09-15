@@ -2,18 +2,6 @@
     Products
 ********** */
 
-.varietyDetail{
-    background-color:$vert;
-}
-
-@media (prefers-color-scheme: dark)
-{
-    .varietyDetail{
-        background-color:$darkMainBgColor;
-        border:1px solid $blanc;
-    }
-}
-
 @media(min-width: 0px) and (max-width: 767.99px)
 {
     .productName{
@@ -27,7 +15,6 @@
     }
     
     .varietyDetail{
-        border-radius: 6rem;
         justify-content:center;
         padding:2rem;
         margin:4rem;
@@ -100,7 +87,6 @@
     }
     
     .varietyDetail{
-        border-radius: 6rem;
         justify-content:center;
         padding:2rem;
         margin:4rem;
@@ -175,7 +161,6 @@
     }
     
     .varietyDetail{
-        border-radius: 6rem;
         justify-content:center;
         padding:2rem;
         margin:4rem;

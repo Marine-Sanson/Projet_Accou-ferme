@@ -16,42 +16,41 @@
     .availableVariety{
         width:80vw;
         display:grid;
-        grid-template-columns: 2;
+        grid-template-columns: 1fr;
         grid-template-rows: auto repeat 4;
         gap: 1rem;
         justify-content:center;
         margin:auto;
-        border: 1px solid black;
     }
     
     .availableVarietyHeader{
-        grid-column: 1/3;
+        grid-column: 1;
         grid-row: 1;
         margin:auto;
     }
     
     .availableVarietyMain{
-        grid-column: 1/3;
+        grid-column: 1;
         grid-row: 2/4;
         display:grid;
-        grid-template-columns: 2;
-        grid-template-rows: auto repeat 2;
+        justify-content:center;
+        margin:auto;
+        grid-template-columns: 1;
+        grid-template-rows: repeat 2;
+    }
+    
+    .availableVarietyFooter{
+        grid-column: 1;
+        grid-row: 4;
+        display:grid;
         justify-content:center;
         margin:auto;
     }
     
-    .availableVarietyFooter{
-        grid-column: 1/3;
-        grid-row: 4;
-        display:grid;
-        grid-template-columns: 2;
-        grid-template-rows: 1;
-    }
-    
     .availableVarietyFigure{
-        grid-column: 1/3;
+        grid-column: 1;
         grid-row: 1;
-        margin:0.2rem;
+        margin:auto;
     }
     
     .availableVarietyFigure > img{
@@ -59,7 +58,7 @@
     }
     
     .availableVarietyTitle{
-        grid-column: 1/3;
+        grid-column: 1;
         grid-row: 2;
         margin:auto;
     }
@@ -70,31 +69,10 @@
         margin:auto;
     }
     
-    .availableVarietyButton{
-        grid-column: 2;
-        grid-row: 1;
-        margin:auto;
-        display:grid;
-        grid-template-columns: 2;
-        grid-template-rows: 1;
-    }
-    
-    .availableVarietyButtonAdd{
-        grid-column: 1;
-    }
-    
-    .availableVarietyButtonRemove{
-        grid-column: 2;
-    }
-    
-    .availableVarietyButton > fieldset{
-        margin:1rem;
-        border:none;
-    }
-    
     .availableVarietyId{
         display:none;
     }
+    
 }
 
 @media(min-width: 768px) and (max-width: 991px)
@@ -113,7 +91,6 @@
         grid-template-rows: auto repeat 4;
         gap: 1rem;
         margin:2rem;
-        border: 1px solid black;
     }
     
     .availableVarietyHeader{
@@ -141,7 +118,7 @@
     .availableVarietyFigure{
         grid-column: 1/3;
         grid-row: 1;
-        margin:0.3rem;
+        margin:auto;
     }
     
     .availableVarietyFigure > img{
@@ -197,12 +174,11 @@
     .availableVariety{
         width:28vw;
         display:grid;
-        grid-template-columns: 90%;
-        grid-template-rows: 1fr 6fr repeat(3, 1fr);
+        grid-template-columns: 1fr;
+        grid-template-rows:1fr 3fr repeat(3, 1fr);
         gap: 1rem;
         justify-content:center;
         margin:auto;
-        border: 1px solid black;
     }
     
     .availableVarietyHeader{
@@ -212,19 +188,22 @@
     
     .availableVarietyMain{
         grid-row: 2/5;
-        margin:auto;
+        display:grid;
+        grid-template-columns: 1fr;
+        grid-template-rows:3fr repeat(2, 1fr);
     }
     
     .availableVarietyFooter{
         grid-row: 5;
         display:grid;
+        grid-template-columns: 1fr;
         grid-template-rows: 1;
         margin:auto;
     }
     
     .availableVarietyFigure{
-        grid-row: 1;
-        margin:0.5rem;
+        grid-row:1;
+        margin:auto;
     }
     
     .availableVarietyFigure > img{
@@ -232,12 +211,12 @@
     }
     
     .availableVarietyTitle{
-        grid-row: 2;
+        grid-row:2;
         margin:auto;
     }
     
     .availableVarietyPrice{
-        grid-row: 3;
+        grid-row:3;
         text-align:center;
         margin:auto;
     }
@@ -245,13 +224,6 @@
     .availableVarietyButton{
         grid-row: 1;
         margin:auto;
-        display:grid;
-        grid-template-rows: 1;
-    }
-    
-
-    .availableVarietyButtonAdd{
-        border:none;
     }
     
     .availableVarietyId{

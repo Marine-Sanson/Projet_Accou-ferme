@@ -22,7 +22,8 @@ class AdminDisplayOrdersController extends AbstractController
             if(isset($_POST["day"])){
                 
                 $day = $_POST["day"];
-                $allOrders = $this->om->getAllOrders($day);
+                $endOrder = false;
+                $allOrders = $this->om->getAllOrders($day, $endOrder);
                 
                 foreach($allOrders as $key => $order){
 

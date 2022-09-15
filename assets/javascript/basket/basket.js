@@ -219,6 +219,7 @@ function createBasketItem($item){
     $newEuros.appendChild($textNewEuros);
 
     let $slash = document.createElement("span");
+    $slash.appendChild($textNewEuros);
     let $textSlash = document.createTextNode(" / ");
     $slash.appendChild($textSlash);
 
@@ -239,9 +240,9 @@ function createBasketItem($item){
     $totalVarietyPrice.classList.add("updateTotalPrice");
 
     let $productPriceSpan = document.createElement("p");
-    let $productPriceSpanContent = document.createTextNode("" + $item.amount * $item.price);
+    let $productPriceSpanContent = document.createTextNode("= " + $item.amount * $item.price);
     $productPriceSpan.appendChild($productPriceSpanContent);
-    $productPriceSpan.appendChild($newEuros);
+    $productPriceSpan.appendChild($textNewEuros);
 
     $totalVarietyPrice.appendChild($productPriceSpan);
 

@@ -2,27 +2,26 @@
     
     <h1>Contactez moi</h1>
     
-    <form class="contact" method="POST" action="/Projet_Accou-ferme/envoye">
-        <fieldset>
-            <label id="contactFirstNameLab" for="first_name">Entrez votre prénom </label>
-            <input type="text" name="first_name" />
-            <label id="contactNameLab" for="name">Entrez votre nom </label>
-            <input type="text" name="name" />
-            <label id="contactEmailLab" for="email">Entrez votre email </label>
-            <input type="email" name="email" />
-            <label id="contactTelLab" for="tel">Entrez votre numéro de téléphone </label>
-            <input type="tel" name="tel" />
+    <p>Si vous avez une question, si vous désirez un renseignement, si vous voulez me faire une suggestion ou me transmettre une recette, n'hésitez pas!</p>
+    
+    <form id="contactForm" method="POST" action="/Projet_Accou-ferme/envoye">
+        <fieldset id="contactFormInfo">
+            <label id="contactFirstNameLab" for="first_name">Prénom : </label>
+            <input id="contactFirstNameInp" type="text" name="first_name" />
+            <label id="contactNameLab" for="name">Nom : </label>
+            <input id="contactNameInp" type="text" name="name" />
+            <label id="contactEmailLab" for="email">Email : </label>
+            <input id="contactEmailInp" type="email" name="email" />
+            <label id="contactTelLab" for="tel">Téléphone : </label>
+            <input id="contactTelInp" type="tel" name="tel" />
         </fieldset>
         
-        <fieldset>
-            <label id="contactMesLab" for="textarea">Entrez votre message</label>
-            <textarea type="textarea" name="message">
-                
-                
-            </textarea>
+        <fieldset id="contactFormText">
+            <label id="contactMesLab" for="textarea">Entrez votre message :</label>
+            <textarea id="contactText" type="textarea" name="message"></textarea>
         </fieldset>
 
-        <fieldset class="">
+        <fieldset id="contactFormSubmit">
             <button type="submit" class="button">Envoyer</button>
         </fieldset>
     </form>

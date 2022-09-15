@@ -78,6 +78,8 @@ button,
     font-weight:900;
     color:$blanc;
     background-color:$red;
+    text-align:center;
+    margin:1rem auto;
     padding:0.5rem;
     border: 2px solid $blanc;
     border-radius:4px;
@@ -88,6 +90,10 @@ button:hover,
 .button:hover{
     color:$red;
     background-color:$blanc;
+    border: 2px solid $red;
+}
+
+.card{
     border: 2px solid $red;
 }
 
@@ -140,5 +146,8 @@ fieldset{
         border: 2px solid $blanc;
         box-shadow: 5px 5px 5px $red;
     }
-
+    
+    .card{
+        border: 2px solid $blanc;
+    }
 }

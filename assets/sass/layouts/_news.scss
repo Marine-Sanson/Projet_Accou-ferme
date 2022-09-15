@@ -2,17 +2,6 @@
     News
 ********** */
 
-.newsArticle{
-    border:1px solid $noir;
-}
-
-@media (prefers-color-scheme: dark)
-{
-    .newsArticle{
-        border:1px solid $blanc;
-    }
-}
-
 @media(min-width: 0px) and (max-width: 767.99px)
 {
     #newsSection{
@@ -271,10 +260,10 @@
     }
     
     #displayArticles article.hide{
-        display:none!important;
+        display:none;
     }
     
     #displayArticles article.show{
-        display:grid!important;
+        display:grid;
     }
 }

@@ -9,8 +9,6 @@
         display:grid;
         grid-template-rows:0.5fr auto 3fr;
         margin: 1rem;
-        border: 1px solid black;
-        border-radius: 2rem;
     }
     
     #basketHeader{
@@ -147,8 +145,6 @@
         display:grid;
         grid-template-rows:0.5fr auto 3fr;
         margin: 1rem;
-        border: 1px solid black;
-        border-radius: 2rem;
     }
     
     #basketHeader{
@@ -246,7 +242,7 @@
 
     #basketFooter{
         display:grid;
-        grid-template-rows:repaet(3, 1fr);
+        grid-template-rows:repeat(3, 1fr);
         grid-template-columns: 1fr;
     }
     
@@ -266,9 +262,6 @@
         align-self:end;
         width:80%;
         text-align:center;
-        border: 1px solid black;
-        border-radius:0.4rem;
-        background-color: lightgrey;
         margin: 0.5rem auto;
         padding: 0.4rem;
     }
@@ -289,8 +282,6 @@
         display:grid;
         grid-template-rows:0.5fr auto 3fr;
         margin: 1rem;
-        border: 1px solid black;
-        border-radius: 2rem;
     }
     
     #basketHeader{
@@ -386,12 +377,17 @@
 
     #basketFooter{
         display:grid;
-        grid-template-rows:repaet(3, 1fr);
+        grid-template-rows:repeat(3, 1fr);
         grid-template-columns: 1fr;
     }
     
     #totalOrderPrice{
         grid-row:1;
+    }
+    
+    #basketFooter > p{
+        margin-right:4rem;
+        text-align:right;
     }
 
     #totalOrderContinue{
@@ -405,12 +401,11 @@
     #basketFooter > a{
         align-self:end;
         width:80%;
-        text-align:center;
-        border: 1px solid black;
-        border-radius:0.4rem;
-        background-color: lightgrey;
         margin: 0.5rem auto;
-        padding: 0.4rem;
+    }
+    
+    .updateTotalPrice{
+        margin:auto;
     }
     
     .hideUpdate{

@@ -12,11 +12,9 @@
             foreach($data['allAvailableVarieties'] as $key => $availableVariety)
             {
             ?>
-            <article class="availableVariety">
+            <article class="availableVariety card">
                 <header class="availableVarietyHeader">
-            
-			        <?= $availableVariety["product_name"]; ?>
-			        
+                    <h3> <?= $availableVariety["product_name"]; ?> </h3>
 			    </header>
 			    
 			    <main class="availableVarietyMain">
@@ -71,7 +69,7 @@
                 <footer class="availableVarietyFooter">
                     
 				    <form class="availableVarietyForm" method="POST" action="/Projet_Accou-ferme/basket-update">
-				        <fieldset class="availableVarietyButtonAdd">
+				        <fieldset class="availableVarietyButton">
 				            <input id="variety-units-<?= $availableVariety["id"] ?>" type="hidden" name="availableVarietyUnits" value="<?=$availableVariety["units"]?>" />
 				            <input id="variety-price-<?= $availableVariety["id"] ?>" type="hidden" name="availableVarietyPrice" value="<?= $availableVariety["price"]?>" />
 				            <input id="variety-media-<?= $availableVariety["id"] ?>" type="hidden" name="availableVarietyMedia" value="<?= $availableVariety["media_id"]?>" />

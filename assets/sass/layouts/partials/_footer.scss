@@ -4,7 +4,7 @@ footer
 
 /* Général */
 
-footer > p{
+#footer > p{
     margin:1rem;
     text-align:center;
 }    
@@ -27,11 +27,11 @@ footer > p{
 // Light mode 
 // @media (prefere-color-scheme: light)
 // {
-    footer{
+    #footer{
         background-color:$red;
     }
     
-    footer > p{
+    #footer > p{
         color:$blanc;
     }
     
@@ -44,11 +44,11 @@ footer > p{
 /* Dark mode */
 @media (prefers-color-scheme: dark)
 {
-    footer{
+    #footer{
         background-color:$noir;
     }
     
-    footer > p{
+    #footer > p{
         color:$red;
     }
     
@@ -59,7 +59,7 @@ footer > p{
 
 @media(min-width: 0px) and (max-width: 767.99px)
 {
-    footer > p{
+    #footer > p{
         font-size:1rem;
     }
     
@@ -87,7 +87,7 @@ footer > p{
 
 @media(min-width: 768px) and (max-width: 991px)
 {
-    footer > p{
+    #footer > p{
         font-size:1rem;
     }
     

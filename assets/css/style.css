@@ -91,6 +91,8 @@ button,
   font-weight: 900;
   color: rgb(255, 255, 255);
   background-color: rgb(204, 28, 0);
+  text-align: center;
+  margin: 1rem auto;
   padding: 0.5rem;
   border: 2px solid rgb(255, 255, 255);
   border-radius: 4px;
@@ -101,6 +103,10 @@ button:hover,
 .button:hover {
   color: rgb(204, 28, 0);
   background-color: rgb(255, 255, 255);
+  border: 2px solid rgb(204, 28, 0);
+}
+
+.card {
   border: 2px solid rgb(204, 28, 0);
 }
 
@@ -145,6 +151,9 @@ label {
     background-color: rgb(204, 28, 0);
     border: 2px solid rgb(255, 255, 255);
     box-shadow: 5px 5px 5px rgb(204, 28, 0);
+  }
+  .card {
+    border: 2px solid rgb(255, 255, 255);
   }
 }
 /* HEADER */
@@ -259,7 +268,6 @@ body > header a:hover {
     font-weight: bold;
   }
   body > header ul {
-    text-align: left;
     display: grid;
     grid-template-columns: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
     grid-template-rows: none;
@@ -279,7 +287,7 @@ body > header a:hover {
 footer
 ********** */
 /* Général */
-footer > p {
+#footer > p {
   margin: 1rem;
   text-align: center;
 }
@@ -299,11 +307,11 @@ footer > p {
   margin: auto;
 }
 
-footer {
+#footer {
   background-color: rgb(204, 28, 0);
 }
 
-footer > p {
+#footer > p {
   color: rgb(255, 255, 255);
 }
 
@@ -313,10 +321,10 @@ footer > p {
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
-  footer {
+  #footer {
     background-color: rgb(0, 0, 0);
   }
-  footer > p {
+  #footer > p {
     color: rgb(204, 28, 0);
   }
   #footerNav > ul > li > a {
@@ -324,7 +332,7 @@ footer > p {
   }
 }
 @media (min-width: 0px) and (max-width: 767.99px) {
-  footer > p {
+  #footer > p {
     font-size: 1rem;
   }
   #footerNav > ul > li > a {
@@ -346,7 +354,7 @@ footer > p {
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  footer > p {
+  #footer > p {
     font-size: 1rem;
   }
   #footerNav > ul > li > a {
@@ -564,16 +572,6 @@ footer > p {
 /* **********
     Products
 ********** */
-.varietyDetail {
-  background-color: rgba(0, 217, 130, 0.6);
-}
-
-@media (prefers-color-scheme: dark) {
-  .varietyDetail {
-    background-color: rgb(10, 36, 20);
-    border: 1px solid rgb(255, 255, 255);
-  }
-}
 @media (min-width: 0px) and (max-width: 767.99px) {
   .productName {
     text-align: left;
@@ -584,7 +582,6 @@ footer > p {
     margin: auto;
   }
   .varietyDetail {
-    border-radius: 6rem;
     justify-content: center;
     padding: 2rem;
     margin: 4rem;
@@ -642,7 +639,6 @@ footer > p {
     margin: auto;
   }
   .varietyDetail {
-    border-radius: 6rem;
     justify-content: center;
     padding: 2rem;
     margin: 4rem;
@@ -702,7 +698,6 @@ footer > p {
     margin: auto;
   }
   .varietyDetail {
-    border-radius: 6rem;
     justify-content: center;
     padding: 2rem;
     margin: 4rem;
@@ -767,44 +762,43 @@ footer > p {
   .availableVariety {
     width: 80vw;
     display: grid;
-    grid-template-columns: 2;
+    grid-template-columns: 1fr;
     grid-template-rows: auto repeat 4;
     gap: 1rem;
     justify-content: center;
     margin: auto;
-    border: 1px solid black;
   }
   .availableVarietyHeader {
-    grid-column: 1/3;
+    grid-column: 1;
     grid-row: 1;
     margin: auto;
   }
   .availableVarietyMain {
-    grid-column: 1/3;
+    grid-column: 1;
     grid-row: 2/4;
     display: grid;
-    grid-template-columns: 2;
-    grid-template-rows: auto repeat 2;
+    justify-content: center;
+    margin: auto;
+    grid-template-columns: 1;
+    grid-template-rows: repeat 2;
+  }
+  .availableVarietyFooter {
+    grid-column: 1;
+    grid-row: 4;
+    display: grid;
     justify-content: center;
     margin: auto;
   }
-  .availableVarietyFooter {
-    grid-column: 1/3;
-    grid-row: 4;
-    display: grid;
-    grid-template-columns: 2;
-    grid-template-rows: 1;
-  }
   .availableVarietyFigure {
-    grid-column: 1/3;
+    grid-column: 1;
     grid-row: 1;
-    margin: 0.2rem;
+    margin: auto;
   }
   .availableVarietyFigure > img {
     max-width: 70vw;
   }
   .availableVarietyTitle {
-    grid-column: 1/3;
+    grid-column: 1;
     grid-row: 2;
     margin: auto;
   }
@@ -812,24 +806,6 @@ footer > p {
     grid-column: 1;
     grid-row: 3;
     margin: auto;
-  }
-  .availableVarietyButton {
-    grid-column: 2;
-    grid-row: 1;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 2;
-    grid-template-rows: 1;
-  }
-  .availableVarietyButtonAdd {
-    grid-column: 1;
-  }
-  .availableVarietyButtonRemove {
-    grid-column: 2;
-  }
-  .availableVarietyButton > fieldset {
-    margin: 1rem;
-    border: none;
   }
   .availableVarietyId {
     display: none;
@@ -849,7 +825,6 @@ footer > p {
     grid-template-rows: auto repeat 4;
     gap: 1rem;
     margin: 2rem;
-    border: 1px solid black;
   }
   .availableVarietyHeader {
     grid-column: 1/3;
@@ -873,7 +848,7 @@ footer > p {
   .availableVarietyFigure {
     grid-column: 1/3;
     grid-row: 1;
-    margin: 0.3rem;
+    margin: auto;
   }
   .availableVarietyFigure > img {
     max-width: 18vw;
@@ -918,12 +893,11 @@ footer > p {
   .availableVariety {
     width: 28vw;
     display: grid;
-    grid-template-columns: 90%;
-    grid-template-rows: 1fr 6fr repeat(3, 1fr);
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 3fr repeat(3, 1fr);
     gap: 1rem;
     justify-content: center;
     margin: auto;
-    border: 1px solid black;
   }
   .availableVarietyHeader {
     grid-row: 1;
@@ -931,17 +905,20 @@ footer > p {
   }
   .availableVarietyMain {
     grid-row: 2/5;
-    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3fr repeat(2, 1fr);
   }
   .availableVarietyFooter {
     grid-row: 5;
     display: grid;
+    grid-template-columns: 1fr;
     grid-template-rows: 1;
     margin: auto;
   }
   .availableVarietyFigure {
     grid-row: 1;
-    margin: 0.5rem;
+    margin: auto;
   }
   .availableVarietyFigure > img {
     max-width: 18vw;
@@ -958,11 +935,6 @@ footer > p {
   .availableVarietyButton {
     grid-row: 1;
     margin: auto;
-    display: grid;
-    grid-template-rows: 1;
-  }
-  .availableVarietyButtonAdd {
-    border: none;
   }
   .availableVarietyId {
     display: none;
@@ -971,15 +943,6 @@ footer > p {
 /* **********
     News
 ********** */
-.newsArticle {
-  border: 1px solid rgb(0, 0, 0);
-}
-
-@media (prefers-color-scheme: dark) {
-  .newsArticle {
-    border: 1px solid rgb(255, 255, 255);
-  }
-}
 @media (min-width: 0px) and (max-width: 767.99px) {
   #newsSection {
     margin: 1rem 6rem;
@@ -1191,10 +1154,279 @@ footer > p {
     margin: auto;
   }
   #displayArticles article.hide {
-    display: none !important;
+    display: none;
   }
   #displayArticles article.show {
-    display: grid !important;
+    display: grid;
+  }
+}
+/* **********
+    Contact
+********** */
+@media (min-width: 0px) and (max-width: 767.99px) {
+  #contact > p {
+    max-width: 80vw;
+    text-align: center;
+    margin: 0 auto 1rem auto;
+  }
+  #contactText {
+    width: 60vw;
+    max-width: 60vw;
+    text-align: center;
+  }
+  input,
+label {
+    text-align: center;
+    margin: auto;
+  }
+  #contactForm {
+    display: grid;
+    grid-template-columns: 0.5fr repeat(3, 1fr) 0.5fr;
+    grid-template-rows: repeat(12, 1fr);
+    gap: 1rem;
+  }
+  #contactFormInfo {
+    grid-column: 2/5;
+    grid-row: 1/9;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    gap: 1rem;
+  }
+  #contactFirstNameLab {
+    grid-column: 1/4;
+    grid-row: 1;
+    text-align: right;
+  }
+  #contactFirstNameInp {
+    grid-column: 1/4;
+    grid-row: 2;
+  }
+  #contactNameLab {
+    grid-column: 1/4;
+    grid-row: 3;
+    text-align: right;
+  }
+  #contactNameInp {
+    grid-column: 1/4;
+    grid-row: 4;
+  }
+  #contactEmailLab {
+    grid-column: 1/4;
+    grid-row: 5;
+    text-align: right;
+  }
+  #contactEmailInp {
+    grid-column: 1/4;
+    grid-row: 6;
+  }
+  #contactTelLab {
+    grid-column: 1/4;
+    grid-row: 7;
+    text-align: right;
+  }
+  #contactTelInp {
+    grid-column: 1/4;
+    grid-row: 8;
+  }
+  #contactFormText {
+    grid-column: 2/5;
+    grid-row: 9/12;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  #contactMesLab {
+    grid-column: 1/4;
+    grid-row: 1;
+    text-align: center;
+    margin: auto;
+  }
+  #contactText {
+    grid-column: 1/4;
+    grid-row: 2/4;
+    text-align: center;
+    margin: auto;
+  }
+  #contactFormSubmit {
+    grid-column: 1/6;
+    grid-row: 12;
+    margin: auto;
+  }
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  #contact > p {
+    max-width: 70vw;
+    text-align: center;
+    margin: 0 auto 2rem auto;
+  }
+  #contactText {
+    width: 50vw;
+    max-width: 50vw;
+    text-align: center;
+  }
+  #contactForm {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 1rem;
+  }
+  #contactFormInfo {
+    grid-column: 2/11;
+    grid-row: 1/3;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  #contactFirstNameLab {
+    grid-column: 1/3;
+    grid-row: 1;
+    text-align: right;
+  }
+  #contactFirstNameInp {
+    grid-column: 3/5;
+    grid-row: 1;
+  }
+  #contactNameLab {
+    grid-column: 6/8;
+    grid-row: 1;
+    text-align: right;
+  }
+  #contactNameInp {
+    grid-column: 8/10;
+    grid-row: 1;
+  }
+  #contactEmailLab {
+    grid-column: 1/3;
+    grid-row: 2;
+    text-align: right;
+  }
+  #contactEmailInp {
+    grid-column: 3/5;
+    grid-row: 2;
+  }
+  #contactTelLab {
+    grid-column: 6/8;
+    grid-row: 2;
+    text-align: right;
+  }
+  #contactTelInp {
+    grid-column: 8/10;
+    grid-row: 2;
+  }
+  #contactFormText {
+    grid-column: 3/11;
+    grid-row: 3/5;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  #contactMesLab {
+    grid-column: 1/9;
+    grid-row: 1;
+    text-align: center;
+    margin: auto;
+  }
+  #contactText {
+    grid-column: 1/9;
+    grid-row: 2;
+    text-align: center;
+    margin: auto;
+  }
+  #contactFormSubmit {
+    grid-column: 3/11;
+    grid-row: 5;
+    margin: auto;
+  }
+}
+@media (min-width: 992px) {
+  #contact > p {
+    max-width: 60vw;
+    text-align: center;
+    margin: 0 auto 2rem auto;
+  }
+  #contactText {
+    width: 50vw;
+    max-width: 50vw;
+    text-align: center;
+  }
+  #contactForm {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 1rem;
+  }
+  #contactFormInfo {
+    grid-column: 2/10;
+    grid-row: 1/3;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  #contactFirstNameLab {
+    grid-column: 1/3;
+    grid-row: 1;
+    text-align: right;
+  }
+  #contactFirstNameInp {
+    grid-column: 3/5;
+    grid-row: 1;
+  }
+  #contactNameLab {
+    grid-column: 5/7;
+    grid-row: 1;
+    text-align: right;
+  }
+  #contactNameInp {
+    grid-column: 7/9;
+    grid-row: 1;
+  }
+  #contactEmailLab {
+    grid-column: 1/3;
+    grid-row: 2;
+    text-align: right;
+  }
+  #contactEmailInp {
+    grid-column: 3/5;
+    grid-row: 2;
+  }
+  #contactTelLab {
+    grid-column: 5/7;
+    grid-row: 2;
+    text-align: right;
+  }
+  #contactTelInp {
+    grid-column: 7/9;
+    grid-row: 2;
+  }
+  #contactFormText {
+    grid-column: 3/11;
+    grid-row: 3/5;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  #contactMesLab {
+    grid-column: 1/9;
+    grid-row: 1;
+    text-align: center;
+    margin: auto;
+  }
+  #contactText {
+    grid-column: 1/9;
+    grid-row: 2;
+    text-align: center;
+    margin: auto;
+  }
+  #contactFormSubmit {
+    grid-column: 3/11;
+    grid-row: 5;
+    margin: auto;
   }
 }
 /* **********
@@ -1233,8 +1465,6 @@ footer > p {
     display: grid;
     grid-template-rows: 0.5fr auto 3fr;
     margin: 1rem;
-    border: 1px solid black;
-    border-radius: 2rem;
   }
   #basketHeader {
     font-size: 1.4rem;
@@ -1348,8 +1578,6 @@ footer > p {
     display: grid;
     grid-template-rows: 0.5fr auto 3fr;
     margin: 1rem;
-    border: 1px solid black;
-    border-radius: 2rem;
   }
   #basketHeader {
     font-size: 1.4rem;
@@ -1432,7 +1660,7 @@ footer > p {
   }
   #basketFooter {
     display: grid;
-    grid-template-rows: repaet(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     grid-template-columns: 1fr;
   }
   #totalOrderPrice {
@@ -1448,9 +1676,6 @@ footer > p {
     align-self: end;
     width: 80%;
     text-align: center;
-    border: 1px solid black;
-    border-radius: 0.4rem;
-    background-color: lightgrey;
     margin: 0.5rem auto;
     padding: 0.4rem;
   }
@@ -1467,8 +1692,6 @@ footer > p {
     display: grid;
     grid-template-rows: 0.5fr auto 3fr;
     margin: 1rem;
-    border: 1px solid black;
-    border-radius: 2rem;
   }
   #basketHeader {
     font-size: 1.4rem;
@@ -1549,11 +1772,15 @@ footer > p {
   }
   #basketFooter {
     display: grid;
-    grid-template-rows: repaet(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     grid-template-columns: 1fr;
   }
   #totalOrderPrice {
     grid-row: 1;
+  }
+  #basketFooter > p {
+    margin-right: 4rem;
+    text-align: right;
   }
   #totalOrderContinue {
     grid-row: 2;
@@ -1564,12 +1791,10 @@ footer > p {
   #basketFooter > a {
     align-self: end;
     width: 80%;
-    text-align: center;
-    border: 1px solid black;
-    border-radius: 0.4rem;
-    background-color: lightgrey;
     margin: 0.5rem auto;
-    padding: 0.4rem;
+  }
+  .updateTotalPrice {
+    margin: auto;
   }
   .hideUpdate {
     display: none;
@@ -1627,9 +1852,6 @@ footer > p {
   .orderVarietyP4 {
     grid-column: 2;
     grid-row: 3;
-  }
-  input {
-    height: 1.8rem;
   }
   .total {
     display: grid;
@@ -1775,9 +1997,6 @@ footer > p {
     grid-column: 5;
     grid-row: 2;
   }
-  input {
-    height: 1.8rem;
-  }
   .total {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -1905,9 +2124,6 @@ footer > p {
     grid-template-rows: 1fr;
     align-items: center;
   }
-  input {
-    height: 1.8rem;
-  }
   .total {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -1916,8 +2132,6 @@ footer > p {
   .totalReturn {
     grid-column: 1;
     grid-row: 1;
-    text-align: right;
-    margin: auto 0.5rem;
   }
   .totalP {
     grid-column: 2;
@@ -2003,7 +2217,6 @@ footer > p {
     text-align: center;
     margin: auto;
     padding-top: 1rem;
-    height: 3.5rem;
   }
 }
 .validation > p,

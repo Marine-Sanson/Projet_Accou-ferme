@@ -5,7 +5,7 @@ class OrdersManager extends AbstractManager
     
     public function createOrder(Order $order) : int
     {
-        $query = $this->db->prepare('INSERT INTO orders (name, first_name, email, tel, date_commande, day, total_price) VALUES (:name, :first_name, :email, :tel, :date_commande, :day, :total_price)');
+        $query = $this->db->prepare('INSERT INTO orders (name, first_name, email, tel, date_commande, day, total_price ) VALUES (:name, :first_name, :email, :tel, :date_commande, :day, :total_price)');
         $parameters = [
             'name' => $order->getName(),
             'first_name' => $order->getFirstName(),
@@ -20,7 +20,6 @@ class OrdersManager extends AbstractManager
         $id = $this->db->lastInsertId();
             
         return $id;
-        
     }
     
     public function createVarietyOrdered(int $idOrder, int $varietyId, string $varietyName, int $amount, string $units, int $price, int $totalVariety) :void
@@ -38,11 +37,12 @@ class OrdersManager extends AbstractManager
         $query->execute($parameters);
     }
 
-    public function getAllOrders(string $day) :array
+    public function getAllOrders(string $day, bool $endOrder) :array
     {
-        $query = $this->db->prepare('SELECT id, name, first_name, email, tel, date_commande, day, total_price FROM orders WHERE day = :day ORDER BY orders.date_commande DESC');
+        $query = $this->db->prepare('SELECT id, name, first_name, email, tel, date_commande, day, total_price, end_order FROM orders WHERE day = :day AND end_order = :end_order ORDER BY orders.date_commande DESC');
         $parameters = [
-            'day' => $day
+            'day' => $day,
+            'end_order' => $endOrder
         ];
         $query->execute($parameters);
         $allOrders = $query->fetchAll(PDO::FETCH_ASSOC);
