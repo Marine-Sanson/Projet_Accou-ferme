@@ -12,9 +12,9 @@ class AdminNewsController extends AbstractController
         {
             $categories = $this->cm->getAllCategories();
             
-            $news = $this->nm->getAllNews();
+            $allNews = $this->nm->getAllNews();
 
-            $this->render("adminNews", ["categories" => $categories, "news" => $news]);
+            $this->render("adminNews", ["categories" => $categories, "allNews" => $allNews]);
         }
         else
         {
@@ -41,22 +41,48 @@ class AdminNewsController extends AbstractController
     {
         $action = $post["action"];
         $categories = $this->cm->getAllCategories();
-        $news = $this->nm->getAllNews();
-
-        $this->render("adminCrudNews", ["action" => $action, "categories" => $categories, "news" => $news]);
+        
+        if(isset($post["crudId"]) && $post["crudId"] !== null)
+        {
+            $crudId = $post["crudId"];
+            $singleNews = $this->nm->getNewsById($crudId);
+        }
+        else
+        {
+            $crudId = 0;
+            $singleNews = [];
+        }
+        
+        $this->render("adminCrudNews", ["action" => $action, "categories" => $categories, "singleNews" => $singleNews]);
     }
     
     
-    public function newsCreated(array $post) :void
+    public function createNews(array $post) :void
     {
         if($_SESSION["connectAdmin"] === true)
         {
-            $categoryId = $_POST["cat"];
-            $name = $_POST["name"];
-            $content = $_POST["content"];
-        
-            $news = new News(null, $categoryId, $name, null, $content);
-            $this->nm->createNews($news);
+            $action = "create";
+            $newsVerified = $this->verifyNews($post, $action);
+            
+            if(empty($newsVerified["errors"]))
+            {
+                $this->nm->createNews($newsVerified["news"]);
+            
+                $categories = $this->cm->getAllCategories();
+                $allNews = $this->nm->getAllNews();
+                $validation = "Votre actu a bien été créée!";
+
+                $this->render("adminNews", ["validation" => $validation, "categories" => $categories, "allNews" => $allNews]);
+            }
+            else
+            {
+                $categories = $this->cm->getAllCategories();
+                $errors = $newsVerified["errors"];
+                $action = "create";
+                $singleNews = $newsVerified["news"];
+                $this->render("adminCrudNews", ["singleNews" => $singleNews, "categories" => $categories, "errors" => $errors, "action" => $action]);
+            }
+            
         }
         else
         {
@@ -68,50 +94,26 @@ class AdminNewsController extends AbstractController
     {
         if($_SESSION["connectAdmin"] === true)
         {
-            var_dump($post);
-            
-            $id = intval($post["id"]);
-            $news = $this->nm->getNewsById($id);
-            
+            $action = "update";
+            $newsVerified = $this->verifyNews($post, $action);
             $categories = $this->cm->getAllCategories();
-
-            $this->render("adminUpdateNews", ["news" => $news, "categories" => $categories]);
-        }
-    }
+            
+            if(empty($newsVerified["errors"]))
+            {
+                $id = intval($post["id"]);
+                $allNews = $this->nm->getAllNews();
+                
+                $validation = "Votre actu a bien été modifiée!";
     
-    public function newsUpdated(array $post)
-    {
-        if($_SESSION["connectAdmin"] === true)
-        {
-            $errors = [];
-            
-            $id = $post["id"];
-            $categoryId = $post["category_id"];
-            $name = $post["name"];
-            $media = intval($post["media_id"]);
-            $content = $post["content"];
-            
-            if($categoryId === "0")
-            {
-                $errors[] = "Veuillez selectionner une catégorie";
+                $this->render("adminNews", ["validation" => $validation, "allNews" => $allNews, "categories" => $categories]);
             }
-            
-            if($name === "")
+            else
             {
-                $errors[] = "Veuillez mettre un titre";
+                $errors = $newsVerified["errors"];
+                $singleNews = $newsVerified["news"];
+                
+                $this->render("adminCrudNews", ["singleNews" => $singleNews, "categories" => $categories, "errors" => $errors, "action" => $action]);
             }
-            
-            if($content === "")
-            {
-                $errors[] = "Veuillez entrer un contenu";
-            }
-            
-            $news = new News($id, $categoryId, $name, $media, $content);
-
-            $this->nm->updateNews($news);
-            $categories = $this->cm->getAllCategories();
-            
-            $this->render("adminUpdateNews", ["news" => $news, "categories" => $categories, "errors" => $errors]);
         }
     }
     
@@ -119,7 +121,64 @@ class AdminNewsController extends AbstractController
     {
         if($_SESSION["connectAdmin"] === true)
         {
-            $this->render("adminDeleteNews");
+            $action = "delete";
+            $newsVerified = $this->verifyNews($post, $action);
+            $categories = $this->cm->getAllCategories();
+            
+            if(empty($newsVerified["errors"]))
+            {
+                $this->nm->deleteNews($news);
+                $allNews = $this->nm->getAllNews();
+                
+                $validation = "Votre actu a bien été suprimée!";
+    
+                $this->render("adminNews", ["validation" => $validation, "allNews" => $allNews, "categories" => $categories]);
+            }
+            else
+            {
+                $errors = $newsVerified["errors"];
+                $singleNews = $newsVerified["news"];
+
+                $this->render("adminCrudNews", ["singleNews" => $singleNews, "categories" => $categories, "errors" => $errors, "action" => $action]);
+            }
         }
+    }
+    
+    public function verifyNews(array $post, string $action) :array
+    {
+        $errors = [];
+        
+        $inputId = $this->clean_input($post["id"]);
+        $id = intval($inputId);
+        $categoryId = $this->clean_input($post["category_id"]);
+        $name = $this->clean_input($post["name"]);
+        $inputMedia = $this->clean_input($post["media_id"]);
+        $media = intval($inputMedia);
+        $content = $this->clean_input($post["content"]);
+        
+        if($categoryId === "0")
+        {
+            $errors[] = "Veuillez selectionner une catégorie";
+        }
+        
+        if($name === "")
+        {
+            $errors[] = "Veuillez mettre un titre";
+        }
+        
+        if($content === "")
+        {
+            $errors[] = "Veuillez entrer un contenu";
+        }
+        
+        $news = new News($id, $categoryId, $name, $media, $content);
+        
+        $verifyNews = [
+            "errors" => $errors,
+            "action" => $action,
+            "news" => $news
+        ];
+
+        return $verifyNews;
     }
 }

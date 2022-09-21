@@ -20,9 +20,8 @@
 /adminNews AdminNewsController:index
 /_categoryCreated AdminNewsController:categoryCreated
 /adminCrudNews AdminNewsController:adminCrudNews
-/_newsCreated AdminNewsController:newsCreated
+/adminCreateNews AdminNewsController:createNews
 /adminUpdateNews AdminNewsController:updateNews
-/adminNewsUpdated AdminNewsController:newsUpdated
 /adminDeleteNews AdminNewsController:deleteNews
 /adminMedias AdminMediasController:index
 /adminContacts AdminContactController:index

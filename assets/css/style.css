@@ -114,6 +114,14 @@ fieldset {
   border: none;
 }
 
+.errors {
+  background-color: red;
+}
+
+.validation {
+  background-color: green;
+}
+
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   body {
@@ -1433,12 +1441,6 @@ label {
     grid-column: 3/11;
     grid-row: 5;
     margin: auto;
-  }
-  #errors {
-    background-color: red;
-  }
-  #validation {
-    background-color: green;
   }
 }
 /* **********

@@ -9,7 +9,7 @@
     if(isset($data["errors"]) && count($data["errors"]) > 0)
     {
     ?>
-        <section id="errors">
+        <section class="errors">
             <ul>
                 <?php
                 foreach($data["errors"] as $key => $error)
@@ -27,7 +27,7 @@
     if(isset($data["validation"]) && count($data["validation"]) > 0)
     {
     ?>
-        <section id="validation">
+        <section class="validation">
             <ul>
                 <?php
                 foreach($data["validation"] as $key => $valid)

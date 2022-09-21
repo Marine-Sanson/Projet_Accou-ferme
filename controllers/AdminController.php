@@ -2,29 +2,56 @@
 
 class AdminController extends AbstractController
 {
-    public function index()
+    public function index() :void
     {
         $this->render("admin");
     }
     
     public function loginCheck(array $post) :void
     {
-        // reçoit le formulaire
+        $errors = [];
+
+        // reçoit le formulaire et le vérifie
         $username = $_POST["username"];
         $password = $_POST["password"];
         
-        $am = new AdminManager();
-        $user = $am->connectAdmin($username);
-
-        if($user !== null){
-            if($username === $user[0]["name"] && password_verify($password, $user[0]["password"]))
+        if($username === "" || $password === "")
+        {
+            $errors[] = "Veuillez vous connecter";
+        }
+        else
+        {
+            $user = $this->am->connectAdmin($username);
+            
+            if(isset($user) && !empty($user) && $user !== "")
             {
-                $_SESSION["connectAdmin"] = true;
-                $this->render("adminMenu");            }
+
+                if($username !== $user[0]["name"])
+                {
+                    $errors[] = "identifiant incorrect"; 
+                }
+                else if(!password_verify($password, $user[0]["password"]))
+                {
+                    $errors[] = "mot de passe incorrect";
+                }
+                else if($username === $user[0]["name"] && password_verify($password, $user[0]["password"]))
+                {
+                    $_SESSION["connectAdmin"] = true;
+                    $this->render("adminMenu");
+                }
+                else
+                {
+                    $errors[] = "Les identifiants ne sont pas valides"; 
+                }
+                
+                $this->render("admin", ["errors" => $errors]);
             }
             else
             {
-                $this->render("admin");
+                $errors[] = "Les identifiants ne sont pas valides"; 
             }
+        }
+        $this->render("admin", ["errors" => $errors]);
+
     }
 }

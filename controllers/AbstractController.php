@@ -55,7 +55,7 @@ abstract class AbstractController
         return $tmp;
     }
     
-    protected function test_input($data){
+    protected function clean_input($data){
         $data = trim($data); //delete before and after space on string
         $data = stripslashes($data); // delete '\' on string
         $data = htmlspecialchars($data); //block html code of users

@@ -101,6 +101,15 @@ fieldset{
     border:none;
 }
 
+.errors{
+    background-color:red;
+}
+
+.validation{
+    background-color:green;
+}
+    
+
 /* Dark mode */
 @media (prefers-color-scheme: dark)
 {
@@ -150,4 +159,5 @@ fieldset{
     .card{
         border: 2px solid $blanc;
     }
+    
 }

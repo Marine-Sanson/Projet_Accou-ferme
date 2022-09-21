@@ -4,34 +4,71 @@
 
     <?php
     
+    if(isset($data["errors"]))
+    {
+    ?>
+        <ul class="errors">
+            <?php
+            foreach($data["errors"] as $key => $error)
+            {
+            ?>
+            <li> <?= $error ?> </li>
+            
+            <?php    
+            }
+            ?>
+        </ul>
+        <?php
+        
+        $newsId = $data["singleNews"]->getId();
+        $newsCatId = $data["singleNews"]->getCategoryId();
+        $newsName = $data["singleNews"]->getName();
+        $newsMedia = $data["singleNews"]->getMediaId();
+        $newsContent = $data["singleNews"]->getContent();
+
+    }
+    
     if($data["action"] === "create")
     {
     ?>
-        <form class="news" method="POST" action="/Projet_Accou-ferme/newsCreated">
+        <form class="news" method="POST" action="/Projet_Accou-ferme/adminCreateNews">
     <?php
     }
     else if($data["action"] === "update")
     {
+        $newsId = $data["singleNews"]->getId();
+        $newsCatId = $data["singleNews"]->getCategoryId();
+        $newsName = $data["singleNews"]->getName();
+        $newsMedia = $data["singleNews"]->getMediaId();
+        $newsContent = $data["singleNews"]->getContent();
+
     ?>
-        <form class="news" method="POST" action="/Projet_Accou-ferme/adminNewsUpdated">
+        <form class="news" method="POST" action="/Projet_Accou-ferme/adminUpdateNews">
     <?php
     }
     else if($data["action"] === "delete")
     {
+        $newsId = $data["singleNews"]->getId();
+        $newsCatId = $data["singleNews"]->getCategoryId();
+        $newsName = $data["singleNews"]->getName();
+        $newsMedia = $data["singleNews"]->getMediaId();
+        $newsContent = $data["singleNews"]->getContent();
+
     ?>
-        <form class="news" method="POST" action="/Projet_Accou-ferme/adminNewsDeleted">
+        <form class="news" method="POST" action="/Projet_Accou-ferme/adminDeleteNews">
     <?php        
     }
-    
-    var_dump($data);
-    
-    $newsId = $data["news"]->getId();
-    $newsCatId = $data["news"]->getCategoryId();
-    $newsName = $data["news"]->getName();
-    $newsMedia = $data["news"]->getMediaId();
-    $newsContent = $data["news"]->getContent();
     ?>
-        <input type="hidden" name="id" value="<?= $newsId ?>" >
+        <input type="hidden" name="id" 
+        <?php
+        if(isset($newsId))
+        {
+        ?>
+            value="<?= $newsId ?>" 
+        <?php
+        }
+        ?>
+        >
         <select class="selectNews" name="category_id">
             <option value="0">Selectionner une catégorie</option>
 
@@ -41,7 +78,7 @@
             ?>
                 <option value="<?= $category["id"]; ?>"
                 <?php
-                if($category["id"] === $newsCatId)
+                if((isset($newsCatId)) && $category["id"] === $newsCatId)
                 {
                 ?>
                     selected
@@ -55,15 +92,62 @@
         </select>
 
         <label for="title">Titre</label>  
-        <input class="newsTitle" type="text" name="name" value="<?= $newsName ?>" />
-        
+        <input class="newsTitle" type="text" name="name" 
+        <?php
+        if(isset($newsName))
+        {
+        ?>
+            value="<?= $newsName ?>" 
+        <?php
+        }
+        ?>
+        >
+
         <label for="content">Contenu</label>  
-        <input class="newsContent" type="text" name="content" value="<?= $newsContent ?>" />
-        
+        <input class="newsContent" type="text" name="content"
+        <?php
+        if(isset($newsContent))
+        {
+        ?>
+            value="<?= $newsContent ?>" 
+        <?php
+        }
+        ?>
+        >
+
         <label for="media_id">Image</label>
-        <input class="mediaId" type="number" name="media_id" value="<?= $newsMedia ?>" />
+        <input class="mediaId" type="number" name="media_id"
+        <?php
+        if(isset($newsMedia))
+        {
+        ?>
+            value="<?= $newsMedia ?>" 
+        <?php
+        }
+        ?>
+        >
         
-        <button type"submit" value="Modifier" >Modifier</button>
-        
+    <?php
+    if($data["action"] === "create")
+    {
+    ?>
+        <button type"submit" value="create" >Créer</button>
+    <?php
+    }
+    else if($data["action"] === "update")
+    {
+    ?>
+
+        <button type"submit" value="update" >Modifier</button>
+    <?php
+    }
+    else if($data["action"] === "delete")
+    {
+    ?>
+        <button type"submit" value="delete" >Supprimer</button>
+    <?php
+    }
+    ?>
+
     </form>
 

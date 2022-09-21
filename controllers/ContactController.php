@@ -17,28 +17,28 @@ class ContactController extends AbstractController
             $errors = [];
             $validation = [];
             
-            $name = $this->test_input($_POST["name"]);
+            $name = $this->clean_input($_POST["name"]);
             if($name === "")
             {
                 $errors[] = "Veuillez renter votre nom";
             }
             
-            $firstName = $this->test_input($_POST["first_name"]);
+            $firstName = $this->clean_input($_POST["first_name"]);
             if($firstName === "")
             {
                 $errors[] = "Veuillez renter votre prénom";
             }
             
-            $email = $this->test_input($_POST["email"]);
+            $email = $this->clean_input($_POST["email"]);
             
-            $inputTel = $this->test_input($_POST["tel"]);
+            $inputTel = $this->clean_input($_POST["tel"]);
             $tel = intval($inputTel);
             if($inputTel === "")
             {
                 $errors[] = "Veuillez renter votre numéro de téléphone";
             }
 
-            $message = $this->test_input($_POST["message"]);
+            $message = $this->clean_input($_POST["message"]);
             if($message === "")
             {
                 $errors[] = "Veuillez écrire un message";

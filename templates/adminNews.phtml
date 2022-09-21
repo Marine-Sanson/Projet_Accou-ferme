@@ -6,6 +6,15 @@
     
     <h2>Créer une catégorie</h2>
     
+    <?php
+    if(isset($data["validation"]))
+    {
+    ?>
+        <p class="validation"> <?= $data["validation"] ?> </p>
+    <?php
+    }
+    ?>
+    
     <form class="adminCategoryForm" method="POST" action="/Projet_Accou-ferme/_categoryCreated">
 
         <label for="newCat">Créer une nouvelle catégorie</label>
@@ -18,14 +27,14 @@
     
     <form class="createNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
         <input type="hidden" name="action" value="create" />
-        <input type="submit" value="Modifier" />
+        <input type="submit" value="Créer" />
     </form>
 
     <h2>Mettre à jour ou supprimer une news</h2>
     <ul>
 
         <?php
-        foreach($data["news"] as $key => $singleNews)
+        foreach($data["allNews"] as $key => $singleNews)
         {
         ?>
         <li>
@@ -33,12 +42,12 @@
                 <h3><?= $singleNews["name"] ?></h3>
                 <form class="updateNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
                     <input type="hidden" name="action" value="update" />
-                    <input type="hidden" name="id" value="<?= $singleNews["id"] ?>" />
+                    <input type="hidden" name="crudId" value="<?= $singleNews["id"] ?>" />
                     <input type="submit" value="Modifier" />
                 </form>
                 <form class="deleteNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
                     <input type="hidden" name="action" value="delete" />
-                    <input type="hidden" name="id" value="<?= $singleNews["id"] ?>" />
+                    <input type="hidden" name="crudId" value="<?= $singleNews["id"] ?>" />
                     <input type="submit" value="Supprimer" data-news-id="<?= $singleNews["id"] ?>"/>
                 </form>
             </article>
