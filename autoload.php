@@ -34,6 +34,7 @@ require "./controllers/AdminProductsController.php";
 require "./controllers/AdminOrdersController.php";
 require "./controllers/AdminDisplayOrdersController.php";
 require "./controllers/AdminNewsController.php";
+require "./controllers/AdminContactController.php";
 
 $routes = [];
 

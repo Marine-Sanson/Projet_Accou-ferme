@@ -10,6 +10,7 @@ class FileUploader
 {
     private string $uploadFile = "/uploads/";
     private array $allowedFileTypes = ["png", "PNG", "jpg", "JPG", "jpeg", "JPEG"];
+    private array $mimeTypes = ['png' => 'image/png', 'PNG' => 'image/png', 'jpeg' => 'image/jpeg', 'JPG' => 'image/jpeg', 'jpg' => 'image/jpeg', 'JPEG' => 'image/jpeg'];
     private int $maxFileSize = 2000000; // 2 Mo
 
     private function generateFileName() : string
@@ -53,17 +54,35 @@ class FileUploader
         }
     }
     
+    private function checkMime(string $fileType, array $mimeTypes)
+    {
+        if($mimeTypes[$fileType] !== $_FILES['fileToUpload']["type"])
+        {
+            $errors[] = "Le fichier n'a pas été enregistré correctement !";
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    
     public function upload(array $file) : Media
     {
-        // appeler $this->checkFileType(string $fileType) pour vérifier le type du fichier
         $explode = explode("/", $_FILES['fileToUpload']['type']);
         $fileType = $explode[1];
+        $mimeTypes = $this->mimeTypes;
 
+        // appeler $this->checkFileType(string $fileType) pour vérifier le type du fichier
         $fileTypeCheked = $this->checkFileType($fileType);
-        // appeler $this->checkFileSize(int $fileSize) pour vérifier le type du fichier 
         
+        // appeler$this->checkMime($fileType, $mimeTypes) pour vérifier le mime du fichier
+        $mime = $this->checkMime($fileType, $mimeTypes);
+        
+        // appeler $this->checkFileSize(int $fileSize) pour vérifier le type du fichier
         $fileSizeCheked = $this->checkFileSize($_FILES['fileToUpload']['size']);
-        if(!$fileTypeCheked || !$fileSizeCheked)
+        
+        if(!$fileTypeCheked || !$fileSizeCheked || !$mime)
         {
             echo "erreur";
         }

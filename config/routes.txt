@@ -16,7 +16,14 @@
 /adminOrders AdminOrdersController:index
 /adminDisplayOrders AdminDisplayOrdersController:index
 /adminDisplayOrdersByDay AdminDisplayOrdersController:displayOrdersByDay
+/terminer AdminDisplayOrdersController:endOrder
 /adminNews AdminNewsController:index
 /_categoryCreated AdminNewsController:categoryCreated
+/adminCrudNews AdminNewsController:adminCrudNews
 /_newsCreated AdminNewsController:newsCreated
+/adminUpdateNews AdminNewsController:updateNews
+/adminNewsUpdated AdminNewsController:newsUpdated
+/adminDeleteNews AdminNewsController:deleteNews
 /adminMedias AdminMediasController:index
+/adminContacts AdminContactController:index
+/closeMessage AdminContactController:closeMessage

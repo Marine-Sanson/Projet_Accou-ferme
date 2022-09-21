@@ -1,0 +1,69 @@
+<main id="adminCrudNews">
+    
+    <?php require "_adminNav.phtml"; ?>
+
+    <?php
+    
+    if($data["action"] === "create")
+    {
+    ?>
+        <form class="news" method="POST" action="/Projet_Accou-ferme/newsCreated">
+    <?php
+    }
+    else if($data["action"] === "update")
+    {
+    ?>
+        <form class="news" method="POST" action="/Projet_Accou-ferme/adminNewsUpdated">
+    <?php
+    }
+    else if($data["action"] === "delete")
+    {
+    ?>
+        <form class="news" method="POST" action="/Projet_Accou-ferme/adminNewsDeleted">
+    <?php        
+    }
+    
+    var_dump($data);
+    
+    $newsId = $data["news"]->getId();
+    $newsCatId = $data["news"]->getCategoryId();
+    $newsName = $data["news"]->getName();
+    $newsMedia = $data["news"]->getMediaId();
+    $newsContent = $data["news"]->getContent();
+    ?>
+        <input type="hidden" name="id" value="<?= $newsId ?>" >
+        <select class="selectNews" name="category_id">
+            <option value="0">Selectionner une catégorie</option>
+
+            <?php
+            foreach($data["categories"] as $key => $category)
+            {
+            ?>
+                <option value="<?= $category["id"]; ?>"
+                <?php
+                if($category["id"] === $newsCatId)
+                {
+                ?>
+                    selected
+                <?php
+                }
+                ?>
+                > <?=$category["name"]; ?> </option>
+            <?php
+            }
+            ?>
+        </select>
+
+        <label for="title">Titre</label>  
+        <input class="newsTitle" type="text" name="name" value="<?= $newsName ?>" />
+        
+        <label for="content">Contenu</label>  
+        <input class="newsContent" type="text" name="content" value="<?= $newsContent ?>" />
+        
+        <label for="media_id">Image</label>
+        <input class="mediaId" type="number" name="media_id" value="<?= $newsMedia ?>" />
+        
+        <button type"submit" value="Modifier" >Modifier</button>
+        
+    </form>
+

@@ -61,6 +61,16 @@ class OrdersManager extends AbstractManager
 
         return $varietiesOrdered;
     }
+    
+    public function updateEndOrder($id) :void
+    {
+        $query = $this->db->prepare('UPDATE orders SET end_order = :end_order WHERE id = :id');
+        $parameters = [
+            'id' => $id,
+            'end_order' => '1'
+        ];
+        $query->execute($parameters);
+    }
 
     // public function getAllOrders(string $day) :array
     // {

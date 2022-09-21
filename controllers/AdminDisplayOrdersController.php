@@ -27,7 +27,7 @@ class AdminDisplayOrdersController extends AbstractController
                 
                 foreach($allOrders as $key => $order){
 
-                    foreach($order as $key => $varieties){
+                    foreach($order as $key => $orderDetail){
                         $varieties = $this->om->getVarietiesOrderedByOrderId($order["id"]);
                     }
                 }
@@ -45,5 +45,13 @@ class AdminDisplayOrdersController extends AbstractController
         }
     }
 
+    public function endOrder(array $post) :void
+    {
+        $id = intval($_POST["id"]);
+        
+        $endOrder = $this->om->updateEndOrder($id);
+        
+        $this->render("adminDisplayOrders");
+    }
     
 }

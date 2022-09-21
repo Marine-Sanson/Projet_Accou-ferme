@@ -28,7 +28,6 @@ class NewsManager extends AbstractManager
         $news = [];
 
         return $news['id'];
-        
     }
     
     public function getAllNews() :array
@@ -50,10 +49,9 @@ class NewsManager extends AbstractManager
         $NewsByCategoryId = $query->fetchAll(PDO::FETCH_ASSOC);
 
         return $NewsByCategoryId;
-        
     }
     
-    public function getNewsById(News $id) : News
+    public function getNewsById(int $id) : News
     {
         $query = $this->db->prepare('SELECT category_id, name, media_id, content FROM news WHERE news.id = :id');
         $parameters = [
@@ -62,26 +60,29 @@ class NewsManager extends AbstractManager
         $query->execute($parameters);
         $result = $query->fetch(PDO::FETCH_ASSOC);
         
-        $news = [];
+        $newsId = $id;
+        $newsCatId = $result["category_id"];
+        $newsName = $result["name"];
+        $newsMedia = $result["media_id"];
+        $newsContent = $result["content"];
+        $news = new News($id, $newsCatId, $newsName, $newsMedia, $newsContent);
 
         return $news;
     }
     
-    public function updateNews(News $news) : News
+    public function updateNews(News $news) : void
     {
-        $query = $this->db->prepare('UPDATE news SET category_id = :category_id, name = :name, content = :content FROM news WHERE news.name = :name');
+        $query = $this->db->prepare('UPDATE news SET category_id = :category_id, name = :name, content = :content WHERE id = :id');
         $parameters = [
-            'category_id' => $categoryId,
-            'name' => $name,
-            'content' => $content
+            'id' => $news->getId(),
+            'category_id' => $news->getCategoryId(),
+            'name' => $news->getName(),
+            'content' => $news->getContent()
         ];
         $query->execute($parameters);
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         
-        $news = [];
 
-        return $news;
-        
     }
     
     public function deleteNews(News $news) : void

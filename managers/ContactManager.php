@@ -12,20 +12,33 @@ class ContactManager extends AbstractManager
             'first_name' => $contact->getFirstName(),
             'email' => $contact->getEmail(),
             'tel' => $contact->getTel(),
-            'message' => $contact->getMessage(),
-        ];
+            'message' => $contact->getMessage()
+            ];
         $query->execute($parameters);
     }
     
-    public function getAllMessages() :array
+    public function getAllPendingMessages() :array
     {
-        $query = $this->db->prepare('SELECT id, name, first_name, email, tel, message FROM contacts ORDER BY id DESC');
-        $query->execute();
+        $query = $this->db->prepare('SELECT id, name, first_name, email, tel, message, date FROM contacts WHERE answered = :answered ORDER BY id');
+        $parameters = [
+            'answered' => '0'
+            ];
+        $query->execute($parameters);
         $allMessages = $query->fetchAll(PDO::FETCH_ASSOC);
 
         return $allMessages;
     }
-
+    
+    public function answeredMessage($id)
+    {
+        $query = $this->db->prepare('UPDATE contacts SET answered = :answered WHERE id = :id');
+        $parameters = [
+            'id' => $id,
+            'answered' => '1'
+        ];
+        $query->execute($parameters);
+    }
+    
 }
 
 ?>

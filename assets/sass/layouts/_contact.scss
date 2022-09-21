@@ -127,6 +127,10 @@
         text-align:center;
     }
     
+    input{
+        height:1.6rem;
+    }
+    
     #contactForm{
         display:grid;
         grid-template-columns:repeat(12, 1fr);
@@ -215,7 +219,6 @@
         grid-row:5;
         margin:auto;
     }
-
 }
 
 @media(min-width: 992px)
@@ -237,6 +240,10 @@
         grid-template-columns:repeat(12, 1fr);
         grid-template-rows:repeat(5, 1fr);
         gap:1rem;
+    }
+    
+    input{
+        height:1.6rem;
     }
     
     #contactFormInfo{
@@ -319,6 +326,14 @@
         grid-column:3/11;
         grid-row:5;
         margin:auto;
+    }
+    
+    #errors{
+        background-color:red;
+    }
+    
+    #validation{
+        background-color:green;
     }
     
 }

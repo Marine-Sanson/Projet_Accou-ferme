@@ -16,32 +16,39 @@
     
     <h2>Créer une news</h2>
     
-    <form class="adminNewsForm" method="POST" action="/Projet_Accou-ferme/_newsCreated">
-        <fieldset id="selectNewsCategory">
-            <h2>Choisir une catégorie</h2>
-            <?php
-            foreach($data['categories'] as $key => $category){
-        		?>
-        		<input type="radio" value="<?= $category["id"]; ?>" name="cat" />
-        		<label for="cat"><?=$category["name"]; ?></label> 
-        		
-        	<?php
-            }
-            ?>
-        </fieldset>
-
-        <fieldset>
-            <label for="name">Titre</label>
-            <input type="text" name="name"/>
-            <label for="content">Contenu</label>
-            <input type="textarea" name="content"/>
-            <button id="submitNewNews" type="submit">Valider</button>
-        </fieldset>
-        
+    <form class="createNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
+        <input type="hidden" name="action" value="create" />
+        <input type="submit" value="Modifier" />
     </form>
+
+    <h2>Mettre à jour ou supprimer une news</h2>
+    <ul>
+
+        <?php
+        foreach($data["news"] as $key => $singleNews)
+        {
+        ?>
+        <li>
+            <article class="udNews">
+                <h3><?= $singleNews["name"] ?></h3>
+                <form class="updateNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
+                    <input type="hidden" name="action" value="update" />
+                    <input type="hidden" name="id" value="<?= $singleNews["id"] ?>" />
+                    <input type="submit" value="Modifier" />
+                </form>
+                <form class="deleteNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
+                    <input type="hidden" name="action" value="delete" />
+                    <input type="hidden" name="id" value="<?= $singleNews["id"] ?>" />
+                    <input type="submit" value="Supprimer" data-news-id="<?= $singleNews["id"] ?>"/>
+                </form>
+            </article>
+        </li>
+        <?php
+        }
+        ?>
+
+    </ul>
+
     
-    <h2>Mettre à jour une news</h2>
-    
-    <h2>supprimer une news</h2>
-    
+
 </main>

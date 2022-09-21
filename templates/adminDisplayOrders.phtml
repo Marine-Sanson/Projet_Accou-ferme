@@ -25,8 +25,6 @@
             <p>commandes pour <?= $_POST["day"]; ?></p>
             
             <?php
-            var_dump($allorders);
-            var_dump($varieties);
             foreach($allorders as $key => $order)
             {
                 foreach($order as $key => $orderDetail)
@@ -49,6 +47,14 @@
                             <tr>
                                 <th colspan="4">Total commande : </th>
                                 <td><?= $orderDetail["total_price"]; ?> €</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">
+                                    <form method="POST" action="/Projet_Accou-ferme/terminer">
+                                        <input type="hidden" name="id" value ="<?= $orderDetail["id"]; ?>">
+                                        <input type="submit" value="Terminer"/>
+                                    </form>
+                                </td>
                             </tr>
                         </tfoot>
                     <?php

@@ -1,0 +1,44 @@
+<main id="adminContacts">
+
+    <?php require "_adminNav.phtml"; ?>
+    
+    <h1>adminContacts</h1>
+    
+    <h2>Voir les messages</h2>
+    
+    <section>
+    
+        <?php
+        
+        if(isset($data["answered_id"]))
+        {
+        ?>
+            <p>message numéro <?= $data["answered_id"] ?> cloturé </p>
+        <?php    
+        }
+
+        $messages = $data["messages"];
+
+        foreach($messages as $key => $message)
+        {
+        ?>
+            <article class="messages">
+                <p>id : <?= $message["id"] ?> </p>
+                <h3>nom : <?= $message["name"] ?> prénom : <?= $message["first_name"] ?> </h3>
+                <p>email : <?= $message["email"] ?> </p>
+                <p>tel :  <?= $message["tel"] ?> </p>
+                <p>message : <?= $message["message"] ?> </p>
+                <p>date : <?= $message["date"] ?> </p>
+                <form id="contactForm" method="POST" action="/Projet_Accou-ferme/closeMessage">
+                    <input type="hidden" name="answered_id" value=" <?= $message["id"] ?> " />
+                    <button type="submit" class="button">Répondu</button>
+                </form>
+                
+            </article>
+        <?php
+        }
+        ?>
+        
+    </section>
+    
+</main>

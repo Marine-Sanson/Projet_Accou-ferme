@@ -47,7 +47,7 @@ class News
         $this->name = $name;
     }
     
-    public function getMediaId() : int
+    public function getMediaId() : ?int
     {
         return $this->mediaId;
     }
