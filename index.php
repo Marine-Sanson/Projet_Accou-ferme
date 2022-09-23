@@ -2,6 +2,11 @@
 
 // initialise la session
 session_start();
+if(!isset($_SESSION["connectAdmin"]))
+{
+    $_SESSION["connectAdmin"] = [];
+}
+
 
 // si il n'y a pas de panier, en initialise un
 if(!isset($_SESSION["basket"]))

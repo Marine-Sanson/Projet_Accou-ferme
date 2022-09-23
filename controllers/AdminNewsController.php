@@ -11,14 +11,14 @@ class AdminNewsController extends AbstractController
         if($_SESSION["connectAdmin"] === true)
         {
             $categories = $this->cm->getAllCategories();
-            
             $allNews = $this->nm->getAllNews();
 
             $this->render("adminNews", ["categories" => $categories, "allNews" => $allNews]);
         }
-        else
+        else if($_SESSION["connectAdmin"] === false || empty($_SESSION["connectAdmin"]))
         {
-            $this->render("admin");
+            $errors[] = "Veuillez vous connecter";
+            $this->render("admin", ["errors" => $errors]);
         }
     }
     
@@ -30,10 +30,19 @@ class AdminNewsController extends AbstractController
             $newCat = new Category(null, $name);
 
             $this->cm->createCategory($newCat);
+            
+            $validation = "nouvelle categorie créée";
+            
+            $categories = $this->cm->getAllCategories();
+            $allNews = $this->nm->getAllNews();
+
+            $this->render("adminNews", ["categories" => $categories, "allNews" => $allNews, "validation" => $validation]);
+            
         }
         else
         {
-            $this->render("admin");
+            $errors[] = "Veuillez vous connecter";
+            $this->render("admin", ["errors" => $errors]);
         }
     }
     
@@ -86,7 +95,8 @@ class AdminNewsController extends AbstractController
         }
         else
         {
-            $this->render("admin");
+            $errors[] = "Veuillez vous connecter";
+            $this->render("admin", ["errors" => $errors]);
         }
     }
     
@@ -100,7 +110,8 @@ class AdminNewsController extends AbstractController
             
             if(empty($newsVerified["errors"]))
             {
-                $id = intval($post["id"]);
+                $news = $newsVerified["news"];
+                $this->nm->updateNews($news);
                 $allNews = $this->nm->getAllNews();
                 
                 $validation = "Votre actu a bien été modifiée!";
@@ -127,6 +138,7 @@ class AdminNewsController extends AbstractController
             
             if(empty($newsVerified["errors"]))
             {
+                $news = $newsVerified["news"];
                 $this->nm->deleteNews($news);
                 $allNews = $this->nm->getAllNews();
                 
@@ -150,15 +162,30 @@ class AdminNewsController extends AbstractController
         
         $inputId = $this->clean_input($post["id"]);
         $id = intval($inputId);
-        $categoryId = $this->clean_input($post["category_id"]);
+        
+        $inputCategoryId = $this->clean_input($post["category_id"]);
+        $categoryId = intval($inputCategoryId);
+        
         $name = $this->clean_input($post["name"]);
+        
         $inputMedia = $this->clean_input($post["media_id"]);
         $media = intval($inputMedia);
+        
         $content = $this->clean_input($post["content"]);
         
-        if($categoryId === "0")
+        if(strlen($inputId) > 5)
+        {
+            $errors[] = "Veuillez recommencer, cette action a généré un problème";
+        }
+        
+        if($categoryId === "0" || !is_int($categoryId))
         {
             $errors[] = "Veuillez selectionner une catégorie";
+        }
+        
+        if(strlen($inputCategoryId) > 5)
+        {
+            $errors[] = "Veuillez selectionner une catégorie valide";
         }
         
         if($name === "")
@@ -166,9 +193,34 @@ class AdminNewsController extends AbstractController
             $errors[] = "Veuillez mettre un titre";
         }
         
+        if(strlen($name) > 256)
+        {
+            $errors[] = "Veuillez entrer un titre plus court (max 255 caractères)";
+        }
+
+        if(!is_string($name))
+        {
+            $errors[] = "Veuillez entrer un titre valide";
+        }
+        
+        if(strlen($inputMedia) > 6)
+        {
+            $errors[] = "Veuillez choisir une image valide";
+        }
+        
         if($content === "")
         {
             $errors[] = "Veuillez entrer un contenu";
+        }
+        
+        if(strlen($content) > 2048)
+        {
+            $errors[] = "Veuillez entrer un contenu plus court (max 2047 caractères)";
+        }
+        
+        if(!is_string($content))
+        {
+            $errors[] = "Veuillez entrer un contenu valide";
         }
         
         $news = new News($id, $categoryId, $name, $media, $content);

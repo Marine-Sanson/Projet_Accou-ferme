@@ -7,7 +7,16 @@
     <h2>Créer une catégorie</h2>
     
     <?php
-    if(isset($data["validation"]))
+    if(isset($data["errors"]) && $data["errors"] !=="")
+    {
+        foreach($data["errors"] as $key => $error)
+        {
+    ?>
+        <p class="errors"> <?= $error ?></p>
+    <?php
+        }
+    }
+    else if(isset($data["validation"]))
     {
     ?>
         <p class="validation"> <?= $data["validation"] ?> </p>

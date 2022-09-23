@@ -2,7 +2,7 @@
 
 class AdminMediasController extends AbstractController
 {
-    public function index() :void
+    public function index()
     {
         if($_SESSION["connectAdmin"] === true)
         {
@@ -27,9 +27,10 @@ class AdminMediasController extends AbstractController
                 $this->render("adminMedias", []);
             }
         }
-        else
+        else if($_SESSION["connectAdmin"] === false || empty($_SESSION["connectAdmin"]))
         {
-            $this->render("admin");
+            $errors[] = "Veuillez vous connecter";
+            $this->render("admin", ["errors" => $errors]);
         }
     }
     

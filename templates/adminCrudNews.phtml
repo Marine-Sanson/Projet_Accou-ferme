@@ -20,12 +20,15 @@
         </ul>
         <?php
         
+    }
+
+    if(isset($data["singleNews"]) && !empty($data["singleNews"]))
+    {
         $newsId = $data["singleNews"]->getId();
         $newsCatId = $data["singleNews"]->getCategoryId();
         $newsName = $data["singleNews"]->getName();
         $newsMedia = $data["singleNews"]->getMediaId();
         $newsContent = $data["singleNews"]->getContent();
-
     }
     
     if($data["action"] === "create")
@@ -36,24 +39,12 @@
     }
     else if($data["action"] === "update")
     {
-        $newsId = $data["singleNews"]->getId();
-        $newsCatId = $data["singleNews"]->getCategoryId();
-        $newsName = $data["singleNews"]->getName();
-        $newsMedia = $data["singleNews"]->getMediaId();
-        $newsContent = $data["singleNews"]->getContent();
-
     ?>
         <form class="news" method="POST" action="/Projet_Accou-ferme/adminUpdateNews">
     <?php
     }
     else if($data["action"] === "delete")
     {
-        $newsId = $data["singleNews"]->getId();
-        $newsCatId = $data["singleNews"]->getCategoryId();
-        $newsName = $data["singleNews"]->getName();
-        $newsMedia = $data["singleNews"]->getMediaId();
-        $newsContent = $data["singleNews"]->getContent();
-
     ?>
         <form class="news" method="POST" action="/Projet_Accou-ferme/adminDeleteNews">
     <?php        
@@ -91,7 +82,7 @@
             ?>
         </select>
 
-        <label for="title">Titre</label>  
+        <label for="name">Titre</label>  
         <input class="newsTitle" type="text" name="name" 
         <?php
         if(isset($newsName))

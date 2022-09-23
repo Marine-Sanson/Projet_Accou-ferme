@@ -9,9 +9,10 @@ class AdminOrdersController extends AbstractController
             
             $this->render("adminOrders");
         }
-        else
+        else if($_SESSION["connectAdmin"] === false || empty($_SESSION["connectAdmin"]))
         {
-            $this->render("admin");
+            $errors[] = "Veuillez vous connecter";
+            $this->render("admin", ["errors" => $errors]);
         }
     }
 }

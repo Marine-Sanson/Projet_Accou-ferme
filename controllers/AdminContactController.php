@@ -12,7 +12,8 @@ class AdminContactController extends AbstractController
         }
         else
         {
-            $this->render("admin");
+            $errors[] = "Veuillez vous connecter";
+            $this->render("admin", ["errors" => $errors]);
         }
     }
     

@@ -4,18 +4,14 @@ class ProductManager extends AbstractManager
 {
     
     // permet de créer un nouveau produit
-    public function createProduct(Product $product) : Product
+    public function createProduct(Product $product) : void
     {
         
         $query = $this->db->prepare('INSERT INTO products ( name ) VALUES ( :name )');
         $parameters = [
-            'name' => $name->getName(),
+            'name' => $product->getName(),
         ];
         $query->execute($parameters);
-        
-        $produce = [];
-
-        return $produce;
     }
     
     // va chercher un tableau avec tous les produits
@@ -36,6 +32,15 @@ class ProductManager extends AbstractManager
         }
         
         return $fullProducts;
+    }
+    
+    public function getProducts() :array
+    {
+        $query = $this->db->prepare('SELECT name, id FROM products');
+        $query->execute();
+        $products = $query->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $products;
     }
     
     // va chercher un tableau avec tous les id des produits
@@ -79,16 +84,13 @@ class ProductManager extends AbstractManager
     }
     
     // permet de supprimer un produit
-    public function deleteProduct(Product $product) : void
+    public function deleteProduct(int $id) : void
     {
-        
-        $query = $this->db->prepare('DELETE id, name FROM products WHERE products.name = :name');
+        $query = $this->db->prepare('DELETE FROM products WHERE products.id = :id');
         $parameters = [
-            'name' => $name
+            'id' => $id
         ];
         $query->execute($parameters);
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        
     }
     
 }

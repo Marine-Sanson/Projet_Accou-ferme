@@ -13,6 +13,12 @@
 /admin AdminController:index
 /adminMenu AdminController:loginCheck
 /adminProducts AdminProductsController:index
+/productCreated AdminProductsController:productCreated
+/deleteProduct AdminProductsController:deleteProduct
+/adminCrudVariety AdminProductsController:adminCrudVariety
+/adminCreateVariety AdminProductsController:createVariety
+/adminUpdateVariety AdminProductsController:updateVariety
+/adminDeleteVariety AdminProductsController:deleteVariety
 /adminOrders AdminOrdersController:index
 /adminDisplayOrders AdminDisplayOrdersController:index
 /adminDisplayOrdersByDay AdminDisplayOrdersController:displayOrdersByDay

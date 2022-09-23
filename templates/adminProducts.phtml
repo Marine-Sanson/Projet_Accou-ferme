@@ -4,4 +4,88 @@
 
     <h1>AdminProducts</h1>
     
+    <?php
+    if(isset($data["errors"]) && $data["errors"] !=="")
+    {
+        foreach($data["errors"] as $key => $error)
+        {
+    ?>
+        <p class="errors"> <?= $error ?></p>
+    <?php
+        }
+    }
+    else if(isset($data["validation"]))
+    {
+    ?>
+        <p class="validation"> <?= $data["validation"] ?> </p>
+    <?php
+    }
+    ?>
+    
+    <h2>Produit</h2>
+
+    <form class="adminProductForm" method="POST" action="/Projet_Accou-ferme/productCreated">
+
+        <label for="newProd">Créer un nouveau produit</label>
+        <input type="text" name="newProd" />
+        <button id="createNewProd" type="submit">Valider</button>
+    </form>
+    
+    <!--  ---------- A REVOIR --------- -->
+    
+    <form class="adminProductForm" method="POST" action="/Projet_Accou-ferme/deleteProduct">
+
+        <label for="suprProd">Supprimer un produit</label>
+        <select class="selectProducts" name="productId">
+            <option value = "0">Selectionner un produit</option>
+            <?php
+            foreach($data['allProducts'] as $key => $product)
+            {
+        	?>
+        		<option value=" <?= $product["id"]; ?> "> <?=$product["name"]; ?>
+        		</option>
+        		<?php
+            }
+            ?>
+        </select>
+        <button id="suprProd" type="submit">Supprimer</button>
+    </form>
+
+    <h2>Créer une varieté</h2>
+    
+    <form class="createVarietyForm" method="POST" action="/Projet_Accou-ferme/adminCrudVariety">
+        <input type="hidden" name="action" value="create" />
+        <input type="submit" value="Créer" />
+    </form>
+
+    <h2>Mettre à jour ou supprimer une varieté</h2>
+    <ul>
+
+        <?php
+        foreach($data["allVarieties"] as $key => $variety)
+        {
+        ?>
+        <li>
+            <article class="udVariety">
+                <h3><?= $variety["name"] ?></h3>
+                <form class="updateVarietyForm" method="POST" action="/Projet_Accou-ferme/adminCrudVariety">
+                    <input type="hidden" name="action" value="update" />
+                    <input type="hidden" name="crudId" value="<?= $variety["id"] ?>" />
+                    <input type="submit" value="Modifier" />
+                </form>
+                <form class="deleteVarietyForm" method="POST" action="/Projet_Accou-ferme/adminCrudVariety">
+                    <input type="hidden" name="action" value="delete" />
+                    <input type="hidden" name="crudId" value="<?= $variety["id"] ?>" />
+                    <input type="submit" value="Supprimer" data-news-id="<?= $variety["id"] ?>"/>
+                </form>
+            </article>
+        </li>
+        <?php
+        }
+        ?>
+
+    </ul>
+
+    
+
 </main>

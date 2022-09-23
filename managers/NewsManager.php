@@ -80,21 +80,17 @@ class NewsManager extends AbstractManager
             'content' => $news->getContent()
         ];
         $query->execute($parameters);
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        
 
     }
     
     public function deleteNews(News $news) : void
     {
         
-        $query = $this->db->prepare('DELETE id, category_id, name, media_id, content FROM news WHERE news.name = :name');
+        $query = $this->db->prepare('DELETE FROM news WHERE id = :id');
         $parameters = [
-            'name' => $name
+            'id' => $news->getId()
         ];
         $query->execute($parameters);
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        
     }
     
 }

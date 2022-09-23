@@ -8,13 +8,14 @@ class Variety
     private string $seasonStart;
     private string $seasonEnd;
     private string $description;
-    private int $mediaId;
+    private ?int $mediaId;
     private bool $availablity;
-    private ?int $quantity_available;
+    private bool $offer;
+    private ?int $quantityAvailable;
     private ?string $units;
     private ?int $price;
 
-    function __construct(?int $id, int $productId, string $name, string $seasonStart, string $seasonEnd, string $description, int $mediaId, bool $availablity, int $quantityAvailable, ?string $units, ?int $price)
+    function __construct(?int $id, int $productId, string $name, string $seasonStart, string $seasonEnd, string $description, ?int $mediaId, bool $availablity, bool $offer, int $quantityAvailable, ?string $units, ?int $price)
     {
         $this->id = $id;
         $this->productId = $productId;
@@ -24,6 +25,7 @@ class Variety
         $this->description = $description;
         $this->mediaId = $mediaId;
         $this->availablity = $availablity;
+        $this->offer = $offer;
         $this->quantityAvailable = $quantityAvailable;
         $this->units = $units;
         $this->price = $price;
@@ -64,11 +66,21 @@ class Variety
         return $this->availablity;
     }
     
-    public function setAvailablity(string $availablity) : void
+    public function setAvailablity(bool $availablity) : void
     {
         $this->availablity = $availablity;
     }
     
+    public function getOffer() : bool
+    {
+        return $this->offer;
+    }
+    
+    public function setOffer(bool $offer) : void
+    {
+        $this->offer = $offer;
+    }
+
     public function getSeasonStart() : string
     {
         return $this->seasonStart;
@@ -99,12 +111,12 @@ class Variety
         $this->description = $description;
     }
     
-    public function getMediaId() : int
+    public function getMediaId() : ?int
     {
         return $this->mediaId;
     }
     
-    public function setMediaId(int $mediaId) : void
+    public function setMediaId(?int $mediaId) : void
     {
         $this->mediaId = $mediaId;
     }

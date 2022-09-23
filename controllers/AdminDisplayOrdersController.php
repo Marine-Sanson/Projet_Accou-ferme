@@ -8,9 +8,10 @@ class AdminDisplayOrdersController extends AbstractController
         {
             $this->render("adminDisplayOrders");
         }
-        else
+        else if($_SESSION["connectAdmin"] === false || empty($_SESSION["connectAdmin"]))
         {
-            $this->render("admin");
+            $errors[] = "Veuillez vous connecter";
+            $this->render("admin", ["errors" => $errors]);
         }
     }
     
@@ -39,9 +40,10 @@ class AdminDisplayOrdersController extends AbstractController
                 $this->render("adminDisplayOrders");
             }
         }
-        else
+        else if($_SESSION["connectAdmin"] === false || empty($_SESSION["connectAdmin"]))
         {
-            $this->render("admin");
+            $errors[] = "Veuillez vous connecter";
+            $this->render("admin", ["errors" => $errors]);
         }
     }
 

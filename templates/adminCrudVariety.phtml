@@ -1,0 +1,266 @@
+<main id="adminCrudVariety">
+    
+    <?php require "_adminNav.phtml"; ?>
+
+    <?php
+
+    if(isset($data["errors"]))
+    {
+    ?>
+        <ul class="errors">
+            <?php
+            foreach($data["errors"] as $key => $error)
+            {
+            ?>
+            <li> <?= $error ?> </li>
+            <?php    
+            }
+            ?>
+        </ul>
+    <?php    
+    }
+    ?>
+        
+    <?php
+    if(isset($data["variety"]) && !empty($data["variety"]))
+    {
+        $id = $data["variety"]->getId();
+        $productId = $data["variety"]->getProductId();
+        $name = $data["variety"]->getName();
+        $seasonStart = $data["variety"]->getSeasonStart();
+        $seasonEnd = $data["variety"]->getSeasonEnd();
+        $description = $data["variety"]->getDescription();
+        $mediaId = $data["variety"]->getMediaId();
+        $availablity = $data["variety"]->getAvailablity();
+        $offer = $data["variety"]->getOffer();
+        $quantityAvailable = $data["variety"]->getQuantityAvailable();
+        $units = $data["variety"]->getUnits();
+        $price = $data["variety"]->getPrice();
+    }
+
+    if($data["action"] === "create")
+    {
+    ?>
+        <form class="varietyForm" method="POST" action="/Projet_Accou-ferme/adminCreateVariety">
+    <?php
+    }
+    else if($data["action"] === "update")
+    {
+
+    ?>
+        <form class="varietyForm" method="POST" action="/Projet_Accou-ferme/adminUpdateVariety">
+    <?php
+    }
+    else if($data["action"] === "delete")
+    {
+
+    ?>
+        <form class="varietyForm" method="POST" action="/Projet_Accou-ferme/adminDeleteVariety">
+    <?php        
+    }
+
+    ?>
+        <input type="hidden" name="id" 
+        <?php
+
+        if(isset($id))
+        {
+        ?>
+            value="<?= $id ?>" 
+        <?php
+        }
+        ?>
+        >
+
+        <select class="selectProducts" name="productId">
+            <option value = "0">Selectionner un produit</option>
+            <?php
+            
+            foreach($data['allProducts'] as $key => $product)
+            {
+        	?>
+        		<option value=" <?= $product["id"]; ?> "
+        		<?php
+                if(isset($productId) && $product["id"] === $productId)
+                {
+                ?>
+                    selected
+                <?php
+                $idProduct = $product['id'];
+                }
+                ?>
+                > <?=$product["name"]; ?>
+        		</option>
+        		<?php
+            }
+            ?>
+        </select>
+
+        <label for="name">Nom</label>  
+        <input class="productName" type="text" name="name" 
+        <?php
+        if(isset($name))
+        {
+        ?>
+            value="<?= $name ?>" 
+        <?php
+        }
+        ?>
+        >
+
+        <label for="seasonStart">Début de saison</label>  
+        <input class="productSeasonStart" type="text" name="seasonStart"
+        <?php
+        if(isset($seasonStart))
+        {
+        ?>
+            value="<?= $seasonStart ?>" 
+        <?php
+        }
+        ?>
+        >
+        
+        <label for="seasonEnd">Fin de saison</label>  
+        <input class="productSeasonEnd" type="text" name="seasonEnd"
+        <?php
+        if(isset($seasonEnd))
+        {
+        ?>
+            value="<?= $seasonEnd ?>" 
+        <?php
+        }
+        ?>
+        >
+
+        <label for="description">Description</label>  
+        <input class="productDescription" type="text" name="description"
+        <?php
+        if(isset($description))
+        {
+        ?>
+            value="<?= $description ?>" 
+        <?php
+        }
+        ?>
+        >
+
+        <label for="mediaId">Image</label>  
+        <input class="productMediaId" type="text" name="mediaId"
+        <?php
+        if(isset($mediaId))
+        {
+        ?>
+            value="<?= $mediaId ?>" 
+        <?php
+        }
+        ?>
+        >
+
+        <legend>Disponible :</legend>
+        <input class="productAvailablity" id="oui" type="radio" name="availablity" value="1"
+        <?php
+        if(isset($availablity) && $availablity)
+        {
+        ?>
+            checked 
+        <?php
+        }
+        ?>
+        >
+        <label for="availablity">oui</label>
+        <input class="productAvailablity" id="non" type="radio" name="availablity" value="0"
+        <?php
+        if(isset($availablity) && !$availablity)
+        {
+        ?>
+            checked 
+        <?php
+        }
+        ?>
+        >
+        <label for="availablity">non</label>
+        
+        <legend>Produit du moment :</legend>
+        <input type="radio" class="productOffer" id="oui" name="offer" value="1"
+        <?php
+        if(isset($offer) && $offer)
+        {
+        ?>
+            checked 
+        <?php
+        }
+        ?>
+        >
+        <label for="offer">oui</label>
+        <input type="radio" class="productOffer" id="non" name="offer" value="0"
+        <?php
+        if(isset($offer) && !$offer)
+        {
+        ?>
+            checked 
+        <?php
+        }
+        ?>
+        >
+        <label for="offer">non</label>          
+
+        <label for="quantityAvailable">Quantité dispo</label>  
+        <input class="productQuantityAvailable" type="number" name="quantityAvailable"
+        <?php
+        if(isset($quantityAvailable))
+        {
+        ?>
+            value="<?= $quantityAvailable ?>" 
+        <?php
+        }
+        ?>
+        >
+
+        <label for="units">Unité de vente</label>  
+        <input class="productUnits" type="text" name="units"
+        <?php
+        if(isset($units))
+        {
+        ?>
+            value="<?= $units ?>" 
+        <?php
+        }
+        ?>
+        >
+
+        <label for="price">Prix</label>  
+        <input class="productPrice" type="number" step="0.05" name="price"
+        <?php
+        if(isset($price))
+        {
+        ?>
+            value="<?= $price ?>" 
+        <?php
+        }
+        ?>
+        >
+
+    <?php
+    if($data["action"] === "create")
+    {
+    ?>
+        <button type"submit" value="create" >Créer</button>
+    <?php
+    }
+    else if($data["action"] === "update")
+    {
+    ?>
+
+        <button type"submit" value="update" >Modifier</button>
+    <?php
+    }
+    else if($data["action"] === "delete")
+    {
+    ?>
+        <button type"submit" value="delete" >Supprimer</button>
+    <?php
+    }
+    ?>
+
+    </form>
+
