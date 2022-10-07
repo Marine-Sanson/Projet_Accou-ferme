@@ -267,8 +267,6 @@ function renderBasket(){
     $newUL.setAttribute("id", "updateContent");
 
     // pour chaque produit dans le panier je crée un li et son contenu auquel j'ajoute une classe, un contenu, et éventuellement des attributs
-    
-
     for(var i=0; i<$basket.items.length; i++){
 
         if($basket.items[i].amount > 0){
@@ -289,7 +287,6 @@ function renderBasket(){
         $totalOrderPrice.innerText = $basket.totalPrice;
         
         saveData($basket);
-
     }
         loadListeners();
 }
