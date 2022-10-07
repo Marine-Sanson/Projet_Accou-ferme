@@ -3,42 +3,55 @@
     <p>@ Accou'ferme - Création du site Marine Sanson</p>
     
     <nav id="footerNav">
-            <ul>
-                <li id="containerLogo">
-                    <h1 class="sr-only">Accou ferme</h1>
-                    <a href="/Projet_Accou-ferme/" title="Accueil">
-                        <figure id="logoImg">
-                            <img src="./assets/img/logo-arbre-oreille-512.png" alt="logo Accou'ferme" />
-                        </figure>
-                    </a>
-                    <a id="homeLink" href="/Projet_Accou-ferme/" title="Accueil">Accueil</a>
-                </li>
-                <li>
-                    <a href="/Projet_Accou-ferme/plan-du-site" title="Plan du site">Plan du site</a>
-                </li>
-                <li>
-                    <a href="/Projet_Accou-ferme/mentions-legales" title="Mentions légales">Mentions légales</a>
-                </li>
-                <li>
-                    <a href="/Projet_Accou-ferme/contact" title="Contact">Contact</a>
-                </li>
-                <li>
-                    <a href="/Projet_Accou-ferme/a-propos" title="Qui suis-je?">Qui suis-je?</a>
-                </li>
-                <li>
-                    <a href="/Projet_Accou-ferme/galerie" title="Galerie">Galerie</a>
-                </li>
-                <li>
-                    <a href="/Projet_Accou-ferme/produits" title="Produits">Produits</a>
-                </li>
-                <li>
-                    <a href="/Projet_Accou-ferme/commandes" title="Commandes">Commandes</a>
-                </li>
-                <li>
-                    <a href="/Projet_Accou-ferme/actus" title="Actus et Recettes">Actus et Recettes</a>
-                </li>
-            </ul>
-        </nav>    
+        <ul>
+            <li id="containerLogo">
+                <h1 class="sr-only">Accou ferme</h1>
+                <a href="/Projet_Accou-ferme/" title="Accueil">
+                    <figure id="logoImg">
+                        <?php
+                        if(isset($data["newsDetail"]) && ($data["newsDetail"]->getId()) !== null)
+                        {
+                        ?>
+                        <img src="../assets/img/logo-arbre-oreille-512.png" alt="logo Accou'ferme" />
+                        <?php
+                        }
+                        else
+                        {
+                        ?>
+                        <img src="./assets/img/logo-arbre-oreille-512.png" alt="logo Accou'ferme" />
+                        <?php
+                        }
+                        ?>
+                    </figure>
+                </a>
+                <a id="homeLink" href="/Projet_Accou-ferme/" title="Accueil">Accueil</a>
+            </li>
+            <li>
+                <a href="/Projet_Accou-ferme/plan-du-site" title="Plan du site">Plan du site</a>
+            </li>
+            <li>
+                <a href="/Projet_Accou-ferme/mentions-legales" title="Mentions légales">Mentions légales</a>
+            </li>
+            <li>
+                <a href="/Projet_Accou-ferme/contact" title="Contact">Contact</a>
+            </li>
+            <li>
+                <a href="/Projet_Accou-ferme/a-propos" title="Qui suis-je?">Qui suis-je?</a>
+            </li>
+            <li>
+                <a href="/Projet_Accou-ferme/galerie" title="Galerie">Galerie</a>
+            </li>
+            <li>
+                <a href="/Projet_Accou-ferme/produits" title="Produits">Produits</a>
+            </li>
+            <li>
+                <a href="/Projet_Accou-ferme/commandes" title="Commandes">Commandes</a>
+            </li>
+            <li>
+                <a href="/Projet_Accou-ferme/actus" title="Actus et Recettes">Actus et Recettes</a>
+            </li>
+        </ul>
+    </nav>    
 </footer>
 
 <?php

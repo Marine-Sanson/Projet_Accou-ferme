@@ -1,9 +1,5 @@
 <?php
 
-require "./models/Product.php";
-require "./models/Variety.php";
-
-
 class AdminProductsController extends AbstractController
 {
     public function index() :void
@@ -12,6 +8,16 @@ class AdminProductsController extends AbstractController
         {
             $allProducts = $this->pm->getProducts();
             $allVarieties = $this->vm->getAllVarieties();
+            
+            foreach($allVarieties as $key => $variety)
+            {
+                $mediaId = $variety["media_id"];
+                if($mediaId !== null)
+                {
+                    $media = $this->mm->getMediaById($mediaId);
+                    $allVarieties[$key][] = $media;
+                }
+            }
             
             $this->render("adminProducts", ["allProducts" => $allProducts, "allVarieties" => $allVarieties]);
         }
@@ -49,8 +55,6 @@ class AdminProductsController extends AbstractController
     {
         if($_SESSION["connectAdmin"] === true)
         {
-            var_dump($post);
-            
             $inputid = $this->clean_input($_POST["productId"]);
             $id = intval($inputid);
             
@@ -84,22 +88,67 @@ class AdminProductsController extends AbstractController
 
     public function adminCrudVariety(array $post) :void
     {
-
         $action = $post["action"];
         $allProducts = $this->pm->getProducts();
         
-        if(isset($post["crudId"]) && $post["crudId"] !== null)
+        if(isset($post["crudId"]) && $post["crudId"] !== null && $post["crudId"] !== 0)
         {
             $crudId = $post["crudId"];
+            
             $variety = $this->vm->getVarietyById($crudId);
+
+            $mediaId = $variety->getMediaId();
+            
+            if(isset($mediaId))
+            {
+                $media = $this->mm->getMediaById($mediaId);
+            }
+            else
+            {
+                $media = [];
+            }
         }
         else
         {
             $crudId = 0;
             $variety = [];
+            $media = [];
         }
         
-        $this->render("adminCrudVariety", ["action" => $action, "allProducts" => $allProducts, "variety" => $variety]);
+        $this->render("adminCrudVariety", ["action" => $action, "allProducts" => $allProducts, "variety" => $variety, "media" => $media]);
+    }
+    
+    public function chooseVarietyImage(array $post) :void
+    {
+        $varietyId = $post["id"];
+        $allMedias = $this->mm->getAllMedias();
+        
+        $this->render("chooseVarietyImage", ["varietyId" => $varietyId, "allMedias" => $allMedias]);
+    }
+    
+    public function updateVarietyImage(array $post) :void
+    {
+        $mediaId = $post["mediaId"];
+        $varietyId = $post["varietyId"];
+        
+        $this->vm->updateVarietyMedia($mediaId, $varietyId);
+        
+        $validation = "votre image a bien été selectionnée";
+        
+        $allProducts = $this->pm->getProducts();
+        $allVarieties = $this->vm->getAllVarieties();
+        
+        foreach($allVarieties as $key => $variety)
+        {
+            $mediaId = $variety["media_id"];
+            if($mediaId !== null)
+            {
+                $media = $this->mm->getMediaById($mediaId);
+                $allVarieties[$key][] = $media;
+            }
+        }
+        
+        $this->render("adminProducts", ["allProducts" => $allProducts, "allVarieties" => $allVarieties, "validation" => $validation]);
     }
     
     public function createVariety(array $post) :void
@@ -126,7 +175,6 @@ class AdminProductsController extends AbstractController
                 $variety = $varietyVerified["variety"];
                 $this->render("adminCrudVariety", ["variety" => $variety, "allProducts" => $allProducts, "errors" => $errors, "action" => $action]);
             }
-            
         }
         else
         {
@@ -215,7 +263,7 @@ class AdminProductsController extends AbstractController
         }
         else
         {
-            var_dump($post["productId"]);
+            // var_dump($post["productId"]);
             $inputProductId = $this->clean_input($post["productId"]);
             $productId = intval($inputProductId);
 
@@ -231,7 +279,7 @@ class AdminProductsController extends AbstractController
             {
                 $errors[] = "Veuillez selectionner un produit";
             }
-            var_dump($productId);
+            // var_dump($productId);
         }
         
         if(!isset($post["name"]))
@@ -332,7 +380,7 @@ class AdminProductsController extends AbstractController
         
         if(!isset($post["mediaId"]))
         {
-            var_dump("if !isset");
+            // var_dump("if !isset");
             $errors[] = "Veuillez entrer une image";
             $mediaId = null;
         }
@@ -370,18 +418,18 @@ class AdminProductsController extends AbstractController
             
             if($availablity === false)
             {
-                var_dump("je rentre dans le if = false");
+                // var_dump("je rentre dans le if = false");
                 $availablity = 0;
-                var_dump($availablity);
+                // var_dump($availablity);
             }
             if($availablity === true)
             {
-                var_dump("je rentre dans le if = true");
+                // var_dump("je rentre dans le if = true");
                 $availablity = 1;
             }
         }
 
-        var_dump("offer");
+        // var_dump("offer");
         if(!isset($post["offer"]))
         {
             $errors[] = "Veuillez cocher oui ou non pour le produit du moment";
@@ -402,7 +450,7 @@ class AdminProductsController extends AbstractController
                 $errors[] = "Veuillez entrer un produit du moment valide";
             }
         }
-        var_dump("quantityAvailable");
+        // var_dump("quantityAvailable");
         if(!isset($post["quantityAvailable"]))
         {
             $errors[] = "Veuillez entrer une quantité disponible";
@@ -427,7 +475,7 @@ class AdminProductsController extends AbstractController
                 $errors[] = "Veuillez entrer une quantité disponible valide";
             }
         }
-        var_dump("units");
+        // var_dump("units");
         if(!isset($post["units"]))
         {
             $errors[] = "Veuillez entrer une unité de vente";
@@ -451,7 +499,7 @@ class AdminProductsController extends AbstractController
                 $errors[] = "Veuillez entrer une unité de vente valide";
             }
         }
-        var_dump("price");
+        // var_dump("price");
         if(!isset($post["price"]))
         {
             $errors[] = "Veuillez entrer un prix";
@@ -476,7 +524,7 @@ class AdminProductsController extends AbstractController
                 $errors[] = "Veuillez entrer un prix valide";
             }
         }
-        var_dump($errors);
+        // var_dump($errors);
         $variety = new Variety($id, $productId, $name, $seasonStart, $seasonEnd, $description, $mediaId, $availablity, $offer, $quantityAvailable, $units, $price);
         
         $verifyVariety = [

@@ -7,6 +7,16 @@
 require "./controllers/AbstractController.php";
 require "./services/Router.php";
 
+require "./models/Admin.php";
+require "./models/Category.php";
+require "./models/Contact.php";
+require "./models/Media.php";
+require "./models/News.php";
+require "./models/Recipe.php";
+require "./models/Order.php";
+require "./models/Product.php";
+require "./models/Variety.php";
+
 require "./managers/AdminManager.php";
 require "./managers/ProductManager.php";
 require "./managers/VarietyManager.php";

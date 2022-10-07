@@ -2,17 +2,29 @@
 
 class Recipe extends News
 {
+    private ?int $recipeId;
     private ?int $newsId;
     private ?int $productId;
     private string $ingredients;
     private string $steps;
     
-    function __construct (?int $newsId, ?int $productId, string $ingredients, string $steps)
+    function __construct (?int $recipeId, ?int $newsId, ?int $productId, string $ingredients, string $steps)
     {
+        $this->recipeId = $recipeId;
         $this->newsId = $newsId;
         $this->productId = $productId;
         $this->ingredients = $ingredients;
         $this->steps = $steps;
+    }
+    
+    public function getRecipeId() : ?int
+    {
+        return $this->recipeId;
+    }
+    
+    public function setRecipeId(?int $recipeId) : void
+    {
+        $this->recipeId = $recipeId;
     }
     
     public function getNewsId() : ?int
@@ -24,7 +36,6 @@ class Recipe extends News
     {
         $this->newsId = $newsId;
     }
-
     
     public function getProductId() : ?int
     {
@@ -38,7 +49,7 @@ class Recipe extends News
     
     public function getIngredients() : string
     {
-        return $this->name;
+        return $this->ingredients;
     }
     
     public function setIngredients(string $ingredients) : void

@@ -22,7 +22,7 @@ class News
         return $this->id;
     }
     
-    public function setId(int $id) : void
+    public function setId(?int $id) : void
     {
         $this->id = $id;
     }
@@ -52,7 +52,7 @@ class News
         return $this->mediaId;
     }
     
-    public function setMediaId(int $mediaId) : void
+    public function setMediaId(?int $mediaId) : void
     {
         $this->mediaId = $mediaId;
     }

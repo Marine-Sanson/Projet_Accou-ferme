@@ -1,0 +1,25 @@
+<main id="chooseVarietyImage">
+    
+    <?php require "_adminNav.phtml"; ?>
+    
+    <h2>Choisir une image</h2>
+    
+    <ul class="updateImage">
+    
+        <?php
+        foreach($data["allMedias"] as $key => $media)
+        {
+        ?>
+            <li class="updateImageLi" >
+                <form name="chooseImage" method="POST" action="/Projet_Accou-ferme/updateVarietyImage">
+                    <img src="<?= $media["url"]; ?>" alt=" <?= $media["alt"]; ?>" />
+                    <input type="hidden" name="mediaId" value=" <?= $media["id"] ?>" />
+                    <input type="hidden" name="varietyId" value=" <?= $data["varietyId"] ?>" />
+                    <input class="button" type="submit" name="chooseImage" value="choisir cette image" />
+                </form>
+            </li>
+        <?php
+        }
+        ?>
+    </ul>
+</main>

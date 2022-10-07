@@ -1,0 +1,52 @@
+<main id="newsdetail">
+
+    <h1>newsdetail</h1>
+    
+    <?php
+        $newsDetail = $data["newsDetail"];
+        $id = $newsDetail->getId();
+        $categoryId = $newsDetail->getCategoryId();
+        $name = $newsDetail->getName();
+        $content = $newsDetail->getContent();
+        
+        $categorie = $data["categorie"];
+        
+        $media = $data["media"];
+        if($media !== null){
+            $url = $media->getUrl();
+            $alt = $media->getAlt();
+        }
+        else if($categoryId === 3)
+        {
+            $url = "../assets/img/news/recette.jpg";
+            $alt = "Photo non disponible, remplacée par une image de poele avec des aliments en train de cuire";
+        }
+        else{
+            $url = "../assets/img/news/news.jpg";
+            $alt = "Photo non disponible, remplacée par une d'une personne lisant un journal";
+        }
+
+        ?>
+    
+    <h2> <?= $name; ?></h2>
+    
+    <p>Catégorie : <?= $categorie; ?></p>
+    
+    <figure>
+        <img src="<?= $url ?>" alt="<?= $alt ?>"></img>
+    </figure>
+    
+    <p> <?= $content; ?> </p>
+    
+    <?php
+    if(isset($data["recipe"]) && $data["recipe"] !== [] )
+    {
+        $recipe = $data["recipe"];
+        ?>
+        <p>Ingrédients : <?= $recipe->getIngredients(); ?> </p>
+        <p> Etapes : <?= $recipe->getSteps(); ?> </p>
+    <?php
+    }
+    ?>
+
+</main>

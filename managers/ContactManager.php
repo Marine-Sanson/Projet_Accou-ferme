@@ -3,7 +3,12 @@
 class ContactManager extends AbstractManager
 {
     
-    // permet de créer un nouveau produit
+    /**
+     * reçoit un Contact et le crée dans la base de données
+     * @param Contact
+     * @return
+     */
+
     public function createContact(Contact $contact) : void
     {
         $query = $this->db->prepare('INSERT INTO contacts (name, first_name, email, tel, message) VALUES (:name, :first_name, :email, :tel, :message)');
@@ -17,9 +22,15 @@ class ContactManager extends AbstractManager
         $query->execute($parameters);
     }
     
-    public function getAllPendingMessages() :array
+    /**
+     * va chercher tous les messages non répondus
+     * @param 
+     * @return un array avec tous les messages concernés
+     */
+    
+    public function getAllPendingMessages() : array
     {
-        $query = $this->db->prepare('SELECT id, name, first_name, email, tel, message, date FROM contacts WHERE answered = :answered ORDER BY id');
+        $query = $this->db->prepare('SELECT id, name, first_name, email, tel, message, date FROM contacts WHERE answered = :answered ORDER BY date DESC');
         $parameters = [
             'answered' => '0'
             ];
@@ -29,7 +40,13 @@ class ContactManager extends AbstractManager
         return $allMessages;
     }
     
-    public function answeredMessage($id)
+    /**
+     * met à jour le booléen d'un message d'après son id
+     * @param $id
+     * @return void
+     */
+    
+    public function answeredMessage($id) : void
     {
         $query = $this->db->prepare('UPDATE contacts SET answered = :answered WHERE id = :id');
         $parameters = [
@@ -38,7 +55,6 @@ class ContactManager extends AbstractManager
         ];
         $query->execute($parameters);
     }
-    
 }
 
 ?>

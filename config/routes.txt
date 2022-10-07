@@ -8,6 +8,7 @@
 /detail-commande OrdersController:index
 /_validationOrder OrdersController:validationOrder
 /actus NewsController:index
+/actus_show/* NewsController:newsDetail
 /contact ContactController:index
 /envoye ContactController:sentMessage
 /admin AdminController:index
@@ -19,6 +20,8 @@
 /adminCreateVariety AdminProductsController:createVariety
 /adminUpdateVariety AdminProductsController:updateVariety
 /adminDeleteVariety AdminProductsController:deleteVariety
+/chooseVarietyImage AdminProductsController:chooseVarietyImage
+/updateVarietyImage AdminProductsController:updateVarietyImage
 /adminOrders AdminOrdersController:index
 /adminDisplayOrders AdminDisplayOrdersController:index
 /adminDisplayOrdersByDay AdminDisplayOrdersController:displayOrdersByDay
@@ -27,8 +30,12 @@
 /_categoryCreated AdminNewsController:categoryCreated
 /adminCrudNews AdminNewsController:adminCrudNews
 /adminCreateNews AdminNewsController:createNews
+/adminCreateRecipe AdminNewsController:createRecipe
 /adminUpdateNews AdminNewsController:updateNews
 /adminDeleteNews AdminNewsController:deleteNews
+/chooseNewsImage AdminNewsController:chooseNewsImage
+/updateNewsImage AdminNewsController:updateNewsImage
 /adminMedias AdminMediasController:index
+/deleteImage AdminMediasController:deleteImage
 /adminContacts AdminContactController:index
 /closeMessage AdminContactController:closeMessage

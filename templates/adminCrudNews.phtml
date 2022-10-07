@@ -4,6 +4,8 @@
 
     <?php
     
+    // var_dump($data);
+    
     if(isset($data["errors"]))
     {
     ?>
@@ -12,7 +14,7 @@
             foreach($data["errors"] as $key => $error)
             {
             ?>
-            <li> <?= $error ?> </li>
+            <li> <?= $error[$key]; ?> </li>
             
             <?php    
             }
@@ -22,31 +24,86 @@
         
     }
 
-    if(isset($data["singleNews"]) && !empty($data["singleNews"]))
+    if(isset($data["singleNews"]["news"]) && !empty($data["singleNews"]["news"]))
     {
-        $newsId = $data["singleNews"]->getId();
-        $newsCatId = $data["singleNews"]->getCategoryId();
-        $newsName = $data["singleNews"]->getName();
-        $newsMedia = $data["singleNews"]->getMediaId();
-        $newsContent = $data["singleNews"]->getContent();
+        $id = $data["singleNews"]["news"]->getId();
+        if(isset($id) && $id !== 0)
+        {
+            $newsId = $data["singleNews"]["news"]->getId();
+        }
+        else{
+            $newsId = 0;
+        }
+        
+        $newsCatId = $data["singleNews"]["news"]->getCategoryId();
+        $newsName = $data["singleNews"]["news"]->getName();
+        $newsMedia = $data["singleNews"]["news"]->getMediaId();
+        $newsContent = $data["singleNews"]["news"]->getContent();
+
+        // var_dump("fin de if isset data singleNews ligne 27 :");
+        // var_dump($newsId);
+        // var_dump($newsCatId);
+        // var_dump($newsName);
+        // var_dump($newsMedia);
+        // var_dump($newsContent);
     }
     
-    if($data["action"] === "create")
+    if(isset($data["singleRecipe"]["recipe"]) && !empty($data["singleRecipe"]["recipe"]))
+    {
+        // var_dump("début de if isset data singleRecipe ligne 54 :");
+        // var_dump($data["singleRecipe"]["recipe"]);
+        
+        $id = $data["singleNews"]["news"]->getId();
+        if(isset($id) && $id !== 0)
+        {
+            $newsId = $id;
+        }
+        else{
+            $newsId = 0;
+        }
+        
+        $newsCatId = $data["singleRecipe"]["recipe"]->getCategoryId();
+        $newsName = $data["singleRecipe"]["recipe"]->getName();
+        $newsMedia = $data["singleRecipe"]["recipe"]->getMediaId();
+        $newsContent = $data["singleRecipe"]["recipe"]->getContent();
+        $recipeId = $data["singleRecipe"]["recipe"]->getRecipeId();
+        $productId = $data["singleRecipe"]["recipe"]->getProductId();
+        $ingredients = $data["singleRecipe"]["recipe"]->getIngredients();
+        $steps = $data["singleRecipe"]["recipe"]->getSteps();
+        
+        // var_dump("fin de if isset data singleRecipe ligne 77 :");
+        // var_dump($newsId);
+        // var_dump($newsCatId);
+        // var_dump($newsName);
+        // var_dump($newsMedia);
+        // var_dump($newsContent);
+        // var_dump($recipeId);
+        // var_dump($productId);
+        // var_dump($ingredients);
+        // var_dump($steps);
+    }
+    
+    if($data["action"] === "createNews")
     {
     ?>
-        <form class="news" method="POST" action="/Projet_Accou-ferme/adminCreateNews">
+        <form id="adminNewsForm" method="POST" action="/Projet_Accou-ferme/adminCreateNews">
     <?php
     }
-    else if($data["action"] === "update")
+    else if($data["action"] === "createRecipe")
     {
     ?>
-        <form class="news" method="POST" action="/Projet_Accou-ferme/adminUpdateNews">
+        <form id="adminNewsForm" method="POST" action="/Projet_Accou-ferme/adminCreateRecipe">
+    <?php
+    }    else if($data["action"] === "update")
+    {
+    ?>
+        <form id="adminNewsForm" method="POST" action="/Projet_Accou-ferme/adminUpdateNews">
     <?php
     }
     else if($data["action"] === "delete")
     {
     ?>
-        <form class="news" method="POST" action="/Projet_Accou-ferme/adminDeleteNews">
+        <form id="adminNewsForm" method="POST" action="/Projet_Accou-ferme/adminDeleteNews">
     <?php        
     }
     ?>
@@ -60,7 +117,19 @@
         }
         ?>
         >
-        <select class="selectNews" name="category_id">
+        
+        <input type="hidden" name="tokenAdminNews" 
+        <?php
+        if(isset($token))
+        {
+        ?>
+            value="<?= $token ?>" 
+        <?php
+        }
+        ?>
+        >
+        
+        <select id="selectNews" name="category_id">
             <option value="0">Selectionner une catégorie</option>
 
             <?php
@@ -81,9 +150,9 @@
             }
             ?>
         </select>
-
-        <label for="name">Titre</label>  
-        <input class="newsTitle" type="text" name="name" 
+        
+        <label id="newsTitleLabel" for="name">Titre</label>  
+        <input id="newsTitle" type="text" name="name" 
         <?php
         if(isset($newsName))
         {
@@ -94,8 +163,8 @@
         ?>
         >
 
-        <label for="content">Contenu</label>  
-        <input class="newsContent" type="text" name="content"
+        <label id="newsContentLabel" for="content">Contenu</label>  
+        <input id="newsContent" type="text" name="content"
         <?php
         if(isset($newsContent))
         {
@@ -106,39 +175,99 @@
         ?>
         >
 
-        <label for="media_id">Image</label>
-        <input class="mediaId" type="number" name="media_id"
         <?php
-        if(isset($newsMedia))
+        if(isset($newsCatId) && $newsCatId === 3 || $data["action"] === "createRecipe")
         {
         ?>
-            value="<?= $newsMedia ?>" 
+        
+        <select id="selectProduct" name="product_id">
+            <option value="0">Selectionner un produit</option>
+
+            <?php
+            foreach($data["allProducts"] as $key => $product)
+            {
+            ?>
+                <option value="<?= $product["id"]; ?>"
+                <?php
+                if((isset($productId)) && $product["id"] === $productId)
+                {
+                ?>
+                    selected
+                <?php
+                }
+                ?>
+                > <?=$product["name"]; ?> </option>
+            <?php
+            }
+            ?>
+        </select>
+        
+        <input type="hidden" name="recipeId"
+        <?php
+        if(isset($recipeId))
+        {
+        ?>
+            value="<?= $recipeId ?>" 
+        <?php
+        }
+        ?>
+        >
+
+        <label id="newsIngredientsLabel" for="ingredients">Ingrédients</label>  
+        <input id="newsIngredients" type="text" name="ingredients"
+        <?php
+        if(isset($ingredients))
+        {
+        ?>
+            value="<?= $ingredients ?>" 
         <?php
         }
         ?>
         >
         
+        <label id="newsStepsLabel" for="steps">Etapes</label>  
+        <input id="newsSteps" type="text" name="steps"
+        <?php
+        if(isset($steps))
+        {
+        ?>
+            value="<?= $steps ?>" 
+        <?php
+        }
+        ?>
+        >
+        
+        <?php
+        }
+        ?>
+        
     <?php
-    if($data["action"] === "create")
+    if($data["action"] === "createNews")
     {
     ?>
-        <button type"submit" value="create" >Créer</button>
+        <button id="adminCrudNewsButton" type"submit" value="createNews" >Créer une actu</button>
+    <?php
+    }
+    else if($data["action"] === "createRecipe")
+    {
+    ?>
+        <button id="adminCrudNewsButton" type"submit" value="createRecipe" >Créer une recette</button>
     <?php
     }
     else if($data["action"] === "update")
     {
     ?>
-
-        <button type"submit" value="update" >Modifier</button>
+        <button id="adminCrudNewsButton" type"submit" value="update" >Modifier</button>
     <?php
     }
     else if($data["action"] === "delete")
     {
     ?>
-        <button type"submit" value="delete" >Supprimer</button>
+        <button id="adminCrudNewsButton" type"submit" value="delete" >Supprimer</button>
     <?php
     }
     ?>
 
     </form>
 
+</main>

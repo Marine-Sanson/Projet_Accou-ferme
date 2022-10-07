@@ -3,6 +3,12 @@
 class VarietyManager extends AbstractManager
 {
     
+    /**
+     * reçoit une Variety l'insère dans la base de données
+     * @param une Variety
+     * @return void
+     */
+
     public function createVariety(Variety $variety) : void
     {
         if($variety->getAvailablity())
@@ -47,17 +53,29 @@ class VarietyManager extends AbstractManager
         $query->execute($parameters);
     }
     
-    public function getVarietyId(string $varietyName) : array
-    {
-        $query = $this->db->prepare('SELECT id FROM varieties WHERE varieties.name = :name');
-        $parameters = [
-            'name' => $varietyName
-        ];
-        $query->execute($parameters);
-        $varietyId = $query->fetch(PDO::FETCH_ASSOC);
+    /**
+     * va chercher un id de Variety d'après son nom
+     * @param $varietyName
+     * @return void
+     */
+
+    // public function getVarietyId(string $varietyName) : array
+    // {
+    //     $query = $this->db->prepare('SELECT id FROM varieties WHERE varieties.name = :name');
+    //     $parameters = [
+    //         'name' => $varietyName
+    //     ];
+    //     $query->execute($parameters);
+    //     $varietyId = $query->fetch(PDO::FETCH_ASSOC);
         
-        return $varietyId;
-    }
+    //     return $varietyId;
+    // }
+    
+    /**
+     * va chercher toutes les variétés qui dépendent d'un produit d'après le nom de ce produit
+     * @param $productName
+     * @return un array avec les variétés
+     */
     
     public function getVarietyByProduct($productName) :array
     {
@@ -71,6 +89,12 @@ class VarietyManager extends AbstractManager
         
     }
     
+    /**
+     * va chercher toutes les variétés et le nom du produit dont elles dépendent
+     * @param 
+     * @return un array avec toutes les variétés et le nom du produit
+     */
+    
     public function getAllVarieties() :array
     {
         $query = $this->db->prepare("SELECT varieties.id, varieties.product_id, varieties.name, varieties.season_start, varieties.season_end, varieties.description, varieties.media_id, varieties.availablity, varieties.offer, varieties.quantity_available, varieties.units, varieties.price, products.name AS product_name FROM varieties JOIN products ON products.id = varieties.product_id ");
@@ -81,6 +105,12 @@ class VarietyManager extends AbstractManager
         
         return $varieties;
     }
+    
+    /**
+     * va chercher une variété d'après son id
+     * @param $id
+     * @return une Variety
+     */
     
     public function getVarietyById(int $id) : Variety
     {
@@ -109,6 +139,12 @@ class VarietyManager extends AbstractManager
         return $variety;
     }
     
+    /**
+     * va chercher toutes les Variety disponibles et le nom du produit dont elles dépendent
+     * @param 
+     * @return un array avec les varietés concernées
+     */
+    
     public function getAllAvailableVarieties() :array{
         $query = $this->db->prepare('SELECT products.name AS product_name, varieties.id, varieties.name, varieties.media_id, varieties.quantity_available, varieties.offer, varieties.units, varieties.price FROM varieties JOIN products ON varieties.product_id = products.id WHERE varieties.quantity_available > 0 ');
         $query->execute();
@@ -116,6 +152,12 @@ class VarietyManager extends AbstractManager
         
         return $allAvailableVarieties;
     }
+    
+    /**
+     * va chercher toutes les Variety disponibles
+     * @param 
+     * @return un array avec les varietés concernées
+     */
     
     public function getAvailableVariety() :array
     {
@@ -126,14 +168,27 @@ class VarietyManager extends AbstractManager
         return $availableVariety;
     }
     
-    public function getOfferVariety() :array
+    /**
+     * va chercher 3 Variety pour la section produits du moment
+     * @param 
+     * @return un array avec les varietés concernées
+     */
+    
+    public function getOfferVarieties() :array
     {
-        $query = $this->db->prepare('SELECT product_id, name, quantity_available, units, price FROM varieties WHERE varieties.offer = 1');
+        $query = $this->db->prepare('SELECT product_id, name, description, media_id, quantity_available, units, price FROM varieties WHERE varieties.offer = 1 LIMIT 3');
         $query->execute();
         $offerVariety = $query->fetchAll(PDO::FETCH_ASSOC);
         
         return $offerVariety;
-    }    
+    }
+    
+    /**
+     * met à jour une Variety
+     * @param Variety
+     * @return
+     */
+    
     public function updateVariety(Variety $variety) : void
     {
         if($variety->getAvailablity())
@@ -177,12 +232,32 @@ class VarietyManager extends AbstractManager
             'price' => $variety->getPrice()
         ];
         $query->execute($parameters);
-
     }
+    
+    /**
+     * reçoit un id de Media et le met à jour sur la variété concernée
+     * @param $mediaId, $varietyId
+     * @return
+     */
+    
+    public function updateVarietyMedia(int $mediaId, int $varietyId) : void
+    {
+        $query = $this->db->prepare('UPDATE varieties SET media_id = :media_id WHERE id = :id');
+        $parameters = [
+            'id' => $varietyId,
+            'media_id' => $mediaId
+        ];
+        $query->execute($parameters);
+    }
+    
+    /**
+     * supprime une Variety
+     * @param Variety
+     * @return
+     */
     
     public function deleteVariety(Variety $variety) : void
     {
-        
         $query = $this->db->prepare('DELETE FROM varieties WHERE varieties.id = :id');
         $parameters = [
             'id' => $variety->getId()

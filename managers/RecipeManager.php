@@ -3,29 +3,33 @@
 class RecipeManager extends AbstractManager
 {
     
-    public function createRecipe(Recipe $recipe) : Recipe
+    /**
+     * reçoit une Recipe et la crée dans la base de données
+     * @param Recipe
+     * @return
+     */
+    
+    public function createRecipe(Recipe $recipe) : void
     {
-        $query = $this->db->prepare('INSERT INTO recipes ( news_id, category_id, name, content, product_id, ingredients, steps ) VALUES ( :news_id, :category_id, :name, :content, :product_id, :ingredients, :steps )');
+        $query = $this->db->prepare('INSERT INTO recipes ( news_id, product_id, ingredients, steps ) VALUES ( :news_id, :product_id, :ingredients, :steps )');
         $parameters = [
-            'news_id' => $newsId->getNewsId,
-            'category_id' => $categoryId->getCategoryId(),
-            'name' => $name->getName(),
-            'content' => $content->getContent,
-            'product_id' => $productId->getProductId(),
-            'ingredients' => $ingredients->getIngredients(),
-            'steps' => $steps->getSteps()
+            'news_id' => $recipe->getNewsId(),
+            'product_id' => $recipe->getProductId(),
+            'ingredients' => $recipe->getIngredients(),
+            'steps' => $recipe->getSteps()
         ];
         $query->execute($parameters);
-        
-        $recipe = [];
-
-        return $recipe;
     }
+    
+    /**
+     * va chercher l'id d'une Recipe d'après son nom
+     * @param $name
+     * @return id
+     */
     
     public function getRecipeId(string $name) : int
     {
-        
-        $query = $this->db->prepare('SELECT id FROM recipes WHERE recipe.name = :name');
+        $query = $this->db->prepare('SELECT recipe_id FROM recipes WHERE recipes.name = :name');
         $parameters = [
             'name' => $name
         ];
@@ -37,81 +41,110 @@ class RecipeManager extends AbstractManager
         return $recipe['id'];
     }
     
-    public function getRecipeById(Recipe $id) : Recipe
+    /**
+     * va chercher tous les newsid des Recipe
+     * @param 
+     * @return un array avec les id
+     */
+
+    public function getAllNewsIds() : array
     {
-        $query = $this->db->prepare('SELECT news_id, category_id, name, media_id, content, product_id, ingredients, steps FROM recipes WHERE recipe.id = :id');
+        $query = $this->db->prepare('SELECT news_id FROM recipes');
+        $query->execute();
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
+        
+        return $result;
+    }
+    
+    /**
+     * va chercher une Recipe d'après une News
+     * @param News
+     * @return Recipe
+     */
+    
+    public function getRecipeByNews(News $newsDetail) : Recipe
+    {
+        $query = $this->db->prepare('SELECT recipe_id, product_id, ingredients, steps FROM recipes WHERE news_id = :news_id');
         $parameters = [
-            'id' => $id
+            'news_id' => $newsDetail->getId()
         ];
         $query->execute($parameters);
-        $result = $query->fetch(PDO::FETCH_ASSOC);
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
         
-        $recipe = [];
+        $newsId = $newsDetail->getId();
+        $categoryId = $newsDetail->getCategoryId();
+        $name = $newsDetail->getName();
+        $mediaId = $newsDetail->getMediaId();
+        $content = $newsDetail->getContent();
+        $recipeId = $result["0"]["recipe_id"];
+        $productId = $result["0"]["product_id"];
+        $ingredients = $result["0"]["ingredients"];
+        $steps = $result["0"]["steps"];
 
+        $recipe = new Recipe($recipeId, $newsId, $productId, $ingredients, $steps);
+        $recipe->setId($newsId);
+        $recipe->setCategoryId($categoryId);
+        $recipe->setName($name);
+        $recipe->setMediaId($mediaId);
+        $recipe->setContent($content);
+        
         return $recipe;
     }
+    
+    /**
+     * va chercher l'id d'une News d'après l'id de la Recipe
+     * @param News
+     * @return Recipe
+     */
     
     public function getNewsId(int $id) : int
     {
-        
-        $query = $this->db->prepare('SELECT news_id FROM recipes WHERE recipe.id = :id');
+        $query = $this->db->prepare('SELECT news_id FROM recipes WHERE recipe.recipe_id = :recipe_id');
         $parameters = [
-            'id' => $id
+            'recipe_id' => $id
         ];
         $query->execute($parameters);
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         
         $recipe = [];
 
-        return $recipe['id'];
+        return $recipe['recipe_id'];
     }
 
-    public function getRecipeByNewsId(int $newsId) : Recipe
+    /**
+     * met à jour une Recipe
+     * @param Recipe
+     * @return 
+     */
+
+    public function updateRecipe(Recipe $recipe) : void
     {
-        $query = $this->db->prepare('SELECT id, category_id, name, media_id, content, product_id, ingredients, steps FROM recipes WHERE recipe.news_id = :news_id');
+        $query = $this->db->prepare('UPDATE recipes SET product_id = :product_id, ingredients = :ingredients, steps = :steps WHERE recipe_id = :recipe_id');
         $parameters = [
-            'newsid' => $newsId
+            'recipe_id' => $recipe->getRecipeId(),
+            'product_id' => $recipe->getProductId(),
+            'ingredients' => $recipe->getIngredients(),
+            'steps' => $recipe->getSteps()
         ];
         $query->execute($parameters);
-        $result = $query->fetch(PDO::FETCH_ASSOC);
-        
-        $recipe = [];
-
-        return $recipe;
+        $result = $query->fetchAll(PDO::FETCH_ASSOC);
     }
-
     
-    public function updateRecipe(Recipe $recipe) : Recipe
-    {
-        $query = $this->db->prepare('UPDATE recipe SET news_id = :news_id, category_id = :category_id, name = :name, content = :content, product_id = :product_id, ingredients = :ingredients, steps = :steps FROM recipes WHERE recipe.name = :name');
-        $parameters = [
-            'news_id' => $newsId,
-            'category_id' => $categoryId,
-            'name' => $name,
-            'content' => $content,
-            'product_id' => $productId,
-            'ingredients' => $ingredients,
-            'steps' => $steps
-        ];
-        $query->execute($parameters);
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
-        
-        $recipe = [];
+    /**
+     * supprime une Recipe
+     * @param Recipe
+     * @return 
+     */
 
-        return $recipe;
-    }
     
     public function deleteRecipe(Recipe $recipe) : void
     {
-        
-        $query = $this->db->prepare('DELETE id, news_id, category_id, name, media_id, content, product_id, ingredients, steps FROM varieties WHERE recipe.name = :name');
+        $query = $this->db->prepare('DELETE FROM recipes WHERE recipe_id = :recipe_id');
         $parameters = [
-            'name' => $name
+            'recipe_id' => $recipe->getRecipeId()
         ];
         $query->execute($parameters);
-        $result = $query->fetchAll(PDO::FETCH_ASSOC);
     }
-    
 }
 
 ?>

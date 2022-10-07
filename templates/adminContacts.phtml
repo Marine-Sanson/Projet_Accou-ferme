@@ -4,9 +4,10 @@
     
     <h1>adminContacts</h1>
     
-    <h2>Voir les messages</h2>
+    <h2>Messages reçus</h2>
     
     <section>
+        <ul id="messagesUl">
     
         <?php
         
@@ -22,23 +23,25 @@
         foreach($messages as $key => $message)
         {
         ?>
-            <article class="messages">
-                <p>id : <?= $message["id"] ?> </p>
-                <h3>nom : <?= $message["name"] ?> prénom : <?= $message["first_name"] ?> </h3>
-                <p>email : <?= $message["email"] ?> </p>
-                <p>tel :  <?= $message["tel"] ?> </p>
-                <p>message : <?= $message["message"] ?> </p>
-                <p>date : <?= $message["date"] ?> </p>
-                <form id="contactForm" method="POST" action="/Projet_Accou-ferme/closeMessage">
-                    <input type="hidden" name="answered_id" value=" <?= $message["id"] ?> " />
-                    <button type="submit" class="button">Répondu</button>
-                </form>
-                
-            </article>
+            <li class="messagesLi">
+                <article class="messagesArticles">
+                    <h3><span class="messagesName">nom : <?= $message["name"] ?></span><span class="messagesFirstName">prénom : <?= $message["first_name"] ?></span></h3>
+                    <p class="messagesId">id : <?= $message["id"] ?> </p>
+                    <p class="messagesEmail">email : <?= $message["email"] ?> </p>
+                    <p class="messagesTel">tel :  <?= $message["tel"] ?> </p>
+                    <p class="messagesContent">message : <?= $message["message"] ?> </p>
+                    <p class="messagesDate">date : <?= $message["date"] ?> </p>
+                    <form class="contactForm" method="POST" action="/Projet_Accou-ferme/closeMessage">
+                        <input type="hidden" name="answered_id" value=" <?= $message["id"] ?> " />
+                        <button class="contactFormButton" type="submit" class="button">Répondu</button>
+                    </form>
+                    
+                </article>
+            </li>
         <?php
         }
         ?>
-        
+        </ul>
     </section>
     
 </main>

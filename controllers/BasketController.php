@@ -52,10 +52,7 @@ class BasketController extends AbstractController
      */
     public function basketUpdate(array $post) :void
     {
-        // Pour pouvoir vider le panier pour test
-        // A ENLEVER ***************************
-        // $_SESSION["basket"]=[];
-        
+
         if(!is_array($_SESSION["basket"]))
         {
             $tmp = $this->basketToArray($_SESSION["basket"]);

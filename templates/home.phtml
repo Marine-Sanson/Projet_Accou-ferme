@@ -25,16 +25,182 @@
         </section>
         
         <section id="homeProducts">
+            <h2>Nos produits du moment</h2>
             
+            <?php
+            foreach($data["offers"] as $key => $offer)
+            {
+            ?>
+            <article class="card">
+                <header class="homeProductsHeader">
+                    <h3>
+                        <?= $offer[0]['product_name']; ?>
+                    </h3>
+                    <h4>
+                        <?= $offer['name']; ?>
+                    </h4>
+                </header>
+                <main class="homeProductsMain">
+                    <?php
+                    if(isset($offer[1]["media"]))
+                    {
+                        $mediaUrl = $offer[1]["media"]->getUrl();
+                        $mediaAlt = $offer[1]["media"]->getAlt();
+                    ?>
+                        <figure>
+                            <img src="<?= $mediaUrl; ?> " alt="<?= $mediaAlt; ?> " />
+                        </figure>
+                    <?php
+                    }
+                    else
+                    {
+                    ?>
+                        <figure>
+                            <img src="./assets/img/varieties/panierVide.jpg" alt="Photo non disponible" />
+                        </figure>
+                    <?php
+                    }
+                    ?>
+                    <p>
+                        <?= $offer['description']; ?>
+                    </p>
+                </main>
+                <footer class="homeProductsFooter">
+                    <p>
+                        <?= $offer['price']; ?>€ / <?= $offer['units']; ?>
+                    </p>
+                </footer>
+            </article>
+            <?php
+            }
+            ?>
+            
+            <button>
+                <a href="/Projet_Accou-ferme/produits" title="Produits">Voir tous nos produits</a>
+            </button>
             
         </section>
         
         <section id="homeNews">
             
+            <h2>Dernière actu</h2>
+            
+            <?php
+            $lastNews = $data["lastNews"]["news"];
+            
+            $lastNewsId = $lastNews->getId();
+            $lastNewsCategoryId = $lastNews->getCategoryId();
+            $lastNewsName = $lastNews->getName();
+            $lastNewsMediaId = $lastNews->getMediaId();
+            $lastNewsContent = $lastNews->getContent();
+            
+            $lastNewsMedia = $data["lastNews"]["media"];
+            $lastNewsMediaUrl = $lastNewsMedia->getUrl();
+            $lastNewsMediaAlt = $lastNewsMedia->getAlt();
+            ?>
+            
+            <article class="lastNewsArticle card" data-category="<?= $lastNewsCategoryId; ?>">
+                <header class="newsHeader">
+                    <h3> <?= $lastNewsName; ?> </h3>
+                </header>
+                <main class="lastNewsMain">
+                    <?php
+                    if(!is_null($lastNewsMedia))
+                    {
+                        ?>
+                        <figure class="lastNewsImg">
+                            <img src="<?= $lastNewsMediaUrl; ?>" alt="<?= $lastNewsMediaAlt; ?>" />
+                        </figure>
+                        <?php
+                    }
+                    else
+                    {
+                       ?>
+                        <figure class="lastNewsImg">
+                            <img src="./assets/img/news/news.jpg" alt="Photo non disponible" />
+                        </figure>
+                    <?php 
+                    }
+                ?>
+                    
+                    <p class="lastNewsContent"> <?= $lastNewsContent; ?> </p>
+                </main>
+                <footer  class="lastNewsFooter">
+                    <form class="lastNewsButton" method="POST" action="/Projet_Accou-ferme/actus_show/<?= $lastNewsId ?>">
+                        <input type="hidden" name="id" value="<?= $lastNewsId ?>" />
+                        <button>
+                            En savoir plus
+                        </button>
+                    </form>
+                </footer>
+            </article>
+
+            <h2>Dernière recette</h2>
+            
+            <?php
+            $lastRecipe = $data["lastRecipe"]["recipe"];
+            
+            $lastRecipeId = $lastRecipe->getId();
+            $lastRecipeCategoryId = $lastRecipe->getCategoryId();
+            $lastRecipeName = $lastRecipe->getName();
+            $lastRecipeMediaId = $lastRecipe->getMediaId();
+            $lastRecipeContent = $lastRecipe->getContent();
+            $lastRecipeProductId = $lastRecipe->getProductId();
+            $lastRecipeIngredients = $lastRecipe->getIngredients();
+            $lastRecipeSteps = $lastRecipe->getSteps();
+            
+            $lastRecipeMedia = $data["lastRecipe"]["media"];
+            $lastRecipeMediaUrl = $lastRecipeMedia->getUrl();
+            $lastRecipeMediaAlt = $lastRecipeMedia->getAlt();
+            ?>
+            
+            <article class="lastRecipeArticle card" data-category="<?= $lastRecipeCategoryId; ?>">
+                <header class="lastRecipeHeader">
+                    <h3> <?= $lastRecipeName; ?> </h3>
+                </header>
+                <main class="lastRecipeMain">
+                    <?php
+                    if(!is_null($lastRecipeName))
+                    {
+                        ?>
+                        <figure class="lastRecipeImg">
+                            <img src="<?= $lastRecipeMediaUrl; ?>" alt="<?= $lastRecipeMediaAlt; ?>" />
+                        </figure>
+                        <?php
+                    }
+                    else
+                    {
+                       ?>
+                        <figure class="lastRecipeImg">
+                            <img src="./assets/img/news/news.jpg" alt="Photo non disponible" />
+                        </figure>
+                    <?php 
+                    }
+                ?>
+                    
+                    <p class="lastRecipeContent"> <?= $lastRecipeContent; ?> </p>
+                    
+                    <p class="lastRecipeIngredients"> <?= $lastRecipeIngredients; ?> </p>
+                    
+                    <p class="lastRecipeSteps"> <?= $lastRecipeSteps; ?> </p>
+                    
+                </main>
+                <footer  class="lastRecipeFooter">
+                    <form class="lastRecipeButton" method="POST" action="/Projet_Accou-ferme/actus_show/<?= $lastRecipeId ?>">
+                        <input type="hidden" name="id" value="<?= $lastRecipeId ?>" />
+                        <button>
+                            Voir la recette
+                        </button>
+                    </form>
+                </footer>
+            </article>
+            <button>
+                <a href="/Projet_Accou-ferme/actus" title="news">Voir toutes nos actus et recettes</a>
+            </button>  
             
         </section>
         
-        <section idhomeContact>
+        <section id="homeContact">
             
             <?php
             require "./templates/contact.phtml";

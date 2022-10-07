@@ -1,8 +1,27 @@
 <main id="adminMedias">
     
     <?php require "_adminNav.phtml"; ?>
+
+    <h1>Gestion des images</h1>
+    <h2>Téléchargement d'images</h2>
     
-    <h1>Téléchargement d'images</h1>
+    <?php
+    if(isset($data["errors"]) && $data["errors"] !=="")
+    {
+        foreach($data["errors"] as $key => $error)
+        {
+    ?>
+        <p class="errors"> <?= $error ?></p>
+    <?php
+        }
+    }
+    if(isset($data["validation"]) && count($data["validation"]) > 0)
+    {
+        ?>
+        <p class="validation"> <?= $data["validation"][0] ?> </p>
+        <?php
+    }
+    ?>
     
     <form action="/Projet_Accou-ferme/adminMedias" method="post" enctype="multipart/form-data">
             Choisi une image à télécharger:
@@ -11,5 +30,24 @@
         <input type="text" name="alt" id="fileAlt">
         <input type="submit" value="Upload Image" name="submit">
     </form>
+    
+    <h2>Suppression d'images</h2>
+    
+    <ul id="deleteNewsImg">
+        <?php
+        foreach($data["allMedias"] as $key => $media)
+        {
+        ?>
+            <li class="deleteNewsImageLi" >
+                <form class="deleteNewsImageForm" name="deleteImage" method="POST" action="/Projet_Accou-ferme/deleteImage">
+                    <img src="<?= $media["url"]; ?>" alt=" <?= $media["alt"]; ?>" />
+                    <input type="hidden" name="mediaId" value=" <?= $media["id"] ?>" />
+                    <input class="deleteNewsImageButton button" type="submit" name="deleteImage" value="Supprimer cette image" />
+                </form>
+            </li>
+        <?php
+        }
+        ?>
+    </ul>
     
 </main>

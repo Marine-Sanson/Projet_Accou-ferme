@@ -1,24 +1,23 @@
-/* ********** _adminMedia ********** */
+/* ********** _chooseImage ********** */
 
-#deleteNewsImg{
+.updateImage{
     display:grid;
-    grid-template-columns:repeat(5,1fr);
+    grid-template-columns:repeat(5, 1fr);
     gap:1rem;
 }
 
-.deleteNewsImageForm{
+.updateImageForm{
     display:grid;
     grid-template-rows:auto 1fr;
 }
 
-.deleteNewsImageForm > img{
+.updateImage > img{
     max-width:18vw;
     grid-row:1;
     margin:auto;
 }
 
-.deleteNewsImageButton{
+.updateImageButton{
     grid-row:2;
     margin:1rem auto;
 }
-

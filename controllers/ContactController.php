@@ -1,19 +1,38 @@
 <?php
 
-require "./models/Contact.php";
-
 class ContactController extends AbstractController
 {
+    
+    /**
+     * va chercher le template Contact
+     * @param 
+     * @return void
+     */
+
     public function index() :void
     {
         $template = "contact";
         $this->render($template);
     }
     
+    /**
+     * reçoit le formulaire de contact, le vérifie et si tout est bon l'insert dans la base de données
+     * sinon renvoie un tableau d'erreurs
+     * @param $post
+     * @return void
+     */
+    
     public function sentMessage(array $post) :void
     {
         if(isset($_POST))
         {
+            // $tokenAdminNews = trim($post["tokenAdminHome"]);
+            
+            // if($tokenAdminNews !== $_SESSION["tokenForAdminHome"])
+            // {
+            //     $errors[] = "une erreur s'est produite lors de l'envoi du formulaire";
+            // }
+            
             $errors = [];
             $validation = [];
             

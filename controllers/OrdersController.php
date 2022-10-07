@@ -1,9 +1,22 @@
 <?php
 
-require "./models/Order.php";
-
 class OrdersController extends AbstractController
 {
+    
+    // 
+    // 
+    //  ----------- A commenter -----------
+    // 
+    // 
+    // 
+    // 
+    // 
+    /**
+     * va chercher une news ou une recette par son id, puis son image s'il y en a une et les renvoi pour affichage
+     * @param id de la news ou de la recette
+     * @return void
+     */
+
     public function index() :void
     {
         // $orderVarieties = $this->BasketController->buttonAddRemove();

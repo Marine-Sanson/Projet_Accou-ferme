@@ -92,8 +92,7 @@ button,
   color: rgb(255, 255, 255);
   background-color: rgb(204, 28, 0);
   text-align: center;
-  margin: 1rem auto;
-  padding: 0.5rem;
+  margin: auto;
   border: 2px solid rgb(255, 255, 255);
   border-radius: 4px;
   box-shadow: 5px 5px 5px rgb(0, 0, 0);
@@ -115,11 +114,21 @@ fieldset {
 }
 
 .errors {
-  background-color: red;
+  background-color: rgb(204, 28, 0);
+  width: fit-content;
+  padding: 1rem;
+  margin: 2rem auto;
+}
+
+.errors > li {
+  color: rgb(255, 255, 255);
 }
 
 .validation {
   background-color: green;
+  width: fit-content;
+  padding: 1rem;
+  margin: 2rem auto;
 }
 
 /* Dark mode */
@@ -165,9 +174,7 @@ label {
   }
 }
 /* HEADER */
-/* **********
-Header
-********** */
+/* ********** Header ********** */
 body > header {
   background-color: rgb(204, 28, 0);
   color: rgb(10, 36, 20);
@@ -291,9 +298,7 @@ body > header a:hover {
   }
 }
 /* FOOTER */
-/* **********
-footer
-********** */
+/* ********** Footer ********** */
 /* Général */
 #footer > p {
   margin: 1rem;
@@ -400,9 +405,7 @@ footer
   }
 }
 /* LAYOUTS */
-/* **********
-    Home
-********** */
+/* ********** Home ********** */
 @media (min-width: 0px) and (max-width: 767.99px) {
   #mainHome > figure {
     max-width: 80vw;
@@ -413,6 +416,166 @@ footer
     background-size: cover;
     background-position: right;
     margin: auto;
+  }
+  #homeProducts > article {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr auto auto 1fr;
+    margin: 1rem;
+  }
+  .homeProductsHeader {
+    grid-row: 1/3;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+  }
+  .homeProductsHeader > h3 {
+    grid-row: 1;
+    margin: auto;
+  }
+  .homeProductsHeader > h4 {
+    grid-row: 2;
+    margin: auto;
+  }
+  .homeProductsMain {
+    grid-row: 3/5;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, auto);
+  }
+  .homeProductsMain > figure {
+    grid-row: 1;
+    margin: 1.5rem;
+  }
+  .homeProductsMain > p {
+    grid-row: 2;
+    margin: auto 0.8rem;
+  }
+  .homeProductsFooter {
+    grid-row: 5;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+  .homeProductsFooter > p {
+    grid-row: 1;
+    text-align: right;
+  }
+  #homeProducts > button > a {
+    color: rgb(255, 255, 255);
+  }
+  #homeProducts > button > a:hover {
+    color: rgb(204, 28, 0);
+  }
+  .lastNewsArticle {
+    display: grid;
+    grid-template-columns: 80vw;
+    grid-template-rows: 0.7fr 4fr auto 0.7fr 0.7fr;
+    gap: 0.5rem;
+    margin: 2rem auto;
+  }
+  .lastNewsHeader {
+    grid-row: 1;
+  }
+  .lastNewsMain {
+    grid-row: 2/4;
+    justify-content: center;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 80vw;
+    grid-template-rows: repeat(2, auto);
+    gap: 1rem;
+  }
+  .lastNewsImg {
+    display: grid;
+    max-width: 60vw;
+    justify-content: center;
+    margin: auto;
+    grid-row: 1;
+  }
+  .lastNewsImg > img {
+    padding: 1rem;
+    justify-content: center;
+    margin: auto;
+  }
+  .lastNewsContent {
+    margin: auto;
+    padding: 1rem;
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .lastNewsFooter {
+    grid-row: 4/6;
+    justify-content: center;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 80vw;
+    grid-template-rows: auto;
+    gap: 1rem;
+  }
+  .lastNewsButton {
+    grid-row: 1;
+    margin: auto;
+  }
+  .lastRecipeArticle {
+    display: grid;
+    grid-template-columns: 80vw;
+    grid-template-rows: 0.7fr 4fr auto 0.7fr 0.7fr;
+    gap: 0.5rem;
+    margin: 2rem auto;
+  }
+  .lastRecipeHeader {
+    grid-row: 1;
+  }
+  .lastRecipeMain {
+    grid-row: 2/4;
+    justify-content: center;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 80vw;
+    grid-template-rows: repeat(2, auto);
+    gap: 1rem;
+  }
+  .lastRecipeImg {
+    display: grid;
+    max-width: 60vw;
+    justify-content: center;
+    margin: auto;
+    grid-row: 1;
+  }
+  .lastRecipeImg > img {
+    padding: 1rem;
+    justify-content: center;
+    margin: auto;
+  }
+  .lastRecipeContent {
+    margin: auto;
+    padding: 1rem;
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .lastRecipeFooter {
+    grid-row: 4/6;
+    justify-content: center;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 80vw;
+    grid-template-rows: auto;
+    gap: 1rem;
+  }
+  .lastRecipeButton {
+    grid-row: 1;
+    margin: auto;
+  }
+  #homeNews > button {
+    display: grid;
+    margin: auto;
+  }
+  #homeNews > button > a {
+    color: rgb(255, 255, 255);
+  }
+  #homeNews > button > a:hover {
+    color: rgb(204, 28, 0);
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -425,6 +588,206 @@ footer
     background-size: cover;
     background-position: right;
     margin: auto;
+  }
+  #homeProducts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr auto 1fr;
+    gap: 0.4rem;
+  }
+  #homeProducts > h2 {
+    grid-row: 1;
+  }
+  #homeProducts > article {
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3rem 3rem auto auto 3rem;
+    margin: 1rem;
+  }
+  .homeProductsHeader {
+    grid-row: 1/3;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+  }
+  .homeProductsHeader > h3 {
+    grid-row: 1;
+    margin: auto;
+  }
+  .homeProductsHeader > h4 {
+    grid-row: 2;
+    margin: auto;
+  }
+  .homeProductsMain {
+    grid-row: 3/5;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, auto);
+  }
+  .homeProductsMain > figure {
+    grid-row: 1;
+    max-width: 80%;
+    margin: 1.5rem;
+  }
+  .homeProductsMain > p {
+    grid-row: 2;
+    margin: auto 1rem;
+  }
+  .homeProductsFooter {
+    grid-row: 5;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+  .homeProductsFooter > p {
+    grid-row: 1;
+    text-align: right;
+  }
+  #homeProducts > button > a {
+    color: rgb(255, 255, 255);
+  }
+  #homeProducts > button > a:hover {
+    color: rgb(204, 28, 0);
+  }
+  #homeProducts > button {
+    grid-column: 2;
+    grid-row: 3;
+    margin: auto;
+  }
+  .lastNewsArticle {
+    display: grid;
+    grid-template-columns: repeat(2, 40%);
+    grid-template-rows: 0.7fr 4fr auto 0.7fr;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem auto;
+  }
+  .lastNewsHeader {
+    grid-column: 1/3;
+    grid-row: 1;
+  }
+  .lastNewsMain {
+    grid-column: 1/3;
+    grid-row: 2;
+    justify-content: center;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 40%);
+    grid-template-rows: 4fr auto;
+    gap: 1rem;
+  }
+  .lastNewsImg {
+    display: grid;
+    max-width: 60vw;
+    text-align: center;
+    margin: auto;
+    grid-column: 1/3;
+    grid-row: 1;
+  }
+  .lastNewsImg > img {
+    padding: 1rem;
+    text-align: center;
+    margin: auto;
+  }
+  .lastNewsContent {
+    margin: auto;
+    padding: 1rem;
+    grid-column: 1/3;
+    grid-row: 2;
+  }
+  .lastNewsFooter {
+    grid-column: 1/3;
+    grid-row: 4;
+    justify-content: center;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 30vw);
+    grid-template-rows: 0.7fr;
+    gap: 1rem;
+  }
+  .lastNewsButton {
+    grid-column: 1/3;
+    grid-row: 1;
+    margin: auto;
+  }
+  .lastRecipeArticle {
+    display: grid;
+    grid-template-columns: repeat(2, 40%);
+    grid-template-rows: 0.7fr 4fr auto 0.7fr;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem auto;
+  }
+  .lastRecipeHeader {
+    grid-column: 1/3;
+    grid-row: 1;
+  }
+  .lastRecipeMain {
+    grid-column: 1/3;
+    grid-row: 2;
+    justify-content: center;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 40%);
+    grid-template-rows: 4fr auto auto auto;
+    gap: 1rem;
+  }
+  .lastRecipeImg {
+    display: grid;
+    max-width: 60vw;
+    text-align: center;
+    margin: auto;
+    grid-column: 1/3;
+    grid-row: 1;
+  }
+  .lastRecipeImg > img {
+    padding: 1rem;
+    text-align: center;
+    margin: auto;
+  }
+  .lastRecipeContent {
+    margin: auto;
+    padding: 1rem;
+    grid-column: 1/3;
+    grid-row: 2;
+  }
+  .lastRecipeIngredients {
+    margin: auto;
+    padding: 1rem;
+    grid-column: 1/3;
+    grid-row: 3;
+  }
+  .lastRecipeSteps {
+    margin: auto;
+    padding: 1rem;
+    grid-column: 1/3;
+    grid-row: 4;
+  }
+  .lastRecipeFooter {
+    grid-column: 1/3;
+    grid-row: 4;
+    justify-content: center;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 30vw);
+    grid-template-rows: 0.7fr;
+    gap: 1rem;
+  }
+  .lastRecipeButton {
+    grid-column: 1/3;
+    grid-row: 1;
+    margin: auto;
+  }
+  #homeNews > button {
+    display: grid;
+    margin: auto;
+  }
+  #homeNews > button > a {
+    color: rgb(255, 255, 255);
+  }
+  #homeNews > button > a:hover {
+    color: rgb(204, 28, 0);
   }
 }
 @media (min-width: 992px) {
@@ -447,10 +810,205 @@ footer
   #mainHome > article {
     grid-column: 6/13;
   }
+  #homeProducts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr auto 1fr;
+    gap: 0.4rem;
+  }
+  #homeProducts > h2 {
+    grid-row: 1;
+  }
+  #homeProducts > article {
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 3rem 3rem auto auto 3rem;
+    margin: 1rem;
+  }
+  .homeProductsHeader {
+    grid-row: 1/3;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+  }
+  .homeProductsHeader > h3 {
+    grid-row: 1;
+    margin: auto;
+  }
+  .homeProductsHeader > h4 {
+    grid-row: 2;
+    margin: auto;
+  }
+  .homeProductsMain {
+    grid-row: 3/5;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, auto);
+  }
+  .homeProductsMain > figure {
+    grid-row: 1;
+    max-width: 80%;
+    margin: 1.5rem;
+  }
+  .homeProductsMain > p {
+    grid-row: 2;
+    margin: auto 1rem;
+  }
+  .homeProductsFooter {
+    grid-row: 5;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+  }
+  .homeProductsFooter > p {
+    grid-row: 1;
+    text-align: right;
+  }
+  #homeProducts > button > a {
+    color: rgb(255, 255, 255);
+  }
+  #homeProducts > button > a:hover {
+    color: rgb(204, 28, 0);
+  }
+  #homeProducts > button {
+    grid-column: 2;
+    grid-row: 3;
+    margin: auto;
+  }
+  #homeContact {
+    margin-top: 2rem;
+  }
+  .lastNewsArticle {
+    max-width: 90vw;
+    display: grid;
+    grid-template-columns: repeat(3, 27%);
+    grid-template-rows: 4rem auto 4rem;
+    gap: 1rem;
+    justify-content: center;
+    margin: 4rem auto;
+  }
+  .lastNewsHeader {
+    grid-column: 1/4;
+    grid-row: 1;
+  }
+  .lastNewsMain {
+    grid-column: 1/4;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 1rem;
+  }
+  .lastNewsImg {
+    display: grid;
+    max-width: 20vw;
+    justify-content: center;
+    margin: auto;
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .lastNewsImg > img {
+    padding: 1rem;
+    justify-content: center;
+    margin: auto;
+  }
+  .lastNewsContent {
+    padding: 1rem;
+    grid-column: 2/4;
+    grid-row: 1;
+  }
+  .lastNewsFooter {
+    grid-column: 1/4;
+    grid-row: 3;
+    justify-content: center;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 1rem;
+  }
+  .lastNewsButton {
+    grid-column: 1/4;
+    grid-row: 1;
+    margin: auto;
+  }
+  .lastRecipeArticle {
+    display: grid;
+    grid-template-columns: repeat(3, 27%);
+    grid-template-rows: 4rem auto 4rem 4rem 4rem;
+    gap: 1rem;
+    justify-content: center;
+    margin: 4rem auto;
+  }
+  .lastRecipeHeader {
+    grid-column: 1/4;
+    grid-row: 1;
+  }
+  .lastRecipeMain {
+    grid-column: 1/4;
+    grid-row: 2/5;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, auto);
+  }
+  .lastRecipeImg {
+    display: grid;
+    max-width: 20vw;
+    margin: auto;
+    grid-column: 1;
+    grid-row: 1;
+  }
+  .lastRecipeImg > img {
+    padding: 1rem;
+    justify-content: center;
+    margin: auto;
+  }
+  .lastRecipeContent {
+    padding: 1rem;
+    grid-column: 2/4;
+    grid-row: 1;
+  }
+  .lastRecipeIngredients {
+    padding: 1rem;
+    grid-column: 1/4;
+    grid-row: 2;
+  }
+  .lastRecipeSteps {
+    padding: 1rem;
+    grid-column: 1/4;
+    grid-row: 3;
+  }
+  .lastRecipeFooter {
+    grid-column: 1/4;
+    grid-row: 5;
+    justify-content: center;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto;
+    gap: 1rem;
+  }
+  .lastRecipeButton {
+    grid-column: 1/4;
+    grid-row: 1;
+    margin: auto;
+  }
+  #homeNews > button {
+    margin: auto;
+  }
+  #homeNews > button {
+    display: grid;
+    margin: auto;
+  }
+  #homeNews > button > a {
+    color: rgb(255, 255, 255);
+  }
+  #homeNews > button > a:hover {
+    color: rgb(204, 28, 0);
+  }
 }
-/* **********
-    About
-********** */
+/* ********** About ********** */
 @media (min-width: 0px) and (max-width: 767.99px) {
   #aboutMain > figure {
     max-width: 60vw;
@@ -511,9 +1069,7 @@ footer
     grid-row: 4;
   }
 }
-/* **********
-    Gallery
-********** */
+/* ********** Gallery ********** */
 @media (min-width: 0px) and (max-width: 767.99px) {
   #mainGallery > h1 {
     color: rgb(255, 255, 255);
@@ -577,9 +1133,7 @@ footer
     object-fit: cover;
   }
 }
-/* **********
-    Products
-********** */
+/* ********** Products ********** */
 @media (min-width: 0px) and (max-width: 767.99px) {
   .productName {
     text-align: left;
@@ -755,9 +1309,7 @@ footer
     display: block !important;
   }
 }
-/* **********
-    Basket
-********** */
+/* ********** Basket ********** */
 @media (min-width: 0px) and (max-width: 767.99px) {
   .availableVarietySection {
     display: grid;
@@ -948,9 +1500,7 @@ footer
     display: none;
   }
 }
-/* **********
-    News
-********** */
+/* ********** News ********** */
 @media (min-width: 0px) and (max-width: 767.99px) {
   #newsSection {
     margin: 1rem 6rem;
@@ -1013,10 +1563,10 @@ footer
     margin: auto;
   }
   #displayArticles article.hide {
-    display: none !important;
+    display: none;
   }
   #displayArticles article.show {
-    display: grid !important;
+    display: grid;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -1088,10 +1638,10 @@ footer
     margin: auto;
   }
   #displayArticles article.hide {
-    display: none !important;
+    display: none;
   }
   #displayArticles article.show {
-    display: grid !important;
+    display: grid;
   }
 }
 @media (min-width: 992px) {
@@ -1168,9 +1718,7 @@ footer
     display: grid;
   }
 }
-/* **********
-    Contact
-********** */
+/* ********** Contact ********** */
 @media (min-width: 0px) and (max-width: 767.99px) {
   #contact > p {
     max-width: 80vw;
@@ -1443,9 +1991,7 @@ label {
     margin: auto;
   }
 }
-/* **********
-    Admin
-********** */
+/* ********** Admin ********** */
 #adminForm > fieldset {
   display: grid;
   border: none;
@@ -1463,6 +2009,7 @@ label {
   margin: 1rem;
 }
 
+/* ********** 404 ********** */
 .page404 > img {
   justify-content: center;
   margin: auto;
@@ -1470,9 +2017,7 @@ label {
 }
 
 /* PARTIALS */
-/* **********
-    _update
-********** */
+/* ********** _update ********** */
 @media (min-width: 0px) and (max-width: 767.99px) {
   #update {
     width: 90vw;
@@ -1817,9 +2362,7 @@ label {
     display: grid;
   }
 }
-/* **********
-    _order
-********** */
+/* ********** _order ********** */
 @media (min-width: 0px) and (max-width: 767.99px) {
   #order {
     width: 80vw;
@@ -2233,12 +2776,14 @@ label {
     padding-top: 1rem;
   }
 }
+/* ********** Validation ********** */
 .validation > p,
 .validation > button {
   text-align: center;
   margin: 2rem auto;
 }
 
+/* ********** _adminMenu ********** */
 #adminMenu > nav > ul {
   display: flex;
   flex-direction: row;
@@ -2250,6 +2795,7 @@ label {
   margin: 1rem;
 }
 
+/* ********** _adminNav ********** */
 .adminNav > ul {
   display: flex;
   justify-content: center;
@@ -2261,13 +2807,543 @@ label {
   margin: 1rem;
 }
 
+/* ********** _adminProducts ********** */
+#adminProducts > #product {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+#product > h2 {
+  grid-row: 1;
+  grid-column: 1/3;
+}
+
+#adminCreateProductForm {
+  grid-row: 2;
+  grid-column: 1/2;
+}
+
+#adminDeleteProductForm {
+  grid-row: 2;
+  grid-column: 2/3;
+}
+
+#createVariety {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  gap: 1rem;
+}
+
+#createVariety > h2 {
+  grid-row: 1;
+  grid-column: 1;
+  display: grid;
+  justify-content: right;
+}
+
+#createVarietyForm {
+  grid-row: 1;
+  grid-column: 2;
+  display: grid;
+  justify-content: left;
+  margin: auto 1.5rem;
+}
+
+#updateVariety > ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+#updateVariety > ul {
+  grid-auto-flow: row dense;
+}
+
+.udVarietyLi {
+  margin: 0.5rem 0;
+}
+
+.udVariety {
+  max-width: 20vw;
+  margin: 0.5rem auto;
+  display: grid;
+  grid-template-rows: repeat(3, 3rem) 8rem 3rem;
+  gap: 1rem;
+  justify-content: center;
+  border: 2px solid rgb(204, 28, 0);
+}
+
+.udVariety > h3 {
+  grid-row: 1;
+  margin: auto;
+}
+
+.updateVarietyForm {
+  grid-row: 2;
+  margin: auto;
+}
+
+.deleteVarietyForm {
+  grid-row: 3;
+  margin: auto;
+}
+
+.udVarietyImg {
+  max-height: 8rem;
+  grid-row: 4;
+  margin: auto;
+}
+
+.changeVarietyImage {
+  grid-row: 5;
+  margin: auto;
+}
+
+.chooseVarietyImage {
+  grid-row: 5;
+  margin: auto;
+}
+
+/* ********** _adminCrudVariety ********** */
+#varietyForm {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+}
+
+#selectProductsForm {
+  grid-column: 1/7;
+  grid-row: 1;
+  margin: 1rem auto;
+}
+
+#varietyNameLabel {
+  grid-column: 7/9;
+  grid-row: 1;
+  margin: auto 1rem auto auto;
+}
+
+#varietyNameInput {
+  grid-column: 9/13;
+  grid-row: 1;
+  margin: auto auto auto 1rem;
+}
+
+#seasonStartLabel {
+  grid-column: 1/4;
+  grid-row: 2;
+  margin: auto 1rem auto auto;
+}
+
+#seasonStartInput {
+  grid-column: 4/7;
+  grid-row: 2;
+  margin: auto auto auto 1rem;
+}
+
+#seasonEndLabel {
+  grid-column: 7/10;
+  grid-row: 2;
+  margin: auto 1rem auto auto;
+}
+
+#seasonEndInput {
+  grid-column: 10/13;
+  grid-row: 2;
+  margin: auto auto auto 1rem;
+}
+
+#descriptionLabel {
+  grid-column: 1/4;
+  grid-row: 3;
+  margin: auto 1rem auto auto;
+}
+
+#descriptionTextarea {
+  width: 50vw;
+  height: 4rem;
+  grid-column: 4/13;
+  grid-row: 3;
+  margin: auto auto auto 1rem;
+}
+
+#productAvailablityLegend {
+  grid-column: 1/4;
+  grid-row: 4;
+  margin: auto 1rem auto auto;
+}
+
+#productAvailablity {
+  grid-column: 4/7;
+  grid-row: 4;
+  margin: auto auto auto 1rem;
+}
+
+#productOfferLegend {
+  grid-column: 7/10;
+  grid-row: 4;
+  margin: auto 1rem auto auto;
+}
+
+#productOffer {
+  grid-column: 10/13;
+  grid-row: 4;
+  margin: auto auto auto 1rem;
+}
+
+#quantityAvailableLabel {
+  grid-column: 1/3;
+  grid-row: 5;
+  margin: auto 0.5rem auto auto;
+}
+
+#quantityAvailableInput {
+  grid-column: 3/5;
+  grid-row: 5;
+  margin: auto auto auto 0.5rem;
+}
+
+#unitsLabel {
+  grid-column: 5/7;
+  grid-row: 5;
+  margin: auto 0.5rem auto auto;
+}
+
+#unitsInput {
+  grid-column: 7/9;
+  grid-row: 5;
+  margin: auto auto auto 0.5rem;
+}
+
+#priceLabel {
+  grid-column: 9/11;
+  grid-row: 5;
+  margin: auto 0.5rem auto auto;
+}
+
+#priceInput {
+  grid-column: 11/13;
+  grid-row: 5;
+  margin: auto auto auto 0.5rem;
+}
+
+#varietyFormButton {
+  grid-column: 1/13;
+  grid-row: 6/8;
+  margin: auto;
+}
+
+/* ********** _adminProducts ********** */
+.choseOrders {
+  text-align: center;
+}
+
+.choosenDay {
+  text-align: center;
+}
+
 #displayOrders > p {
   text-align: left;
   margin: 0.5rem;
 }
 
-#displayOrders > table {
-  margin-bottom: 2rem;
+.displayOrder > table {
+  margin: auto auto 2rem auto;
+}
+
+.displayOrder {
+  border: 1px solid rgb(204, 28, 0);
+  max-width: 45vw;
+}
+
+#displayOrders {
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.buttonTerminer {
+  text-align: center;
+  margin: 1rem;
+}
+
+/* ********** _adminNews ********** */
+#adminCategoryForm {
+  text-align: center;
+}
+
+#createNews {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+}
+
+#createNewsForm {
+  grid-row: 1;
+  grid-column: 2/3;
+  margin: auto;
+}
+
+#createRecipeForm {
+  grid-row: 1;
+  grid-column: 3/4;
+  margin: auto;
+}
+
+#updateNews {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.updateNewsLi {
+  max-width: 18vw;
+}
+
+.udNews {
+  display: grid;
+  grid-template-rows: 5rem repeat(2, 3rem) 8rem 3rem;
+  border: 2px solid rgb(204, 28, 0);
+}
+
+.udNews > h3 {
+  grid-row: 1;
+  margin: auto;
+}
+
+.updateNewsForm {
+  grid-row: 2;
+  margin: auto;
+}
+
+.deleteNewsForm {
+  grid-row: 3;
+  margin: auto;
+}
+
+.newsFormImg {
+  grid-row: 4;
+  padding: 0.4rem;
+  margin: auto;
+}
+
+.changeNewsImage {
+  grid-row: 5;
+  margin: auto;
+}
+
+.chooseNewsImage {
+  grid-row: 5;
+  margin: auto;
+}
+
+.udNews > p {
+  text-align: center;
+  padding: 0.5rem;
+  margin: auto;
+}
+
+/* ********** _adminMedia ********** */
+#deleteNewsImg {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.deleteNewsImageForm {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.deleteNewsImageForm > img {
+  max-width: 18vw;
+  grid-row: 1;
+  margin: auto;
+}
+
+.deleteNewsImageButton {
+  grid-row: 2;
+  margin: 1rem auto;
+}
+
+/* ********** _adminCrudNews ********** */
+#adminNewsForm > label {
+  display: grid;
+  justify-content: right;
+}
+
+#adminNewsForm > input {
+  display: grid;
+  justify-content: left;
+}
+
+#adminNewsForm {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr) auto repeat(4, 1fr);
+  gap: 1rem;
+  margin: auto;
+}
+
+#selectNews {
+  grid-column: 1/5;
+  grid-row: 1;
+  margin: auto;
+}
+
+#newsTitleLabel {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#newsTitle {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+#newsContentLabel {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+#newsContent {
+  grid-column: 4;
+  grid-row: 2;
+}
+
+#newsFormImg {
+  max-width: 20vw;
+  grid-column: 1/3;
+  grid-row: 3;
+  margin: auto;
+}
+
+#changeNewsImage {
+  grid-column: 3/5;
+  grid-row: 3;
+  margin: auto;
+}
+
+#chooseNewsImage {
+  grid-column: 3/5;
+  grid-row: 3;
+  margin: auto;
+}
+
+#mediaId {
+  grid-column: 3/5;
+  grid-row: 3;
+}
+
+#selectProduct {
+  grid-column: 1/5;
+  grid-row: 4;
+  margin: auto;
+}
+
+#newsIngredientsLabel {
+  grid-column: 1;
+  grid-row: 5;
+}
+
+#newsIngredients {
+  grid-column: 2;
+  grid-row: 5;
+}
+
+#newsStepsLabel {
+  grid-column: 3;
+  grid-row: 5;
+}
+
+#newsSteps {
+  grid-column: 4;
+  grid-row: 5;
+}
+
+#adminCrudNewsButton {
+  grid-column: 1/5;
+  grid-row: 6;
+}
+
+/* ********** _chooseImage ********** */
+.updateImage {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+
+.updateImageForm {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.updateImage > img {
+  max-width: 18vw;
+  grid-row: 1;
+  margin: auto;
+}
+
+.updateImageButton {
+  grid-row: 2;
+  margin: 1rem auto;
+}
+
+/* ********** _adminContact ********** */
+#messagesUl {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.messagesArticles {
+  max-width: 30vw;
+  display: grid;
+  grid-template-rows: repeat(5, 2.5rem) auto repeat(3, 2.5rem);
+  border: 1px solid rgb(204, 28, 0);
+}
+
+.messagesArticles > h3 {
+  grid-row: 1/3;
+  display: grid;
+  grid-template-rows: repeat(2, 2.5rem);
+}
+
+.messagesName {
+  grid-row: 1;
+}
+
+.messagesFirstName {
+  grid-row: 2;
+}
+
+.messagesId {
+  grid-row: 3;
+}
+
+.messagesEmail {
+  grid-row: 4;
+}
+
+.messagesTel {
+  grid-row: 5;
+}
+
+.messagesContent {
+  grid-row: 6;
+}
+
+.messagesDate {
+  grid-row: 7;
+}
+
+.contactForm {
+  grid-row: 8/10;
+  margin: auto;
 }
 
 /*# sourceMappingURL=style.css.map */

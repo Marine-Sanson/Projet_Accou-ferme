@@ -2,10 +2,15 @@
 
 class ProductController extends AbstractController
 {
-    // lance la fonction du manager pour afficher les noms des produits
-    public function index()
+
+    /**
+     * lance la fonction du manager pour afficher les noms des produits et les variétés associées
+     * @param 
+     * @return void
+     */
+
+    public function index() : void
     {
-    
         $products = $this->pm->getAllProducts();
         $medias = [];
         
@@ -36,10 +41,6 @@ class ProductController extends AbstractController
             }
         }
         
-        // $mediaId = $variety['media_id'];
-        // var_dump($mediaId);
-        // 
-        // 
         $template="products";
 
         $this->render($template, ["products" => $products, "medias" => $medias]);

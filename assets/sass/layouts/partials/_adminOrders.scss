@@ -1,9 +1,36 @@
+/* ********** _adminProducts ********** */
+
+.choseOrders{
+    text-align:center;
+}
+
+.choosenDay{
+    text-align:center;
+}
+
 #displayOrders > p{
     text-align:left;
     margin:0.5rem;
 }
 
-#displayOrders > table{
-    margin-bottom: 2rem;
+.displayOrder > table{
+    margin:auto auto 2rem auto;
 }
 
+.displayOrder{
+    border:1px solid $red;
+    max-width: 45vw;
+}
+
+#displayOrders{
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1rem;
+}
+
+.buttonTerminer{
+    text-align:center;
+    margin:1rem;
+    // margin-right:2rem;
+}

@@ -3,65 +3,20 @@
     <h1>Galerie Photos</h1>
     
     <section id="gallery">
-        <figure>
-            <img src="./assets/img/gallery/aubergine.jpg"
-                 alt="photo aubergines" />
-        </figure>
         
-        <figure>
-            <img src="./assets/img/gallery/caisse.jpg"
-                 alt="photo caisse" />
-        </figure>
-
-        <figure>
-            <img src="./assets/img/gallery/choux-fleur.jpg"
-                 alt="photo choux fleur" />
-        </figure>
-        
-        <figure>
-            <img src="./assets/img/gallery/legumes.jpg"
-                 alt="photo legumes" />
-        </figure>
-        
-        <figure>
-            <img src="./assets/img/gallery/poivrons.jpg"
-                 alt="photo poivrons" />
-        </figure>
-        
-        <figure>
-            <img src="./assets/img/gallery/semis.jpg"
-                 alt="photo semis" />
-        </figure>
-        
-        <figure>
-            <img src="./assets/img/gallery/tomates.jpg" 
-                 alt="photo tomates" />
-        </figure>
-        
-        <figure>
-            <img src="./assets/img/gallery/aubergine2.jpg"
-                 alt="autre photo aubergines" />
-        </figure>
-        
-        <figure>
-            <img src="./assets/img/gallery/tomates1.jpg"
-                 alt="autre photo tomates" />
-        </figure>
-
-        <figure>
-            <img src="./assets/img/recettes/aubergines-grillees.jpg"
-                 alt="photo aubergines grillees" />
-        </figure>
-        
-        <figure>
-            <img src="./assets/img/recettes/brochettes.jpg"
-                 alt="photo brochettes" />
-        </figure>
-        
-        <figure>
-            <img src="./assets/img/recettes/grill.jpg"
-                 alt="photo grill" />
-        </figure>
+        <?php
+        foreach($data["allMedias"] as $key => $media)
+        {
+        ?>
+        <a href="<?= $media->getUrl(); ?>" target="_blank">
+            <figure>
+                <img src="<?= $media->getUrl(); ?>"
+                     alt="<?= $media->getAlt(); ?>" />
+            </figure>
+        </a>
+        <?php
+        }
+        ?>
 
     </section>
 

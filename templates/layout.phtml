@@ -4,8 +4,21 @@
         <meta charset="UTF-8">
         <title>Accou'ferme</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css">
-        <link rel="stylesheet" href="./assets/css/style.css" type="text/css" />
-        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet"> 
+        <?php
+        if(isset($data["newsDetail"]) && ($data["newsDetail"]->getId()) !== null)
+        {
+        ?>
+            <link rel="stylesheet" href="../assets/css/style.css" type="text/css" />
+        <?php
+        }
+        else
+        {
+        ?>
+            <link rel="stylesheet" href="./assets/css/style.css" type="text/css" />
+        <?php
+        }
+        ?>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet"/> 
     </head>
     <body id="top">
         

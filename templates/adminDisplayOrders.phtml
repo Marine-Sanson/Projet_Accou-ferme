@@ -16,71 +16,82 @@
         <input type="submit" value="Valider"/>
     </form>
     
-    <section id="displayOrders">
         
-        <?php
-        if(isset($_POST["day"])){
-            $allorders = $data;
-            ?>
-            <p>commandes pour <?= $_POST["day"]; ?></p>
-            
+    <?php
+    if(isset($_POST["day"]))
+    {
+        $allorders = $data;
+        ?>
+        <p class="choosenDay">commandes pour <?= $_POST["day"]; ?></p>
+        
+        <section id="displayOrders">
             <?php
             foreach($allorders as $key => $order)
             {
                 foreach($order as $key => $orderDetail)
                 {
-                ?>
-                    <p>Date de commande : <?= $orderDetail["date_commande"]; ?></p>
-                    <p>Id : <?= $orderDetail["id"]; ?></p>
-                    <p><?= $orderDetail["name"]; ?> <?= $orderDetail["first_name"]; ?> <?= $orderDetail["email"]; ?> <?= $orderDetail["tel"]; ?>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Variété</th>
-                                <th>Quantité</th>
-                                <th>Unité</th>
-                                <th>Prix</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th colspan="4">Total commande : </th>
-                                <td><?= $orderDetail["total_price"]; ?> €</td>
-                            </tr>
-                            <tr>
-                                <td colspan="5">
-                                    <form method="POST" action="/Projet_Accou-ferme/terminer">
-                                        <input type="hidden" name="id" value ="<?= $orderDetail["id"]; ?>">
-                                        <input type="submit" value="Terminer"/>
-                                    </form>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    <?php
-                    $varieties = $allorders["varieties"];
-                    foreach($varieties as $key => $varietyDetail){
+                    if(isset($orderDetail["date_commande"]))
+                    {
                     ?>
-                        <tbody>
-                            <tr>
-                                <td><?= $varietyDetail["variety_name"]; ?></td>
-                                <td><?= $varietyDetail["amount"]; ?></td>
-                                <td><?= $varietyDetail["units"]; ?></td>
-                                <td><?= $varietyDetail["price"]; ?> €</td>
-                                <td><?= $varietyDetail["total_variety"]; ?> €</td>
-                            </tr>
-                        </tbody>
+                        <article class="displayOrder">
+                            <p>Date de commande : <?= $orderDetail["date_commande"]; ?></p>
+                            <p>Id : <?= $orderDetail["id"]; ?></p>
+                            <p><?= $orderDetail["name"]; ?> <?= $orderDetail["first_name"]; ?> <?= $orderDetail["email"]; ?> <?= $orderDetail["tel"]; ?>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Variété</th>
+                                        <th>Quantité</th>
+                                        <th>Unité</th>
+                                        <th>Prix</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="4">Total commande : </th>
+                                        <td><?= $orderDetail["total_price"]; ?> €</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" class="buttonTerminer">
+                                            <form method="POST" action="/Projet_Accou-ferme/terminer">
+                                                <input type="hidden" name="id" value ="<?= $orderDetail["id"]; ?>">
+                                                <input class="button" type="submit" value="Terminer"/>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                                <?php
+                                $varieties = $allorders["varieties"];
+                                foreach($varieties as $key => $varietyDetail)
+                                {
+                                ?>
+                                    <tbody>
+                                        <tr>
+                                            <td><?= $varietyDetail["variety_name"]; ?></td>
+                                            <td><?= $varietyDetail["amount"]; ?></td>
+                                            <td><?= $varietyDetail["units"]; ?></td>
+                                            <td><?= $varietyDetail["price"]; ?> €</td>
+                                            <td><?= $varietyDetail["total_variety"]; ?> €</td>
+                                        </tr>
+                                    </tbody>
+                                <?php
+                                }
+                                ?>
+                            </table>
+                        </article>
                     <?php
                     }
                     ?>
-                </table>
                 <?php
                 }
+                ?>
+            <?php
             }
-        }
-        ?>
-        
-        
-    </section>
+            ?>
+        </section>
+    <?php
+    }
+    ?>
     
 </main>

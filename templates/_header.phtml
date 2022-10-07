@@ -12,7 +12,20 @@
                 <h1 class="sr-only">Accou ferme</h1>
                 <a href="/Projet_Accou-ferme/" title="Accueil">
                     <figure id="logoImg">
+                        <?php
+                        if(isset($data["newsDetail"]) && ($data["newsDetail"]->getId()) !== null)
+                        {
+                        ?>
+                        <img src="../assets/img/logo-arbre-oreille-512.png" alt="logo Accou'ferme" />
+                        <?php
+                        }
+                        else
+                        {
+                        ?>
                         <img src="./assets/img/logo-arbre-oreille-512.png" alt="logo Accou'ferme" />
+                        <?php
+                        }
+                        ?>
                     </figure>
                 </a>
             </li>

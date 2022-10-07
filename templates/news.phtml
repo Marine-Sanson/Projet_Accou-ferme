@@ -31,7 +31,7 @@
             ?>
             <article class="newsArticle card" data-category="<?= $singleNews["category_id"] ?>">
                 <header class="newsHeader">
-                    <h2> <?= $singleNews["name"] ?> <h2>
+                    <h2> <?= $singleNews["name"] ?> </h2>
                 </header>
                 <main class="newsMain">
                     <?php
@@ -83,7 +83,8 @@
                 </main>
                 <footer  class="newsFooter">
                     <h3 class="newsH3">Catégorie : <?= $singleNews["category_name"] ?> </h3>
-                    <form class="newsButton">
+                    <form class="newsButton" method="POST" action="/Projet_Accou-ferme/actus_show/<?= $singleNews["id"] ?>">
+                        <input type="hidden" name="id" value="<?= $singleNews["id"] ?>" />
                         <button>
                             <?php 
                             if($singleNews["category_name"] === 'Recette'){

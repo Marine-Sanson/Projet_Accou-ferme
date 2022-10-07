@@ -3,10 +3,14 @@
 class ProductManager extends AbstractManager
 {
     
-    // permet de créer un nouveau produit
+    /**
+     * reçoit un Product et le crée dans la base de données
+     * @param Product
+     * @return 
+     */
+    
     public function createProduct(Product $product) : void
     {
-        
         $query = $this->db->prepare('INSERT INTO products ( name ) VALUES ( :name )');
         $parameters = [
             'name' => $product->getName(),
@@ -14,7 +18,12 @@ class ProductManager extends AbstractManager
         $query->execute($parameters);
     }
     
-    // va chercher un tableau avec tous les produits
+    /**
+     * va chercher tous les produits et les variétés qui en dépendent
+     * @param 
+     * @return un array avec tous les Products et les variétés associées
+     */
+
     public function getAllProducts() :array
     {
         $query = $this->db->prepare('SELECT name, id FROM products');
@@ -34,16 +43,27 @@ class ProductManager extends AbstractManager
         return $fullProducts;
     }
     
+    /**
+     * va chercher tous les produits
+     * @param 
+     * @return un array avec tous les Product
+     */
+    
     public function getProducts() :array
     {
-        $query = $this->db->prepare('SELECT name, id FROM products');
+        $query = $this->db->prepare('SELECT id, name FROM products');
         $query->execute();
         $products = $query->fetchAll(PDO::FETCH_ASSOC);
         
         return $products;
     }
     
-    // va chercher un tableau avec tous les id des produits
+    /**
+     * va chercher tous les id des produits
+     * @param 
+     * @return un array avec tous les id des produits
+     */
+
     public function getAllIdProduct() :array
     {
         $query = $this->db->prepare('SELECT id FROM products');
@@ -53,7 +73,12 @@ class ProductManager extends AbstractManager
         return $idProducts;
     }
     
-    // va chercher l'id d'un produit d'après son nom
+    /**
+     * va chercher l'id d'un produit d'après son nom
+     * @param $name
+     * @return id
+     */
+    
     public function getProduceId(string $name) : int
     {
         $query = $this->db->prepare('SELECT id FROM products WHERE products.name = :name');
@@ -67,8 +92,13 @@ class ProductManager extends AbstractManager
 
         return $product['id'];
     }
-    
-    // va chercher le nom d'un produit d'après son id
+
+    /**
+     * va chercher le nom d'un produit d'après son id
+     * @param $id
+     * @return name
+     */
+
     public function getProductName(int $id) : string
     {
         $query = $this->db->prepare('SELECT name FROM products WHERE products.id = :id');
@@ -83,7 +113,12 @@ class ProductManager extends AbstractManager
         return $productName;
     }
     
-    // permet de supprimer un produit
+    /**
+     * supprime un produit d'après son id
+     * @param $id
+     * @return
+     */
+     
     public function deleteProduct(int $id) : void
     {
         $query = $this->db->prepare('DELETE FROM products WHERE products.id = :id');
@@ -92,7 +127,6 @@ class ProductManager extends AbstractManager
         ];
         $query->execute($parameters);
     }
-    
 }
 
 ?>

@@ -4,8 +4,6 @@
     
     <h1>AdminNews</h1>
     
-    <h2>Créer une catégorie</h2>
-    
     <?php
     if(isset($data["errors"]) && $data["errors"] !=="")
     {
@@ -24,49 +22,90 @@
     }
     ?>
     
-    <form class="adminCategoryForm" method="POST" action="/Projet_Accou-ferme/_categoryCreated">
-
-        <label for="newCat">Créer une nouvelle catégorie</label>
-        <input type="text" name="newCat" />
-        <button id="createNewCat" type="submit">Valider</button>
-
-    </form>
+    <section>
+        <h2>Créer une catégorie</h2>
+        
+        <form id="adminCategoryForm" method="POST" action="/Projet_Accou-ferme/_categoryCreated">
     
+            <label for="newCat">Créer une nouvelle catégorie</label>
+            <input type="text" name="newCat" />
+            <button id="createNewCat" type="submit">Valider</button>
+    
+        </form>
+        
+    </section>
+    
+
     <h2>Créer une news</h2>
     
-    <form class="createNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
-        <input type="hidden" name="action" value="create" />
-        <input type="submit" value="Créer" />
-    </form>
-
-    <h2>Mettre à jour ou supprimer une news</h2>
-    <ul>
-
-        <?php
-        foreach($data["allNews"] as $key => $singleNews)
-        {
-        ?>
-        <li>
-            <article class="udNews">
-                <h3><?= $singleNews["name"] ?></h3>
-                <form class="updateNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
-                    <input type="hidden" name="action" value="update" />
-                    <input type="hidden" name="crudId" value="<?= $singleNews["id"] ?>" />
-                    <input type="submit" value="Modifier" />
-                </form>
-                <form class="deleteNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
-                    <input type="hidden" name="action" value="delete" />
-                    <input type="hidden" name="crudId" value="<?= $singleNews["id"] ?>" />
-                    <input type="submit" value="Supprimer" data-news-id="<?= $singleNews["id"] ?>"/>
-                </form>
-            </article>
-        </li>
-        <?php
-        }
-        ?>
-
-    </ul>
-
+    <section id="createNews">
     
+    <form id="createNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
+        <input type="hidden" name="action" value="createNews" />
+        <input class="button" type="submit" value="Créer une actu" />
+    </form>
+    
+    <form id="createRecipeForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
+        <input type="hidden" name="action" value="createRecipe" />
+        <input class="button" type="submit" value="Créer une recette" />
+    </form>
+    
+    </section>
+    
+    <h2>Mettre à jour ou supprimer une news</h2>
+    
+    <section>
+        <ul id="updateNews">
+            <?php
+            foreach($data["allNews"] as $key => $singleNews)
+            {
+            ?>
+            <li class="updateNewsLi">
+                <article class="udNews">
+                    <h3><?= $singleNews["name"] ?></h3>
+                    <form class="updateNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
+                        <input type="hidden" name="action" value="update" />
+                        <input type="hidden" name="crudId" value="<?= $singleNews["id"] ?>" />
+                        <input class="button" type="submit" value="Modifier" />
+                    </form>
+                    <form class="deleteNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
+                        <input type="hidden" name="action" value="delete" />
+                        <input type="hidden" name="crudId" value="<?= $singleNews["id"] ?>" />
+                        <input class="button" type="submit" value="Supprimer" data-news-id="<?= $singleNews["id"] ?>"/>
+                    </form>
+                    
+                    <?php
+                    if(isset($singleNews[0]) && $singleNews[0] !== "")
+                    {
+                        $mediaUrl = $singleNews[0]->getUrl();
+                        $mediaAlt = $singleNews[0]->getAlt();
+                    ?>
+                        <img class="newsFormImg" src=" <?= $mediaUrl; ?>" alt=" <?= $mediaAlt; ?>" />
+                        <form class="changeNewsImage" name="changeNewsImage" method="POST" action="/Projet_Accou-ferme/chooseNewsImage">
+                            <input type="hidden" name="id" value="<?= $singleNews["id"]; ?>" />
+                            <input class="button changeNewsImageButton" type="submit" value="Changer d'image" name="changeNewsImage" />
+                        </form>
+                    <?php
+                    }
+                    else
+                    {
+                    ?>
+                        <p>Pas d'image choisie pour le moment</p>
+                        
+                        <form class="chooseNewsImage" name="chooseNewsImage" method="POST" action="/Projet_Accou-ferme/chooseNewsImage">
+                            <input type="hidden" name="id" value="<?= $singleNews["id"]; ?>" />
+                            <input class="button" type="submit" value="En choisir une" name="chooseNewsImage" />
+                        </form>
+                        <?php
+                    }
+                    ?>
+    
+                </article>
+            </li>
+            <?php
+            }
+            ?>
+        </ul>
+    </section>
 
 </main>

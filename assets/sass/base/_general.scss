@@ -79,8 +79,7 @@ button,
     color:$blanc;
     background-color:$red;
     text-align:center;
-    margin:1rem auto;
-    padding:0.5rem;
+    margin:auto;
     border: 2px solid $blanc;
     border-radius:4px;
     box-shadow: 5px 5px 5px $noir;
@@ -102,11 +101,21 @@ fieldset{
 }
 
 .errors{
-    background-color:red;
+    background-color:$red;
+    width:fit-content;
+    padding:1rem;
+    margin:2rem auto;
+}
+
+.errors > li{
+    color:$blanc;
 }
 
 .validation{
     background-color:green;
+    width:fit-content;
+    padding:1rem;
+    margin:2rem auto;
 }
     
 

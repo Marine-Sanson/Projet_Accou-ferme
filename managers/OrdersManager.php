@@ -3,6 +3,12 @@
 class OrdersManager extends AbstractManager
 {
     
+    /**
+     * reçoit un Order, le crée dans la base de donées et renvoie son id
+     * @param Order
+     * @return id
+     */
+
     public function createOrder(Order $order) : int
     {
         $query = $this->db->prepare('INSERT INTO orders (name, first_name, email, tel, date_commande, day, total_price ) VALUES (:name, :first_name, :email, :tel, :date_commande, :day, :total_price)');
@@ -22,6 +28,12 @@ class OrdersManager extends AbstractManager
         return $id;
     }
     
+    /**
+     * reçoit un Order et le crée dans la base de donées
+     * @param Order
+     * @return 
+     */
+    
     public function createVarietyOrdered(int $idOrder, int $varietyId, string $varietyName, int $amount, string $units, int $price, int $totalVariety) :void
     {
         $query = $this->db->prepare('INSERT INTO varietyOrdered (id_order, variety_id, variety_name, amount, units, price, total_variety) VALUES (:id_order, :variety_id, :variety_name, :amount, :units, :price, :total_variety)');
@@ -36,6 +48,12 @@ class OrdersManager extends AbstractManager
         ];
         $query->execute($parameters);
     }
+    
+    /**
+     * va chercher tous les Order d'après le jour de retrait et le statut de commande
+     * @param $day, $endOrder
+     * @return un array avec les Orders concernés
+     */
 
     public function getAllOrders(string $day, bool $endOrder) :array
     {
@@ -49,6 +67,12 @@ class OrdersManager extends AbstractManager
 
         return $allOrders;
     }
+    
+    /**
+     * va chercher toutes les variétés commandées d'une commande d'après son id
+     * @param $idOrder
+     * @return un array avec les variétés concernées
+     */
 
     public function getVarietiesOrderedByOrderId(int $idOrder) :array
     {
@@ -61,6 +85,12 @@ class OrdersManager extends AbstractManager
 
         return $varietiesOrdered;
     }
+    
+    /**
+     * met à jour le statut d'une commande d'après son id
+     * @param $id
+     * @return void
+     */
     
     public function updateEndOrder($id) :void
     {

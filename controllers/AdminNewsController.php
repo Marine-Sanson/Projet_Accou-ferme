@@ -1,8 +1,6 @@
 <?php
 
-require "./models/Category.php";
-require "./models/News.php";
-
+// require_once "./models/Recipe.php";
 
 class AdminNewsController extends AbstractController
 {
@@ -10,8 +8,21 @@ class AdminNewsController extends AbstractController
     {
         if($_SESSION["connectAdmin"] === true)
         {
+            // $tokenAdminNews = $this->generateToken(25);
+            // $_SESSION["tokenForAdminNews"] = $tokenAdminNews;
+            
             $categories = $this->cm->getAllCategories();
             $allNews = $this->nm->getAllNews();
+            
+            foreach($allNews as $key => $news)
+            {
+                $newsId = $news["media_id"];
+                if(isset($newsId) && $newsId !== null)
+                {
+                    $media = $this->mm->getMediaById($newsId);
+                    $allNews[$key][] = $media;
+                }
+            }
 
             $this->render("adminNews", ["categories" => $categories, "allNews" => $allNews]);
         }
@@ -26,18 +37,45 @@ class AdminNewsController extends AbstractController
     {
         if($_SESSION["connectAdmin"] === true)
         {
-            $name = $_POST["newCat"];
-            $newCat = new Category(null, $name);
+            $name = $post["newCat"];
+            
+            // if(trim($post["tokenAdminNews"]) !== $_SESSION["tokenForAdminNews"])
+            // {
+            //     $errors[] = "une erreur s'est produite lors de l'envoi du formulaire";
+            // }
 
-            $this->cm->createCategory($newCat);
+            if($name === "")
+            {
+                $errors[] = "Veuillez mettre un titre";
+            }
             
-            $validation = "nouvelle categorie créée";
+            if(strlen($name) > 256)
+            {
+                $errors[] = "Veuillez entrer un titre plus court (max 255 caractères)";
+            }
+    
+            if(!is_string($name))
+            {
+                $errors[] = "Veuillez entrer un titre valide";
+            }
             
+            if(empty($errors))
+            {
+                $newCat = new Category(null, $name);
+    
+                $this->cm->createCategory($newCat);
+                
+                $validation = "nouvelle categorie créée";
+            }
+            else
+            {
+                $validation ="";
+            }
+
             $categories = $this->cm->getAllCategories();
             $allNews = $this->nm->getAllNews();
 
             $this->render("adminNews", ["categories" => $categories, "allNews" => $allNews, "validation" => $validation]);
-            
         }
         else
         {
@@ -48,50 +86,298 @@ class AdminNewsController extends AbstractController
     
     public function adminCrudNews(array $post) :void
     {
+        // var_dump("debut adminCrudNews ligne 48 :");
+        // var_dump($post);
+        
+        // $tokenAdminNews = $this->generateToken(25);
+        // $_SESSION["tokenForAdminNews"] = $tokenAdminNews;
+        
         $action = $post["action"];
         $categories = $this->cm->getAllCategories();
-        
+        $allProducts = $this->pm->getProducts();
+
         if(isset($post["crudId"]) && $post["crudId"] !== null)
         {
             $crudId = $post["crudId"];
-            $singleNews = $this->nm->getNewsById($crudId);
+            $singleNews["news"] = $this->nm->getNewsById($crudId);
+            
+            $mediaId = $singleNews["news"]->getMediaId();
+            if(isset($mediaId))
+            {
+                $media = $this->mm->getMediaById($mediaId);
+            }
+            else
+            {
+                $media = [];
+            }
+            
+            $newsIdToVerify = $singleNews["news"]->getId();
+            
+            $trueNewsId = $this->trueNewsId($newsIdToVerify);
+            
+            if($singleNews["news"]->getCategoryId() === 3 && $trueNewsId)
+            {
+                $singleRecipe["recipe"] = $this->rm->getRecipeByNews($singleNews["news"]);
+            }
+            else
+            {
+                $singleRecipe["recipe"] = [];
+            }
+            
+            // var_dump("fin adminCrudNews ligne 75 :");
+            // var_dump($singleNews["news"]);
+            // var_dump($singleRecipe["recipe"]);
         }
         else
         {
             $crudId = 0;
-            $singleNews = [];
+            $singleNews["news"] = [];
+            $singleRecipe["recipe"] = [];
+            $media = [];
+            
+            // var_dump("else adminCrudNews ligne 86 :");
+            // var_dump($singleNews["news"]);
+            // var_dump($singleRecipe["recipe"]);
         }
         
-        $this->render("adminCrudNews", ["action" => $action, "categories" => $categories, "singleNews" => $singleNews]);
+        $this->render("adminCrudNews", ["action" => $action, "categories" => $categories, "singleNews" => $singleNews, "singleRecipe" => $singleRecipe, "allProducts" => $allProducts, "media" => $media]);
     }
     
+    public function trueNewsId(int $newsIdToVerify) : bool
+    {
+        $trueNewsId = false;
+        $allNewsIds = $this->rm->getAllNewsIds();
+        
+        foreach($allNewsIds as $key => $newsId)
+        {
+            if($newsId === $newsIdToVerify)
+            {
+                $trueNewsId = true;
+            }
+        }
+        
+        return $trueNewsId;
+    }
+    
+        public function chooseNewsImage(array $post) :void
+    {
+        $newsId = $post["id"];
+        $allMedias = $this->mm->getAllMedias();
+        
+        $this->render("chooseNewsImage", ["newsId" => $newsId, "allMedias" => $allMedias]);
+    }
+    
+    public function updateNewsImage(array $post) :void
+    {
+        $mediaId = $post["mediaId"];
+        $newsId = $post["newsId"];
+        
+        $this->nm->updateNewsMedia($mediaId, $newsId);
+        
+        $validation = "votre image a bien été selectionnée";
+        
+        $categories = $this->cm->getAllCategories();
+        $allNews = $this->nm->getAllNews();
+        
+        foreach($allNews as $key => $singleNews)
+        {
+            $mediaId = $singleNews["media_id"];
+            if($mediaId !== null)
+            {
+                $media = $this->mm->getMediaById($mediaId);
+                $allNews[$key][] = $media;
+            }
+        }
+        
+        $this->render("adminNews", ["categories" => $categories, "allNews" => $allNews, "validation" => $validation]);
+    }
+
     
     public function createNews(array $post) :void
     {
         if($_SESSION["connectAdmin"] === true)
         {
-            $action = "create";
+            
+        // var_dump("debut createNews ligne 88 :");
+        // var_dump($post);
+            
+            $action = "createNews";
             $newsVerified = $this->verifyNews($post, $action);
+            
+            $allProducts = $this->pm->getProducts();
+            
+            // $tokenAdminNews = trim($post["tokenAdminNews"]);
+            
+            // if($tokenAdminNews !== $_SESSION["tokenForAdminNews"])
+            // {
+            //     $errors[] = "une erreur s'est produite lors de l'envoi du formulaire";
+            // }
             
             if(empty($newsVerified["errors"]))
             {
                 $this->nm->createNews($newsVerified["news"]);
-            
+
                 $categories = $this->cm->getAllCategories();
                 $allNews = $this->nm->getAllNews();
                 $validation = "Votre actu a bien été créée!";
 
-                $this->render("adminNews", ["validation" => $validation, "categories" => $categories, "allNews" => $allNews]);
+                $this->render("adminNews", ["validation" => $validation, "categories" => $categories, "allNews" => $allNews, "allProducts" => $allProducts]);
             }
             else
             {
                 $categories = $this->cm->getAllCategories();
-                $errors = $newsVerified["errors"];
-                $action = "create";
-                $singleNews = $newsVerified["news"];
-                $this->render("adminCrudNews", ["singleNews" => $singleNews, "categories" => $categories, "errors" => $errors, "action" => $action]);
+                $errors[] = $newsVerified["errors"];
+                $action = "createNews";
+                $singleNews = $newsVerified;
+                
+                $this->render("adminCrudNews", ["singleNews" => $singleNews, "categories" => $categories, "errors" => $errors, "action" => $action, "allProducts" => $allProducts, "tokenAdminNews" => $tokenAdminNews]);
+            }
+        }
+        else
+        {
+            $errors[] = "Veuillez vous connecter";
+            $this->render("admin", ["errors" => $errors]);
+        }
+        
+        // var_dump("fin createNews ligne 122 :");
+        // var_dump($singleNews);
+        // var_dump($singleRecipe);
+
+    }
+    
+    public function createRecipe(array $post) :void
+    {
+        if($_SESSION["connectAdmin"] === true)
+        {
+        // var_dump("debut createRecipe ligne 132 :");
+        // var_dump($post);
+            
+            $action = "createRecipe";
+
+            $recipeVerified = $this->verifyRecipe($post, $action);
+
+            $allProducts = $this->pm->getProducts();
+            
+            // $tokenAdminNews = trim($post["tokenAdminNews"]);
+
+            // if($tokenAdminNews !== $_SESSION["tokenForAdminNews"])
+            // {
+            //     $errors[] = "une erreur s'est produite lors de l'envoi du formulaire";
+            // }
+
+            if(empty($recipeVerified["errors"]))
+            {
+                $newsId = $this->nm->createNews($recipeVerified["news"]);
+                
+                $recipeVerified["recipe"]->setNewsId($newsId);
+                
+                $this->rm->createRecipe($recipeVerified["recipe"]);
+
+                $categories = $this->cm->getAllCategories();
+                $allNews = $this->nm->getAllNews();
+                $validation = "Votre recette a bien été créée!";
+
+                $this->render("adminNews", ["validation" => $validation, "categories" => $categories, "allNews" => $allNews, "allProducts" => $allProducts]);
+            }
+            else
+            {
+                $categories = $this->cm->getAllCategories();
+                $errors[] = $recipeVerified["errors"];
+                $action = "createRecipe";
+                $singleNews = $recipeVerified;
+                $singleRecipe = $recipeVerified;
+                
+                $this->render("adminCrudNews", ["singleNews" => $singleNews, "singleRecipe" => $singleRecipe, "categories" => $categories, "errors" => $errors, "action" => $action, "allProducts" => $allProducts]);
+            }
+        }
+        else
+        {
+            $errors[] = "Veuillez vous connecter";
+            $this->render("admin", ["errors" => $errors]);
+        }
+        
+        // var_dump("fin createRecipe ligne 172 :");
+        // var_dump($singleNews);
+        // var_dump($singleRecipe);
+    }
+    
+    public function updateNews(array $post)
+    {
+        if($_SESSION["connectAdmin"] === true)
+        {
+        // var_dump("debut updateNews ligne 181 :");
+        // var_dump($post);
+            
+            var_dump($post);
+            
+            $action = "update";
+            $news = $post;
+            
+            if(intval($post["category_id"]) === 3)
+            {
+                $recipeVerified = $this->verifyRecipe($post, $action);
+                $errors[] = $recipeVerified["errors"];
+                $action = $recipeVerified["action"];
+                $news = $recipeVerified["news"];
+                
+                $newsVerified = [
+                    "errors" => $errors,
+                    "action" => $action,
+                    "news" => $news
+                    ];
+                
+                // var_dump($newsVerified);
+            }
+            else
+            {
+                $newsVerified = $this->verifyNews($post, $action);
+                $recipeVerified = [];
             }
             
+            $categories = $this->cm->getAllCategories();
+            $allProducts = $this->pm->getProducts();
+            
+                // var_dump($post["tokenAdminNews"]);
+                // var_dump($_SESSION["tokenForAdminNews"]);
+            
+            // $tokenAdminNews = trim($post["tokenAdminNews"]);
+            
+            // if($tokenAdminNews !== $_SESSION["tokenForAdminNews"])
+            // {
+            //     $errors[] = "une erreur s'est produite lors de l'envoi du formulaire";
+            // }
+
+            if(empty($newsVerified["errors"]))
+            {
+                $news = $newsVerified["news"];
+                $this->nm->updateNews($news);
+                
+                if(isset($recipeVerified["recipe"]) && !empty($recipeVerified["recipe"]))
+                {
+                    $this->rm->updateRecipe($recipeVerified["recipe"]);
+                }
+
+                $allNews = $this->nm->getAllNews();
+                
+                $validation = "Votre actu a bien été modifiée!";
+    
+                $this->render("adminNews", ["validation" => $validation, "allNews" => $allNews, "categories" => $categories, "allProducts" => $allProducts]);
+            }
+            else
+            {
+                $errors[] = $newsVerified["errors"];
+                $singleNews = $newsVerified;
+                if($singleNews["news"]->getCategoryId() === 3)
+                {
+                    $singleRecipe = $recipeVerified;
+                }
+                else
+                {
+                    $singleRecipe = [];
+                }
+                
+                $this->render("adminCrudNews", ["singleNews" => $singleNews, "singleRecipe" => $singleRecipe, "categories" => $categories, "errors" => $errors, "action" => $action, "allProducts" => $allProducts]);
+            }
         }
         else
         {
@@ -100,65 +386,71 @@ class AdminNewsController extends AbstractController
         }
     }
     
-    public function updateNews(array $post)
-    {
-        if($_SESSION["connectAdmin"] === true)
-        {
-            $action = "update";
-            $newsVerified = $this->verifyNews($post, $action);
-            $categories = $this->cm->getAllCategories();
-            
-            if(empty($newsVerified["errors"]))
-            {
-                $news = $newsVerified["news"];
-                $this->nm->updateNews($news);
-                $allNews = $this->nm->getAllNews();
-                
-                $validation = "Votre actu a bien été modifiée!";
-    
-                $this->render("adminNews", ["validation" => $validation, "allNews" => $allNews, "categories" => $categories]);
-            }
-            else
-            {
-                $errors = $newsVerified["errors"];
-                $singleNews = $newsVerified["news"];
-                
-                $this->render("adminCrudNews", ["singleNews" => $singleNews, "categories" => $categories, "errors" => $errors, "action" => $action]);
-            }
-        }
-    }
-    
     public function deleteNews(array $post)
     {
         if($_SESSION["connectAdmin"] === true)
         {
+        // var_dump("début de deleteNews ligne 253 :");
+        // var_dump($post);
+
             $action = "delete";
             $newsVerified = $this->verifyNews($post, $action);
+            
+            if($newsVerified["news"]->getCategoryId() === 3)
+            {
+                $recipeVerified = $this->verifyRecipe($post, $action);
+            }
+            
             $categories = $this->cm->getAllCategories();
+            $allProducts = $this->pm->getProducts();
+            
+            // $tokenAdminNews = trim($post["tokenAdminNews"]);
+            
+            // if($tokenAdminNews !== $_SESSION["tokenForAdminNews"])
+            // {
+            //     $errors[] = "une erreur s'est produite lors de l'envoi du formulaire";
+            // }
             
             if(empty($newsVerified["errors"]))
             {
                 $news = $newsVerified["news"];
+                
+                if(isset($recipeVerified))
+                {
+                    $this->rm->deleteRecipe($recipeVerified["recipe"]);
+                }
+                
                 $this->nm->deleteNews($news);
+                
                 $allNews = $this->nm->getAllNews();
                 
                 $validation = "Votre actu a bien été suprimée!";
     
-                $this->render("adminNews", ["validation" => $validation, "allNews" => $allNews, "categories" => $categories]);
+                $this->render("adminNews", ["validation" => $validation, "allNews" => $allNews, "categories" => $categories, "allProducts" => $allProducts]);
             }
             else
             {
-                $errors = $newsVerified["errors"];
+                $errors[] = $newsVerified["errors"];
                 $singleNews = $newsVerified["news"];
 
-                $this->render("adminCrudNews", ["singleNews" => $singleNews, "categories" => $categories, "errors" => $errors, "action" => $action]);
+                $this->render("adminCrudNews", ["singleNews" => $singleNews, "categories" => $categories, "errors" => $errors, "action" => $action, "allProducts" => $allProducts]);
             }
         }
+        
+        // var_dump("fin deleteNews ligne 293 :");
+        // var_dump($singleNews);
+        // var_dump($singleRecipe);
     }
     
     public function verifyNews(array $post, string $action) :array
     {
-        $errors = [];
+        // var_dump("début de verifyNews ligne 300 :");
+        // var_dump($post);
+
+        if(!isset($errors))
+        {
+            $errors = [];
+        }
         
         $inputId = $this->clean_input($post["id"]);
         $id = intval($inputId);
@@ -168,8 +460,11 @@ class AdminNewsController extends AbstractController
         
         $name = $this->clean_input($post["name"]);
         
-        $inputMedia = $this->clean_input($post["media_id"]);
-        $media = intval($inputMedia);
+        if(isset($post["media_id"]))
+        {
+            $inputMedia = $this->clean_input($post["media_id"]);
+            $media = intval($inputMedia);
+        }
         
         $content = $this->clean_input($post["content"]);
         
@@ -178,7 +473,7 @@ class AdminNewsController extends AbstractController
             $errors[] = "Veuillez recommencer, cette action a généré un problème";
         }
         
-        if($categoryId === "0" || !is_int($categoryId))
+        if($categoryId === 0 || !is_int($categoryId))
         {
             $errors[] = "Veuillez selectionner une catégorie";
         }
@@ -230,7 +525,125 @@ class AdminNewsController extends AbstractController
             "action" => $action,
             "news" => $news
         ];
+        
+        // var_dump("fin verifyNews ligne 376 :");
+        // var_dump($verifyNews);
 
         return $verifyNews;
+    }
+    
+    public function verifyRecipe(array $post, string $action) :array
+    {
+        // var_dump("début de verifyRecipe ligne 384 :");
+        // var_dump($post);
+
+        $errors = [];
+
+        $verifyNews = $this->verifyNews($post, $action);
+
+        foreach($verifyNews["errors"] as $key => $error)
+        {
+            $errors[] = $error;
+        }
+        
+        if(isset($post["recipeId"]) && $post["recipeId"] !== 0)
+        {
+            $recipeId = $post["recipeId"];
+        }
+        else
+        {
+            $recipeId = 0;
+        }
+        
+        if(isset($post["product_id"]) && $post["product_id"] !== 0)
+        {
+            $inputProductId = $this->clean_input($post["product_id"]);
+            $productId = intval($inputProductId);
+        }
+        else
+        {
+            $inputProductId = 0;
+            $productId = 0;
+        }
+
+        if(isset($post["ingredients"]) && $post["ingredients"] !== 0)
+        {
+            $ingredients = $this->clean_input($post["ingredients"]);
+        }
+        else
+        {
+            $ingredients = "";
+        }
+        
+        if(isset($post["steps"]) && $post["steps"] !== 0)
+        {
+            $steps = $this->clean_input($post["steps"]);
+        }
+        else
+        {
+            $steps = "";
+        }
+
+
+        if($productId === 0 || !is_int($productId))
+        {
+            $errors[] = "Veuillez selectionner un produit";
+        }
+        
+        if(strlen($inputProductId) > 5)
+        {
+            $errors[] = "Veuillez selectionner un produit valide";
+        }
+        
+        if($ingredients === "" || strlen($ingredients) < 2)
+        {
+            $errors[] = "Veuillez renseigner les ingredients";
+        }
+        
+        if(strlen($ingredients) > 2048)
+        {
+            $errors[] = "Veuillez entrer une liste d'ingredients plus courte (max 2047 caractères)";
+        }
+
+        if(!is_string($ingredients))
+        {
+            $errors[] = "Veuillez entrer des ingredients valides";
+        }
+        
+        if($steps === "" || strlen($steps) < 2)
+        {
+            $errors[] = "Veuillez renseigner les étapes de la recette";
+        }
+        
+        if(strlen($steps) > 2048)
+        {
+            $errors[] = "Veuillez entrer des étapes plus courtes (max 2047 caractères)";
+        }
+
+        if(!is_string($steps))
+        {
+            $errors[] = "Veuillez entrer des étapes valides";
+        }
+        
+        $news = $verifyNews["news"];
+        $newsId = $news->getId();
+
+        $recipe = new Recipe($recipeId, $newsId, $productId, $ingredients, $steps);
+        $recipe->setCategoryId($verifyNews["news"]->getCategoryId());
+        $recipe->setName($verifyNews["news"]->getName());
+        $recipe->setMediaId($verifyNews["news"]->getMediaId());
+        $recipe->setContent($verifyNews["news"]->getContent());
+        
+        $verifyRecipe = [
+            "errors" => $errors,
+            "action" => $action,
+            "news" => $news,
+            "recipe" => $recipe
+        ];
+        
+        // var_dump("fin verifyRecipe ligne 468 :");
+        // var_dump($verifyRecipe);
+
+        return $verifyRecipe;
     }
 }
