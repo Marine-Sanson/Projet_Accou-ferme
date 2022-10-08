@@ -2,6 +2,44 @@
     
     <h2>Passer commande</h2>
     
+    <?php
+    if(isset($data["errors"]) && count($data["errors"]) > 0)
+    {
+    ?>
+        <section class="errors">
+            <ul>
+                <?php
+                foreach($data["errors"] as $key => $error)
+                {
+                ?>
+                    <li> <?= $error ?></li>
+                <?php
+                }
+                ?>
+            </ul>
+        </section>
+    <?php
+    }
+    
+    if(isset($data["validation"]) && count($data["validation"]) > 0)
+    {
+    ?>
+        <section class="validation">
+            <ul>
+                <?php
+                foreach($data["validation"] as $key => $valid)
+                {
+                ?>
+                    <li> <?= $valid ?></li>
+                <?php
+                }
+                ?>
+            </ul>
+        </section>
+    <?php
+    }
+    ?>
+    
     <section id="orderDetail">
         <form id="orderForm" action="/Projet_Accou-ferme/_validationOrder" method="POST"> 
 

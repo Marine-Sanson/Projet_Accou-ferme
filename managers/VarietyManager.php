@@ -59,17 +59,17 @@ class VarietyManager extends AbstractManager
      * @return void
      */
 
-    // public function getVarietyId(string $varietyName) : array
-    // {
-    //     $query = $this->db->prepare('SELECT id FROM varieties WHERE varieties.name = :name');
-    //     $parameters = [
-    //         'name' => $varietyName
-    //     ];
-    //     $query->execute($parameters);
-    //     $varietyId = $query->fetch(PDO::FETCH_ASSOC);
+    public function getVarietyId(string $varietyName) : array
+    {
+        $query = $this->db->prepare('SELECT id FROM varieties WHERE varieties.name = :name');
+        $parameters = [
+            'name' => $varietyName
+        ];
+        $query->execute($parameters);
+        $varietyId = $query->fetch(PDO::FETCH_ASSOC);
         
-    //     return $varietyId;
-    // }
+        return $varietyId;
+    }
     
     /**
      * va chercher toutes les variétés qui dépendent d'un produit d'après le nom de ce produit

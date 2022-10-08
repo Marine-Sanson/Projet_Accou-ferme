@@ -49,6 +49,10 @@ class ContactController extends AbstractController
             }
             
             $email = $this->clean_input($_POST["email"]);
+            if($email === "")
+            {
+                $errors[] = "Veuillez renter votre prénom";
+            }
             
             $inputTel = $this->clean_input($_POST["tel"]);
             $tel = intval($inputTel);
@@ -67,7 +71,7 @@ class ContactController extends AbstractController
                 "name" => $name,
                 "first_name" => $firstName,
                 "email" => $email,
-                "tel" => $inputTel,
+                "tel" => $tel,
                 "message" => $message
                 ];
 

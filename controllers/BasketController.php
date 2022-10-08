@@ -4,63 +4,68 @@ class BasketController extends AbstractController
 {
 
     /**
-     * Renders the basket index page
-     * @param array $post
+     * va chercher toutes les variétés disponibles dans la base de données et les images associées et les renvoie
+     * @param 
      * @return void
      */
-    public function index(array $post) :void
+    public function index($data) :void
     {
+        var_dump($data);
+        
         $allAvailableVarieties = $this->vm->getAllAvailableVarieties();
         $medias = [];
 
         foreach($allAvailableVarieties as $key => $availableVariety)
-                {
-                    if(!is_null($availableVariety['media_id'])){
-                        
-                        $mediaId = $availableVariety['media_id'];
-                        $media = $this->mm->getMediaById($mediaId);
-                        $item = [
-                            "media" => $media,
-                            "availableVariety" => $availableVariety
-                            ];
-                        $medias[] = $item;
-                        //return $media;
-                    }
-                    else
-                    {
-                        $availableVariety["media_id"] = null;
-                        $item = [
-                            "media" => null,
-                            "availableVariety" => $availableVariety
-                            ];
-                        $medias[] = $item;
-                    }
-                  
-                }
+        {
+            if(!is_null($availableVariety['media_id'])){
+                
+                $mediaId = $availableVariety['media_id'];
+                $media = $this->mm->getMediaById($mediaId);
+                $item = [
+                    "media" => $media,
+                    "availableVariety" => $availableVariety
+                    ];
+                $medias[] = $item;
+            }
+            else
+            {
+                $availableVariety["media_id"] = null;
+                $item = [
+                    "media" => null,
+                    "availableVariety" => $availableVariety
+                    ];
+                $medias[] = $item;
+            }
+          
+        }
                 
         $template = "basket";
         
         $this->render($template, ["allAvailableVarieties" => $allAvailableVarieties, "medias" => $medias]);
-        
     }
     
-    
     /**
-     * initialize $_SESSION["basket"]
+     * initialise $_SESSION["basket"]
      * @param array $post
      * @return void
      */
     public function basketUpdate(array $post) :void
     {
-
+        $errors = [];
+        
         if(!is_array($_SESSION["basket"]))
         {
             $tmp = $this->basketToArray($_SESSION["basket"]);
         
             $_SESSION["basket"] = $tmp;
         }
+        
+        if(isset($_SESSION["basket"]["errors"]))
+        {
+            $errors[] = $_SESSION["basket"]["errors"];
+        }
 
-        if($_POST["data"]) // the form has been submitted
+        if($_POST["data"]) // le form a été soumis
         {
             // récupère le post de la variété ajoutée
             $availableVariety = $_POST["availableVarietyName"];
@@ -74,14 +79,12 @@ class BasketController extends AbstractController
                 if(!empty($getMedia)){
                 $mediaUrl = $getMedia[0]["url"];
                 $mediaAlt = $getMedia[0]["alt"];
-
                 }
                 else
                 {
                 $mediaUrl = "./assets/img/varieties/panierVide.jpg";
                 $mediaAlt = "pas de photo disponible";
                 }
-                
             }
             else
             {
@@ -103,7 +106,6 @@ class BasketController extends AbstractController
                     "media_alt" => $mediaAlt,
                 ];
                 $_SESSION["basket"]["totalPrice"] = $availableVarietyPrice;
-            
             }
             else 
             {
@@ -112,16 +114,13 @@ class BasketController extends AbstractController
                     $this->verifyVariety($key, $basket, $availableVariety, $availableVarietyUnits, $availableVarietyPrice, $mediaUrl, $mediaAlt);
                 }
             }
-            
             echo json_encode($_SESSION["basket"]);
-            
         }
         else
         {
             echo json_encode($_POST);
         }
     }
-    
     
     /**
      * Return variety key
@@ -144,10 +143,15 @@ class BasketController extends AbstractController
     }
     
     /**
-     * Initialize a new variety in $_SESSION["basket"] or update amount
-     * @param array ------------------- a finir
-     * @param string
-     * @return null | int
+     * initialise une nouvelle variété dans le $_SESSION["basket"] ou met à jour la quantité
+     * @param int $key
+     * @param array $basket
+     * @param string $availableVariety
+     * @param string $availableVarietyUnits
+     * @param string $availableVarietyPrice
+     * @param string $mediaUrl
+     * @param string $mediaAlt
+     * @return void
      */
     public function verifyVariety(int $key, array $basket, string $availableVariety, string $availableVarietyUnits, int $availableVarietyPrice, ?string $mediaUrl, ?string $mediaAlt) :void
     {
@@ -168,11 +172,26 @@ class BasketController extends AbstractController
             if($key === $keyB)
             {
                 $_SESSION["basket"]["items"][$key]["amount"]++;
+
+                $id = $this->vm->getVarietyId($availableVariety);
+                $varietyId = $id["id"];
+                
+                $variety = $this->vm->getVarietyById($varietyId);
+                $varietyQuantityAvailable = $variety->getQuantityAvailable();
+                
+                if($_SESSION["basket"]["items"][$key]["amount"] > $varietyQuantityAvailable)
+                {
+                    $_SESSION["basket"]["errors"] = "stock insuffisant pour la variété $availableVariety, veuillez modifier votre commande";
+                }
             }
         }
-
     }
-    
+
+    /**
+     * récupère le json envoyé par JS et le met dans le $_SESSION["basket"]
+     * @param $_POST
+     * @return void
+     */
     public function buttonAddRemove() :void
     {
         if(!is_array($_SESSION["basket"]))
@@ -199,11 +218,6 @@ class BasketController extends AbstractController
         $_SESSION["basket"]["totalPrice"] = [
             $baskets[$key]["totalPrice"]
         ];
-    }
-    
-    public function basketOrder(array $post) :void
-    {
-        require "templates/order.phtml";
     }
     
 }

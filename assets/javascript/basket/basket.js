@@ -9,7 +9,8 @@ function saveData(data)
     sessionStorage.setItem("data", JSON.stringify(data));
 }
 
-function newFetch(){
+function newFetch()
+{
     let $basket = getData();
     
     let $formData = new FormData();
@@ -28,7 +29,8 @@ function newFetch(){
 
 }
 
-function listenButtonAdd(event){
+function listenButtonAdd(event)
+{
     event.preventDefault();
     let $clickedButton = event.target;
     
@@ -66,7 +68,6 @@ function listenButtonAdd(event){
 
 function computeBasketTotal()
 {
-    
     let $basket = getData();
     let $price = 0;
 
@@ -82,7 +83,6 @@ function computeBasketTotal()
 // get the item key in the cart.items array
 function findItem($varietyName)
 {
-    
     let $basket = getData();
 
     for(var i = 0; i < $basket.items.length; i++)
@@ -100,7 +100,6 @@ function findItem($varietyName)
 // update the item amount to + 1
 function addItem(event)
 {
-    
     let $varietyName = event.target.getAttribute("data-variety-name");
     let $itemKey = findItem($varietyName);
     let $basket = getData();
@@ -113,13 +112,11 @@ function addItem(event)
         renderBasket();
         newFetch($basket);
     }
-
 }
 
 // update the item amount to - 1
 function removeItem(event)
 {
-    
     let $varietyName = event.target.getAttribute("data-variety-name");
     let $itemKey = findItem($varietyName);
     let $basket = getData();
@@ -132,12 +129,10 @@ function removeItem(event)
         renderBasket();
         newFetch($basket);
     }
-
 }
 
 function loadListeners()
 {
-    
     let $addButtons = document.getElementsByClassName("updateButtonAdd");
     let $removeButtons = document.getElementsByClassName("updateButtonRemove");
 
@@ -148,8 +143,8 @@ function loadListeners()
     }
 }
 
-function createBasketItem($item){
-    
+function createBasketItem($item)
+{
     let $containerSection = document.createElement("section");
     $containerSection.classList.add("containerSection");
 
@@ -251,8 +246,8 @@ function createBasketItem($item){
     return $containerSection;
 }
 
-function renderBasket(){
-    
+function renderBasket()
+{
     // je récupère les data
     let $basket = getData();
 
@@ -292,7 +287,8 @@ function renderBasket(){
 }
 
 // Maj du panier
-function initBasket(){
+function initBasket()
+{
     // le bouton Ajouter au panier
     let $buttonsAddToBasket = document.getElementsByClassName("buttonAddToBasket");
 

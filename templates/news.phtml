@@ -24,10 +24,8 @@
     <section id="displayArticles">
 
         <?php
-
             foreach($data["news"] as $key => $singleNews)
             {
-
             ?>
             <article class="newsArticle card" data-category="<?= $singleNews["category_id"] ?>">
                 <header class="newsHeader">
@@ -35,11 +33,11 @@
                 </header>
                 <main class="newsMain">
                     <?php
-                        if(!is_null($data["medias"][0]['media']))
+                        if(!is_null($singleNews["media_id"]))
                         {
                             ?>
                             <figure class="newsImg">
-                                <img src="<?= $item["media"]->getUrl(); ?>" alt="<?= $item["media"]->getAlt(); ?>" />
+                                <img src="<?= $singleNews[0]->getUrl(); ?>" alt="<?= $singleNews[0]->getAlt(); ?>" />
                             </figure>
                             <?php
                         }
