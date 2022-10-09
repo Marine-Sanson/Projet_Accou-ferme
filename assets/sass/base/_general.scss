@@ -69,7 +69,7 @@ h3{
     margin: 0.5rem;
 }
 
-a{
+a::not(#mainHome > article > a){
     text-decoration: none;
 }
 
