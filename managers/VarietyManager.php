@@ -251,6 +251,22 @@ class VarietyManager extends AbstractManager
     }
     
     /**
+     * reçoit un id de variété une quantité et met à jour la quantité disponible
+     * @param $varietyId
+     * @return void
+     */
+    
+    public function updateVarietyQuantityAvailable(int $varietyId, int $quantityAvailable) : void
+    {
+        $query = $this->db->prepare('UPDATE varieties SET quantity_available = :quantity_available WHERE id = :id');
+        $parameters = [
+            'id' => $varietyId,
+            'quantity_available' => $quantityAvailable
+        ];
+        $query->execute($parameters);
+    }
+    
+    /**
      * supprime une Variety
      * @param Variety
      * @return

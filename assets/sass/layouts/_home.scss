@@ -15,6 +15,25 @@
         margin: auto;
     }
     
+    #market{
+        max-width: 70vw;
+        margin:2rem auto;
+        background-color:$red;
+    }
+    
+    #market > h2{
+        text-align:center;
+        margin:auto;
+        color:$blanc;
+    }
+    
+    #market > p{
+        text-align:center;
+        margin:auto;
+        padding:1rem;
+        color:$blanc;
+    }
+
     #homeProducts > article{
         display:grid;
         grid-template-columns:1fr;
@@ -232,6 +251,25 @@
         margin: auto;
     }
     
+    #market{
+        max-width: 70vw;
+        margin:2rem auto;
+        background-color:$red;
+    }
+    
+    #market > h2{
+        text-align:center;
+        margin:auto;
+        color:$blanc;
+    }
+    
+    #market > p{
+        text-align:center;
+        margin:auto;
+        padding:1rem;
+        color:$blanc;
+    }
+    
     #homeProducts{
         display:grid;
         grid-template-columns:repeat(3, 1fr);
@@ -241,6 +279,7 @@
     
     #homeProducts > h2{
         grid-row:1;
+        grid-column:1/4;
     }
     
     #homeProducts > article{
@@ -507,6 +546,25 @@
         grid-column:6/13;
     }
     
+    #market{
+        max-width: 70vw;
+        margin:2rem auto;
+        background-color:$red;
+    }
+    
+    #market > h2{
+        text-align:center;
+        margin:auto;
+        color:$blanc;
+    }
+    
+    #market > p{
+        text-align:center;
+        margin:auto;
+        padding:1rem;
+        color:$blanc;
+    }
+
     #homeProducts{
         display:grid;
         grid-template-columns:repeat(3, 1fr);
@@ -516,6 +574,7 @@
     
     #homeProducts > h2{
         grid-row:1;
+        grid-column:1/4;
     }
     
     #homeProducts > article{

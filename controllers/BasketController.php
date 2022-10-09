@@ -8,10 +8,8 @@ class BasketController extends AbstractController
      * @param 
      * @return void
      */
-    public function index($data) :void
+    public function index() :void
     {
-        var_dump($data);
-        
         $allAvailableVarieties = $this->vm->getAllAvailableVarieties();
         $medias = [];
 
@@ -60,11 +58,6 @@ class BasketController extends AbstractController
             $_SESSION["basket"] = $tmp;
         }
         
-        if(isset($_SESSION["basket"]["errors"]))
-        {
-            $errors[] = $_SESSION["basket"]["errors"];
-        }
-
         if($_POST["data"]) // le form a été soumis
         {
             // récupère le post de la variété ajoutée

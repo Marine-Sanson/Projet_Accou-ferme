@@ -165,8 +165,10 @@
 @media(min-width: 992px)
 {
     .availableVarietySection{
-        display: flex;
-        justify-content:space-around;
+        display: grid;
+        grid-template-columns: repeat(3, 3fr);
+        gap: 1rem;
+        margin:auto;
     }
     
     .availableVariety{
