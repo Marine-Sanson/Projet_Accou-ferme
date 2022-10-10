@@ -69,8 +69,12 @@ h3{
     margin: 0.5rem;
 }
 
-a::not(#mainHome > article > a){
+a{
     text-decoration: none;
+}
+
+.webLink{
+    text-decoration:underline;
 }
 
 button,

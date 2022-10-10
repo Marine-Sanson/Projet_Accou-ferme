@@ -2,7 +2,9 @@
     
     <h2>Passer commande</h2>
     
+
     <?php
+
     if(isset($data["errors"]) && count($data["errors"]) > 0)
     {
     ?>
@@ -63,6 +65,16 @@
                 </section>
             <?php
             }
+            if(isset($data["customer"]))
+            {
+                $customer = $data["customer"];
+                
+                $name = $customer["name"];
+                $firstName = $customer["first_name"];
+                $email = $customer["email"];
+                $tel = $customer["tel"];
+                $day = $customer["day"];
+            }
             ?>
 
             <fieldset class="total">
@@ -71,20 +83,73 @@
                 <input id="variety-totalPrice-<?= $orderVarieties["totalPrice"] ?>" type="hidden" name="totalPrice" value="<?= $orderVarieties["totalPrice"] ?>" />
             </fieldset>
             <fieldset id="client">
-                <label id="clientFirstNameLab" for="firstName">Entrez votre prénom </label>
-                <input id="clientFirstNameIn" type="text" name="firstName" />
+                <label id="clientFirstNameLab" for="firstName">Entrez votre prénom</label>
+                <input id="clientFirstNameIn" type="text" name="firstName" 
+                <?php
+                if(isset($firstName))
+                {
+                ?>
+                    value="<?= $firstName ?>";
+                <?php
+                }
+                ?>
+                />
                 <label id="clientNameLab" for="name">Entrez votre nom </label>
-                <input id="clientNameIn" type="text" name="name" />
+                <input id="clientNameIn" type="text" name="name" 
+                <?php
+                if(isset($name))
+                {
+                ?>
+                    value="<?= $name ?>";
+                <?php
+                }
+                ?>
+                />
                 <label id="clientEmailLab" for="email">Entrez votre Email </label>
-                <input id="clientEmailIn" type="email" name="email" />
+                <input id="clientEmailIn" type="email" name="email"  
+                <?php
+                if(isset($email))
+                {
+                ?>
+                    value="<?= $email ?>";
+                <?php
+                }
+                ?>
+                />
                 <label id="clientTelLab" for="tel">Entrez votre numéro de téléphone </label>
-                <input id="clientTelIn" type="tel" name="tel" />
+                <input id="clientTelIn" type="tel" name="tel"  
+                <?php
+                if(isset($tel))
+                {
+                ?>
+                    value="<?= $tel ?>";
+                <?php
+                }
+                ?>
+                />
             </fieldset>
             <fieldset id="retrait">
                 <p id="retraitP">Choisissez le jour de retrait :</p>
-                <input id="retraitMercIn" class="radio" type="radio" id="mardi" name="date_retrait" value="mardi" >
+                <input id="retraitMercIn" class="radio" type="radio" id="mardi" name="date_retrait" value="mardi"
+                <?php
+                if(isset($day) && $day === "mardi")
+                {
+                ?>
+                    checked 
+                <?php
+                }
+                ?>
+                >
                 <label id="retraitMercLab" for="mardi">Mardi</label>
-                <input id="retraitMarIn" class="radio" type="radio" id="samedi" name="date_retrait" value="samedi" >
+                <input id="retraitMarIn" class="radio" type="radio" id="samedi" name="date_retrait" value="samedi"            <?php
+                if(isset($day) && $day === "samedi")
+                {
+                ?>
+                    checked 
+                <?php
+                }
+                ?>
+                >
                 <label id="retraitMarLab" for="samedi">Samedi</label>
             </fieldset>
             <fieldset id="orderSubmit">

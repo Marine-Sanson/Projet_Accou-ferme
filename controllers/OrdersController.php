@@ -22,6 +22,11 @@ class OrdersController extends AbstractController
 
         $order = [];
         $errors = [];
+        
+        if(!isset($totalOrder))
+        {
+            $totalOrder = 0;
+        }
 
         foreach($orderVarieties["items"] as $key => $orderVariety)
         {
@@ -35,21 +40,16 @@ class OrdersController extends AbstractController
             
             $variety = $this->vm->getVarietyById($orderVarietyId);
             $varietyQuantityAvailable = $variety->getQuantityAvailable();
-            
+
             if($orderVarietyAmount > $varietyQuantityAvailable)
             {
                 $errors[] = "stock insuffisant pour la variété $orderVarietyName, nous l'avons remplacé par $varietyQuantityAvailable, quantité maximum possible";
-                $basket["amount"] = $varietyQuantityAvailable;
                 $orderVarietyAmount = $varietyQuantityAvailable;
             }
-            
-            $newQuantityAvailable = $varietyQuantityAvailable - $orderVarietyAmount;
-            
-            $this->vm->updateVarietyQuantityAvailable($orderVarietyId, $newQuantityAvailable);
-    
+
             $totalVariety = $this->totalVariety($orderVarietyAmount, $orderVarietyPrice);
     
-            // $totalOrder = $this->totalOrder($totalVariety, $totalOrder);
+            $totalOrder = $this->totalOrder($totalVariety, $totalOrder);
             
             $order["items"][]= [
                 "variety" => $orderVarietyName,
@@ -58,10 +58,9 @@ class OrdersController extends AbstractController
                 "price" => $orderVarietyPrice,
                 "totalVariety" => $totalVariety
             ];
-        
         }
         
-        $order["totalPrice"] = $_SESSION["basket"]["totalPrice"];
+        $order["totalPrice"] = $totalOrder;
         
         if($errors === [])
         {
@@ -113,6 +112,7 @@ class OrdersController extends AbstractController
     
     public function validationOrder(array $post) :void
     {
+
         $baskets = $_SESSION["basket"]["items"];
 
         $errors = [];
@@ -169,12 +169,12 @@ class OrdersController extends AbstractController
             $day = "";
             $errors[] = "Veuillez choisir un jour de retrait";
         }
-
+        
+        $totalPrice = $this->clean_input($_POST['totalPrice']);
+        $dateCommande = DateTime::createFromFormat("Y-m-d H:i:s", date("Y-m-d H:i:s"));
+        
         if($errors === [])
         {
-            $totalPrice = $this->clean_input($_POST['totalPrice']);
-            $dateCommande = DateTime::createFromFormat("Y-m-d H:i:s", date("Y-m-d H:i:s"));
-    
             $order = new Order(null, $name, $firstName, $email, $tel, $dateCommande, $day, $totalPrice, null);
             $id = $this->om->createOrder($order);
     
@@ -185,15 +185,29 @@ class OrdersController extends AbstractController
                 $amount = $basket["amount"];
                 $units = $basket["units"];
                 $price = $basket["price"];
-                $totalVariety = $amount * $price;
+                
                 $tmpId = $this->vm->getVarietyId($varietyName);
-                $varietyId = intval($tmpId["id"]);
-    
+                $varietyId = $tmpId["id"];
+                
+                $variety = $this->vm->getVarietyById($varietyId);
+                $varietyQuantityAvailable = $variety->getQuantityAvailable();
+
+                if($amount > $varietyQuantityAvailable)
+                {
+                    $errors[] = "stock insuffisant pour la variété $varietyName, nous l'avons remplacé par $varietyQuantityAvailable, quantité maximum possible";
+                    $amount = $varietyQuantityAvailable;
+                }
+
+                $totalVariety = $amount * $price;
+
                 $this->om->createVarietyOrdered($idOrder, $varietyId, $varietyName, $amount, $units, $price, $totalVariety);
+                
+                $newQuantityAvailable = $varietyQuantityAvailable - $amount;
+                $this->vm->updateVarietyQuantityAvailable($varietyId, $newQuantityAvailable);
             }
             
             $validation[] = "Votre commande à bien été prise en compte, à $day pour le retrait";
-
+            
             $_SESSION["basket"] = [];
             
             $template = "_validationOrder";
@@ -210,38 +224,67 @@ class OrdersController extends AbstractController
                 "day" => $day
             ];
             
-        $allAvailableVarieties = $this->vm->getAllAvailableVarieties();
-        $medias = [];
-
-        foreach($allAvailableVarieties as $key => $availableVariety)
-        {
-            if(!is_null($availableVariety['media_id'])){
+            foreach($baskets as $key => $basket){
                 
-                $mediaId = $availableVariety['media_id'];
-                $media = $this->mm->getMediaById($mediaId);
-                $item = [
-                    "media" => $media,
-                    "availableVariety" => $availableVariety
-                    ];
-                $medias[] = $item;
-            }
-            else
-            {
-                $availableVariety["media_id"] = null;
-                $item = [
-                    "media" => null,
-                    "availableVariety" => $availableVariety
-                    ];
-                $medias[] = $item;
-            }
-        }
-            
-            $template = "_validationOrder";
-            
-            $this->render($template, ["errors" => $errors, "customer" => $customer, "allAvailableVarieties" => $allAvailableVarieties]);
-        }
+                $varietyName = $basket["variety"];
+                $amount = $basket["amount"];
+                $units = $basket["units"];
+                $price = $basket["price"];
+                $totalVariety = $amount * $price;
 
+                $tmpId = $this->vm->getVarietyId($varietyName);
+                $varietyId = $tmpId["id"];
+                
+                $variety = $this->vm->getVarietyById($varietyId);
+                $varietyQuantityAvailable = $variety->getQuantityAvailable();
+
+                if($amount > $varietyQuantityAvailable)
+                {
+                    $errors[] = "stock insuffisant pour la variété $varietyName, nous l'avons remplacé par $varietyQuantityAvailable, quantité maximum possible";
+                    $amount = $varietyQuantityAvailable;
+                }
+
+                $order["items"][] = [
+                    "variety" => $varietyName,
+                    "amount" => $amount,
+                    "units" => $units,
+                    "price" => $price,
+                    "totalVariety" => $totalVariety,
+                    "varietyId" => $varietyId
+                ];
+            }
+            
+            $order["totalPrice"] = intval($totalPrice);
+
+            $allAvailableVarieties = $this->vm->getAllAvailableVarieties();
+            $medias = [];
+    
+            foreach($allAvailableVarieties as $key => $availableVariety)
+            {
+                if(!is_null($availableVariety['media_id'])){
+                    
+                    $mediaId = $availableVariety['media_id'];
+                    $media = $this->mm->getMediaById($mediaId);
+                    $item = [
+                        "media" => $media,
+                        "availableVariety" => $availableVariety
+                        ];
+                    $medias[] = $item;
+                }
+                else
+                {
+                    $availableVariety["media_id"] = null;
+                    $item = [
+                        "media" => null,
+                        "availableVariety" => $availableVariety
+                        ];
+                    $medias[] = $item;
+                }
+            }
+            
+            $template = "order";
+            
+            $this->render($template, ["errors" => $errors, "customer" => $customer, "order" => $order, "allAvailableVarieties" => $allAvailableVarieties]);
+        }
     }
-    
-    
 }
