@@ -1,28 +1,26 @@
-<!-- ---------- HEADER ---------- -->
-
 <header>
-    <a class="sr-only" href="#main-title">Accéeder directement au contenu</a>
+    <a class="sr-only" href="#main-title">Accéder directement au contenu</a>
     <button id="mobile-header-button">
         <span class="bi-list"></span>
         <span class="sr-only">Ouvrir le menu</span>
     </button>
     <nav id="main-nav">
         <ul>
-            <li id="containerLogo">
-                <h1 class="sr-only">Accou ferme</h1>
+            <li id="containerLogoHeader">
+                <h2 class="sr-only">Accou ferme</h2>
                 <a href="/Projet_Accou-ferme/" title="Accueil">
-                    <figure id="logoImg">
+                    <figure id="logoImgHeader">
                         <?php
                         if(isset($data["newsDetail"]) && ($data["newsDetail"]->getId()) !== null)
                         {
                         ?>
-                        <img src="../assets/img/logo-arbre-oreille-512.png" alt="logo Accou'ferme" />
+                        <img src="../assets/img/logo-arbre-oreille-512.png" alt="logo Accou'ferme">
                         <?php
                         }
                         else
                         {
                         ?>
-                        <img src="./assets/img/logo-arbre-oreille-512.png" alt="logo Accou'ferme" />
+                        <img src="./assets/img/logo-arbre-oreille-512.png" alt="logo Accou'ferme">
                         <?php
                         }
                         ?>

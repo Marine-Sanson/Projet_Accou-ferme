@@ -4,6 +4,8 @@
     
     <h2>Choisir une image</h2>
     
+    <?php require "_messages.phtml"; ?>
+    
     <ul class="updateImage">
     
         <?php
@@ -12,14 +14,15 @@
         ?>
             <li class="updateImageLi" >
                 <form name="chooseImage" method="POST" action="/Projet_Accou-ferme/updateVarietyImage">
-                    <img src="<?= $media["url"]; ?>" alt=" <?= $media["alt"]; ?>" />
-                    <input type="hidden" name="mediaId" value=" <?= $media["id"] ?>" />
-                    <input type="hidden" name="varietyId" value=" <?= $data["varietyId"] ?>" />
-                    <input class="button" type="submit" name="chooseImage" value="choisir cette image" />
+                    <img src="<?= $media["url"]; ?>" alt=" <?= $media["alt"]; ?>">
+                    <input type="hidden" name="mediaId" value=" <?= $media["id"] ?>">
+                    <input type="hidden" name="varietyId" value=" <?= $data["varietyId"] ?>">
+                    <input class="button" type="submit" name="chooseImage" value="choisir cette image">
                 </form>
             </li>
         <?php
         }
         ?>
     </ul>
+    
 </main>

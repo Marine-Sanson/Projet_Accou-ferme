@@ -1,24 +1,24 @@
-<footer id="footer">
+<footer class="footer">
     
-    <p>@ Accou'ferme - Création du site Marine Sanson</p>
+    <p>@ Accou'ferme - Création du site <a href="https://github.com/Marine-Sanson">Marine Sanson</a></p>
     
-    <nav id="footerNav">
+    <nav class="footerNav">
         <ul>
-            <li id="containerLogo">
-                <h1 class="sr-only">Accou ferme</h1>
+            <li class="containerLogoFooter">
+                <h2 class="sr-only">Accou ferme</h2>
                 <a href="/Projet_Accou-ferme/" title="Accueil">
-                    <figure id="logoImg">
+                    <figure class="logoImg">
                         <?php
                         if(isset($data["newsDetail"]) && ($data["newsDetail"]->getId()) !== null)
                         {
                         ?>
-                        <img src="../assets/img/logo-arbre-oreille-512.png" alt="logo Accou'ferme" />
+                        <img src="../assets/img/logo-arbre-oreille-512.png" alt="logo Accou'ferme">
                         <?php
                         }
                         else
                         {
                         ?>
-                        <img src="./assets/img/logo-arbre-oreille-512.png" alt="logo Accou'ferme" />
+                        <img src="./assets/img/logo-arbre-oreille-512.png" alt="logo Accou'ferme">
                         <?php
                         }
                         ?>
@@ -50,8 +50,18 @@
             <li>
                 <a href="/Projet_Accou-ferme/actus" title="Actus et Recettes">Actus et Recettes</a>
             </li>
+            <li class="cssValid">
+                <a href="https://jigsaw.w3.org/css-validator/check/referer">
+                    <img src="https://jigsaw.w3.org/css-validator/images/vcss"
+                         alt="CSS Valide !">
+                </a>
+            </li>
         </ul>
-    </nav>    
+    </nav>
+
+    <p>
+    </p>
+            
 </footer>
 
 <?php

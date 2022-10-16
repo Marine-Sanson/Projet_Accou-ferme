@@ -2,9 +2,11 @@
 
     <?php require "_adminNav.phtml"; ?>
     
-    <h1>adminContacts</h1>
+    <h1>Gestion des contacts</h1>
     
     <h2>Messages reçus</h2>
+    
+    <?php require "_messages.phtml"; ?>
     
     <section>
         <ul id="messagesUl">
@@ -25,15 +27,22 @@
         ?>
             <li class="messagesLi">
                 <article class="messagesArticles">
-                    <h3><span class="messagesName">nom : <?= $message["name"] ?></span><span class="messagesFirstName">prénom : <?= $message["first_name"] ?></span></h3>
+                    <h3>
+                        <span class="messagesName">nom : <?= $message["name"] ?></span>
+                        <span class="messagesFirstName">prénom : <?= $message["first_name"] ?></span>
+                    </h3>
                     <p class="messagesId">id : <?= $message["id"] ?> </p>
                     <p class="messagesEmail">email : <?= $message["email"] ?> </p>
                     <p class="messagesTel">tel :  <?= $message["tel"] ?> </p>
                     <p class="messagesContent">message : <?= $message["message"] ?> </p>
                     <p class="messagesDate">date : <?= $message["date"] ?> </p>
-                    <form class="contactForm" method="POST" action="/Projet_Accou-ferme/closeMessage">
-                        <input type="hidden" name="answered_id" value=" <?= $message["id"] ?> " />
-                        <button class="contactFormButton" type="submit" class="button">Répondu</button>
+                    <form class="contactForm"
+                          method="POST"
+                          action="/Projet_Accou-ferme/closeMessage">
+                        <input type="hidden"
+                        name="answered_id"
+                        value=" <?= $message["id"] ?> ">
+                        <button class="contactFormButton button" type="submit" class="button">Répondu</button>
                     </form>
                     
                 </article>

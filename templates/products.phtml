@@ -2,7 +2,7 @@
 
     <h1>Produits</h1>
     
-    <section>
+    <section id="productsHeader">
     
         <p>Retrouvez ici la liste des Fruits et légumes que nous proposons</p>
         
@@ -18,13 +18,10 @@
         }
         ?>
         </select>
-    
     </section>
+    
     <section>
-
         <?php
-        // if($productId === "0"){
-            
             foreach($data['products'] as $key => $product)
             {
                 ?>
@@ -45,7 +42,8 @@
                                         {
                                             ?>
                                             <figure class="varietyDetailFigure">
-                                                <img src="<?= $item["media"]->getUrl(); ?>" alt="<?= $item["media"]->getAlt(); ?>" />
+                                                <img src="<?= $item["media"]->getUrl(); ?>"
+                                                alt="<?= $item["media"]->getAlt(); ?>">
                                             </figure>
                                             <?php
                                         }
@@ -53,7 +51,8 @@
                                         {
                                            ?>
                                             <figure class="varietyDetailFigure">
-                                                <img src="./assets/img/varieties/panierVide.jpg" alt="Photo non disponible" />
+                                                <img src="./assets/img/varieties/panierVide.jpg"
+                                                alt="Photo non disponible">
                                             </figure>
                                         <?php 
                                         }
@@ -65,11 +64,11 @@
                                         <?= $variety['name']; ?>
                                     </h3>
                                 </header>
-                                <main class="varietyDetailMain">
+                                <section class="varietyDetailMain">
                                     <p class="varietyDetailDescription">
                                         <?= $variety['description']; ?>
                                     </p>
-                                </main>
+                                </section>
                                 <footer class="varietyDetailFooter">
                                     <p class="varietyDetailSeason">
                                         De
@@ -95,8 +94,6 @@
                         ?>
                 <?php
             }
-        // }
-
         ?>
 
     </section>

@@ -1,106 +1,87 @@
-<main id="contact">
+<section id="contact">
     
     <h1>Contactez moi</h1>
     
     <p>Si vous avez une question, si vous désirez un renseignement, si vous voulez me faire une suggestion ou me transmettre une recette, n'hésitez pas!</p>
     
-    <?php
+    <?php require "_messages.phtml"; ?>
     
-    if(isset($data["errors"]) && count($data["errors"]) > 0)
-    {
-    ?>
-        <section class="errors">
-            <ul>
-                <?php
-                foreach($data["errors"] as $key => $error)
-                {
-                ?>
-                    <li> <?= $error ?></li>
-                <?php
-                }
-                ?>
-            </ul>
-        </section>
-    <?php
-    }
-    
-    if(isset($data["validation"]) && count($data["validation"]) > 0)
-    {
-    ?>
-        <section class="validation">
-            <ul>
-                <?php
-                foreach($data["validation"] as $key => $valid)
-                {
-                ?>
-                    <li> <?= $valid ?></li>
-                <?php
-                }
-                ?>
-            </ul>
-        </section>
-    <?php
-    }
-    ?>
-
     <form id="contactForm" method="POST" action="/Projet_Accou-ferme/envoye">
         <fieldset id="contactFormInfo">
-            <label id="contactFirstNameLab" for="first_name">Prénom : </label>
+            
+            <input id="contactToken" type="hidden" name="contactToken"
+            <?php 
+                if(isset($data["token"]))
+                {
+                    ?> 
+                    value=" <?= $data["token"]; ?>"
+                    <?php 
+                }
+                ?>
+            > 
+            
+            <label id="contactFirstNameLab" for="contactFirstNameInp">Prénom : </label>
             <input id="contactFirstNameInp" type="text" name="first_name" 
                 <?php 
                 if(isset($data["contact"]))
                 {
                     ?> 
-                    value=" <?= $data["contact"]["first_name"] ?>"
+                    value=" <?= $data["contact"]["first_name"]; ?>"
                     <?php 
                 }
                 ?>
-            />
+            >
             
-            <label id="contactNameLab" for="name">Nom : </label>
+            <label id="contactNameLab" for="contactNameInp">Nom : </label>
             <input id="contactNameInp" type="text" name="name" 
                 <?php 
                 if(isset($data["contact"]))
                 {
                     ?>
-                    value=" <?= $data["contact"]["name"] ?>"
+                    value=" <?= $data["contact"]["name"]; ?>"
                     <?php 
                 }
                 ?>
-            />
-            <label id="contactEmailLab" for="email">Email : </label>
+            >
+            <label id="contactEmailLab" for="contactEmailInp">Email : </label>
             <input id="contactEmailInp" type="email" name="email" 
                 <?php 
                 if(isset($data["contact"]))
                 {
                     ?>
-                    value=" <?= $data["contact"]["email"] ?>"
+                    value=" <?= $data["contact"]["email"]; ?>"
                     <?php 
                 }
                 ?>
-            />            
-            <label id="contactTelLab" for="tel">Téléphone : </label>
+            >            
+            <label id="contactTelLab" for="contactEmailInp">Téléphone : </label>
             <input id="contactTelInp" type="tel" name="tel" 
                 <?php 
-                if(isset($data["contact"]))
+                if(isset($data["contact"]) && $data["contact"]["tel"] !== 0)
                 {
                     ?>
-                    value=" <?= $data["contact"]["tel"] ?>"
+                    value=" <?= $data["contact"]["tel"]; ?>"
+                    <?php 
+                }
+                else
+                {
+                    ?>
+                    value=""
                     <?php 
                 }
                 ?>
-            />
+            >
             
         </fieldset>
         
         <fieldset id="contactFormText">
-            <label id="contactMesLab" for="textarea">Entrez votre message :</label>
-            <textarea id="contactText" type="textarea" name="message">
+            <label id="contactMesLab" for="contactText">Entrez votre message :</label>
+            <textarea id="contactText" name="message">
             <?php 
                 if(isset($data["contact"]))
                 {
                     ?>
-                    <?= $data["contact"]["message"] ?>"
+                    <?= $data["contact"]["message"]; ?>
                     <?php 
                 }
                 ?>
@@ -112,5 +93,5 @@
         </fieldset>
     </form>
     
-</main>
+</section>
 

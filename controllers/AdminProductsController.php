@@ -164,7 +164,18 @@ class AdminProductsController extends AbstractController
                 $this->vm->createVariety($varietyVerified["variety"]);
 
                 $allVarieties = $this->vm->getAllVarieties();
-                $validation = "Votre varieté a bien été créée!";
+                
+                foreach($allVarieties as $key => $variety)
+                {
+                    $mediaId = $variety["media_id"];
+                    if($mediaId !== null)
+                    {
+                        $media = $this->mm->getMediaById($mediaId);
+                        $allVarieties[$key][] = $media;
+                    }
+                }
+
+                $validation = "Votre varieté a bien été créée !";
                 
                 $this->render("adminProducts", ["validation" => $validation, "allProducts" => $allProducts, "allVarieties" => $allVarieties]);
             }
@@ -197,7 +208,17 @@ class AdminProductsController extends AbstractController
                 $this->vm->updateVariety($variety);
                 $allVarieties = $this->vm->getAllVarieties();
                 
-                $validation = "Votre varieté a bien été modifiée!";
+                foreach($allVarieties as $key => $variety)
+                {
+                    $mediaId = $variety["media_id"];
+                    if($mediaId !== null)
+                    {
+                        $media = $this->mm->getMediaById($mediaId);
+                        $allVarieties[$key][] = $media;
+                    }
+                }
+                
+                $validation = "Votre varieté a bien été modifiée !";
     
                 $this->render("adminProducts", ["validation" => $validation, "allVarieties" => $allVarieties, "allProducts" => $allProducts]);
             }
@@ -224,7 +245,17 @@ class AdminProductsController extends AbstractController
                 $this->vm->deleteVariety($variety);
                 $allVarieties = $this->vm->getAllVarieties();
                 
-                $validation = "Votre varieté a bien été suprimée!";
+                foreach($allVarieties as $key => $variety)
+                {
+                    $mediaId = $variety["media_id"];
+                    if($mediaId !== null)
+                    {
+                        $media = $this->mm->getMediaById($mediaId);
+                        $allVarieties[$key][] = $media;
+                    }
+                }
+                
+                $validation = "Votre varieté a bien été suprimée !";
     
                 $this->render("adminProducts", ["validation" => $validation, "allVarieties" => $allVarieties, "allProducts" => $allProducts]);
             }

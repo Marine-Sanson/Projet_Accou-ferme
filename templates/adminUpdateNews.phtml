@@ -2,6 +2,8 @@
     
     <h2>Mettre à jour une news</h2>
     
+    <?php require "_messages.phtml"; ?>
+    
     <?php
     $newsId = $data["news"]->getId();
     $newsCatId = $data["news"]->getCategoryId();
@@ -34,15 +36,16 @@
         </select>
 
         <label for="title">Titre</label>  
-        <input class="newsTitle" type="text" name="name" value="<?= $newsName ?>" />
+        <input class="newsTitle" type="text" name="name" value="<?= $newsName ?>">
         
         <label for="content">Contenu</label>  
-        <input class="newsContent" type="text" name="content" value="<?= $newsContent ?>" />
+        <input class="newsContent" type="text" name="content" value="<?= $newsContent ?>">
         
         <label for="media_id">Image</label>
-        <input class="mediaId" type="number" name="media_id" value="<?= $newsMedia ?>" />
+        <input class="mediaId" type="number" name="media_id" value="<?= $newsMedia ?>">
         
-        <button type"submit" value="Modifier" >Modifier</button>
+        <button class="button" type"submit" value="Modifier" >Modifier</button>
         
     </form>
 
+</main>

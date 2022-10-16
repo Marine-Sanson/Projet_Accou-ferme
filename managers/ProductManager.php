@@ -2,7 +2,6 @@
 
 class ProductManager extends AbstractManager
 {
-    
     /**
      * reçoit un Product et le crée dans la base de données
      * @param Product

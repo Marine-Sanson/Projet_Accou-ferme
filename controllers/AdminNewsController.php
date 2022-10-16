@@ -1,7 +1,5 @@
 <?php
 
-// require_once "./models/Recipe.php";
-
 class AdminNewsController extends AbstractController
 {
     public function index() :void
@@ -69,7 +67,7 @@ class AdminNewsController extends AbstractController
             }
             else
             {
-                $validation ="";
+                $validation = "";
             }
 
             $categories = $this->cm->getAllCategories();
@@ -123,10 +121,6 @@ class AdminNewsController extends AbstractController
             {
                 $singleRecipe["recipe"] = [];
             }
-            
-            // var_dump("fin adminCrudNews ligne 75 :");
-            // var_dump($singleNews["news"]);
-            // var_dump($singleRecipe["recipe"]);
         }
         else
         {
@@ -134,10 +128,6 @@ class AdminNewsController extends AbstractController
             $singleNews["news"] = [];
             $singleRecipe["recipe"] = [];
             $media = [];
-            
-            // var_dump("else adminCrudNews ligne 86 :");
-            // var_dump($singleNews["news"]);
-            // var_dump($singleRecipe["recipe"]);
         }
         
         $this->render("adminCrudNews", ["action" => $action, "categories" => $categories, "singleNews" => $singleNews, "singleRecipe" => $singleRecipe, "allProducts" => $allProducts, "media" => $media]);
@@ -219,7 +209,18 @@ class AdminNewsController extends AbstractController
 
                 $categories = $this->cm->getAllCategories();
                 $allNews = $this->nm->getAllNews();
-                $validation = "Votre actu a bien été créée!";
+                
+                foreach($allNews as $key => $news)
+                {
+                    $mediaId = $news["media_id"];
+                    if($mediaId !== null)
+                    {
+                        $media = $this->mm->getMediaById($mediaId);
+                        $allNews[$key][] = $media;
+                    }
+                }
+                
+                $validation = "Votre actu a bien été créée !";
 
                 $this->render("adminNews", ["validation" => $validation, "categories" => $categories, "allNews" => $allNews, "allProducts" => $allProducts]);
             }
@@ -230,7 +231,7 @@ class AdminNewsController extends AbstractController
                 $action = "createNews";
                 $singleNews = $newsVerified;
                 
-                $this->render("adminCrudNews", ["singleNews" => $singleNews, "categories" => $categories, "errors" => $errors, "action" => $action, "allProducts" => $allProducts, "tokenAdminNews" => $tokenAdminNews]);
+                $this->render("adminCrudNews", ["singleNews" => $singleNews, "categories" => $categories, "errors" => $errors, "action" => $action, "allProducts" => $allProducts]);
             }
         }
         else
@@ -275,7 +276,18 @@ class AdminNewsController extends AbstractController
 
                 $categories = $this->cm->getAllCategories();
                 $allNews = $this->nm->getAllNews();
-                $validation = "Votre recette a bien été créée!";
+                
+                foreach($allNews as $key => $news)
+                {
+                    $mediaId = $news["media_id"];
+                    if($mediaId !== null)
+                    {
+                        $media = $this->mm->getMediaById($mediaId);
+                        $allNews[$key][] = $media;
+                    }
+                }
+                
+                $validation = "Votre recette a bien été créée !";
 
                 $this->render("adminNews", ["validation" => $validation, "categories" => $categories, "allNews" => $allNews, "allProducts" => $allProducts]);
             }
@@ -307,8 +319,6 @@ class AdminNewsController extends AbstractController
         {
         // var_dump("debut updateNews ligne 181 :");
         // var_dump($post);
-            
-            var_dump($post);
             
             $action = "update";
             $news = $post;
@@ -359,7 +369,17 @@ class AdminNewsController extends AbstractController
 
                 $allNews = $this->nm->getAllNews();
                 
-                $validation = "Votre actu a bien été modifiée!";
+                foreach($allNews as $key => $news)
+                {
+                    $mediaId = $news["media_id"];
+                    if($mediaId !== null)
+                    {
+                        $media = $this->mm->getMediaById($mediaId);
+                        $allNews[$key][] = $media;
+                    }
+                }
+                
+                $validation = "Votre actu a bien été modifiée !";
     
                 $this->render("adminNews", ["validation" => $validation, "allNews" => $allNews, "categories" => $categories, "allProducts" => $allProducts]);
             }
@@ -424,7 +444,17 @@ class AdminNewsController extends AbstractController
                 
                 $allNews = $this->nm->getAllNews();
                 
-                $validation = "Votre actu a bien été suprimée!";
+                foreach($allNews as $key => $news)
+                {
+                    $mediaId = $news["media_id"];
+                    if($mediaId !== null)
+                    {
+                        $media = $this->mm->getMediaById($mediaId);
+                        $allNews[$key][] = $media;
+                    }
+                }
+                
+                $validation = "Votre actu a bien été suprimée !";
     
                 $this->render("adminNews", ["validation" => $validation, "allNews" => $allNews, "categories" => $categories, "allProducts" => $allProducts]);
             }
@@ -444,9 +474,6 @@ class AdminNewsController extends AbstractController
     
     public function verifyNews(array $post, string $action) :array
     {
-        // var_dump("début de verifyNews ligne 300 :");
-        // var_dump($post);
-
         if(!isset($errors))
         {
             $errors = [];
@@ -457,6 +484,8 @@ class AdminNewsController extends AbstractController
         
         $inputCategoryId = $this->clean_input($post["category_id"]);
         $categoryId = intval($inputCategoryId);
+        
+        $newsMediaId = $post["media_id"];
         
         $name = $this->clean_input($post["name"]);
         
@@ -496,11 +525,6 @@ class AdminNewsController extends AbstractController
         if(!is_string($name))
         {
             $errors[] = "Veuillez entrer un titre valide";
-        }
-        
-        if(strlen($inputMedia) > 6)
-        {
-            $errors[] = "Veuillez choisir une image valide";
         }
         
         if($content === "")
@@ -546,9 +570,9 @@ class AdminNewsController extends AbstractController
             $errors[] = $error;
         }
         
-        if(isset($post["recipeId"]) && $post["recipeId"] !== 0)
+        if(isset($post["recipeId"]) && intval($post["recipeId"]) !== 0)
         {
-            $recipeId = $post["recipeId"];
+            $recipeId = intval($post["recipeId"]);
         }
         else
         {

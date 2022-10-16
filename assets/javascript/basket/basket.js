@@ -9,6 +9,7 @@ function saveData(data)
     sessionStorage.setItem("data", JSON.stringify(data));
 }
 
+// renvoie les data en json pour maj dans PHP
 function newFetch()
 {
     let $basket = getData();
@@ -26,7 +27,6 @@ function newFetch()
         .then(response => response.json())
         .catch( error => {
         });
-
 }
 
 function listenButtonAdd(event)
@@ -214,7 +214,8 @@ function createBasketItem($item)
     $newEuros.appendChild($textNewEuros);
 
     let $slash = document.createElement("span");
-    $slash.appendChild($textNewEuros);
+    let $textNewEuros2 = document.createTextNode("€");
+    $slash.appendChild($textNewEuros2);
     let $textSlash = document.createTextNode(" / ");
     $slash.appendChild($textSlash);
 

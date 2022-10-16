@@ -2,23 +2,7 @@
     
     <?php require "_adminNav.phtml"; ?>
 
-    <?php
-    if(isset($data["errors"]))
-    {
-    ?>
-        <ul class="errors">
-            <?php
-            foreach($data["errors"] as $key => $error)
-            {
-            ?>
-            <li> <?= $error ?> </li>
-            <?php    
-            }
-            ?>
-        </ul>
-    <?php    
-    }
-    ?>
+    <?php require "_messages.phtml"; ?>
         
     <?php
     if(isset($data["variety"]) && !empty($data["variety"]))
@@ -47,21 +31,30 @@
     if($data["action"] === "create")
     {
     ?>
-        <form id="varietyForm" name="varietyForm" method="POST" action="/Projet_Accou-ferme/adminCreateVariety">
+        <form id="varietyForm"
+              name="varietyForm"
+              method="POST"
+              action="/Projet_Accou-ferme/adminCreateVariety">
     <?php
     }
     else if($data["action"] === "update")
     {
 
     ?>
-        <form id="varietyForm" name="varietyForm" method="POST" action="/Projet_Accou-ferme/adminUpdateVariety">
+        <form id="varietyForm"
+              name="varietyForm"
+              method="POST"
+              action="/Projet_Accou-ferme/adminUpdateVariety">
     <?php
     }
     else if($data["action"] === "delete")
     {
 
     ?>
-        <form id="varietyForm" name="varietyForm" method="POST" action="/Projet_Accou-ferme/adminDeleteVariety">
+        <form id="varietyForm"
+              name="varietyForm"
+              method="POST"
+              action="/Projet_Accou-ferme/adminDeleteVariety">
     <?php        
     }
 
@@ -78,7 +71,7 @@
         ?>
         >
 
-        <select  id="selectProductsForm" class="selectProducts" name="productId">
+        <select id="selectProductsForm" class="selectProducts" name="productId">
             <option value = "0">Selectionner un produit</option>
             <?php
             
@@ -202,7 +195,7 @@
             <label for="offer">non</label>
         </span>
 
-        <label id="quantityAvailableLabel" for="quantityAvailable">Quantité dispo :</label>  
+        <label id="quantityAvailableLabel" for="quantityAvailable">Quantité dispo :</label>
         <input id="quantityAvailableInput" type="number" name="quantityAvailable"
         <?php
         if(isset($quantityAvailable))
@@ -242,20 +235,32 @@
     if($data["action"] === "create")
     {
     ?>
-        <button id="varietyFormButton" type"submit" name="varietyForm" value="create" >Créer</button>
+        <button class="button"
+                id="varietyFormButton"
+                type"submit"
+                name="varietyForm"
+                value="create" >Créer</button>
     <?php
     }
     else if($data["action"] === "update")
     {
     ?>
 
-        <button id="varietyFormButton" type"submit" name="varietyForm" value="update" >Modifier</button>
+        <button class="button"
+                id="varietyFormButton"
+                type"submit"
+                name="varietyForm"
+                value="update" >Modifier</button>
     <?php
     }
     else if($data["action"] === "delete")
     {
     ?>
-        <button id="varietyFormButton" type"submit" name="varietyForm" value="delete" >Supprimer</button>
+        <button class="button"
+                id="varietyFormButton"
+                type"submit"
+                name="varietyForm"
+                value="delete" >Supprimer</button>
     <?php
     }
     ?>

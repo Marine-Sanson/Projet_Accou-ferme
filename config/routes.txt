@@ -22,7 +22,6 @@
 /adminDeleteVariety AdminProductsController:deleteVariety
 /chooseVarietyImage AdminProductsController:chooseVarietyImage
 /updateVarietyImage AdminProductsController:updateVarietyImage
-/adminOrders AdminOrdersController:index
 /adminDisplayOrders AdminDisplayOrdersController:index
 /adminDisplayOrdersByDay AdminDisplayOrdersController:displayOrdersByDay
 /terminer AdminDisplayOrdersController:endOrder
@@ -39,3 +38,4 @@
 /deleteImage AdminMediasController:deleteImage
 /adminContacts AdminContactController:index
 /closeMessage AdminContactController:closeMessage
+/adminDisconnect AdminController:adminDisconnect

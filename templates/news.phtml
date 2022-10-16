@@ -1,6 +1,6 @@
 <main id="news">
     
-    <h1>Actu et recettes</h1>
+    <h1>Actus et recettes</h1>
 
     <section id="newsSection">
         <select id="selectNews">
@@ -31,13 +31,14 @@
                 <header class="newsHeader">
                     <h2> <?= $singleNews["name"] ?> </h2>
                 </header>
-                <main class="newsMain">
+                <section class="newsMain">
                     <?php
                         if(!is_null($singleNews["media_id"]))
                         {
                             ?>
                             <figure class="newsImg">
-                                <img src="<?= $singleNews[0]->getUrl(); ?>" alt="<?= $singleNews[0]->getAlt(); ?>" />
+                                <img src="<?= $singleNews[0]->getUrl(); ?>" 
+                                     alt="<?= $singleNews[0]->getAlt(); ?>">
                             </figure>
                             <?php
                         }
@@ -45,7 +46,8 @@
                         {
                            ?>
                             <figure class="newsImg">
-                                <img src="./assets/img/news/news.jpg" alt="Photo non disponible" />
+                                <img src="./assets/img/news/news.jpg"
+                                     alt="Photo non disponible">
                             </figure>
                         <?php 
                         }
@@ -53,7 +55,8 @@
                         {
                            ?>
                             <figure class="newsImg">
-                                <img src="./assets/img/legumes.jpg" alt="Photo non disponible" />
+                                <img src="./assets/img/legumes.jpg" 
+                                     alt="Photo non disponible">
                             </figure>
                         <?php 
                         }
@@ -61,7 +64,8 @@
                         {
                            ?>
                             <figure class="newsImg">
-                                <img src="./assets/img/news/recette.jpg" alt="Photo non disponible" />
+                                <img src="./assets/img/news/recette.jpg" 
+                                     alt="Photo non disponible">
                             </figure>
                             <?php
                         }
@@ -69,7 +73,8 @@
                         {
                             ?>
                             <figure class="newsImg">
-                                <img src="./assets/img/panierVide.jpg" alt="Photo non disponible" />
+                                <img src="./assets/img/panierVide.jpg" 
+                                     alt="Photo non disponible">
                             </figure>
                             <?php
                         }
@@ -78,12 +83,14 @@
                     <p class="newsContent">
                     <?= $singleNews["content"] ?>
                     </p>
-                </main>
+                </section>
                 <footer  class="newsFooter">
                     <h3 class="newsH3">Catégorie : <?= $singleNews["category_name"] ?> </h3>
-                    <form class="newsButton" method="POST" action="/Projet_Accou-ferme/actus_show/<?= $singleNews["id"] ?>">
-                        <input type="hidden" name="id" value="<?= $singleNews["id"] ?>" />
-                        <button>
+                    <form class="newsButton" 
+                          method="POST"
+                          action="/Projet_Accou-ferme/actus_show/<?= $singleNews["id"] ?>">
+                        <input type="hidden" name="id" value="<?= $singleNews["id"] ?>">
+                        <button class="button">
                             <?php 
                             if($singleNews["category_name"] === 'Recette'){
                             ?>
@@ -107,4 +114,3 @@
     </section>
     
 </main>
-

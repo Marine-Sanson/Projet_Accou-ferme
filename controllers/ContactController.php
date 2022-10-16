@@ -11,8 +11,11 @@ class ContactController extends AbstractController
 
     public function index() :void
     {
+        $token = $this->generateToken(25);
+        $_SESSION["tokenForAdminHome"] = $token;
+        
         $template = "contact";
-        $this->render($template);
+        $this->render($template, ["token" => $token]);
     }
     
     /**
@@ -26,39 +29,39 @@ class ContactController extends AbstractController
     {
         if(isset($_POST))
         {
-            // $tokenAdminNews = trim($post["tokenAdminHome"]);
-            
-            // if($tokenAdminNews !== $_SESSION["tokenForAdminHome"])
-            // {
-            //     $errors[] = "une erreur s'est produite lors de l'envoi du formulaire";
-            // }
-            
             $errors = [];
-            $validation = [];
+            $validation = "";
+            
+            $contactToken = trim($post["contactToken"]);
+            
+            if($contactToken !== $_SESSION["tokenForAdminHome"])
+            {
+                $errors[] = "une erreur s'est produite lors de l'envoi du formulaire";
+            }
             
             $name = $this->clean_input($_POST["name"]);
             if($name === "")
             {
-                $errors[] = "Veuillez renter votre nom";
+                $errors[] = "Veuillez rentrer votre nom";
             }
             
             $firstName = $this->clean_input($_POST["first_name"]);
             if($firstName === "")
             {
-                $errors[] = "Veuillez renter votre prénom";
+                $errors[] = "Veuillez rentrer votre prénom";
             }
             
             $email = $this->clean_input($_POST["email"]);
             if($email === "")
             {
-                $errors[] = "Veuillez renter votre prénom";
+                $errors[] = "Veuillez rentrer votre email";
             }
             
             $inputTel = $this->clean_input($_POST["tel"]);
             $tel = intval($inputTel);
             if($inputTel === "")
             {
-                $errors[] = "Veuillez renter votre numéro de téléphone";
+                $errors[] = "Veuillez rentrer votre numéro de téléphone";
             }
 
             $message = $this->clean_input($_POST["message"]);
@@ -79,16 +82,15 @@ class ContactController extends AbstractController
             {
                 $sentMessage = new Contact(null, $name, $firstName, $email, $tel, $message);
                 $this->ctm->createContact($sentMessage);
-                $validation[] = "Nous avons bien reçu votre message et vous répondrons dans les meilleurs délais";
+                $validation = "Nous avons bien reçu votre message et vous répondrons dans les meilleurs délais";
                 $template = "contact";
                 $this->render($template, ["validation" => $validation]);
             }
             else
             {
                 $template = "contact";
-                $this->render($template, ["errors" => $errors, "contact" => $contact]);
+                $this->render($template, ["errors" => $errors, "contact" => $contact, "token" => $contactToken]);
             }
         }
     }
-    
 }

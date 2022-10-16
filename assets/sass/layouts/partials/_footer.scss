@@ -2,16 +2,16 @@
 
 /* Général */
 
-#footer > p{
+.footer > p{
     margin:1rem;
     text-align:center;
 }    
 
-#footerNav > ul > li > a:hover{
+.footerNav > ul > li > a:hover{
     text-decoration: underline;
 }
 
-#logoImg{
+.logoImg{
     text-align:center;
     margin-left:auto;
 }
@@ -25,16 +25,21 @@
 // Light mode 
 // @media (prefere-color-scheme: light)
 // {
-    #footer{
+    .footer{
         background-color:$red;
     }
     
-    #footer > p{
-        color:$blanc;
+    .footer > p{
+        color:$white;
     }
     
-    #footerNav > ul > li > a{
-        color:$blanc;
+    .footer > p > a{
+        color:$white;
+        text-decoration:underline;
+    }
+
+    .footerNav > ul > li > a{
+        color:$white;
     }
 
 // }
@@ -42,91 +47,108 @@
 /* Dark mode */
 @media (prefers-color-scheme: dark)
 {
-    #footer{
-        background-color:$noir;
+    .footer{
+        background-color:$red;
     }
     
-    #footer > p{
-        color:$red;
+    .footer > p{
+        color:$white;
     }
     
-    #footerNav > ul > li > a{
-        color:$red;
+    .footerNav > ul > li > a{
+        color:$white;
+    }
+    
+    .footer > p > a{
+        color:$black;
+        font-weight:600;
+    }
+    
+    .footer > p > a:hover{
+        color:$white;
     }
 }
 
 @media(min-width: 0px) and (max-width: 767.99px)
 {
-    #footer > p{
+    .footer > p{
         font-size:1rem;
     }
     
-    #footerNav > ul > li > a{
+    .footerNav > ul > li > a{
         font-size:1rem;
     }
     
-    #footerNav > ul{
+    .footerNav > ul{
         display:grid;
         grid-auto-flow: column;
         grid-template-columns:0.5fr 1fr;
         grid-template-rows:repeat(8, 1fr);
     }
     
-    #containerLogo{
+    .containerLogoFooter{
         margin:auto;
         grid-column:1;
         grid-row:1/10;
     }
     
-    #footerNav > ul{
+    .footerNav > ul{
         padding-bottom:1.5rem;
     }
 }
 
 @media(min-width: 768px) and (max-width: 991px)
 {
-    #footer > p{
+    .footer > p{
         font-size:1rem;
     }
     
-    #footerNav > ul > li > a{
+    .footerNav > ul > li > a{
         font-size:1rem;
     }
     
-    #footerNav > ul{
+    .footerNav > ul{
         display:grid;
         grid-auto-flow: column;
         grid-template-columns:0.8fr repeat(2,1fr);
         grid-template-rows:repeat(4, 1fr);
     }
     
-    #containerLogo{
+    .containerLogoFooter{
         margin:auto;
         grid-column:1;
         grid-row:1/6;
     }
     
-    #footerNav > ul{
+    .footerNav > ul{
         padding-bottom:1.5rem;
     }
 }
 
 @media (min-width: 992px)
 {
-    #footerNav > ul{
+    .footerNav > ul{
         display:grid;
         grid-auto-flow: column;
         grid-template-columns:repeat(5,1fr);
         grid-template-rows:repeat(3, 1fr);
     }
     
-    #containerLogo{
+    .containerLogoFooter{
         margin-left:2rem;
         grid-column:1;
         grid-row:1/4;
     }
 
-    #footerNav > ul{
+    .footerNav > ul{
         padding-bottom:2rem;
+    }
+    
+    .cssValid{
+        width:88px;
+        height:31px;
+        grid-column:5;
+        grid-row:2;
+        margin:auto;
     }
 }

@@ -6,7 +6,6 @@
 /* *** COLORS *** */
 /* GENERAL */
 /* LIGHT MODE */
-/* DARK MODE */
 /* ****** FONTS ****** */
 /* ****** line height ****** */
 /* ****** PADDING - MARGIN - WIDTH ****** */
@@ -28,7 +27,7 @@ body {
   font-size: 1.2rem;
   line-height: 2rem;
   background-color: rgb(255, 255, 255);
-  color: rgb(10, 36, 20);
+  color: rgb(0, 0, 0);
 }
 
 body > main {
@@ -36,6 +35,7 @@ body > main {
   display: flex;
   max-width: 1140px;
   flex-direction: column;
+  justify-content: center;
   margin: auto;
 }
 
@@ -63,6 +63,7 @@ h1 {
   font-size: 2.4rem;
   padding: 1rem;
   font-weight: 800;
+  margin: 1rem;
 }
 
 h1:not(#mainGalleryTitle) {
@@ -90,23 +91,33 @@ a {
   text-decoration: underline;
 }
 
-button,
+.webLink:hover {
+  color: rgb(204, 28, 0);
+}
+
 .button {
   font-weight: 900;
   color: rgb(255, 255, 255);
   background-color: rgb(204, 28, 0);
   text-align: center;
+  vertical-align: middle;
+  align-self: center;
   margin: auto;
   border: 2px solid rgb(255, 255, 255);
   border-radius: 4px;
   box-shadow: 5px 5px 5px rgb(0, 0, 0);
+  padding: 0.2rem 0.8rem;
 }
 
-button:hover,
 .button:hover {
   color: rgb(204, 28, 0);
   background-color: rgb(255, 255, 255);
   border: 2px solid rgb(204, 28, 0);
+  cursor: pointer;
+}
+
+.button:hover .button > a {
+  color: rgb(204, 28, 0);
 }
 
 .card {
@@ -129,7 +140,8 @@ fieldset {
 }
 
 .validation {
-  background-color: green;
+  background-color: rgb(0, 128, 0);
+  color: rgb(255, 255, 255);
   width: fit-content;
   padding: 1rem;
   margin: 2rem auto;
@@ -138,11 +150,11 @@ fieldset {
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: rgb(10, 36, 20);
-    color: rgb(10, 28, 20);
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
   }
   body > main {
-    background-color: rgb(10, 36, 20);
+    background-color: rgb(0, 0, 0);
   }
   h1,
 h2,
@@ -150,24 +162,28 @@ h3 {
     color: rgb(255, 255, 255);
   }
   p,
-a,
 li,
 span,
 label {
     color: rgb(255, 255, 255);
   }
+  a {
+    color: rgb(204, 28, 0);
+  }
+  a:hover {
+    color: rgb(255, 255, 255);
+  }
   input {
     background-color: rgb(255, 255, 255);
   }
-  button,
-.button {
+  .button {
     color: rgb(204, 28, 0);
     background-color: rgb(255, 255, 255);
     border: 2px solid rgb(204, 28, 0);
     box-shadow: 5px 5px 5px rgb(255, 255, 255);
+    padding: 0.5rem;
   }
-  button:hover,
-.button:hover {
+  .button:hover {
     color: rgb(255, 255, 255);
     background-color: rgb(204, 28, 0);
     border: 2px solid rgb(255, 255, 255);
@@ -188,10 +204,6 @@ body > header a {
   color: rgb(255, 255, 255);
 }
 
-body > header h1 {
-  color: rgb(0, 0, 0);
-}
-
 #mobile-header-button {
   color: rgb(255, 255, 255);
 }
@@ -199,28 +211,17 @@ body > header h1 {
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   body > header {
-    background-color: rgb(0, 0, 0);
-    color: rgb(204, 28, 0);
+    background-color: rgb(204, 28, 0);
+    color: rgb(10, 36, 20);
   }
   body > header a {
     color: rgb(255, 255, 255);
-  }
-  body > header h1 {
-    color: rgb(204, 28, 0);
   }
   #mobile-header-button {
     color: rgb(255, 255, 255);
   }
 }
 /* General */
-body > header {
-  padding: 1rem;
-}
-
-body > header a {
-  text-decoration: none;
-}
-
 body > header a {
   text-decoration: none;
 }
@@ -229,13 +230,16 @@ body > header a:hover {
   text-decoration: underline;
 }
 
-#logoImg > img {
+#logoImgHeader > img {
   width: 8vw;
   height: auto;
   max-width: 100%;
 }
 
 @media (min-width: 0px) and (max-width: 767.99px) {
+  body > header {
+    padding: 1rem;
+  }
   #mobile-header-button {
     background-color: transparent;
     border: none;
@@ -244,7 +248,7 @@ body > header a:hover {
   body > header ul {
     text-align: center;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(7, 1fr);
     font-size: 1.3rem;
   }
   body > header ul li {
@@ -256,6 +260,9 @@ body > header a:hover {
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
+  body > header {
+    padding: 1rem;
+  }
   #mobile-header-button {
     background-color: transparent;
     border: none;
@@ -264,7 +271,7 @@ body > header a:hover {
   body > header ul {
     text-align: center;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: repeat(7, 1fr);
     font-size: 1.3rem;
   }
   body > header ul li {
@@ -282,38 +289,34 @@ body > header a:hover {
   #mobile-header-button {
     display: none;
   }
-  body > header h1 {
-    font-size: 1.3rem;
-    font-weight: bold;
+  #logoImgHeader > img {
+    max-height: 7rem;
+    width: auto;
+    padding: 0.5rem;
   }
-  body > header ul {
+  #main-nav > ul {
     display: grid;
-    grid-template-columns: 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr 0.2fr;
-    grid-template-rows: none;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 7rem;
   }
-  body > header ul li {
-    padding-top: 0;
-    padding-bottom: 0;
+  #main-nav > ul > li {
     text-align: center;
     margin: auto;
-  }
-  body > header h1:hover {
-    text-decoration: underline;
   }
 }
 /* FOOTER */
 /* ********** Footer ********** */
 /* Général */
-#footer > p {
+.footer > p {
   margin: 1rem;
   text-align: center;
 }
 
-#footerNav > ul > li > a:hover {
+.footerNav > ul > li > a:hover {
   text-decoration: underline;
 }
 
-#logoImg {
+.logoImg {
   text-align: center;
   margin-left: auto;
 }
@@ -324,92 +327,131 @@ body > header a:hover {
   margin: auto;
 }
 
-#footer {
+.footer {
   background-color: rgb(204, 28, 0);
 }
 
-#footer > p {
+.footer > p {
   color: rgb(255, 255, 255);
 }
 
-#footerNav > ul > li > a {
+.footer > p > a {
+  color: rgb(255, 255, 255);
+  text-decoration: underline;
+}
+
+.footerNav > ul > li > a {
   color: rgb(255, 255, 255);
 }
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
-  #footer {
-    background-color: rgb(0, 0, 0);
+  .footer {
+    background-color: rgb(204, 28, 0);
   }
-  #footer > p {
-    color: rgb(204, 28, 0);
+  .footer > p {
+    color: rgb(255, 255, 255);
   }
-  #footerNav > ul > li > a {
-    color: rgb(204, 28, 0);
+  .footerNav > ul > li > a {
+    color: rgb(255, 255, 255);
+  }
+  .footer > p > a {
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+  }
+  .footer > p > a:hover {
+    color: rgb(255, 255, 255);
   }
 }
 @media (min-width: 0px) and (max-width: 767.99px) {
-  #footer > p {
+  .footer > p {
     font-size: 1rem;
   }
-  #footerNav > ul > li > a {
+  .footerNav > ul > li > a {
     font-size: 1rem;
   }
-  #footerNav > ul {
+  .footerNav > ul {
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: 0.5fr 1fr;
     grid-template-rows: repeat(8, 1fr);
   }
-  #containerLogo {
+  .containerLogoFooter {
     margin: auto;
     grid-column: 1;
     grid-row: 1/10;
   }
-  #footerNav > ul {
+  .footerNav > ul {
     padding-bottom: 1.5rem;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #footer > p {
+  .footer > p {
     font-size: 1rem;
   }
-  #footerNav > ul > li > a {
+  .footerNav > ul > li > a {
     font-size: 1rem;
   }
-  #footerNav > ul {
+  .footerNav > ul {
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: 0.8fr repeat(2, 1fr);
     grid-template-rows: repeat(4, 1fr);
   }
-  #containerLogo {
+  .containerLogoFooter {
     margin: auto;
     grid-column: 1;
     grid-row: 1/6;
   }
-  #footerNav > ul {
+  .footerNav > ul {
     padding-bottom: 1.5rem;
   }
 }
 @media (min-width: 992px) {
-  #footerNav > ul {
+  .footerNav > ul {
     display: grid;
     grid-auto-flow: column;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(3, 1fr);
   }
-  #containerLogo {
+  .containerLogoFooter {
     margin-left: 2rem;
     grid-column: 1;
     grid-row: 1/4;
   }
-  #footerNav > ul {
+  .footerNav > ul {
     padding-bottom: 2rem;
+  }
+  .cssValid {
+    width: 88px;
+    height: 31px;
+    grid-column: 5;
+    grid-row: 2;
+    margin: auto;
   }
 }
 /* LAYOUTS */
 /* ********** Home ********** */
+@media (prefers-color-scheme: dark) {
+  #mainHome > article > p > strong > a {
+    color: rgb(204, 28, 0);
+  }
+  #mainHome > article > p > strong > a:hover {
+    color: rgb(255, 255, 255);
+  }
+  #homeNews > button > a {
+    color: rgb(204, 28, 0);
+  }
+  #homeNews > button > a:hover {
+    color: rgb(255, 255, 255);
+  }
+  #homeProducts > button > a {
+    color: rgb(204, 28, 0);
+  }
+  #homeProducts > button > a:hover {
+    color: rgb(255, 255, 255);
+  }
+}
 @media (min-width: 0px) and (max-width: 767.99px) {
   #mainHome > figure {
     max-width: 80vw;
@@ -421,17 +463,17 @@ body > header a:hover {
     background-position: right;
     margin: auto;
   }
-  #market {
+  #markets {
     max-width: 70vw;
     margin: 2rem auto;
     background-color: rgb(204, 28, 0);
   }
-  #market > h2 {
+  #markets > h2 {
     text-align: center;
     margin: auto;
     color: rgb(255, 255, 255);
   }
-  #market > p {
+  #markets > p {
     text-align: center;
     margin: auto;
     padding: 1rem;
@@ -486,6 +528,9 @@ body > header a:hover {
   }
   #homeProducts > button > a:hover {
     color: rgb(204, 28, 0);
+  }
+  #homeNews {
+    margin-bottom: 4rem;
   }
   .lastNewsArticle {
     display: grid;
@@ -587,14 +632,14 @@ body > header a:hover {
     grid-row: 1;
     margin: auto;
   }
-  #homeNews > button {
+  .homeButton {
     display: grid;
     margin: auto;
   }
-  #homeNews > button > a {
+  .homeButton {
     color: rgb(255, 255, 255);
   }
-  #homeNews > button > a:hover {
+  .homeButton:hover {
     color: rgb(204, 28, 0);
   }
 }
@@ -609,34 +654,32 @@ body > header a:hover {
     background-position: right;
     margin: auto;
   }
-  #market {
+  #markets {
     max-width: 70vw;
     margin: 2rem auto;
     background-color: rgb(204, 28, 0);
   }
-  #market > h2 {
+  #markets > h2 {
     text-align: center;
     margin: auto;
     color: rgb(255, 255, 255);
   }
-  #market > p {
+  #markets > p {
     text-align: center;
     margin: auto;
     padding: 1rem;
     color: rgb(255, 255, 255);
   }
-  #homeProducts {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr auto 1fr;
-    gap: 0.4rem;
-  }
   #homeProducts > h2 {
     grid-row: 1;
     grid-column: 1/4;
   }
+  #homeProducts > section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.4rem;
+  }
   #homeProducts > article {
-    grid-row: 2;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 3rem 3rem auto auto 3rem;
@@ -680,17 +723,6 @@ body > header a:hover {
   .homeProductsFooter > p {
     grid-row: 1;
     text-align: right;
-  }
-  #homeProducts > button > a {
-    color: rgb(255, 255, 255);
-  }
-  #homeProducts > button > a:hover {
-    color: rgb(204, 28, 0);
-  }
-  #homeProducts > button {
-    grid-column: 2;
-    grid-row: 3;
-    margin: auto;
   }
   .lastNewsArticle {
     display: grid;
@@ -831,11 +863,16 @@ body > header a:hover {
   #mainHome {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: 1fr;
+    grid-template-rows: 1fr auto;
     gap: 1rem;
+  }
+  #main-title {
+    grid-column: 1/13;
+    grid-row: 1;
   }
   #mainHome > figure {
     grid-column: 1/6;
+    grid-row: 2;
     max-width: 50vw;
     margin: auto;
   }
@@ -846,39 +883,35 @@ body > header a:hover {
   }
   #mainHome > article {
     grid-column: 6/13;
+    grid-row: 2;
+    margin: auto;
   }
-  #market {
+  #markets {
     max-width: 70vw;
     margin: 2rem auto;
     background-color: rgb(204, 28, 0);
   }
-  #market > h2 {
+  #markets > h2 {
     text-align: center;
     margin: auto;
     color: rgb(255, 255, 255);
   }
-  #market > p {
+  #markets > p {
     text-align: center;
     margin: auto;
     padding: 1rem;
     color: rgb(255, 255, 255);
   }
-  #homeProducts {
+  #homeProductsSection {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr auto 1fr;
     gap: 0.4rem;
   }
-  #homeProducts > h2 {
-    grid-row: 1;
-    grid-column: 1/4;
-  }
-  #homeProducts > article {
-    grid-row: 2;
+  #homeProductsSection > article {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 3rem 3rem auto auto 3rem;
-    margin: 1rem;
+    margin: 2rem;
   }
   .homeProductsHeader {
     grid-row: 1/3;
@@ -919,20 +952,6 @@ body > header a:hover {
     grid-row: 1;
     text-align: right;
   }
-  #homeProducts > button > a {
-    color: rgb(255, 255, 255);
-  }
-  #homeProducts > button > a:hover {
-    color: rgb(204, 28, 0);
-  }
-  #homeProducts > button {
-    grid-column: 2;
-    grid-row: 3;
-    margin: auto;
-  }
-  #homeContact {
-    margin-top: 2rem;
-  }
   .lastNewsArticle {
     max-width: 90vw;
     display: grid;
@@ -940,7 +959,7 @@ body > header a:hover {
     grid-template-rows: 4rem auto 4rem;
     gap: 1rem;
     justify-content: center;
-    margin: 4rem auto;
+    margin: 2rem auto;
   }
   .lastNewsHeader {
     grid-column: 1/4;
@@ -993,7 +1012,7 @@ body > header a:hover {
     grid-template-rows: 4rem auto 4rem 4rem 4rem;
     gap: 1rem;
     justify-content: center;
-    margin: 4rem auto;
+    margin: 2rem auto;
   }
   .lastRecipeHeader {
     grid-column: 1/4;
@@ -1048,36 +1067,35 @@ body > header a:hover {
     grid-row: 1;
     margin: auto;
   }
-  #homeNews > button {
-    margin: auto;
-  }
-  #homeNews > button {
+  .homeButton {
     display: grid;
-    margin: auto;
-  }
-  #homeNews > button > a {
+    justify-content: center;
     color: rgb(255, 255, 255);
   }
-  #homeNews > button > a:hover {
+  .homeButton:hover {
     color: rgb(204, 28, 0);
+  }
+  .homeButton {
+    max-width: fit-content;
+    margin: 2rem auto;
   }
 }
 /* ********** About ********** */
 @media (min-width: 0px) and (max-width: 767.99px) {
-  #aboutMain > figure {
+  #aboutMain > article > figure {
     max-width: 60vw;
     margin: auto;
   }
-  #aboutMain > figure > img {
+  #aboutMain > article > figure > img {
     margin: auto;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #aboutMain > figure {
-    max-width: 50vw;
+  #aboutMain > article > figure {
+    max-width: 40vw;
     margin: auto;
   }
-  #aboutMain > figure > img {
+  #aboutMain > article > figure > img {
     margin: auto;
   }
 }
@@ -1085,7 +1103,16 @@ body > header a:hover {
   #aboutMain {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(1fr, auto, 1fr, auto);
+    grid-template-rows: repeat(2, auto);
+    gap: 1rem;
+  }
+  #aboutProjet {
+    margin: auto;
+    grid-column: 1/13;
+    grid-row: 1;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr auto;
     gap: 1rem;
   }
   #aboutProjetTitle {
@@ -1093,62 +1120,65 @@ body > header a:hover {
     grid-row: 1;
   }
   #aboutProjetFig {
-    grid-column: 8/13;
+    grid-column: 9/13;
     grid-row: 2;
-    max-width: 40vw;
+    max-width: 30vw;
+    margin: auto;
+  }
+  #aboutProjetText {
+    grid-column: 1/9;
+    grid-row: 2;
     margin: auto;
   }
   #aboutProjetFig > img {
     margin: auto;
   }
-  #aboutProjet {
-    grid-column: 1/8;
+  #aboutPhilo {
+    margin: 4rem auto;
+    grid-column: 1/13;
     grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr auto;
+    gap: 1rem;
   }
   #aboutPhiloTitle {
     grid-column: 1/13;
-    grid-row: 3;
+    grid-row: 1;
   }
   #aboutPhiloFig {
     grid-column: 1/5;
-    grid-row: 4;
+    grid-row: 2;
     max-width: 40vw;
     margin: auto;
   }
   #aboutPhiloFig > img {
     margin: auto;
   }
-  #aboutPhilo {
+  #aboutPhiloText {
     grid-column: 5/13;
-    grid-row: 4;
+    grid-row: 2;
+    margin: auto;
   }
 }
 /* ********** Gallery ********** */
 @media (min-width: 0px) and (max-width: 767.99px) {
-  #mainGallery > h1 {
-    color: rgb(255, 255, 255);
-  }
   #gallery {
     display: grid;
-    grid-template-columns: 1, auto;
+    grid-template-columns: auto;
     gap: 0.5rem;
     max-width: 90vw;
     padding: 2rem 0;
     margin: auto;
   }
-  #gallery > figure {
+  #gallery > a > figure {
     max-width: 100%;
   }
-  #gallery > figure > img {
+  #gallery > a > figure > img {
     width: 100%;
-    height: 10rem;
-    object-fit: cover;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
-  #mainGallery > h1 {
-    color: rgb(255, 255, 255);
-  }
   #gallery {
     display: grid;
     grid-template-columns: repeat(2, auto);
@@ -1167,9 +1197,6 @@ body > header a:hover {
   }
 }
 @media (min-width: 992px) {
-  #mainGallery > h1 {
-    color: rgb(255, 255, 255);
-  }
   #gallery {
     display: grid;
     grid-template-columns: repeat(4, auto);
@@ -1189,6 +1216,9 @@ body > header a:hover {
 }
 /* ********** Products ********** */
 @media (min-width: 0px) and (max-width: 767.99px) {
+  #productsHeader {
+    padding: 2rem;
+  }
   .productName {
     text-align: left;
     margin-left: 4rem;
@@ -1201,7 +1231,7 @@ body > header a:hover {
     padding: 2rem;
     margin: 4rem;
     display: grid;
-    grid-template-columns: 1;
+    grid-template-columns: 1fr;
     grid-template-rows: 1fr 4fr auto 1fr 1fr;
     gap: 1rem;
   }
@@ -1245,6 +1275,9 @@ body > header a:hover {
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
+  #productsHeader {
+    padding: 3rem;
+  }
   .productName {
     text-align: left;
     margin-left: 4rem;
@@ -1257,8 +1290,8 @@ body > header a:hover {
     padding: 2rem;
     margin: 4rem;
     display: grid;
-    grid-template-columns: repeat 2, 40%;
-    grid-template-rows: auto repeat 4;
+    grid-template-columns: repeat(2, 40%);
+    grid-template-rows: repeat(4, auto);
     gap: 1rem;
   }
   .varietyDetailFigure {
@@ -1283,7 +1316,7 @@ body > header a:hover {
     grid-column: 1/3;
     grid-row: 4;
     display: grid;
-    grid-template-columns: 1fr repeat 2;
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     gap: 1rem;
   }
@@ -1303,9 +1336,15 @@ body > header a:hover {
   }
 }
 @media (min-width: 992px) {
+  #productsHeader {
+    padding: 4rem;
+  }
+  #selectProduct {
+    display: grid;
+    margin: auto;
+  }
   .productName {
-    text-align: left;
-    margin-left: 4rem;
+    text-align: center;
   }
   #product > section {
     margin: auto;
@@ -1369,7 +1408,7 @@ body > header a:hover {
   .availableVarietySection {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(auto);
+    grid-template-rows: auto;
     gap: 1rem;
     justify-content: center;
     margin: auto;
@@ -1378,7 +1417,7 @@ body > header a:hover {
     width: 80vw;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto repeat 4;
+    grid-template-rows: repeat(4, auto);
     gap: 1rem;
     justify-content: center;
     margin: auto;
@@ -1394,8 +1433,8 @@ body > header a:hover {
     display: grid;
     justify-content: center;
     margin: auto;
-    grid-template-columns: 1;
-    grid-template-rows: repeat 2;
+    grid-template-columns: auto;
+    grid-template-rows: repeat(2, 1fr);
   }
   .availableVarietyFooter {
     grid-column: 1;
@@ -1430,14 +1469,14 @@ body > header a:hover {
   .availableVarietySection {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(auto);
+    grid-template-rows: auto;
     gap: 1rem;
   }
   .availableVariety {
     max-width: 40vw;
     display: grid;
-    grid-template-columns: 2;
-    grid-template-rows: auto repeat 4;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, auto);
     gap: 1rem;
     margin: 2rem;
   }
@@ -1450,15 +1489,15 @@ body > header a:hover {
     grid-column: 1/3;
     grid-row: 2/4;
     display: grid;
-    grid-template-columns: 2;
-    grid-template-rows: auto repeat 2;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
   }
   .availableVarietyFooter {
     grid-column: 1/3;
     grid-row: 4;
     display: grid;
-    grid-template-columns: 2;
-    grid-template-rows: 1;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: 1fr;
   }
   .availableVarietyFigure {
     grid-column: 1/3;
@@ -1483,8 +1522,8 @@ body > header a:hover {
     grid-row: 1;
     margin: auto;
     display: grid;
-    grid-template-columns: 2;
-    grid-template-rows: 1;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: 1fr;
   }
   .availableVarietyButtonAdd {
     grid-column: 1;
@@ -1508,7 +1547,7 @@ body > header a:hover {
     margin: auto;
   }
   .availableVariety {
-    width: 28vw;
+    max-width: 40vw;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 3fr repeat(3, 1fr);
@@ -1530,11 +1569,12 @@ body > header a:hover {
     grid-row: 5;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1;
+    grid-template-rows: 1fr;
     margin: auto;
   }
   .availableVarietyFigure {
     grid-row: 1;
+    padding: 0.4rem;
     margin: auto;
   }
   .availableVarietyFigure > img {
@@ -2037,6 +2077,7 @@ label {
     margin: auto;
   }
   #contactText {
+    max-width: 100%;
     grid-column: 1/9;
     grid-row: 2;
     text-align: center;
@@ -2077,14 +2118,34 @@ label {
 /* ********** _update ********** */
 @media (min-width: 0px) and (max-width: 767.99px) {
   #update {
-    width: 90vw;
+    width: 80vw;
     display: grid;
     grid-template-rows: 0.5fr auto 3fr;
-    margin: 1rem;
+    margin: 1rem auto;
   }
   #basketHeader {
+    grid-row: 1;
     font-size: 1.4rem;
     margin: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr;
+  }
+  #basketHeader > h2 {
+    grid-column: 1/3;
+    grid-row: 1;
+  }
+  #basketHeader > a {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 0.8rem;
+    font-weight: 300;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+  }
+  #basketHeader > a > .desktop {
+    display: none;
   }
   #updateContentSection {
     display: grid;
@@ -2092,7 +2153,7 @@ label {
   }
   .containerSection {
     display: grid;
-    grid-template-rows: 6fr 1fr 0.6fr 1fr;
+    grid-template-rows: auto 1fr 0.6fr 1fr;
     grid-template-columns: 1.6fr 0.5fr;
     gap: 0.5rem;
     justify-content: center;
@@ -2117,7 +2178,7 @@ label {
     grid-row: 2;
     grid-column: 1/3;
     font-size: 1.2rem;
-    flex: wrap;
+    flex-wrap: wrap;
   }
   .amountAddRemove {
     margin: auto;
@@ -2163,7 +2224,7 @@ label {
   }
   #basketFooter {
     display: grid;
-    grid-template-rows: repaet(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     grid-template-columns: 1fr;
   }
   #totalOrderPrice {
@@ -2171,9 +2232,11 @@ label {
   }
   #totalOrderContinue {
     grid-row: 2;
+    max-width: fit-content;
   }
   #totalOrderShowBasket {
     grid-row: 3;
+    max-width: fit-content;
   }
   #basketFooter > a {
     align-self: end;
@@ -2190,14 +2253,34 @@ label {
 }
 @media (min-width: 768px) and (max-width: 991px) {
   #update {
-    width: 40vw;
+    width: 80vw;
     display: grid;
     grid-template-rows: 0.5fr auto 3fr;
-    margin: 1rem;
+    margin: 1rem auto;
   }
   #basketHeader {
+    grid-row: 1;
     font-size: 1.4rem;
     margin: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr;
+  }
+  #basketHeader > h2 {
+    grid-column: 1/3;
+    grid-row: 1;
+  }
+  #basketHeader > a {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 1rem;
+    font-weight: 300;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  #basketHeader > a > .desktop {
+    display: none;
   }
   #updateContentSection {
     display: grid;
@@ -2230,7 +2313,7 @@ label {
     grid-row: 1;
     grid-column: 2/4;
     font-size: 1.2rem;
-    flex: wrap;
+    flex-wrap: wrap;
   }
   .amountAddRemove {
     margin: auto;
@@ -2284,9 +2367,11 @@ label {
   }
   #totalOrderContinue {
     grid-row: 2;
+    max-width: fit-content;
   }
   #totalOrderShowBasket {
     grid-row: 3;
+    max-width: fit-content;
   }
   #basketFooter > a {
     align-self: end;
@@ -2304,14 +2389,35 @@ label {
 }
 @media (min-width: 992px) {
   #update {
-    width: 40vw;
+    max-width: 80%;
     display: grid;
     grid-template-rows: 0.5fr auto 3fr;
-    margin: 1rem;
+    grid-template-columns: auto;
+    margin: 1rem auto;
   }
   #basketHeader {
+    grid-row: 1;
     font-size: 1.4rem;
     margin: auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr;
+  }
+  #basketHeader > h2 {
+    grid-column: 1/3;
+    grid-row: 1;
+  }
+  #basketHeader > a {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 1rem;
+    font-weight: 300;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  #basketHeader > a > .desktop {
+    color: rgb(255, 255, 255);
   }
   #updateContentSection {
     display: grid;
@@ -2342,7 +2448,7 @@ label {
     grid-row: 1;
     grid-column: 2/5;
     font-size: 1.2rem;
-    flex: wrap;
+    flex-wrap: wrap;
   }
   .amountAddRemove {
     margin: auto;
@@ -2400,9 +2506,11 @@ label {
   }
   #totalOrderContinue {
     grid-row: 2;
+    max-width: fit-content;
   }
   #totalOrderShowBasket {
     grid-row: 3;
+    max-width: fit-content;
   }
   #basketFooter > a {
     align-self: end;
@@ -2496,7 +2604,7 @@ label {
     padding: 1rem;
   }
   #client > input {
-    ailgn-self: center;
+    align-self: center;
     margin: auto;
     width: 40vw;
     padding: 1rem;
@@ -2830,7 +2938,7 @@ label {
   #orderSubmit {
     text-align: center;
     margin: auto;
-    padding-top: 1rem;
+    height: 6rem;
   }
 }
 /* ********** Validation ********** */
@@ -2845,30 +2953,78 @@ label {
   margin: auto;
 }
 
-/* ********** _adminMenu ********** */
-#adminMenu > nav > ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: auto;
-}
-
-#adminMenu > nav > ul > li {
-  margin: 1rem;
-}
-
 /* ********** _adminNav ********** */
-.adminNav > ul {
-  display: flex;
-  justify-content: center;
-  margin: 1rem auto;
+@media (min-width: 0px) and (max-width: 767.99px) {
+  .adminNav > ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    margin: 1rem auto;
+  }
+  .adminNav > ul > li {
+    text-align: center;
+    margin: 1rem auto;
+  }
+  .adminNav > ul > li > a {
+    text-align: center;
+    margin: 2rem auto;
+    padding: 0.5rem;
+  }
+  .adminNav > ul > li > a:hover .bi-power {
+    color: rgb(204, 28, 0);
+  }
+  .bi-power {
+    color: rgb(255, 255, 255);
+  }
+  .disconnet {
+    font-size: 0.8rem;
+  }
 }
-
-.adminNav > ul > li > a {
-  display: inline-block;
-  margin: 1rem;
+@media (min-width: 768px) and (max-width: 991px) {
+  .adminNav > ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    margin: 1rem auto;
+  }
+  .adminNav > ul > li {
+    text-align: center;
+    margin: 1rem auto;
+  }
+  .adminNav > ul > li > a {
+    margin: 2rem;
+  }
+  .adminNav > ul > li > a:hover .bi-power {
+    color: rgb(204, 28, 0);
+  }
+  .bi-power {
+    color: rgb(255, 255, 255);
+  }
+  .disconnet {
+    font-size: 0.8rem;
+  }
 }
-
+@media (min-width: 992px) {
+  .adminNav > ul {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;
+    margin: 1rem auto;
+  }
+  .adminNav > ul > li {
+    text-align: center;
+    margin: auto;
+  }
+  .adminNav > ul > li > a:hover .bi-power {
+    color: rgb(204, 28, 0);
+  }
+  .bi-power {
+    color: rgb(255, 255, 255);
+  }
+  .disconnet {
+    font-size: 0.8rem;
+  }
+}
 /* ********** _adminProducts ********** */
 #adminProducts > #product {
   display: grid;
@@ -3301,7 +3457,7 @@ label {
   grid-row: 3;
 }
 
-#selectProduct {
+#adminSelectProduct {
   grid-column: 1/5;
   grid-row: 4;
   margin: auto;

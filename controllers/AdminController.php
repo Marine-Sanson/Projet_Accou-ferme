@@ -13,9 +13,6 @@ class AdminController extends AbstractController
                 $errors[] = "Veuillez vous connecter";
                 $this->render("admin", ["errors" => $errors]);
             }
-
-        
-        $this->render("admin");
     }
     
     public function loginCheck(array $post) :void
@@ -29,6 +26,7 @@ class AdminController extends AbstractController
         if($username === "" || $password === "")
         {
             $errors[] = "Veuillez vous connecter";
+            $this->render("admin", ["errors" => $errors]);
         }
         else
         {
@@ -36,33 +34,37 @@ class AdminController extends AbstractController
             
             if(isset($user) && !empty($user) && $user !== "")
             {
-
-                if($username !== $user[0]["name"])
+                $_SESSION["connectAdmin"] = false;
+                if($username !== $user[0]["name"] || !password_verify($password, $user[0]["password"]))
                 {
-                    $errors[] = "identifiant incorrect"; 
-                }
-                else if(!password_verify($password, $user[0]["password"]))
-                {
-                    $errors[] = "mot de passe incorrect";
+                    $errors[] = "identifiant ou mot de passe incorrect";
+                    $this->render("admin", ["errors" => $errors]);
                 }
                 else if($username === $user[0]["name"] && password_verify($password, $user[0]["password"]))
                 {
                     $_SESSION["connectAdmin"] = true;
-                    $this->render("adminMenu");
+                    $this->render("adminMenu", ["errors" => $errors]);
                 }
                 else
                 {
-                    $errors[] = "Les identifiants ne sont pas valides"; 
+                    $errors[] = "Les identifiants ne sont pas valides";
+                    $this->render("admin", ["errors" => $errors]);
                 }
-                
-                $this->render("admin", ["errors" => $errors]);
             }
             else
             {
-                $errors[] = "Les identifiants ne sont pas valides"; 
+                $errors[] = "Les identifiants ne sont pas valides";
+                $this->render("admin", ["errors" => $errors]);
             }
         }
-        $this->render("admin", ["errors" => $errors]);
-
+    }
+    
+    public function adminDisconnect(){
+        unset($_SESSION["connectAdmin"]);
+        session_destroy();
+        
+        $validation = "Vous avez été déconnecté";
+        
+        $this->render("admin", ["validation" => $validation]);
     }
 }

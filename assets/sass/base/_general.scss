@@ -14,15 +14,16 @@ body{
     font-family: $fontDefault;
     font-size: $fontSizeDefault;
     line-height: $lineHeight;
-    background-color: $blanc;
-    color: $mainColor;
+    background-color: $white;
+    color: $black;
 }
 
 body > main{
-    background-color:$blanc;
+    background-color:$white;
     display: flex;
     max-width: $maxWidth;
     flex-direction:column;
+    justify-content:center;
     margin: auto;
 }
 
@@ -50,6 +51,7 @@ h1{
     font-size: $fontSizeh1;
     padding: $pDef;
     font-weight:$fontweighth1;
+    margin: $mDef;
 }
 
 h1:not(#mainGalleryTitle){
@@ -77,23 +79,33 @@ a{
     text-decoration:underline;
 }
 
-button,
-.button{
-    font-weight:900;
-    color:$blanc;
-    background-color:$red;
-    text-align:center;
-    margin:auto;
-    border: 2px solid $blanc;
-    border-radius:4px;
-    box-shadow: 5px 5px 5px $noir;
+.webLink:hover{
+    color:$red;
 }
 
-button:hover,
+.button{
+    font-weight:900;
+    color:$white;
+    background-color:$red;
+    text-align:center;
+    vertical-align:middle;
+    align-self: center;
+    margin:auto;
+    border: 2px solid $white;
+    border-radius:4px;
+    box-shadow: 5px 5px 5px $black;
+    padding:0.2rem 0.8rem;
+}
+
 .button:hover{
     color:$red;
-    background-color:$blanc;
+    background-color:$white;
     border: 2px solid $red;
+    cursor: pointer;
+}
+
+.button:hover .button > a{
+    color:$red;
 }
 
 .card{
@@ -112,65 +124,73 @@ fieldset{
 }
 
 .errors > li{
-    color:$blanc;
+    color:$white;
 }
 
 .validation{
-    background-color:green;
+    background-color:$green;
+    color:$white;
     width:fit-content;
     padding:1rem;
     margin:2rem auto;
 }
-    
 
 /* Dark mode */
 @media (prefers-color-scheme: dark)
 {
     body{
-        background-color: $darkMainBgColor;
-        color: $mainBgColor;
+        background-color: $black;
+        color: $white;
     }
     
     body > main{
-        background-color:$darkMainBgColor;
+        background-color:$black;
     }
 
     h1,
     h2,
     h3{
-        color: $blanc;
+        color: $white;
     }
     
     p,
-    a,
     li,
     span,
     label{
-        color: $blanc;
+        color: $white;
+    }
+    
+    a{
+        color:$red;
+    // padding:0.5rem;
+    }
+    
+    a:hover{
+        color:$white;
+            // padding:0.5rem;
+
     }
     
     input{
-        background-color:$blanc;
+        background-color:$white;
     }
     
-    button,
     .button{
         color:$red;
-        background-color:$blanc;
+        background-color:$white;
         border: 2px solid $red;
-        box-shadow: 5px 5px 5px $blanc;
+        box-shadow: 5px 5px 5px $white;
+        padding:0.5rem;
     }
     
-    button:hover,
     .button:hover{
-        color:$blanc;
+        color:$white;
         background-color:$red;
-        border: 2px solid $blanc;
+        border: 2px solid $white;
         box-shadow: 5px 5px 5px $red;
     }
     
     .card{
-        border: 2px solid $blanc;
+        border: 2px solid $white;
     }
-    
 }

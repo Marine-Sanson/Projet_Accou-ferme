@@ -2,25 +2,9 @@
     
     <?php require "_adminNav.phtml"; ?>
     
-    <h1>AdminNews</h1>
+    <h1>Gestion des actus</h1>
     
-    <?php
-    if(isset($data["errors"]) && $data["errors"] !=="")
-    {
-        foreach($data["errors"] as $key => $error)
-        {
-    ?>
-        <p class="errors"> <?= $error ?></p>
-    <?php
-        }
-    }
-    else if(isset($data["validation"]))
-    {
-    ?>
-        <p class="validation"> <?= $data["validation"] ?> </p>
-    <?php
-    }
-    ?>
+    <?php require "_messages.phtml"; ?>
     
     <section>
         <h2>Créer une catégorie</h2>
@@ -28,26 +12,25 @@
         <form id="adminCategoryForm" method="POST" action="/Projet_Accou-ferme/_categoryCreated">
     
             <label for="newCat">Créer une nouvelle catégorie</label>
-            <input type="text" name="newCat" />
-            <button id="createNewCat" type="submit">Valider</button>
+            <input type="text" name="newCat">
+            <button class="button" id="createNewCat" type="submit">Valider</button>
     
         </form>
         
     </section>
-    
 
     <h2>Créer une news</h2>
     
     <section id="createNews">
     
     <form id="createNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
-        <input type="hidden" name="action" value="createNews" />
-        <input class="button" type="submit" value="Créer une actu" />
+        <input type="hidden" name="action" value="createNews">
+        <input class="button" type="submit" value="Créer une actu">
     </form>
     
     <form id="createRecipeForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
-        <input type="hidden" name="action" value="createRecipe" />
-        <input class="button" type="submit" value="Créer une recette" />
+        <input type="hidden" name="action" value="createRecipe">
+        <input class="button" type="submit" value="Créer une recette">
     </form>
     
     </section>
@@ -64,14 +47,14 @@
                 <article class="udNews">
                     <h3><?= $singleNews["name"] ?></h3>
                     <form class="updateNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
-                        <input type="hidden" name="action" value="update" />
-                        <input type="hidden" name="crudId" value="<?= $singleNews["id"] ?>" />
-                        <input class="button" type="submit" value="Modifier" />
+                        <input type="hidden" name="action" value="update">
+                        <input type="hidden" name="crudId" value="<?= $singleNews["id"] ?>">
+                        <input class="button" type="submit" value="Modifier">
                     </form>
                     <form class="deleteNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
-                        <input type="hidden" name="action" value="delete" />
-                        <input type="hidden" name="crudId" value="<?= $singleNews["id"] ?>" />
-                        <input class="button" type="submit" value="Supprimer" data-news-id="<?= $singleNews["id"] ?>"/>
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="crudId" value="<?= $singleNews["id"] ?>">
+                        <input class="button" type="submit" value="Supprimer" data-news-id="<?= $singleNews["id"] ?>">
                     </form>
                     
                     <?php
@@ -80,10 +63,10 @@
                         $mediaUrl = $singleNews[0]->getUrl();
                         $mediaAlt = $singleNews[0]->getAlt();
                     ?>
-                        <img class="newsFormImg" src=" <?= $mediaUrl; ?>" alt=" <?= $mediaAlt; ?>" />
+                        <img class="newsFormImg" src=" <?= $mediaUrl; ?>" alt=" <?= $mediaAlt; ?>">
                         <form class="changeNewsImage" name="changeNewsImage" method="POST" action="/Projet_Accou-ferme/chooseNewsImage">
-                            <input type="hidden" name="id" value="<?= $singleNews["id"]; ?>" />
-                            <input class="button changeNewsImageButton" type="submit" value="Changer d'image" name="changeNewsImage" />
+                            <input type="hidden" name="id" value="<?= $singleNews["id"]; ?>">
+                            <input class="button changeNewsImageButton" type="submit" value="Changer d'image" name="changeNewsImage">
                         </form>
                     <?php
                     }
@@ -93,8 +76,8 @@
                         <p>Pas d'image choisie pour le moment</p>
                         
                         <form class="chooseNewsImage" name="chooseNewsImage" method="POST" action="/Projet_Accou-ferme/chooseNewsImage">
-                            <input type="hidden" name="id" value="<?= $singleNews["id"]; ?>" />
-                            <input class="button" type="submit" value="En choisir une" name="chooseNewsImage" />
+                            <input type="hidden" name="id" value="<?= $singleNews["id"]; ?>">
+                            <input class="button" type="submit" value="En choisir une" name="chooseNewsImage" >
                         </form>
                         <?php
                     }

@@ -2,9 +2,11 @@
 
     <?php require "_adminNav.phtml"; ?>
     
-    <h1>AdminDisplayOrders</h1>
+    <h1>Gestion des commandes</h1>
     
     <h2>Voir les prochaines commandes</h2>
+    
+    <?php require "_messages.phtml"; ?>
     
     <form class="choseOrders" method="POST" action="/Projet_Accou-ferme/adminDisplayOrdersByDay">
 
@@ -13,7 +15,7 @@
         <input type="radio" id="samedi" name="day" value="samedi">
         <label for="samedi">Samedi</label>
         
-        <input type="submit" value="Valider"/>
+        <input class="button" type="submit" value="Valider">
     </form>
     
         
@@ -22,7 +24,7 @@
     {
         $allorders = $data;
         ?>
-        <p class="choosenDay">commandes pour <?= $_POST["day"]; ?></p>
+        <h3 class="choosenDay">commandes pour <?= $_POST["day"]; ?></h3>
         
         <section id="displayOrders">
             <?php
@@ -34,7 +36,7 @@
                     {
                     ?>
                         <article class="displayOrder">
-                            <p>Date de commande : <?= $orderDetail["date_commande"]; ?></p>
+                            <h4>Date de commande : <?= $orderDetail["date_commande"]; ?></h4>
                             <p>Id : <?= $orderDetail["id"]; ?></p>
                             <p><?= $orderDetail["name"]; ?> <?= $orderDetail["first_name"]; ?> <?= $orderDetail["email"]; ?> <?= $orderDetail["tel"]; ?>
                             <table>
@@ -56,7 +58,7 @@
                                         <td colspan="5" class="buttonTerminer">
                                             <form method="POST" action="/Projet_Accou-ferme/terminer">
                                                 <input type="hidden" name="id" value ="<?= $orderDetail["id"]; ?>">
-                                                <input class="button" type="submit" value="Terminer"/>
+                                                <input class="button" type="submit" value="Terminer">
                                             </form>
                                         </td>
                                     </tr>

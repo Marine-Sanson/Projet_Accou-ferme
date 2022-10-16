@@ -94,11 +94,11 @@ class FileUploader
             $return["errors"][] = $errors;
         }
         
-        $validation = [];
+        $validation = "";
         
         if(isset($errors) && count($errors) > 0)
         {
-            $validation = [];
+            $validation = "";
         }
         else
         {
@@ -119,7 +119,7 @@ class FileUploader
             $media = new Media(null, $originalName, $fileName, $fileType, $url, $alt);
             
             $fileToUpload[] = $media;
-            $validation[] = "votre image a été chargée correctement";
+            $validation = "votre image a été chargée correctement";
         }
 
         $return = ["fileToUpload" => $fileToUpload, "errors" => $errors, "validation" => $validation];

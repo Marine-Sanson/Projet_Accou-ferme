@@ -10,9 +10,9 @@ class Order
     private DateTime $dateCommande;
     private string $day;
     private int $totalPrice;
-    private ?bool $endOrder;
+    private bool $endOrder;
 
-    function __construct (?int $id, string $name, string $firstName, string $email, int $tel, DateTime $dateCommande, string $day, int $totalPrice, ?bool $endOrder)
+    function __construct (?int $id, string $name, string $firstName, string $email, int $tel, DateTime $dateCommande, string $day, int $totalPrice, bool $endOrder)
     {
         $this->id = $id;
         $this->name = $name;
@@ -105,7 +105,7 @@ class Order
         $this->totalPrice = $totalPrice;
     }
     
-    public function getEndOrder() : ?bool
+    public function getEndOrder() : bool
     {
         return $this->endOrder;
     }

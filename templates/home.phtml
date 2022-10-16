@@ -1,31 +1,44 @@
 <main id="home">
     
+    <section id="mainHome">
+
     <h1 id="main-title">Bienvenue chez Accou'ferme</h1>
+
+        <figure>
+            <img src="./assets/img/logo-accouferme.png"
+                 alt="logo Accouferme">
+        </figure>
     
-        <section id="mainHome">
-            <figure>
-                <img src="./assets/img/logo-accouferme.png"
-                     alt="logo Accouferme" />
-            </figure>
-        
-            <article>
-                <p>Cette ferme maraîchère située près de Dol de Bretagne vous propose des légumes cultivés selon les principes de <strong><a class="webLink" href="https://www.agencebio.org/" target="_blank">l'agriculture biologique</a></strong>. Nous nous inscrivons dans des critères de <strong><a class="webLink" href="https://www.agriculturepaysanne.org/" target="_blank">l'agriculture paysanne</a></strong> afin de respecter l'environnement et de maintenir les liens humains et sociaux. Nous nous attachons à dévelloper les cultures de légumes anciens et d'utiliser <strong><a class="webLink" href="https://www.semencespaysannes.org/12" target="_blank">des semences libres de droit</a></strong> et reproductibles.</p>
-                <p>Plusieurs possibilités pour trouver nos produits. Vous pouvez nous retrouver sur les marchés de Dol de Bretagne. Vous pouvez également acheter nos produits directement à la ferme, mais également par le biais de commandes en ligne de paniers à récupérer sur les marchés.</p>
-                <p>Bonne visite et n’hésitez pas à nous contacter  !!</p>
-            </article>
+        <article>
+            <h2>Vente directe en circuit court</h2>
+            <p>Cette ferme maraîchère située près de Dol de Bretagne vous propose des légumes cultivés selon les
+            principes de <strong><a class="webLink" href="https://www.agencebio.org/" target="_blank">l'agriculture
+            biologique</a></strong>. Nous nous inscrivons dans des critères de <strong><a class="webLink" 
+            href="https://www.agriculturepaysanne.org/" target="_blank">l'agriculture paysanne</a></strong> afin de
+            respecter l'environnement et de maintenir les liens humains et sociaux. Nous nous attachons à 
+            dévelloper les cultures de légumes anciens et d'utiliser <strong><a class="webLink" 
+            href="https://www.semencespaysannes.org/12" target="_blank">des semences libres de droit</a></strong>
+            et reproductibles.</p>
+            <p>Plusieurs possibilités pour trouver nos produits. Vous pouvez nous retrouver sur les marchés de Dol
+            de Bretagne. Vous pouvez également acheter nos produits directement à la ferme, mais également par le
+            biais de commandes en ligne de paniers à récupérer sur les marchés.</p>
+            <p>Bonne visite et n’hésitez pas à nous contacter  !!</p>
+        </article>
+
+    </section>
     
-        </section>
+    <section id="markets">
+        <h2>Où nous trouver</h2>
         
-        <section id="market">
-            <h2>Où nous trouver</h2>
-            
-            <p>Retrouvez nous sur les marchés de Dol de Bretagne le mardi (marché Bio aux Halles) et le samedi. C'est là que vous pouvez retirer les paniers commandés.</p>
-            <p>A très bientôt!</p>
-        </section>
+        <p>Retrouvez nous sur les marchés de Dol de Bretagne le mardi (marché Bio aux Halles) et le samedi. C'est
+        là que vous pouvez retirer les paniers commandés.</p>
+        <p>A très bientôt!</p>
+    </section>
+    
+    <section id="homeProducts">
+        <h2>Nos produits du moment</h2>
         
-        <section id="homeProducts">
-            <h2>Nos produits du moment</h2>
-            
+        <div id="homeProductsSection">
             <?php
             foreach($data["offers"] as $key => $offer)
             {
@@ -39,7 +52,7 @@
                         <?= $offer['name']; ?>
                     </h4>
                 </header>
-                <main class="homeProductsMain">
+                <div class="homeProductsMain">
                     <?php
                     if(isset($offer[1]["media"]))
                     {
@@ -47,7 +60,7 @@
                         $mediaAlt = $offer[1]["media"]->getAlt();
                     ?>
                         <figure>
-                            <img src="<?= $mediaUrl; ?> " alt="<?= $mediaAlt; ?> " />
+                            <img src="<?= $mediaUrl; ?> " alt="<?= $mediaAlt; ?>">
                         </figure>
                     <?php
                     }
@@ -55,7 +68,7 @@
                     {
                     ?>
                         <figure>
-                            <img src="./assets/img/varieties/panierVide.jpg" alt="Photo non disponible" />
+                            <img src="./assets/img/varieties/panierVide.jpg" alt="Photo non disponible">
                         </figure>
                     <?php
                     }
@@ -63,7 +76,7 @@
                     <p>
                         <?= $offer['description']; ?>
                     </p>
-                </main>
+                </div>
                 <footer class="homeProductsFooter">
                     <p>
                         <?= $offer['price']; ?>€ / <?= $offer['units']; ?>
@@ -73,138 +86,137 @@
             <?php
             }
             ?>
-            
-            <button>
-                <a href="/Projet_Accou-ferme/produits" title="Produits">Voir tous nos produits</a>
-            </button>
-            
-        </section>
+        </div>
         
-        <section id="homeNews">
-            
-            <h2>Dernière actu</h2>
-            
-            <?php
-            $lastNews = $data["lastNews"]["news"];
-            
-            $lastNewsId = $lastNews->getId();
-            $lastNewsCategoryId = $lastNews->getCategoryId();
-            $lastNewsName = $lastNews->getName();
-            $lastNewsMediaId = $lastNews->getMediaId();
-            $lastNewsContent = $lastNews->getContent();
-            
-            $lastNewsMedia = $data["lastNews"]["media"];
-            $lastNewsMediaUrl = $lastNewsMedia->getUrl();
-            $lastNewsMediaAlt = $lastNewsMedia->getAlt();
-            ?>
-            
-            <article class="lastNewsArticle card" data-category="<?= $lastNewsCategoryId; ?>">
-                <header class="newsHeader">
-                    <h3> <?= $lastNewsName; ?> </h3>
-                </header>
-                <main class="lastNewsMain">
+        <a class="homeButton button" href="/Projet_Accou-ferme/produits" title="Produits">
+            Voir tous nos produits
+        </a>
+        
+    </section>
+    
+    <section id="homeNews">
+        
+        <h2>Dernière actu</h2>
+        
+        <?php
+        $lastNews = $data["lastNews"]["news"];
+        
+        $lastNewsId = $lastNews->getId();
+        $lastNewsCategoryId = $lastNews->getCategoryId();
+        $lastNewsName = $lastNews->getName();
+        $lastNewsMediaId = $lastNews->getMediaId();
+        $lastNewsContent = $lastNews->getContent();
+        
+        $lastNewsMedia = $data["lastNews"]["media"];
+        $lastNewsMediaUrl = $lastNewsMedia->getUrl();
+        $lastNewsMediaAlt = $lastNewsMedia->getAlt();
+        ?>
+        
+        <article class="lastNewsArticle card" data-category="<?= $lastNewsCategoryId; ?>">
+            <header class="newsHeader">
+                <h3> <?= $lastNewsName; ?> </h3>
+            </header>
+            <div class="lastNewsMain">
+                <?php
+                if(!is_null($lastNewsMedia))
+                {
+                    ?>
+                    <figure class="lastNewsImg">
+                        <img src="<?= $lastNewsMediaUrl; ?>" alt="<?= $lastNewsMediaAlt; ?>">
+                    </figure>
                     <?php
-                    if(!is_null($lastNewsMedia))
-                    {
-                        ?>
-                        <figure class="lastNewsImg">
-                            <img src="<?= $lastNewsMediaUrl; ?>" alt="<?= $lastNewsMediaAlt; ?>" />
-                        </figure>
-                        <?php
-                    }
-                    else
-                    {
-                       ?>
-                        <figure class="lastNewsImg">
-                            <img src="./assets/img/news/news.jpg" alt="Photo non disponible" />
-                        </figure>
-                    <?php 
-                    }
-                ?>
-                    
-                    <p class="lastNewsContent"> <?= $lastNewsContent; ?> </p>
-                </main>
-                <footer  class="lastNewsFooter">
-                    <form class="lastNewsButton" method="POST" action="/Projet_Accou-ferme/actus_show/<?= $lastNewsId ?>">
-                        <input type="hidden" name="id" value="<?= $lastNewsId ?>" />
-                        <button>
-                            En savoir plus
-                        </button>
-                    </form>
-                </footer>
-            </article>
+                }
+                else
+                {
+                   ?>
+                    <figure class="lastNewsImg">
+                        <img src="./assets/img/news/news.jpg" alt="Photo non disponible">
+                    </figure>
+                <?php 
+                }
+            ?>
+                
+                <p class="lastNewsContent"> <?= $lastNewsContent; ?> </p>
+            </div>
+            <footer  class="lastNewsFooter">
+                <form class="lastNewsButton" method="POST"
+                      action="/Projet_Accou-ferme/actus_show/<?= $lastNewsId ?>">
+                    <input type="hidden" name="id" value="<?= $lastNewsId; ?>">
+                    <button class="button">
+                        En savoir plus
+                    </button>
+                </form>
+            </footer>
+        </article>
 
-            <h2>Dernière recette</h2>
-            
-            <?php
-            $lastRecipe = $data["lastRecipe"]["recipe"];
-            
-            $lastRecipeId = $lastRecipe->getId();
-            $lastRecipeCategoryId = $lastRecipe->getCategoryId();
-            $lastRecipeName = $lastRecipe->getName();
-            $lastRecipeMediaId = $lastRecipe->getMediaId();
-            $lastRecipeContent = $lastRecipe->getContent();
-            $lastRecipeProductId = $lastRecipe->getProductId();
-            $lastRecipeIngredients = $lastRecipe->getIngredients();
-            $lastRecipeSteps = $lastRecipe->getSteps();
-            
-            $lastRecipeMedia = $data["lastRecipe"]["media"];
-            $lastRecipeMediaUrl = $lastRecipeMedia->getUrl();
-            $lastRecipeMediaAlt = $lastRecipeMedia->getAlt();
-            ?>
-            
-            <article class="lastRecipeArticle card" data-category="<?= $lastRecipeCategoryId; ?>">
-                <header class="lastRecipeHeader">
-                    <h3> <?= $lastRecipeName; ?> </h3>
-                </header>
-                <main class="lastRecipeMain">
-                    <?php
-                    if(!is_null($lastRecipeName))
-                    {
-                        ?>
-                        <figure class="lastRecipeImg">
-                            <img src="<?= $lastRecipeMediaUrl; ?>" alt="<?= $lastRecipeMediaAlt; ?>" />
-                        </figure>
-                        <?php
-                    }
-                    else
-                    {
-                       ?>
-                        <figure class="lastRecipeImg">
-                            <img src="./assets/img/news/news.jpg" alt="Photo non disponible" />
-                        </figure>
-                    <?php 
-                    }
-                ?>
-                    
-                    <p class="lastRecipeContent"> <?= $lastRecipeContent; ?> </p>
-                    
-                    <p class="lastRecipeIngredients"> <?= $lastRecipeIngredients; ?> </p>
-                    
-                    <p class="lastRecipeSteps"> <?= $lastRecipeSteps; ?> </p>
-                    
-                </main>
-                <footer  class="lastRecipeFooter">
-                    <form class="lastRecipeButton" method="POST" action="/Projet_Accou-ferme/actus_show/<?= $lastRecipeId ?>">
-                        <input type="hidden" name="id" value="<?= $lastRecipeId ?>" />
-                        <button>
-                            Voir la recette
-                        </button>
-                    </form>
-                </footer>
-            </article>
-            <button>
-                <a href="/Projet_Accou-ferme/actus" title="news">Voir toutes nos actus et recettes</a>
-            </button>  
-            
-        </section>
+        <h2>Dernière recette</h2>
         
-        <section id="homeContact">
+        <?php
+        $lastRecipe = $data["lastRecipe"]["recipe"];
+        
+        $lastRecipeId = $lastRecipe->getId();
+        $lastRecipeCategoryId = $lastRecipe->getCategoryId();
+        $lastRecipeName = $lastRecipe->getName();
+        $lastRecipeMediaId = $lastRecipe->getMediaId();
+        $lastRecipeContent = $lastRecipe->getContent();
+        $lastRecipeProductId = $lastRecipe->getProductId();
+        $lastRecipeIngredients = $lastRecipe->getIngredients();
+        $lastRecipeSteps = $lastRecipe->getSteps();
+        
+        $lastRecipeMedia = $data["lastRecipe"]["media"];
+        $lastRecipeMediaUrl = $lastRecipeMedia->getUrl();
+        $lastRecipeMediaAlt = $lastRecipeMedia->getAlt();
+        ?>
+        
+        <article class="lastRecipeArticle card" data-category="<?= $lastRecipeCategoryId; ?>">
+            <header class="lastRecipeHeader">
+                <h3> <?= $lastRecipeName; ?> </h3>
+            </header>
+            <div class="lastRecipeMain">
+                <?php
+                if(!is_null($lastRecipeName))
+                {
+                    ?>
+                    <figure class="lastRecipeImg">
+                        <img src="<?= $lastRecipeMediaUrl; ?>" alt="<?= $lastRecipeMediaAlt; ?>">
+                    </figure>
+                    <?php
+                }
+                else
+                {
+                   ?>
+                    <figure class="lastRecipeImg">
+                        <img src="./assets/img/news/news.jpg" alt="Photo non disponible">
+                    </figure>
+                <?php 
+                }
+                ?>
+                
+                <p class="lastRecipeContent"> <?= $lastRecipeContent; ?> </p>
+                
+                <p class="lastRecipeIngredients"> <?= $lastRecipeIngredients; ?> </p>
+                
+                <p class="lastRecipeSteps"> <?= $lastRecipeSteps; ?> </p>
+                
+            </div>
             
-            <?php
-            require "./templates/contact.phtml";
-            ?>
-            
-        </section>
+            <footer  class="lastRecipeFooter">
+                <form class="lastRecipeButton" method="POST"
+                action="/Projet_Accou-ferme/actus_show/<?= $lastRecipeId ?>">
+                    <input type="hidden" name="id" value="<?= $lastRecipeId; ?>">
+                    <button class="button">
+                        Voir la recette
+                    </button>
+                </form>
+            </footer>
+        </article>
+        
+        <a class="homeButton button" href="/Projet_Accou-ferme/actus" title="news">Voir toutes nos actus et recettes</a>
+        
+    </section>
+    
+    <?php
+        require "./templates/contact.phtml";
+    ?>
     
 </main>

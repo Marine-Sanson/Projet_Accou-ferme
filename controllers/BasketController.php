@@ -58,7 +58,7 @@ class BasketController extends AbstractController
             $_SESSION["basket"] = $tmp;
         }
         
-        if($_POST["data"]) // le form a été soumis
+        if($_POST) // le form a été soumis
         {
             // récupère le post de la variété ajoutée
             $availableVariety = $_POST["availableVarietyName"];

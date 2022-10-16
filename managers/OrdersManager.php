@@ -2,7 +2,6 @@
 
 class OrdersManager extends AbstractManager
 {
-    
     /**
      * reçoit un Order, le crée dans la base de donées et renvoie son id
      * @param Order

@@ -11,6 +11,7 @@ class OrdersController extends AbstractController
 
     public function index() :void
     {
+        
         if(!is_array($_SESSION["basket"]))
         {
             $tmp = $this->basketToArray($_SESSION["basket"]);
@@ -175,7 +176,7 @@ class OrdersController extends AbstractController
         
         if($errors === [])
         {
-            $order = new Order(null, $name, $firstName, $email, $tel, $dateCommande, $day, $totalPrice, null);
+            $order = new Order(null, $name, $firstName, $email, $tel, $dateCommande, $day, $totalPrice, false);
             $id = $this->om->createOrder($order);
     
             foreach($baskets as $key => $basket)

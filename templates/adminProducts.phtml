@@ -2,34 +2,18 @@
 
     <?php require "_adminNav.phtml"; ?>
 
-    <h1>AdminProducts</h1>
+    <h1>Gestion des produits</h1>
     
-    <?php
-    if(isset($data["errors"]) && count($data["errors"]) > 0)
-    {
-        foreach($data["errors"] as $key => $error)
-        {
-    ?>
-        <p class="errors"> <?= $error ?></p>
-    <?php
-        }
-    }
-    
-    if(isset($data["validation"]) && $data["validation"] !== "")
-    {
-    ?>
-        <p class="validation"> <?= $data["validation"] ?> </p>
-    <?php
-    }
-    ?>
+    <?php require "_messages.phtml"; ?>
+
     <section id="product">
         <h2>Produit</h2>
     
         <form id="adminCreateProductForm" method="POST" action="/Projet_Accou-ferme/productCreated">
     
             <label for="newProd">Créer un nouveau produit</label>
-            <input type="text" name="newProd" />
-            <button id="createNewProd" type="submit">Valider</button>
+            <input type="text" name="newProd">
+            <button class="button" id="createNewProd" type="submit">Valider</button>
         </form>
     
         <form id="adminDeleteProductForm" method="POST" action="/Projet_Accou-ferme/deleteProduct">
@@ -47,7 +31,7 @@
                 }
                 ?>
             </select>
-            <button id="suprProd" type="submit">Supprimer</button>
+            <button  class="button" id="suprProd" type="submit">Supprimer</button>
         </form>
     </section>
     
@@ -55,8 +39,8 @@
         <h2>Créer une varieté</h2>
         
         <form id="createVarietyForm" method="POST" action="/Projet_Accou-ferme/adminCrudVariety">
-            <input type="hidden" name="action" value="create" />
-            <input class="button" type="submit" value="Créer" />
+            <input type="hidden" name="action" value="create">
+            <input class="button" type="submit" value="Créer">
         </form>
     </section>
 
@@ -72,14 +56,14 @@
                 <article class="udVariety">
                     <h3><?= $variety["name"] ?></h3>
                     <form class="updateVarietyForm" method="POST" action="/Projet_Accou-ferme/adminCrudVariety">
-                        <input type="hidden" name="action" value="update" />
-                        <input type="hidden" name="crudId" value="<?= $variety["id"] ?>" />
-                        <input class="button updateVarietyFormButton" type="submit" value="Modifier" />
+                        <input type="hidden" name="action" value="update">
+                        <input type="hidden" name="crudId" value="<?= $variety["id"] ?>">
+                        <input class="button updateVarietyFormButton" type="submit" value="Modifier">
                     </form>
                     <form class="deleteVarietyForm" method="POST" action="/Projet_Accou-ferme/adminCrudVariety">
-                        <input type="hidden" name="action" value="delete" />
-                        <input type="hidden" name="crudId" value="<?= $variety["id"] ?>" />
-                        <input class="button deleteVarietyFormButton" type="submit" value="Supprimer" data-news-id="<?= $variety["id"] ?>"/>
+                        <input type="hidden" name="action" value="delete">
+                        <input type="hidden" name="crudId" value="<?= $variety["id"] ?>">
+                        <input class="button deleteVarietyFormButton" type="submit" value="Supprimer" data-news-id="<?= $variety["id"] ?>">
                     </form>
                     <?php
                     if(isset($variety[0]) && $variety[0] !== null)
@@ -87,10 +71,10 @@
                         $mediaUrl = $variety[0]->getUrl();
                         $mediaAlt = $variety[0]->getAlt();
                     ?>
-                        <img class="udVarietyImg" src=" <?= $mediaUrl ?> " alt=" <?= $mediaAlt ?> " />
+                        <img class="udVarietyImg" src=" <?= $mediaUrl ?> " alt=" <?= $mediaAlt ?> ">
                         <form class="changeVarietyImage" name="changeVarietyImage" method="POST" action="/Projet_Accou-ferme/chooseVarietyImage">
-                            <input type="hidden" name="id" value="<?= $variety["id"]; ?>" />
-                            <input class="button changeVarietyImageButton" type="submit" value="Changer d'image" name="changeVarietyImage" />
+                            <input type="hidden" name="id" value="<?= $variety["id"]; ?>">
+                            <input class="button changeVarietyImageButton" type="submit" value="Changer d'image" name="changeVarietyImage">
                         </form>
                     <?php
                     }
@@ -100,8 +84,8 @@
                         <p>Pas d'image choisie pour le moment</p>
                         
                         <form class="chooseVarietyImage" name="chooseVarietyImage" method="POST" action="/Projet_Accou-ferme/chooseVarietyImage">
-                            <input type="hidden" name="id" value="<?= $variety["id"]; ?>" />
-                            <input class="button" type="submit" value="En choisir une" name="chooseVarietyImage" />
+                            <input type="hidden" name="id" value="<?= $variety["id"]; ?>">
+                            <input class="button" type="submit" value="En choisir une" name="chooseVarietyImage">
                         </form>
                         <?php
                     }

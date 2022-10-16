@@ -1,12 +1,90 @@
 /* ********** _adminNav ********** */
 
-.adminNav > ul{
-    display:flex;
-    justify-content:center;
-    margin: 1rem auto;
+@media(min-width: 0px) and (max-width: 767.99px)
+{
+    .adminNav > ul{
+        display:grid;
+        grid-template-columns:1fr;
+        grid-template-rows:repeat(6, 1fr);
+        margin: 1rem auto;
+    }
+    .adminNav > ul > li{
+        text-align:center;
+        margin: 1rem auto;
+    }
+    
+    .adminNav > ul > li > a{
+        text-align:center;
+        margin:2rem auto;
+        padding:0.5rem;
+    }
+
+    .adminNav > ul > li > a:hover .bi-power{
+        color:$red;
+    }
+
+    .bi-power{
+        color:$white;
+    }
+    
+    .disconnet{
+        font-size:0.8rem;
+    }
 }
 
-.adminNav > ul > li > a{
-    display:inline-block;
-    margin: 1rem;
+@media(min-width: 768px) and (max-width: 991px)
+{
+    .adminNav > ul{
+        display:grid;
+        grid-template-columns:repeat(3, 1fr);
+        grid-template-rows:repeat(2, 1fr);
+        margin: 1rem auto;
+    }
+    .adminNav > ul > li{
+        text-align:center;
+        margin: 1rem auto;
+    }
+    
+    .adminNav > ul > li > a{
+        margin:2rem;
+    }
+
+    .adminNav > ul > li > a:hover .bi-power{
+        color:$red;
+    }
+
+    .bi-power{
+        color:$white;
+    }
+    
+    .disconnet{
+        font-size:0.8rem;
+    }
 }
+
+@media(min-width: 992px)
+{
+    .adminNav > ul{
+        display:grid;
+        grid-template-columns:repeat(6, 1fr);
+        grid-template-rows:1fr;
+        margin: 1rem auto;
+    }
+    .adminNav > ul > li{
+        text-align:center;
+        margin: auto;
+    }
+    
+    .adminNav > ul > li > a:hover .bi-power{
+        color:$red;
+    }
+
+    .bi-power{
+        color:$white;
+    }
+    
+    .disconnet{
+        font-size:0.8rem;
+    }
+}
+

@@ -17,7 +17,7 @@ class AdminMediasController extends AbstractController
                     
                     if(!isset($validation))
                     {
-                        $validation = [];
+                        $validation = "";
                     }
                     
                     $_FILES["fileToUpload"]["alt"] = $_POST["alt"];
@@ -67,8 +67,9 @@ class AdminMediasController extends AbstractController
         }
         else if($_SESSION["connectAdmin"] === false || empty($_SESSION["connectAdmin"]))
         {
+            $allMedias = $this->mm->getAllMedias();
             $errors[] = "Veuillez vous connecter";
-            $this->render("admin", ["errors" => $errors]);
+            $this->render("admin", ["errors" => $errors, "allMedias" => $allMedias]);
         }
     }
     
@@ -80,7 +81,6 @@ class AdminMediasController extends AbstractController
     
     public function deleteImage(array $post) : void
     {
-
         $id = intval($post["mediaId"]);
 
         $this->mm->deleteMedia($id);

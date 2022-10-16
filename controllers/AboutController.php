@@ -1,8 +1,4 @@
 <?php
-/**
- * @author : Gaellan
- * @Marine Sanson
- */
 
 class AboutController extends AbstractController
 {

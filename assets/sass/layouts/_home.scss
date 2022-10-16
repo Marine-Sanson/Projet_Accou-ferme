@@ -1,5 +1,29 @@
 /* ********** Home ********** */
 
+@media (prefers-color-scheme: dark){
+    #mainHome > article > p > strong > a{
+        color:$red;
+    }
+    
+    #mainHome > article > p > strong > a:hover{
+        color:$white;
+    }
+    
+    #homeNews > button > a{
+        color:$red;
+    }
+    #homeNews > button > a:hover{
+        color:$white;
+    }
+    
+    #homeProducts > button > a{
+        color:$red;
+    }
+
+    #homeProducts > button > a:hover{
+        color:$white;
+    }
+}
 
 @media(min-width: 0px) and (max-width: 767.99px)
 {
@@ -15,23 +39,23 @@
         margin: auto;
     }
     
-    #market{
+    #markets{
         max-width: 70vw;
         margin:2rem auto;
         background-color:$red;
     }
     
-    #market > h2{
+    #markets > h2{
         text-align:center;
         margin:auto;
-        color:$blanc;
+        color:$white;
     }
     
-    #market > p{
+    #markets > p{
         text-align:center;
         margin:auto;
         padding:1rem;
-        color:$blanc;
+        color:$white;
     }
 
     #homeProducts > article{
@@ -97,11 +121,15 @@
     }
     
     #homeProducts > button > a{
-        color: $blanc;
+        color: $white;
     }
     
     #homeProducts > button > a:hover{
         color: $red;
+    }
+    
+    #homeNews{
+        margin-bottom:4rem;
     }
     
     .lastNewsArticle{
@@ -223,16 +251,16 @@
         grid-row: 1;
         margin:auto;
     }
-    #homeNews > button{
+    .homeButton{
         display:grid;
         margin:auto;
     }
 
-    #homeNews > button > a{
-        color:$blanc;
+    .homeButton{
+        color:$white;
     }
     
-    #homeNews > button > a:hover{
+    .homeButton:hover{
         color:$red;
     }
 }
@@ -251,40 +279,37 @@
         margin: auto;
     }
     
-    #market{
+    #markets{
         max-width: 70vw;
         margin:2rem auto;
         background-color:$red;
     }
     
-    #market > h2{
+    #markets > h2{
         text-align:center;
         margin:auto;
-        color:$blanc;
+        color:$white;
     }
     
-    #market > p{
+    #markets > p{
         text-align:center;
         margin:auto;
         padding:1rem;
-        color:$blanc;
-    }
-    
-    #homeProducts{
-        display:grid;
-        grid-template-columns:repeat(3, 1fr);
-        grid-template-rows:1fr auto 1fr;
-        gap: 0.4rem;
+        color:$white;
     }
     
     #homeProducts > h2{
         grid-row:1;
         grid-column:1/4;
     }
-    
+
+    #homeProducts > section{
+        display:grid;
+        grid-template-columns:repeat(3, 1fr);
+        gap: 0.4rem;
+    }
+
     #homeProducts > article{
-        grid-row:2;
-        
         display:grid;
         grid-template-columns:1fr;
         grid-template-rows:3rem 3rem auto auto 3rem;
@@ -311,7 +336,6 @@
         margin: auto;
     }
 
-    
     .homeProductsMain{
         grid-row:3/5;
         
@@ -343,24 +367,21 @@
     
     .homeProductsFooter > p{
         grid-row:1;
-        
         text-align: right;
     }
     
-    #homeProducts > button > a{
-        color: $blanc;
-    }
+    // #homeProducts > button > a{
+    //     color: $white;
+    // }
     
-    #homeProducts > button > a:hover{
-        color: $red;
-    }
+    // #homeProducts > button > a:hover{
+    //     color: $red;
+    // }
     
-    #homeProducts > button{
-        grid-column:2;
-        grid-row:3;
-        margin:auto;
+    #homeProducts > a{
+        // margin:auto;
     }
-    
+
     .lastNewsArticle{
         display:grid;
         grid-template-columns:repeat(2, 40%);
@@ -513,7 +534,7 @@
     }
 
     #homeNews > button > a{
-        color:$blanc;
+        color:$white;
     }
     
     #homeNews > button > a:hover{
@@ -526,12 +547,18 @@
     #mainHome{
         display: grid;
         grid-template-columns:repeat(12, 1fr);
-        grid-template-rows:1fr;
+        grid-template-rows:1fr auto;
         gap:1rem;
+    }
+    
+    #main-title{
+        grid-column:1/13;
+        grid-row:1;
     }
     
     #mainHome > figure{
         grid-column:1/6;
+        grid-row:2;
         max-width: 50vw;
         margin: auto;
     }
@@ -544,46 +571,40 @@
     
     #mainHome > article{
         grid-column:6/13;
+        grid-row:2;
+        margin:auto;
     }
     
-    #market{
+    #markets{
         max-width: 70vw;
         margin:2rem auto;
         background-color:$red;
     }
     
-    #market > h2{
+    #markets > h2{
         text-align:center;
         margin:auto;
-        color:$blanc;
+        color:$white;
     }
     
-    #market > p{
+    #markets > p{
         text-align:center;
         margin:auto;
         padding:1rem;
-        color:$blanc;
+        color:$white;
     }
 
-    #homeProducts{
+    #homeProductsSection{
         display:grid;
         grid-template-columns:repeat(3, 1fr);
-        grid-template-rows:1fr auto 1fr;
         gap: 0.4rem;
     }
     
-    #homeProducts > h2{
-        grid-row:1;
-        grid-column:1/4;
-    }
-    
-    #homeProducts > article{
-        grid-row:2;
-        
+    #homeProductsSection > article{
         display:grid;
         grid-template-columns:1fr;
         grid-template-rows:3rem 3rem auto auto 3rem;
-        margin: 1rem;
+        margin: 2rem;
     }
     
     .homeProductsHeader{
@@ -605,7 +626,6 @@
         
         margin: auto;
     }
-
     
     .homeProductsMain{
         grid-row:3/5;
@@ -642,24 +662,6 @@
         text-align: right;
     }
     
-    #homeProducts > button > a{
-        color: $blanc;
-    }
-    
-    #homeProducts > button > a:hover{
-        color: $red;
-    }
-    
-    #homeProducts > button{
-        grid-column:2;
-        grid-row:3;
-        margin:auto;
-    }
-    
-    #homeContact{
-        margin-top:2rem;
-    }
-    
     .lastNewsArticle{
         max-width:90vw;
         display:grid;
@@ -667,7 +669,7 @@
         grid-template-rows:4rem auto 4rem;
         gap: 1rem;
         justify-content:center;
-        margin:4rem auto;
+        margin:2rem auto;
     }
     
     .lastNewsHeader{
@@ -730,7 +732,7 @@
         grid-template-rows:4rem auto 4rem 4rem 4rem;
         gap: 1rem;
         justify-content:center;
-        margin:4rem auto;
+        margin:2rem auto;
     }
     
     .lastRecipeHeader{
@@ -797,21 +799,19 @@
         margin:auto;
     }
     
-    #homeNews > button{
-        margin:auto;
-    }
-
-    #homeNews > button{
+    .homeButton{
         display:grid;
-        margin:auto;
-    }
-
-    #homeNews > button > a{
-        color:$blanc;
+        justify-content:center;
+        color: $white;
     }
     
-    #homeNews > button > a:hover{
-        color:$red;
+    .homeButton:hover{
+        color: $red;
+    }
+    
+    .homeButton{
+        max-width:fit-content;
+        margin:2rem auto;
     }
 }
 
