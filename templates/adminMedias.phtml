@@ -7,12 +7,12 @@
     
     <?php require "_messages.phtml"; ?>
     
-    <form action="/Projet_Accou-ferme/adminMedias" method="post" enctype="multipart/form-data">
-            Choisi une image à télécharger:
+    <form id="uploader" action="/Projet_Accou-ferme/adminMedias" method="post" enctype="multipart/form-data">
+        <p>Choisir une image à télécharger:</p>
         <input type="file" name="fileToUpload" id="fileToUpload">
-        <label for="alt">Description de l'image</label>
+        <label id="fileToUploadLabel" for="alt">Description de l'image :</label>
         <input type="text" name="alt" id="fileAlt">
-        <input class="button" type="submit" value="Upload Image" name="submit">
+        <input id="uploaderButton" class="button" type="submit" value="Upload Image" name="submit">
     </form>
     
     <h2>Suppression d'images</h2>

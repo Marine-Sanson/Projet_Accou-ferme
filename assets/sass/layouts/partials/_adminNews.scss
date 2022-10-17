@@ -1,76 +1,241 @@
 /* ********** _adminNews ********** */
 
-#adminCategoryForm{
-    text-align:center;
+/* mobiles */
+@media(min-width: 0px) and (max-width: 767.99px)
+{
+    #adminCategoryForm{
+        text-align:center;
+    }
+    
+    #createNews{
+        display:grid;
+        grid-template-columns:1fr;
+        grid-template-rows:repeat(2, 1.4fr);
+    }
+    
+    #createNewsForm{
+        grid-row:1;
+        margin:auto;
+    }
+    
+    #createRecipeForm{
+        grid-row:2;
+        margin:auto;
+    }
+    
+    #updateNews{
+        display:grid;
+        grid-template-columns:1fr;
+        gap: 1rem;
+    }
+    
+    .updateNewsLi{
+        width:80vw;
+        margin:auto;
+    }
+    
+    .udNews{
+        display:grid;
+        grid-template-rows:5rem repeat(2, 3rem) auto 3rem;
+        border: 2px solid $red;
+    }
+    
+    .udNews > h3{
+        grid-row:1;
+        margin:auto;
+    }
+    
+    .updateNewsForm{
+        grid-row:2;
+        margin:auto;
+    }
+    
+    .deleteNewsForm{
+        grid-row:3;
+        margin:auto;
+    }
+    
+    .newsFormImg{
+        width:50vw;
+        grid-row:4;
+        padding:0.4rem;
+        margin:auto;
+    }
+    
+    .changeNewsImage{
+        grid-row:5;
+        margin:auto;
+    }
+    
+    .chooseNewsImage{
+        grid-row:5;
+        margin:auto;
+    }
+    
+    .udNews > p{
+        text-align:center;
+        padding:0.5rem;
+        margin:auto;
+    }}
+
+/* tablets */
+@media(min-width: 768px) and (max-width: 991px)
+{
+    #adminCategoryForm{
+        text-align:center;
+    }
+    
+    #createNews{
+        display:grid;
+        grid-template-columns:repeat(4, 1fr);
+        grid-template-rows:1fr;
+    }
+    
+    #createNewsForm{
+        grid-row:1;
+        grid-column:2/3;
+        margin:auto;
+    }
+    
+    #createRecipeForm{
+        grid-row:1;
+        grid-column:3/4;
+        margin:auto;
+    }
+    
+    #updateNews{
+        display:grid;
+        grid-template-columns:repeat(3, 1fr);
+        gap: 1rem;
+        padding:1rem;
+    }
+    
+    .updateNewsLi{
+        width:30vw;
+        margin:auto;
+    }
+    
+    .udNews{
+        display:grid;
+        grid-template-rows:2.2rem repeat(2, 1.8rem) 10rem 2.2rem;
+        border: 2px solid $red;
+    }
+    
+    .udNews > h3{
+        grid-row:1;
+        margin:auto;
+    }
+    
+    .updateNewsForm{
+        grid-row:2;
+        margin:auto;
+    }
+    
+    .deleteNewsForm{
+        grid-row:3;
+        margin:auto;
+    }
+    
+    .newsFormImg{
+        width:22vw;
+        grid-row:4;
+        padding:0.4rem;
+        margin:auto;
+    }
+    
+    .changeNewsImage{
+        grid-row:5;
+        margin:auto;
+    }
+    
+    .chooseNewsImage{
+        grid-row:5;
+        margin:auto;
+    }
+    
+    .udNews > p{
+        text-align:center;
+        padding:0.5rem;
+        margin:auto;
+    }
 }
 
-#createNews{
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    grid-template-rows:1fr;
+/* screens */
+@media (min-width: 992px)
+{
+    #adminCategoryForm{
+        text-align:center;
+    }
+    
+    #createNews{
+        display:grid;
+        grid-template-columns:repeat(4, 1fr);
+        grid-template-rows:1fr;
+    }
+    
+    #createNewsForm{
+        grid-row:1;
+        grid-column:2/3;
+        margin:auto;
+    }
+    
+    #createRecipeForm{
+        grid-row:1;
+        grid-column:3/4;
+        margin:auto;
+    }
+    
+    #updateNews{
+        display:grid;
+        grid-template-columns:repeat(5, 1fr);
+        gap: 1rem;
+    }
+    
+    .updateNewsLi{
+        max-width:20vw;
+    }
+    
+    .udNews{
+        display:grid;
+        grid-template-rows:5rem repeat(2, 3rem) 8rem 3rem;
+        border: 2px solid $red;
+    }
+    
+    .udNews > h3{
+        grid-row:1;
+        margin:auto;
+    }
+    
+    .updateNewsForm{
+        grid-row:2;
+        margin:auto;
+    }
+    
+    .deleteNewsForm{
+        grid-row:3;
+        margin:auto;
+    }
+    
+    .newsFormImg{
+        grid-row:4;
+        padding:0.4rem;
+        margin:auto;
+    }
+    
+    .changeNewsImage{
+        grid-row:5;
+        margin:auto;
+    }
+    
+    .chooseNewsImage{
+        grid-row:5;
+        margin:auto;
+    }
+    
+    .udNews > p{
+        text-align:center;
+        padding:0.5rem;
+        margin:auto;
+    }
 }
-
-#createNewsForm{
-    grid-row:1;
-    grid-column:2/3;
-    margin:auto;
-}
-
-#createRecipeForm{
-    grid-row:1;
-    grid-column:3/4;
-    margin:auto;
-}
-
-#updateNews{
-    display:grid;
-    grid-template-columns:repeat(5, 1fr);
-    gap: 1rem;
-}
-
-.updateNewsLi{
-    max-width:18vw;
-}
-
-.udNews{
-    display:grid;
-    grid-template-rows:5rem repeat(2, 3rem) 8rem 3rem;
-    border: 2px solid $red;
-}
-
-.udNews > h3{
-    grid-row:1;
-    margin:auto;
-}
-
-.updateNewsForm{
-    grid-row:2;
-    margin:auto;
-}
-
-.deleteNewsForm{
-    grid-row:3;
-    margin:auto;
-}
-
-.newsFormImg{
-    grid-row:4;
-    padding:0.4rem;
-    margin:auto;
-}
-
-.changeNewsImage{
-    grid-row:5;
-    margin:auto;
-}
-
-.chooseNewsImage{
-    grid-row:5;
-    margin:auto;
-}
-
-.udNews > p{
-    text-align:center;
-    padding:0.5rem;
-    margin:auto;
-}
+    

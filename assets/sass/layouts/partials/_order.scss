@@ -244,8 +244,8 @@
     .totalReturn{
         grid-column:1;
         grid-row:1;
-        text-align: right;
-        margin:auto 0.5rem;
+        margin:auto;
+        max-width:fit-content;
     }
     
     .totalP{

@@ -452,38 +452,72 @@ body > header a:hover {
     color: rgb(255, 255, 255);
   }
 }
+/* General */
+/* section mainHome */
+#mainHome > figure {
+  margin: auto;
+}
+
+#mainHome > figure > img {
+  background-image: url("../img/legumes.jpg");
+  background-size: cover;
+  background-position: right;
+  margin: auto;
+}
+
+/* section markets */
+#markets {
+  max-width: 70vw;
+  margin: 2rem auto;
+  background-color: rgb(204, 28, 0);
+}
+
+#markets > h2 {
+  text-align: center;
+  margin: auto;
+  color: rgb(255, 255, 255);
+}
+
+#markets > p {
+  text-align: center;
+  margin: auto;
+  padding: 1rem;
+  color: rgb(255, 255, 255);
+}
+
+/* section homeNews */
+.homeButton {
+  display: grid;
+  justify-content: center;
+  color: rgb(255, 255, 255);
+}
+
+.homeButton:hover {
+  color: rgb(204, 28, 0);
+}
+
+.homeButton {
+  max-width: fit-content;
+  margin: 2rem auto;
+}
+
 @media (min-width: 0px) and (max-width: 767.99px) {
+  /* section mainHome */
   #mainHome > figure {
     max-width: 80vw;
-    margin: auto;
   }
-  #mainHome > figure > img {
-    background-image: url("../img/legumes.jpg");
-    background-size: cover;
-    background-position: right;
-    margin: auto;
+  /* section homeProducts */
+  #homeProductsSection {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
   }
-  #markets {
-    max-width: 70vw;
-    margin: 2rem auto;
-    background-color: rgb(204, 28, 0);
-  }
-  #markets > h2 {
-    text-align: center;
-    margin: auto;
-    color: rgb(255, 255, 255);
-  }
-  #markets > p {
-    text-align: center;
-    margin: auto;
-    padding: 1rem;
-    color: rgb(255, 255, 255);
-  }
-  #homeProducts > article {
+  #homeProductsSection > article {
+    max-width: 80vw;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr auto auto 1fr;
-    margin: 1rem;
+    margin: 1rem auto;
   }
   .homeProductsHeader {
     grid-row: 1/3;
@@ -507,7 +541,10 @@ body > header a:hover {
   }
   .homeProductsMain > figure {
     grid-row: 1;
-    margin: 1.5rem;
+    margin: auto;
+  }
+  .homeProductsMain > figure > img {
+    width: 70vw;
   }
   .homeProductsMain > p {
     grid-row: 2;
@@ -529,8 +566,10 @@ body > header a:hover {
   #homeProducts > button > a:hover {
     color: rgb(204, 28, 0);
   }
+  /* section homeNews */
+  /* News */
   #homeNews {
-    margin-bottom: 4rem;
+    margin: auto auto 4rem auto;
   }
   .lastNewsArticle {
     display: grid;
@@ -582,6 +621,7 @@ body > header a:hover {
     grid-row: 1;
     margin: auto;
   }
+  /* Recipe */
   .lastRecipeArticle {
     display: grid;
     grid-template-columns: 80vw;
@@ -632,49 +672,27 @@ body > header a:hover {
     grid-row: 1;
     margin: auto;
   }
-  .homeButton {
-    display: grid;
-    margin: auto;
-  }
-  .homeButton {
-    color: rgb(255, 255, 255);
-  }
-  .homeButton:hover {
-    color: rgb(204, 28, 0);
-  }
 }
 @media (min-width: 768px) and (max-width: 991px) {
+  /* section mainHome */
   #mainHome > figure {
     max-width: 60vw;
-    margin: auto;
   }
-  #mainHome > figure > img {
-    background-image: url("../img/legumes.jpg");
-    background-size: cover;
-    background-position: right;
-    margin: auto;
-  }
-  #markets {
-    max-width: 70vw;
-    margin: 2rem auto;
-    background-color: rgb(204, 28, 0);
-  }
-  #markets > h2 {
-    text-align: center;
-    margin: auto;
-    color: rgb(255, 255, 255);
-  }
-  #markets > p {
-    text-align: center;
-    margin: auto;
-    padding: 1rem;
-    color: rgb(255, 255, 255);
+  /* section homeProducts */
+  #homeProducts {
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr repeat(2, auto);
   }
   #homeProducts > h2 {
     grid-row: 1;
     grid-column: 1/4;
   }
-  #homeProducts > section {
+  #homeProductsSection {
+    grid-row: 2;
+    grid-column: 1/4;
+    grid-auto-flow: row dense;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.4rem;
@@ -724,7 +742,10 @@ body > header a:hover {
     grid-row: 1;
     text-align: right;
   }
+  /* section homeNews */
+  /* News */
   .lastNewsArticle {
+    max-width: 90vw;
     display: grid;
     grid-template-columns: repeat(2, 40%);
     grid-template-rows: 0.7fr 4fr auto 0.7fr;
@@ -780,7 +801,9 @@ body > header a:hover {
     grid-row: 1;
     margin: auto;
   }
+  /* Recipe */
   .lastRecipeArticle {
+    max-width: 90vw;
     display: grid;
     grid-template-columns: repeat(2, 40%);
     grid-template-rows: 0.7fr 4fr auto 0.7fr;
@@ -848,19 +871,12 @@ body > header a:hover {
     grid-row: 1;
     margin: auto;
   }
-  #homeNews > button {
-    display: grid;
-    margin: auto;
-  }
-  #homeNews > button > a {
-    color: rgb(255, 255, 255);
-  }
-  #homeNews > button > a:hover {
-    color: rgb(204, 28, 0);
-  }
 }
 @media (min-width: 992px) {
+  /* section mainHome */
   #mainHome {
+    max-width: 90vw;
+    margin: auto;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 1fr auto;
@@ -874,34 +890,13 @@ body > header a:hover {
     grid-column: 1/6;
     grid-row: 2;
     max-width: 50vw;
-    margin: auto;
-  }
-  #mainHome > figure > img {
-    background-image: url("../img/legumes.jpg");
-    background-size: cover;
-    background-position: right;
   }
   #mainHome > article {
     grid-column: 6/13;
     grid-row: 2;
     margin: auto;
   }
-  #markets {
-    max-width: 70vw;
-    margin: 2rem auto;
-    background-color: rgb(204, 28, 0);
-  }
-  #markets > h2 {
-    text-align: center;
-    margin: auto;
-    color: rgb(255, 255, 255);
-  }
-  #markets > p {
-    text-align: center;
-    margin: auto;
-    padding: 1rem;
-    color: rgb(255, 255, 255);
-  }
+  /* section homeProducts */
   #homeProductsSection {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -952,6 +947,8 @@ body > header a:hover {
     grid-row: 1;
     text-align: right;
   }
+  /* section homeNews */
+  /* News */
   .lastNewsArticle {
     max-width: 90vw;
     display: grid;
@@ -1006,7 +1003,9 @@ body > header a:hover {
     grid-row: 1;
     margin: auto;
   }
+  /* Recipe */
   .lastRecipeArticle {
+    max-width: 90vw;
     display: grid;
     grid-template-columns: repeat(3, 27%);
     grid-template-rows: 4rem auto 4rem 4rem 4rem;
@@ -1067,18 +1066,6 @@ body > header a:hover {
     grid-row: 1;
     margin: auto;
   }
-  .homeButton {
-    display: grid;
-    justify-content: center;
-    color: rgb(255, 255, 255);
-  }
-  .homeButton:hover {
-    color: rgb(204, 28, 0);
-  }
-  .homeButton {
-    max-width: fit-content;
-    margin: 2rem auto;
-  }
 }
 /* ********** About ********** */
 @media (min-width: 0px) and (max-width: 767.99px) {
@@ -1101,6 +1088,7 @@ body > header a:hover {
 }
 @media (min-width: 992px) {
   #aboutMain {
+    margin: 1rem;
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(2, auto);
@@ -1247,7 +1235,7 @@ body > header a:hover {
     font-size: 1.5rem;
     font-weight: 600;
   }
-  .varietyDetailDescription {
+  .varietyDetailMain {
     grid-row: 3;
   }
   .varietyDetailFooter {
@@ -1308,7 +1296,7 @@ body > header a:hover {
     font-size: 1.5rem;
     font-weight: 600;
   }
-  .varietyDetailDescription {
+  .varietyDetailMain {
     grid-column: 1/3;
     grid-row: 3;
   }
@@ -1417,7 +1405,7 @@ body > header a:hover {
     width: 80vw;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, auto);
+    grid-template-rows: 3rem auto repeat(3, 3rem);
     gap: 1rem;
     justify-content: center;
     margin: auto;
@@ -1429,19 +1417,20 @@ body > header a:hover {
   }
   .availableVarietyMain {
     grid-column: 1;
-    grid-row: 2/4;
+    grid-row: 2/5;
     display: grid;
     justify-content: center;
     margin: auto;
-    grid-template-columns: auto;
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+    grid-template-rows: auto repeat(2, 1fr);
   }
   .availableVarietyFooter {
     grid-column: 1;
-    grid-row: 4;
+    grid-row: 5;
     display: grid;
     justify-content: center;
     margin: auto;
+    padding-bottom: 0.5rem;
   }
   .availableVarietyFigure {
     grid-column: 1;
@@ -1460,9 +1449,6 @@ body > header a:hover {
     grid-column: 1;
     grid-row: 3;
     margin: auto;
-  }
-  .availableVarietyId {
-    display: none;
   }
 }
 @media (min-width: 768px) and (max-width: 991px) {
@@ -1517,29 +1503,18 @@ body > header a:hover {
     grid-row: 3;
     margin: auto;
   }
-  .availableVarietyButton {
-    grid-column: 2;
+  .availableVarietyForm {
+    grid-column: 1/3;
     grid-row: 1;
     margin: auto;
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    grid-template-rows: 1fr;
-  }
-  .availableVarietyButtonAdd {
-    grid-column: 1;
-  }
-  .availableVarietyButtonRemove {
-    grid-column: 2;
-  }
-  .availableVarietyButton > fieldset {
-    margin: 1rem;
-    border: none;
-  }
-  .availableVarietyId {
-    display: none;
+    padding-bottom: 1.5rem;
   }
 }
 @media (min-width: 992px) {
+  #basket {
+    max-width: 90vw;
+    margin: auto;
+  }
   .availableVarietySection {
     display: grid;
     grid-template-columns: repeat(3, 3fr);
@@ -1547,10 +1522,10 @@ body > header a:hover {
     margin: auto;
   }
   .availableVariety {
-    max-width: 40vw;
+    max-width: 30vw;
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 1fr 3fr repeat(3, 1fr);
+    grid-template-rows: 3rem 14rem repeat(3, 3rem);
     gap: 1rem;
     justify-content: center;
     margin: auto;
@@ -1578,7 +1553,7 @@ body > header a:hover {
     margin: auto;
   }
   .availableVarietyFigure > img {
-    max-width: 18vw;
+    width: 22vw;
   }
   .availableVarietyTitle {
     grid-row: 2;
@@ -1592,9 +1567,6 @@ body > header a:hover {
   .availableVarietyButton {
     grid-row: 1;
     margin: auto;
-  }
-  .availableVarietyId {
-    display: none;
   }
 }
 /* ********** News ********** */
@@ -2120,8 +2092,11 @@ label {
   #update {
     width: 80vw;
     display: grid;
-    grid-template-rows: 0.5fr auto 3fr;
+    grid-template-rows: 1fr auto 3fr;
     margin: 1rem auto;
+  }
+  .updateDetail {
+    margin-bottom: 1rem;
   }
   #basketHeader {
     grid-row: 1;
@@ -2148,8 +2123,9 @@ label {
     display: none;
   }
   #updateContentSection {
+    grid-row: 2;
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto;
   }
   .containerSection {
     display: grid;
@@ -2223,12 +2199,15 @@ label {
     height: 2.5rem;
   }
   #basketFooter {
+    grid-row: 3;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: 1fr;
   }
-  #totalOrderPrice {
+  #basketFooter > p {
     grid-row: 1;
+    margin-right: 4rem;
+    text-align: right;
   }
   #totalOrderContinue {
     grid-row: 2;
@@ -2242,7 +2221,7 @@ label {
     align-self: end;
     width: 80%;
     text-align: center;
-    margin: 0.5rem auto;
+    margin: auto;
   }
   .hideUpdate {
     display: none;
@@ -2255,7 +2234,7 @@ label {
   #update {
     width: 80vw;
     display: grid;
-    grid-template-rows: 0.5fr auto 3fr;
+    grid-template-rows: 1fr auto 3fr;
     margin: 1rem auto;
   }
   #basketHeader {
@@ -2283,8 +2262,9 @@ label {
     display: none;
   }
   #updateContentSection {
+    grid-row: 2;
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto;
   }
   .containerSection {
     display: grid;
@@ -2358,12 +2338,15 @@ label {
     height: 2.5rem;
   }
   #basketFooter {
+    grid-row: 3;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: 1fr;
   }
-  #totalOrderPrice {
+  #basketFooter > p {
     grid-row: 1;
+    margin-right: 4rem;
+    text-align: right;
   }
   #totalOrderContinue {
     grid-row: 2;
@@ -2391,7 +2374,7 @@ label {
   #update {
     max-width: 80%;
     display: grid;
-    grid-template-rows: 0.5fr auto 3fr;
+    grid-template-rows: 1fr auto 3fr;
     grid-template-columns: auto;
     margin: 1rem auto;
   }
@@ -2420,6 +2403,7 @@ label {
     color: rgb(255, 255, 255);
   }
   #updateContentSection {
+    grid-row: 2;
     display: grid;
     grid-template-rows: auto;
   }
@@ -2493,14 +2477,13 @@ label {
     height: 2.5rem;
   }
   #basketFooter {
+    grid-row: 3;
     display: grid;
     grid-template-rows: repeat(3, 1fr);
     grid-template-columns: 1fr;
   }
-  #totalOrderPrice {
-    grid-row: 1;
-  }
   #basketFooter > p {
+    grid-row: 1;
     margin-right: 4rem;
     text-align: right;
   }
@@ -2515,7 +2498,7 @@ label {
   #basketFooter > a {
     align-self: end;
     width: 80%;
-    margin: 0.5rem auto;
+    margin: auto;
   }
   .updateTotalPrice {
     margin: auto;
@@ -2727,8 +2710,8 @@ label {
   .totalReturn {
     grid-column: 1;
     grid-row: 1;
-    text-align: right;
-    margin: auto 0.5rem;
+    margin: auto;
+    max-width: fit-content;
   }
   .totalP {
     grid-column: 2;
@@ -3026,105 +3009,280 @@ label {
   }
 }
 /* ********** _adminProducts ********** */
-#adminProducts > #product {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 1rem;
+/* mobiles */
+@media (min-width: 0px) and (max-width: 767.99px) {
+  #adminProducts > #product {
+    display: grid;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  #product > h2 {
+    grid-row: 1;
+  }
+  #adminCreateProductForm {
+    grid-row: 2;
+    margin: auto;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+  }
+  #adminCreateProductForm > label {
+    grid-row: 1;
+  }
+  #adminCreateProductForm > input {
+    grid-row: 2;
+  }
+  #adminCreateProductForm > button {
+    grid-row: 3;
+  }
+  #adminDeleteProductForm {
+    grid-row: 3;
+    margin: auto;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+  }
+  #adminDeleteProductForm > label {
+    grid-row: 1;
+  }
+  #adminDeleteProductForm > select {
+    grid-row: 2;
+    height: 1.4rem;
+  }
+  #adminDeleteProductForm > button {
+    grid-row: 3;
+  }
+  #createVariety {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1rem;
+  }
+  #createVariety > h2 {
+    grid-row: 1;
+    grid-column: 1;
+    display: grid;
+    justify-content: right;
+  }
+  #createVarietyForm {
+    grid-row: 1;
+    grid-column: 2;
+    display: grid;
+    justify-content: left;
+    margin: auto 1.5rem;
+  }
+  #updateVariety > ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .udVarietyLi {
+    margin: 0.5rem 0;
+  }
+  .udVariety {
+    max-width: 45vw;
+    margin: 0.5rem auto;
+    display: grid;
+    grid-template-rows: repeat(3, 3rem) 8rem 3rem;
+    gap: 1rem;
+    justify-content: center;
+    border: 2px solid rgb(204, 28, 0);
+  }
+  .udVariety > h3 {
+    grid-row: 1;
+    margin: auto;
+  }
+  .updateVarietyForm {
+    grid-row: 2;
+    margin: auto;
+  }
+  .deleteVarietyForm {
+    grid-row: 3;
+    margin: auto;
+  }
+  .udVarietyImg {
+    max-height: 8rem;
+    grid-row: 4;
+    margin: auto;
+  }
+  .changeVarietyImage {
+    grid-row: 5;
+    margin: auto;
+  }
+  .chooseVarietyImage {
+    grid-row: 5;
+    margin: auto;
+  }
 }
-
-#product > h2 {
-  grid-row: 1;
-  grid-column: 1/3;
+/* tablets */
+@media (min-width: 768px) and (max-width: 991px) {
+  #adminProducts > #product {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  #product > h2 {
+    grid-row: 1;
+  }
+  #adminCreateProductForm {
+    grid-row: 2;
+    margin: auto;
+  }
+  #adminDeleteProductForm {
+    grid-row: 3;
+    margin: auto;
+  }
+  #createVariety {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1rem;
+  }
+  #createVariety > h2 {
+    grid-row: 1;
+    grid-column: 1;
+    display: grid;
+    justify-content: right;
+  }
+  #createVarietyForm {
+    grid-row: 1;
+    grid-column: 2;
+    display: grid;
+    justify-content: left;
+    margin: auto 1.5rem;
+  }
+  #updateVariety > ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  #updateVariety > ul {
+    grid-auto-flow: row dense;
+  }
+  .udVarietyLi {
+    margin: 0.5rem 0;
+  }
+  .udVariety {
+    max-width: 30vw;
+    margin: 0.5rem auto;
+    display: grid;
+    grid-template-rows: repeat(3, 3rem) 8rem 3rem;
+    gap: 1rem;
+    justify-content: center;
+    border: 2px solid rgb(204, 28, 0);
+  }
+  .udVariety > h3 {
+    grid-row: 1;
+    margin: auto;
+  }
+  .updateVarietyForm {
+    grid-row: 2;
+    margin: auto;
+  }
+  .deleteVarietyForm {
+    grid-row: 3;
+    margin: auto;
+  }
+  .udVarietyImg {
+    max-height: 8rem;
+    grid-row: 4;
+    margin: auto;
+  }
+  .changeVarietyImage {
+    grid-row: 5;
+    margin: auto;
+  }
+  .chooseVarietyImage {
+    grid-row: 5;
+    margin: auto;
+  }
 }
-
-#adminCreateProductForm {
-  grid-row: 2;
-  grid-column: 1/2;
+/* screens */
+@media (min-width: 992px) {
+  #adminProducts > #product {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  #product > h2 {
+    grid-row: 1;
+    grid-column: 1/3;
+  }
+  #adminCreateProductForm {
+    grid-row: 2;
+    grid-column: 1/2;
+  }
+  #adminDeleteProductForm {
+    grid-row: 2;
+    grid-column: 2/3;
+  }
+  #createVariety {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1rem;
+  }
+  #createVariety > h2 {
+    grid-row: 1;
+    grid-column: 1;
+    display: grid;
+    justify-content: right;
+  }
+  #createVarietyForm {
+    grid-row: 1;
+    grid-column: 2;
+    display: grid;
+    justify-content: left;
+    margin: auto 1.5rem;
+  }
+  #updateVariety > ul {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+  #updateVariety > ul {
+    grid-auto-flow: row dense;
+  }
+  .udVarietyLi {
+    margin: 0.5rem 0;
+  }
+  .udVariety {
+    max-width: 20vw;
+    margin: 0.5rem auto;
+    display: grid;
+    grid-template-rows: repeat(3, 3rem) 8rem 3rem;
+    gap: 1rem;
+    justify-content: center;
+    border: 2px solid rgb(204, 28, 0);
+  }
+  .udVariety > h3 {
+    grid-row: 1;
+    margin: auto;
+  }
+  .updateVarietyForm {
+    grid-row: 2;
+    margin: auto;
+  }
+  .deleteVarietyForm {
+    grid-row: 3;
+    margin: auto;
+  }
+  .udVarietyImg {
+    max-height: 8rem;
+    grid-row: 4;
+    margin: auto;
+  }
+  .changeVarietyImage {
+    grid-row: 5;
+    margin: auto;
+  }
+  .chooseVarietyImage {
+    grid-row: 5;
+    margin: auto;
+  }
 }
-
-#adminDeleteProductForm {
-  grid-row: 2;
-  grid-column: 2/3;
-}
-
-#createVariety {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 1fr;
-  gap: 1rem;
-}
-
-#createVariety > h2 {
-  grid-row: 1;
-  grid-column: 1;
-  display: grid;
-  justify-content: right;
-}
-
-#createVarietyForm {
-  grid-row: 1;
-  grid-column: 2;
-  display: grid;
-  justify-content: left;
-  margin: auto 1.5rem;
-}
-
-#updateVariety > ul {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-}
-
-#updateVariety > ul {
-  grid-auto-flow: row dense;
-}
-
-.udVarietyLi {
-  margin: 0.5rem 0;
-}
-
-.udVariety {
-  max-width: 20vw;
-  margin: 0.5rem auto;
-  display: grid;
-  grid-template-rows: repeat(3, 3rem) 8rem 3rem;
-  gap: 1rem;
-  justify-content: center;
-  border: 2px solid rgb(204, 28, 0);
-}
-
-.udVariety > h3 {
-  grid-row: 1;
-  margin: auto;
-}
-
-.updateVarietyForm {
-  grid-row: 2;
-  margin: auto;
-}
-
-.deleteVarietyForm {
-  grid-row: 3;
-  margin: auto;
-}
-
-.udVarietyImg {
-  max-height: 8rem;
-  grid-row: 4;
-  margin: auto;
-}
-
-.changeVarietyImage {
-  grid-row: 5;
-  margin: auto;
-}
-
-.chooseVarietyImage {
-  grid-row: 5;
-  margin: auto;
-}
-
 /* ********** _adminCrudVariety ********** */
 #varietyForm {
   display: grid;
@@ -3255,6 +3413,7 @@ label {
 }
 
 /* ********** _adminProducts ********** */
+/* General */
 .choseOrders {
   text-align: center;
 }
@@ -3263,7 +3422,7 @@ label {
   text-align: center;
 }
 
-#displayOrders > p {
+.displayOrders > p {
   text-align: left;
   margin: 0.5rem;
 }
@@ -3273,15 +3432,13 @@ label {
 }
 
 .displayOrder {
+  padding: 0.5rem;
   border: 1px solid rgb(204, 28, 0);
-  max-width: 45vw;
 }
 
 #displayOrders {
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
 }
 
 .buttonTerminer {
@@ -3289,105 +3446,390 @@ label {
   margin: 1rem;
 }
 
+/* mobiles */
+@media (min-width: 0px) and (max-width: 767.99px) {
+  .displayOrder {
+    padding: 0.5rem;
+    margin: 1rem;
+    border: 1px solid rgb(204, 28, 0);
+    max-width: 85vw;
+  }
+}
+/* tablets and screens */
+@media (min-width: 768px) {
+  .displayOrder {
+    max-width: 45vw;
+  }
+  #displayOrders {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
 /* ********** _adminNews ********** */
-#adminCategoryForm {
-  text-align: center;
+/* mobiles */
+@media (min-width: 0px) and (max-width: 767.99px) {
+  #adminCategoryForm {
+    text-align: center;
+  }
+  #createNews {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1.4fr);
+  }
+  #createNewsForm {
+    grid-row: 1;
+    margin: auto;
+  }
+  #createRecipeForm {
+    grid-row: 2;
+    margin: auto;
+  }
+  #updateNews {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .updateNewsLi {
+    width: 80vw;
+    margin: auto;
+  }
+  .udNews {
+    display: grid;
+    grid-template-rows: 5rem repeat(2, 3rem) auto 3rem;
+    border: 2px solid rgb(204, 28, 0);
+  }
+  .udNews > h3 {
+    grid-row: 1;
+    margin: auto;
+  }
+  .updateNewsForm {
+    grid-row: 2;
+    margin: auto;
+  }
+  .deleteNewsForm {
+    grid-row: 3;
+    margin: auto;
+  }
+  .newsFormImg {
+    width: 50vw;
+    grid-row: 4;
+    padding: 0.4rem;
+    margin: auto;
+  }
+  .changeNewsImage {
+    grid-row: 5;
+    margin: auto;
+  }
+  .chooseNewsImage {
+    grid-row: 5;
+    margin: auto;
+  }
+  .udNews > p {
+    text-align: center;
+    padding: 0.5rem;
+    margin: auto;
+  }
 }
-
-#createNews {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 1fr;
+/* tablets */
+@media (min-width: 768px) and (max-width: 991px) {
+  #adminCategoryForm {
+    text-align: center;
+  }
+  #createNews {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+  }
+  #createNewsForm {
+    grid-row: 1;
+    grid-column: 2/3;
+    margin: auto;
+  }
+  #createRecipeForm {
+    grid-row: 1;
+    grid-column: 3/4;
+    margin: auto;
+  }
+  #updateNews {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .updateNewsLi {
+    width: 30vw;
+    margin: auto;
+  }
+  .udNews {
+    display: grid;
+    grid-template-rows: 2.2rem repeat(2, 1.8rem) 10rem 2.2rem;
+    border: 2px solid rgb(204, 28, 0);
+  }
+  .udNews > h3 {
+    grid-row: 1;
+    margin: auto;
+  }
+  .updateNewsForm {
+    grid-row: 2;
+    margin: auto;
+  }
+  .deleteNewsForm {
+    grid-row: 3;
+    margin: auto;
+  }
+  .newsFormImg {
+    width: 22vw;
+    grid-row: 4;
+    padding: 0.4rem;
+    margin: auto;
+  }
+  .changeNewsImage {
+    grid-row: 5;
+    margin: auto;
+  }
+  .chooseNewsImage {
+    grid-row: 5;
+    margin: auto;
+  }
+  .udNews > p {
+    text-align: center;
+    padding: 0.5rem;
+    margin: auto;
+  }
 }
-
-#createNewsForm {
-  grid-row: 1;
-  grid-column: 2/3;
-  margin: auto;
+/* screens */
+@media (min-width: 992px) {
+  #adminCategoryForm {
+    text-align: center;
+  }
+  #createNews {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+  }
+  #createNewsForm {
+    grid-row: 1;
+    grid-column: 2/3;
+    margin: auto;
+  }
+  #createRecipeForm {
+    grid-row: 1;
+    grid-column: 3/4;
+    margin: auto;
+  }
+  #updateNews {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+  }
+  .updateNewsLi {
+    max-width: 20vw;
+  }
+  .udNews {
+    display: grid;
+    grid-template-rows: 5rem repeat(2, 3rem) 8rem 3rem;
+    border: 2px solid rgb(204, 28, 0);
+  }
+  .udNews > h3 {
+    grid-row: 1;
+    margin: auto;
+  }
+  .updateNewsForm {
+    grid-row: 2;
+    margin: auto;
+  }
+  .deleteNewsForm {
+    grid-row: 3;
+    margin: auto;
+  }
+  .newsFormImg {
+    grid-row: 4;
+    padding: 0.4rem;
+    margin: auto;
+  }
+  .changeNewsImage {
+    grid-row: 5;
+    margin: auto;
+  }
+  .chooseNewsImage {
+    grid-row: 5;
+    margin: auto;
+  }
+  .udNews > p {
+    text-align: center;
+    padding: 0.5rem;
+    margin: auto;
+  }
 }
-
-#createRecipeForm {
-  grid-row: 1;
-  grid-column: 3/4;
-  margin: auto;
-}
-
-#updateNews {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
-}
-
-.updateNewsLi {
-  max-width: 18vw;
-}
-
-.udNews {
-  display: grid;
-  grid-template-rows: 5rem repeat(2, 3rem) 8rem 3rem;
-  border: 2px solid rgb(204, 28, 0);
-}
-
-.udNews > h3 {
-  grid-row: 1;
-  margin: auto;
-}
-
-.updateNewsForm {
-  grid-row: 2;
-  margin: auto;
-}
-
-.deleteNewsForm {
-  grid-row: 3;
-  margin: auto;
-}
-
-.newsFormImg {
-  grid-row: 4;
-  padding: 0.4rem;
-  margin: auto;
-}
-
-.changeNewsImage {
-  grid-row: 5;
-  margin: auto;
-}
-
-.chooseNewsImage {
-  grid-row: 5;
-  margin: auto;
-}
-
-.udNews > p {
-  text-align: center;
-  padding: 0.5rem;
-  margin: auto;
-}
-
 /* ********** _adminMedia ********** */
-#deleteNewsImg {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
+/* mobiles */
+@media (min-width: 0px) and (max-width: 767.99px) {
+  #adminMedias {
+    margin: auto;
+  }
+  #uploader {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    padding: 0.5rem;
+  }
+  #uploader > p {
+    grid-row: 1;
+    grid-column: 1/3;
+    margin: auto;
+  }
+  #fileToUpload {
+    grid-row: 2;
+    grid-column: 1/3;
+  }
+  #fileToUploadLabel {
+    grid-row: 3;
+    grid-column: 1;
+    margin-right: 0.5rem;
+  }
+  #fileAlt {
+    grid-row: 3;
+    grid-column: 2;
+    margin-left: 0.5rem;
+  }
+  #uploaderButton {
+    grid-row: 4;
+    grid-column: 1/3;
+    margin: auto;
+  }
+  #deleteNewsImg {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .deleteNewsImageForm {
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+  .deleteNewsImageForm > img {
+    max-width: 30vw;
+    grid-row: 1;
+    margin: auto;
+  }
+  .deleteNewsImageButton {
+    font-size: 0.7rem;
+    grid-row: 2;
+    margin: 1rem auto;
+  }
 }
-
-.deleteNewsImageForm {
-  display: grid;
-  grid-template-rows: auto 1fr;
+/* tablets */
+@media (min-width: 768px) and (max-width: 991px) {
+  #adminMedias {
+    margin: auto;
+  }
+  #uploader {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    padding: 0.5rem;
+  }
+  #uploader > p {
+    grid-row: 1;
+    grid-column: 1/4;
+    margin: auto 0.5rem auto auto;
+  }
+  #fileToUpload {
+    grid-row: 1;
+    grid-column: 4/7;
+    margin: auto auto auto 0.5rem;
+  }
+  #fileToUploadLabel {
+    grid-row: 2;
+    grid-column: 1/3;
+    margin: auto 0.5rem auto auto;
+  }
+  #fileAlt {
+    grid-row: 2;
+    grid-column: 3/5;
+    margin: auto auto auto 0.5rem;
+  }
+  #uploaderButton {
+    grid-row: 2;
+    grid-column: 5;
+    margin: auto;
+  }
+  #deleteNewsImg {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .deleteNewsImageForm {
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+  .deleteNewsImageForm > img {
+    max-width: 28vw;
+    grid-row: 1;
+    margin: auto;
+  }
+  .deleteNewsImageButton {
+    grid-row: 2;
+    margin: 1rem auto;
+  }
 }
-
-.deleteNewsImageForm > img {
-  max-width: 18vw;
-  grid-row: 1;
-  margin: auto;
+/* screens */
+@media (min-width: 992px) {
+  #adminMedias {
+    margin: auto;
+  }
+  #uploader {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    padding: 0.5rem;
+  }
+  #uploader > p {
+    grid-row: 1;
+    grid-column: 1/4;
+    margin: auto 0.5rem auto auto;
+  }
+  #fileToUpload {
+    grid-row: 1;
+    grid-column: 4/7;
+    margin: auto auto auto 0.5rem;
+  }
+  #fileToUploadLabel {
+    grid-row: 2;
+    grid-column: 1/3;
+    margin: auto 0.5rem auto auto;
+  }
+  #fileAlt {
+    grid-row: 2;
+    grid-column: 3/5;
+    margin: auto auto auto 0.5rem;
+  }
+  #uploaderButton {
+    grid-row: 2;
+    grid-column: 5;
+    margin: auto;
+  }
+  #deleteNewsImg {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+  .deleteNewsImageForm {
+    display: grid;
+    grid-template-rows: auto 1fr;
+  }
+  .deleteNewsImageLi {
+    max-width: 22vw;
+  }
+  .deleteNewsImageForm > img {
+    width: 20vw;
+    grid-row: 1;
+    margin: auto;
+  }
+  .deleteNewsImageButton {
+    grid-row: 2;
+    margin: 1rem auto;
+  }
 }
-
-.deleteNewsImageButton {
-  grid-row: 2;
-  margin: 1rem auto;
-}
-
 /* ********** _adminCrudNews ********** */
 #adminNewsForm > label {
   display: grid;
