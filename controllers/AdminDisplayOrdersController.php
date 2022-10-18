@@ -25,15 +25,12 @@ class AdminDisplayOrdersController extends AbstractController
                 $day = $_POST["day"];
                 $endOrder = false;
                 $allOrders = $this->om->getAllOrders($day, $endOrder);
-                
+
                 foreach($allOrders as $key => $order){
-
-                    foreach($order as $key => $orderDetail){
-                        $varieties = $this->om->getVarietiesOrderedByOrderId($order["id"]);
-                    }
+                    $varieties = $this->om->getVarietiesOrderedByOrderId($order["order"]["id"]);
+                    $order["varieties"][] = $varieties;
                 }
-
-                $this->render("adminDisplayOrders", ["allOrders" => $allOrders, "varieties" => $varieties]);
+                $this->render("adminDisplayOrders", ["allOrders" => $allOrders]);
             }
             else
             {

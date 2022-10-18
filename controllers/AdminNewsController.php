@@ -84,12 +84,6 @@ class AdminNewsController extends AbstractController
     
     public function adminCrudNews(array $post) :void
     {
-        // var_dump("debut adminCrudNews ligne 48 :");
-        // var_dump($post);
-        
-        // $tokenAdminNews = $this->generateToken(25);
-        // $_SESSION["tokenForAdminNews"] = $tokenAdminNews;
-        
         $action = $post["action"];
         $categories = $this->cm->getAllCategories();
         $allProducts = $this->pm->getProducts();
@@ -187,21 +181,11 @@ class AdminNewsController extends AbstractController
     {
         if($_SESSION["connectAdmin"] === true)
         {
-            
-        // var_dump("debut createNews ligne 88 :");
-        // var_dump($post);
-            
+
             $action = "createNews";
             $newsVerified = $this->verifyNews($post, $action);
             
             $allProducts = $this->pm->getProducts();
-            
-            // $tokenAdminNews = trim($post["tokenAdminNews"]);
-            
-            // if($tokenAdminNews !== $_SESSION["tokenForAdminNews"])
-            // {
-            //     $errors[] = "une erreur s'est produite lors de l'envoi du formulaire";
-            // }
             
             if(empty($newsVerified["errors"]))
             {
@@ -239,32 +223,17 @@ class AdminNewsController extends AbstractController
             $errors[] = "Veuillez vous connecter";
             $this->render("admin", ["errors" => $errors]);
         }
-        
-        // var_dump("fin createNews ligne 122 :");
-        // var_dump($singleNews);
-        // var_dump($singleRecipe);
-
     }
     
     public function createRecipe(array $post) :void
     {
         if($_SESSION["connectAdmin"] === true)
         {
-        // var_dump("debut createRecipe ligne 132 :");
-        // var_dump($post);
-            
             $action = "createRecipe";
 
             $recipeVerified = $this->verifyRecipe($post, $action);
 
             $allProducts = $this->pm->getProducts();
-            
-            // $tokenAdminNews = trim($post["tokenAdminNews"]);
-
-            // if($tokenAdminNews !== $_SESSION["tokenForAdminNews"])
-            // {
-            //     $errors[] = "une erreur s'est produite lors de l'envoi du formulaire";
-            // }
 
             if(empty($recipeVerified["errors"]))
             {
@@ -307,19 +276,12 @@ class AdminNewsController extends AbstractController
             $errors[] = "Veuillez vous connecter";
             $this->render("admin", ["errors" => $errors]);
         }
-        
-        // var_dump("fin createRecipe ligne 172 :");
-        // var_dump($singleNews);
-        // var_dump($singleRecipe);
     }
     
     public function updateNews(array $post)
     {
         if($_SESSION["connectAdmin"] === true)
         {
-        // var_dump("debut updateNews ligne 181 :");
-        // var_dump($post);
-            
             $action = "update";
             $news = $post;
             
@@ -336,7 +298,6 @@ class AdminNewsController extends AbstractController
                     "news" => $news
                     ];
                 
-                // var_dump($newsVerified);
             }
             else
             {
@@ -347,16 +308,6 @@ class AdminNewsController extends AbstractController
             $categories = $this->cm->getAllCategories();
             $allProducts = $this->pm->getProducts();
             
-                // var_dump($post["tokenAdminNews"]);
-                // var_dump($_SESSION["tokenForAdminNews"]);
-            
-            // $tokenAdminNews = trim($post["tokenAdminNews"]);
-            
-            // if($tokenAdminNews !== $_SESSION["tokenForAdminNews"])
-            // {
-            //     $errors[] = "une erreur s'est produite lors de l'envoi du formulaire";
-            // }
-
             if(empty($newsVerified["errors"]))
             {
                 $news = $newsVerified["news"];
@@ -410,8 +361,6 @@ class AdminNewsController extends AbstractController
     {
         if($_SESSION["connectAdmin"] === true)
         {
-        // var_dump("début de deleteNews ligne 253 :");
-        // var_dump($post);
 
             $action = "delete";
             $newsVerified = $this->verifyNews($post, $action);
@@ -423,13 +372,6 @@ class AdminNewsController extends AbstractController
             
             $categories = $this->cm->getAllCategories();
             $allProducts = $this->pm->getProducts();
-            
-            // $tokenAdminNews = trim($post["tokenAdminNews"]);
-            
-            // if($tokenAdminNews !== $_SESSION["tokenForAdminNews"])
-            // {
-            //     $errors[] = "une erreur s'est produite lors de l'envoi du formulaire";
-            // }
             
             if(empty($newsVerified["errors"]))
             {
@@ -466,10 +408,6 @@ class AdminNewsController extends AbstractController
                 $this->render("adminCrudNews", ["singleNews" => $singleNews, "categories" => $categories, "errors" => $errors, "action" => $action, "allProducts" => $allProducts]);
             }
         }
-        
-        // var_dump("fin deleteNews ligne 293 :");
-        // var_dump($singleNews);
-        // var_dump($singleRecipe);
     }
     
     public function verifyNews(array $post, string $action) :array
@@ -549,18 +487,12 @@ class AdminNewsController extends AbstractController
             "action" => $action,
             "news" => $news
         ];
-        
-        // var_dump("fin verifyNews ligne 376 :");
-        // var_dump($verifyNews);
-
+    
         return $verifyNews;
     }
     
     public function verifyRecipe(array $post, string $action) :array
     {
-        // var_dump("début de verifyRecipe ligne 384 :");
-        // var_dump($post);
-
         $errors = [];
 
         $verifyNews = $this->verifyNews($post, $action);
@@ -665,9 +597,6 @@ class AdminNewsController extends AbstractController
             "recipe" => $recipe
         ];
         
-        // var_dump("fin verifyRecipe ligne 468 :");
-        // var_dump($verifyRecipe);
-
         return $verifyRecipe;
     }
 }

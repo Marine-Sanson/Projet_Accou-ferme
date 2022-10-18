@@ -146,7 +146,7 @@ class BasketController extends AbstractController
      * @param string $mediaAlt
      * @return void
      */
-    public function verifyVariety(int $key, array $basket, string $availableVariety, string $availableVarietyUnits, int $availableVarietyPrice, ?string $mediaUrl, ?string $mediaAlt) :void
+    public function verifyVariety(int $key, array $basket, string $availableVariety, string $availableVarietyUnits, float $availableVarietyPrice, ?string $mediaUrl, ?string $mediaAlt) :void
     {
         $keyB = $this->containsVariety($_SESSION["basket"]["items"], $availableVariety);
         if($keyB === null)

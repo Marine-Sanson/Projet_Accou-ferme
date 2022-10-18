@@ -2,7 +2,6 @@
     
 function initNews(){
     
-    console.log("je rentre dans initNews");
     let $selectNews = document.getElementById("selectNews");
     
     $selectNews.addEventListener('change', function(event){
@@ -11,21 +10,17 @@ function initNews(){
     // VARIABLES
         // je récupère la liste complète des news
         let $allNews = document.querySelectorAll(".newsArticle");
-        console.log($allNews);
-        
+
         //  je récupère la catégorie actuelle
         let $categoryId = $selectNews.value.trim();
-        console.log($categoryId);
-        
+
         // je récupère la liste des news qui ont la catégorie actuelle
         let $newsShow = document.querySelectorAll(".newsArticle[data-category='"+$categoryId+"']");
-        console.log($newsShow);
-        
+
         //  je récupère la liste des news qui n'ont pas la catégorie actuelle
         let $newsHide = document.querySelectorAll(".newsArticle:not([data-category='"+$categoryId+"'])");
-        console.log($newsHide);
 
-        
+
     // Pour les news qui ont la catégorie actuelle:
             for(var i=0; i<$newsShow.length; i++){
         // j'ajoute show
@@ -46,8 +41,6 @@ function initNews(){
         
     // Si la catégorie actuelle est 0
         if($categoryId === "0"){
-            console.log("id = 0");
-            console.log($categoryId);
         // Pour tout le monde j'ajoute show et je retire hide
             for(var k=0; k<$allNews.length; k++){
                 $allNews[k].classList.remove("hide");

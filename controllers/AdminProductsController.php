@@ -294,7 +294,6 @@ class AdminProductsController extends AbstractController
         }
         else
         {
-            // var_dump($post["productId"]);
             $inputProductId = $this->clean_input($post["productId"]);
             $productId = intval($inputProductId);
 
@@ -310,7 +309,6 @@ class AdminProductsController extends AbstractController
             {
                 $errors[] = "Veuillez selectionner un produit";
             }
-            // var_dump($productId);
         }
         
         if(!isset($post["name"]))
@@ -411,7 +409,6 @@ class AdminProductsController extends AbstractController
         
         if(!isset($post["mediaId"]))
         {
-            // var_dump("if !isset");
             $errors[] = "Veuillez entrer une image";
             $mediaId = null;
         }
@@ -449,18 +446,14 @@ class AdminProductsController extends AbstractController
             
             if($availablity === false)
             {
-                // var_dump("je rentre dans le if = false");
                 $availablity = 0;
-                // var_dump($availablity);
             }
             if($availablity === true)
             {
-                // var_dump("je rentre dans le if = true");
                 $availablity = 1;
             }
         }
 
-        // var_dump("offer");
         if(!isset($post["offer"]))
         {
             $errors[] = "Veuillez cocher oui ou non pour le produit du moment";
@@ -481,7 +474,6 @@ class AdminProductsController extends AbstractController
                 $errors[] = "Veuillez entrer un produit du moment valide";
             }
         }
-        // var_dump("quantityAvailable");
         if(!isset($post["quantityAvailable"]))
         {
             $errors[] = "Veuillez entrer une quantité disponible";
@@ -506,7 +498,6 @@ class AdminProductsController extends AbstractController
                 $errors[] = "Veuillez entrer une quantité disponible valide";
             }
         }
-        // var_dump("units");
         if(!isset($post["units"]))
         {
             $errors[] = "Veuillez entrer une unité de vente";
@@ -530,7 +521,6 @@ class AdminProductsController extends AbstractController
                 $errors[] = "Veuillez entrer une unité de vente valide";
             }
         }
-        // var_dump("price");
         if(!isset($post["price"]))
         {
             $errors[] = "Veuillez entrer un prix";
@@ -538,7 +528,7 @@ class AdminProductsController extends AbstractController
         else
         {
             $inputPrice = $this->clean_input($post["price"]);
-            $price  = intval($inputPrice);
+            $price  = floatval($inputPrice);
             
             if($price === "")
             {
@@ -550,12 +540,11 @@ class AdminProductsController extends AbstractController
                 $errors[] = "Veuillez entrer un prix plus court (max 5 caractères)";
             }
             
-            if(!is_int($price))
+            if(!is_float($price))
             {
                 $errors[] = "Veuillez entrer un prix valide";
             }
         }
-        // var_dump($errors);
         $variety = new Variety($id, $productId, $name, $seasonStart, $seasonEnd, $description, $mediaId, $availablity, $offer, $quantityAvailable, $units, $price);
         
         $verifyVariety = [

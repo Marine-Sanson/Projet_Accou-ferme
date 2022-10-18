@@ -459,12 +459,32 @@ body > header a:hover {
 }
 
 #mainHome > figure > img {
-  background-image: url("../img/legumes.jpg");
-  background-size: cover;
-  background-position: right;
   margin: auto;
 }
 
+#mainHome > figure {
+  background-image: url("../img/legumes.jpg");
+  background-size: cover;
+  background-position: right;
+}
+
+/* Annimation */
+#animLogo {
+  animation: anim-logo ease-out 3s 0.3s;
+}
+
+@keyframes anim-logo {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(0, 0);
+    transform-origin: center center;
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
 /* section markets */
 #markets {
   max-width: 70vw;
@@ -1063,6 +1083,22 @@ body > header a:hover {
   }
   .lastRecipeButton {
     grid-column: 1/4;
+    grid-row: 1;
+    margin: auto;
+  }
+  #homeContact {
+    margin: 4rem auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+  }
+  #homeContact > h3 {
+    grid-column: 1/3;
+    grid-row: 1;
+    margin: auto 1rem auto auto;
+  }
+  #homeContact > a {
+    grid-column: 3;
     grid-row: 1;
     margin: auto;
   }

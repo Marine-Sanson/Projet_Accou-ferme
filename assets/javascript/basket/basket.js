@@ -267,7 +267,6 @@ function renderBasket()
 
         if($basket.items[i].amount > 0){
             
-            console.log("je rentre dans le if");
             let $item = $basket.items[i];
             let $newLi = document.createElement("li");
             $newLi.classList.add("updateDetail");

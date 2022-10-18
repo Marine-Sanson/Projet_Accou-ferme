@@ -5,7 +5,7 @@
         <h1 id="main-title">Bienvenue chez Accou'ferme</h1>
 
         <figure>
-            <img src="./assets/img/logo-accouferme.png"
+            <img id="animLogo" src="./assets/img/logo-accouferme.png"
                  alt="logo Accouferme">
         </figure>
 
@@ -90,8 +90,8 @@
             ?>
         </div>
         
-        <a class="homeButton button" href="/Projet_Accou-ferme/produits" title="Produits">
-            Voir tous nos produits
+        <a class="homeButton button" href="/Projet_Accou-ferme/commandes" title="Produits">
+            Passer commande
         </a>
         
     </section>
@@ -217,8 +217,9 @@
         
     </section>
     
-    <?php
-        require "./templates/contact.phtml";
-    ?>
+    <section id="homeContact">
+        <h3>Si vous voulez me contacter : </h3>
+        <a class="homeButton button" href="/Projet_Accou-ferme/contact" title="news">Cliquez ici</a>
+    </section>
     
 </main>

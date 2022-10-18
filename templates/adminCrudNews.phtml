@@ -24,9 +24,6 @@
     
     if(isset($data["singleRecipe"]["recipe"]) && !empty($data["singleRecipe"]["recipe"]))
     {
-        // var_dump("début de if isset data singleRecipe ligne 54 :");
-        // var_dump($data["singleRecipe"]["recipe"]);
-        
         $id = $data["singleNews"]["news"]->getId();
         if(isset($id) && $id !== 0)
         {

@@ -84,7 +84,7 @@ class OrdersController extends AbstractController
      * @return int $totalVariety
      */
     
-    public function totalVariety(int $orderVarietyAmount, int $orderVarietyPrice) :int
+    public function totalVariety(float $orderVarietyAmount, float $orderVarietyPrice) :float
     {
         $totalVariety = $orderVarietyAmount * $orderVarietyPrice;
 
@@ -98,7 +98,7 @@ class OrdersController extends AbstractController
      * @return int $totalOrder
      */
     
-    public function totalOrder(int $totalVariety, int $totalOrder) :int
+    public function totalOrder(float $totalVariety, float $totalOrder) :float
     {
         $totalOrder = $totalOrder + $totalVariety;
         
@@ -113,7 +113,6 @@ class OrdersController extends AbstractController
     
     public function validationOrder(array $post) :void
     {
-
         $baskets = $_SESSION["basket"]["items"];
 
         $errors = [];
@@ -171,7 +170,8 @@ class OrdersController extends AbstractController
             $errors[] = "Veuillez choisir un jour de retrait";
         }
         
-        $totalPrice = $this->clean_input($_POST['totalPrice']);
+        $inputTotalPrice = $this->clean_input($_POST['totalPrice']);
+        $totalPrice = floatval($inputTotalPrice);
         $dateCommande = DateTime::createFromFormat("Y-m-d H:i:s", date("Y-m-d H:i:s"));
         
         if($errors === [])
@@ -255,7 +255,7 @@ class OrdersController extends AbstractController
                 ];
             }
             
-            $order["totalPrice"] = intval($totalPrice);
+            $order["totalPrice"] = floatval($totalPrice);
 
             $allAvailableVarieties = $this->vm->getAllAvailableVarieties();
             $medias = [];

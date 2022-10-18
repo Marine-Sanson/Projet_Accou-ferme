@@ -9,10 +9,10 @@ class Order
     private int $tel;
     private DateTime $dateCommande;
     private string $day;
-    private int $totalPrice;
+    private float $totalPrice;
     private bool $endOrder;
 
-    function __construct (?int $id, string $name, string $firstName, string $email, int $tel, DateTime $dateCommande, string $day, int $totalPrice, bool $endOrder)
+    function __construct (?int $id, string $name, string $firstName, string $email, int $tel, DateTime $dateCommande, string $day, float $totalPrice, bool $endOrder)
     {
         $this->id = $id;
         $this->name = $name;
@@ -100,7 +100,7 @@ class Order
         return $this->totalPrice;
     }
     
-    public function setTotalPrice(int $totalPrice) : void
+    public function setTotalPrice(float $totalPrice) : void
     {
         $this->totalPrice = $totalPrice;
     }

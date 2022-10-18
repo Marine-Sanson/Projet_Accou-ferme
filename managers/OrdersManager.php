@@ -33,7 +33,7 @@ class OrdersManager extends AbstractManager
      * @return 
      */
     
-    public function createVarietyOrdered(int $idOrder, int $varietyId, string $varietyName, int $amount, string $units, int $price, int $totalVariety) :void
+    public function createVarietyOrdered(int $idOrder, int $varietyId, string $varietyName, int $amount, string $units, float $price, float $totalVariety) :void
     {
         $query = $this->db->prepare('INSERT INTO varietyOrdered (id_order, variety_id, variety_name, amount, units, price, total_variety) VALUES (:id_order, :variety_id, :variety_name, :amount, :units, :price, :total_variety)');
         $parameters = [
@@ -56,7 +56,7 @@ class OrdersManager extends AbstractManager
 
     public function getAllOrders(string $day, bool $endOrder) :array
     {
-        $query = $this->db->prepare('SELECT id, name, first_name, email, tel, date_commande, day, total_price, end_order FROM orders WHERE day = :day AND end_order = :end_order ORDER BY orders.date_commande DESC');
+        $query = $this->db->prepare('SELECT id, name, first_name, email, tel, date_commande, day, total_price, end_order FROM orders WHERE day = :day AND end_order = :end_order ORDER BY orders.date_commande');
         $parameters = [
             'day' => $day,
             'end_order' => $endOrder
@@ -64,7 +64,18 @@ class OrdersManager extends AbstractManager
         $query->execute($parameters);
         $allOrders = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        return $allOrders;
+        $fullOrders = [];
+        
+        foreach($allOrders as $key => $order)
+        {
+            $fullOrder = [];
+            $fullOrder["order"] = $order;
+            $fullOrder["varieties"] = $this->getVarietiesOrderedByOrderId($order["id"]);
+            
+            $fullOrders[] = $fullOrder;
+        }
+
+        return $fullOrders;
     }
     
     /**

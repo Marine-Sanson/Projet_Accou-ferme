@@ -32,13 +32,13 @@
             {
                 foreach($order as $key => $orderDetail)
                 {
-                    if(isset($orderDetail["date_commande"]))
+                    if(isset($orderDetail["order"]["date_commande"]))
                     {
                     ?>
                         <article class="displayOrder">
-                            <h4>Date de commande : <?= $orderDetail["date_commande"]; ?></h4>
-                            <p>Id : <?= $orderDetail["id"]; ?></p>
-                            <p><?= $orderDetail["name"]; ?> <?= $orderDetail["first_name"]; ?> <?= $orderDetail["email"]; ?> <?= $orderDetail["tel"]; ?>
+                            <h4>Date de commande : <?= $orderDetail["order"]["date_commande"]; ?></h4>
+                            <p>Id : <?= $orderDetail["order"]["id"]; ?></p>
+                            <p><?= $orderDetail["order"]["name"]; ?> <?= $orderDetail["order"]["first_name"]; ?> <?= $orderDetail["order"]["email"]; ?> <?= $orderDetail["order"]["tel"]; ?>
                             <table>
                                 <thead>
                                     <tr>
@@ -52,19 +52,19 @@
                                 <tfoot>
                                     <tr>
                                         <th colspan="4">Total commande : </th>
-                                        <td><?= $orderDetail["total_price"]; ?> €</td>
+                                        <td><?= $orderDetail["order"]["total_price"]; ?> €</td>
                                     </tr>
                                     <tr>
                                         <td colspan="5" class="buttonTerminer">
                                             <form method="POST" action="/Projet_Accou-ferme/terminer">
-                                                <input type="hidden" name="id" value ="<?= $orderDetail["id"]; ?>">
+                                                <input type="hidden" name="id" value ="<?= $orderDetail["order"]["id"]; ?>">
                                                 <input class="button" type="submit" value="Terminer">
                                             </form>
                                         </td>
                                     </tr>
                                 </tfoot>
                                 <?php
-                                $varieties = $allorders["varieties"];
+                                $varieties = $orderDetail["varieties"];
                                 foreach($varieties as $key => $varietyDetail)
                                 {
                                 ?>
@@ -84,11 +84,7 @@
                         </article>
                     <?php
                     }
-                    ?>
-                <?php
                 }
-                ?>
-            <?php
             }
             ?>
         </section>

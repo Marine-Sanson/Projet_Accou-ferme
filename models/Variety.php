@@ -13,9 +13,9 @@ class Variety
     private bool $offer;
     private ?int $quantityAvailable;
     private ?string $units;
-    private ?int $price;
+    private ?float $price;
 
-    function __construct(?int $id, int $productId, string $name, string $seasonStart, string $seasonEnd, string $description, ?int $mediaId, bool $availablity, bool $offer, int $quantityAvailable, ?string $units, ?int $price)
+    function __construct(?int $id, int $productId, string $name, string $seasonStart, string $seasonEnd, string $description, ?int $mediaId, bool $availablity, bool $offer, int $quantityAvailable, ?string $units, ?float $price)
     {
         $this->id = $id;
         $this->productId = $productId;
@@ -141,12 +141,12 @@ class Variety
         $this->units = $units;
     }
     
-    public function getPrice() : int
+    public function getPrice() : ?float
     {
         return $this->price;
     }
     
-    public function setPrice(int $price) : void
+    public function setPrice(float $price) : void
     {
         $this->price = $price;
     }
