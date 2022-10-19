@@ -73,7 +73,8 @@ class AdminNewsController extends AbstractController
             $categories = $this->cm->getAllCategories();
             $allNews = $this->nm->getAllNews();
 
-            $this->render("adminNews", ["categories" => $categories, "allNews" => $allNews, "validation" => $validation]);
+            $this->render("adminNews", ["categories" => $categories, "allNews" => $allNews,
+            "validation" => $validation]);
         }
         else
         {
@@ -124,7 +125,8 @@ class AdminNewsController extends AbstractController
             $media = [];
         }
         
-        $this->render("adminCrudNews", ["action" => $action, "categories" => $categories, "singleNews" => $singleNews, "singleRecipe" => $singleRecipe, "allProducts" => $allProducts, "media" => $media]);
+        $this->render("adminCrudNews", ["action" => $action, "categories" => $categories, "singleNews" => $singleNews,
+        "singleRecipe" => $singleRecipe, "allProducts" => $allProducts, "media" => $media]);
     }
     
     public function trueNewsId(int $newsIdToVerify) : bool
@@ -206,7 +208,8 @@ class AdminNewsController extends AbstractController
                 
                 $validation = "Votre actu a bien été créée !";
 
-                $this->render("adminNews", ["validation" => $validation, "categories" => $categories, "allNews" => $allNews, "allProducts" => $allProducts]);
+                $this->render("adminNews", ["validation" => $validation, "categories" => $categories,
+                "allNews" => $allNews, "allProducts" => $allProducts]);
             }
             else
             {
@@ -215,7 +218,8 @@ class AdminNewsController extends AbstractController
                 $action = "createNews";
                 $singleNews = $newsVerified;
                 
-                $this->render("adminCrudNews", ["singleNews" => $singleNews, "categories" => $categories, "errors" => $errors, "action" => $action, "allProducts" => $allProducts]);
+                $this->render("adminCrudNews", ["singleNews" => $singleNews, "categories" => $categories,
+                "errors" => $errors, "action" => $action, "allProducts" => $allProducts]);
             }
         }
         else
@@ -258,7 +262,8 @@ class AdminNewsController extends AbstractController
                 
                 $validation = "Votre recette a bien été créée !";
 
-                $this->render("adminNews", ["validation" => $validation, "categories" => $categories, "allNews" => $allNews, "allProducts" => $allProducts]);
+                $this->render("adminNews", ["validation" => $validation, "categories" => $categories,
+                "allNews" => $allNews, "allProducts" => $allProducts]);
             }
             else
             {
@@ -268,7 +273,8 @@ class AdminNewsController extends AbstractController
                 $singleNews = $recipeVerified;
                 $singleRecipe = $recipeVerified;
                 
-                $this->render("adminCrudNews", ["singleNews" => $singleNews, "singleRecipe" => $singleRecipe, "categories" => $categories, "errors" => $errors, "action" => $action, "allProducts" => $allProducts]);
+                $this->render("adminCrudNews", ["singleNews" => $singleNews, "singleRecipe" => $singleRecipe,
+                "categories" => $categories, "errors" => $errors, "action" => $action, "allProducts" => $allProducts]);
             }
         }
         else
@@ -332,7 +338,8 @@ class AdminNewsController extends AbstractController
                 
                 $validation = "Votre actu a bien été modifiée !";
     
-                $this->render("adminNews", ["validation" => $validation, "allNews" => $allNews, "categories" => $categories, "allProducts" => $allProducts]);
+                $this->render("adminNews", ["validation" => $validation, "allNews" => $allNews,
+                "categories" => $categories, "allProducts" => $allProducts]);
             }
             else
             {
@@ -347,7 +354,8 @@ class AdminNewsController extends AbstractController
                     $singleRecipe = [];
                 }
                 
-                $this->render("adminCrudNews", ["singleNews" => $singleNews, "singleRecipe" => $singleRecipe, "categories" => $categories, "errors" => $errors, "action" => $action, "allProducts" => $allProducts]);
+                $this->render("adminCrudNews", ["singleNews" => $singleNews, "singleRecipe" => $singleRecipe,
+                "categories" => $categories, "errors" => $errors, "action" => $action, "allProducts" => $allProducts]);
             }
         }
         else
@@ -398,14 +406,16 @@ class AdminNewsController extends AbstractController
                 
                 $validation = "Votre actu a bien été suprimée !";
     
-                $this->render("adminNews", ["validation" => $validation, "allNews" => $allNews, "categories" => $categories, "allProducts" => $allProducts]);
+                $this->render("adminNews", ["validation" => $validation, "allNews" => $allNews,
+                "categories" => $categories, "allProducts" => $allProducts]);
             }
             else
             {
                 $errors[] = $newsVerified["errors"];
                 $singleNews = $newsVerified["news"];
 
-                $this->render("adminCrudNews", ["singleNews" => $singleNews, "categories" => $categories, "errors" => $errors, "action" => $action, "allProducts" => $allProducts]);
+                $this->render("adminCrudNews", ["singleNews" => $singleNews, "categories" => $categories,
+                "errors" => $errors, "action" => $action, "allProducts" => $allProducts]);
             }
         }
     }

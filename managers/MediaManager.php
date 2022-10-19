@@ -11,7 +11,8 @@ class MediaManager extends AbstractManager
 
     public function createMedia(Media $media) : void
     {
-        $query = $this->db->prepare('INSERT INTO medias ( original_name, file_name, file_type, url, alt ) VALUES ( :original_name, :file_name, :file_type, :url, :alt)');
+        $query = $this->db->prepare('INSERT INTO medias ( original_name, file_name, file_type, url, alt )
+        VALUES ( :original_name, :file_name, :file_type, :url, :alt)');
         $parameters = [
             'original_name' => $media->getoriginalName() ,
             'file_name' => $media->getfileName(),
@@ -119,7 +120,8 @@ class MediaManager extends AbstractManager
     
     public function updateMedia(Media $media) : Media
     {
-        $query = $this->db->prepare('UPDATE media SET original_name = :original_name, file_name = :file_name, file_type = :file_type, url = :url, alt = :alt FROM medias WHERE media.id = :id');
+        $query = $this->db->prepare('UPDATE media SET original_name = :original_name, file_name = :file_name,
+        file_type = :file_type, url = :url, alt = :alt FROM medias WHERE media.id = :id');
         $parameters = [
             'original_name' => $originalName,
             'file_name' => $fileName,

@@ -74,7 +74,7 @@ function computeBasketTotal()
     for(var i = 0; i < $basket.items.length; i++)
     {
         $price += ($basket.items[i].price * $basket.items[i].amount);
-        $basket.totalPrice = $price;
+        $basket.totalPrice = $price.toFixed(2);
     }
     saveData($basket);
     newFetch($basket);

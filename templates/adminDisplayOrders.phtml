@@ -8,16 +8,29 @@
     
     <?php require "_messages.phtml"; ?>
     
-    <form class="choseOrders" method="POST" action="/Projet_Accou-ferme/adminDisplayOrdersByDay">
+    <form class="choseOrders"
+          method="POST"
+          action="/Projet_Accou-ferme/adminDisplayOrdersByDay">
 
-        <input type="radio" id="mardi" name="day" value="mardi">
+        <input type="radio"
+               id="mardi"
+               name="day"
+               value="mardi">
+               
         <label for="mardi">Mardi</label>
-        <input type="radio" id="samedi" name="day" value="samedi">
+        
+        <input type="radio"
+               id="samedi"
+               name="day"
+               value="samedi">
+               
         <label for="samedi">Samedi</label>
         
-        <input class="button" type="submit" value="Valider">
+        <input class="button"
+               type="submit"
+               value="Valider">
+               
     </form>
-    
         
     <?php
     if(isset($_POST["day"]))
@@ -56,9 +69,17 @@
                                     </tr>
                                     <tr>
                                         <td colspan="5" class="buttonTerminer">
-                                            <form method="POST" action="/Projet_Accou-ferme/terminer">
-                                                <input type="hidden" name="id" value ="<?= $orderDetail["order"]["id"]; ?>">
-                                                <input class="button" type="submit" value="Terminer">
+                                            <form method="POST"
+                                                  action="/Projet_Accou-ferme/terminer">
+                                                
+                                                <input type="hidden"
+                                                       name="id"
+                                                       value ="<?= $orderDetail["order"]["id"]; ?>">
+                                                       
+                                                <input class="button"
+                                                       type="submit"
+                                                       value="Terminer">
+                                                       
                                             </form>
                                         </td>
                                     </tr>
@@ -77,17 +98,22 @@
                                             <td><?= $varietyDetail["total_variety"]; ?> €</td>
                                         </tr>
                                     </tbody>
+                                    
                                 <?php
                                 }
                                 ?>
+                                
                             </table>
                         </article>
+                        
                     <?php
                     }
                 }
             }
             ?>
+            
         </section>
+        
     <?php
     }
     ?>

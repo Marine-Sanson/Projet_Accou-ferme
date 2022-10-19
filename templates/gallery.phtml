@@ -8,15 +8,22 @@
         foreach($data["allMedias"] as $key => $media)
         {
         ?>
-        <a href="<?= $media->getUrl(); ?>" target="_blank">
+        
+        <a href="<?= $media->getUrl(); ?>" target="_blank" title="Voir la photo">
+            
             <figure>
+                
                 <img src="<?= $media->getUrl(); ?>"
                      alt="<?= $media->getAlt(); ?>">
+                     
             </figure>
+            
         </a>
+        
         <?php
         }
         ?>
+        
     </section>
 </main>
 

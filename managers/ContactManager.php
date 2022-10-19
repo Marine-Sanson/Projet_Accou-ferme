@@ -11,7 +11,8 @@ class ContactManager extends AbstractManager
 
     public function createContact(Contact $contact) : void
     {
-        $query = $this->db->prepare('INSERT INTO contacts (name, first_name, email, tel, message) VALUES (:name, :first_name, :email, :tel, :message)');
+        $query = $this->db->prepare('INSERT INTO contacts (name, first_name, email, tel, message)
+        VALUES (:name, :first_name, :email, :tel, :message)');
         $parameters = [
             'name' => $contact->getName(),
             'first_name' => $contact->getFirstName(),
@@ -30,7 +31,8 @@ class ContactManager extends AbstractManager
     
     public function getAllPendingMessages() : array
     {
-        $query = $this->db->prepare('SELECT id, name, first_name, email, tel, message, date FROM contacts WHERE answered = :answered ORDER BY date DESC');
+        $query = $this->db->prepare('SELECT id, name, first_name, email, tel, message, date FROM contacts
+        WHERE answered = :answered ORDER BY date DESC');
         $parameters = [
             'answered' => '0'
             ];

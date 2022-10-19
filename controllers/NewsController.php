@@ -93,6 +93,7 @@ class NewsController extends AbstractController
 
         $template = "actus_show";
         
-        $this->render($template, ["newsDetail" => $newsDetail, "categorie" => $categorie, "media" =>$media, "recipe" => $recipe]);
+        $this->render($template, ["newsDetail" => $newsDetail, "categorie" => $categorie, "media" =>$media,
+        "recipe" => $recipe]);
     }
 }

@@ -4,7 +4,8 @@ class HomeController extends AbstractController
 {
 
     /**
-     * va chercher les produits du moment, la dernière info et la dernière recette et les renvoi pour affichage sur la page Home
+     * va chercher les produits du moment, la dernière info et la dernière recette et les renvoi
+     * pour affichage sur la page Home
      *
      * @return void
      */
@@ -12,10 +13,6 @@ class HomeController extends AbstractController
     public function index() :void
     {
         $template = "home";
-        
-        $tokenAdminHome = $this->generateToken(25);
-        // $_SESSION["tokenForAdminHome"] = $tokenAdminHome;
-        // , ["tokenAdminHome" => $tokenAdminHome]
         
         $offers = $this->getOffers();
         

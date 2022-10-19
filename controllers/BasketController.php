@@ -104,7 +104,8 @@ class BasketController extends AbstractController
             {
                 foreach($_SESSION["basket"]["items"] as $key => $basket){
                     
-                    $this->verifyVariety($key, $basket, $availableVariety, $availableVarietyUnits, $availableVarietyPrice, $mediaUrl, $mediaAlt);
+                    $this->verifyVariety($key, $basket, $availableVariety, $availableVarietyUnits,
+                    $availableVarietyPrice, $mediaUrl, $mediaAlt);
                 }
             }
             echo json_encode($_SESSION["basket"]);
@@ -146,7 +147,8 @@ class BasketController extends AbstractController
      * @param string $mediaAlt
      * @return void
      */
-    public function verifyVariety(int $key, array $basket, string $availableVariety, string $availableVarietyUnits, float $availableVarietyPrice, ?string $mediaUrl, ?string $mediaAlt) :void
+    public function verifyVariety(int $key, array $basket, string $availableVariety, string $availableVarietyUnits,
+    float $availableVarietyPrice, ?string $mediaUrl, ?string $mediaAlt) :void
     {
         $keyB = $this->containsVariety($_SESSION["basket"]["items"], $availableVariety);
         if($keyB === null)
@@ -174,7 +176,8 @@ class BasketController extends AbstractController
                 
                 if($_SESSION["basket"]["items"][$key]["amount"] > $varietyQuantityAvailable)
                 {
-                    $_SESSION["basket"]["errors"] = "stock insuffisant pour la variété $availableVariety, veuillez modifier votre commande";
+                    $_SESSION["basket"]["errors"] = "stock insuffisant pour la variété $availableVariety,
+                    veuillez modifier votre commande";
                 }
             }
         }

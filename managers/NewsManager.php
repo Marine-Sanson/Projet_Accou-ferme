@@ -11,7 +11,8 @@ class NewsManager extends AbstractManager
     
     public function createNews(News $news) : int
     {
-        $query = $this->db->prepare('INSERT INTO news ( category_id, name, content ) VALUES ( :category_id, :name, :content )');
+        $query = $this->db->prepare('INSERT INTO news ( category_id, name, content )
+        VALUES ( :category_id, :name, :content )');
         $parameters = [
             'category_id' => $news->getCategoryId() ,
             'name' => $news->getName(),
@@ -52,7 +53,10 @@ class NewsManager extends AbstractManager
     
     public function getAllNews() :array
     {
-        $query = $this->db->prepare('SELECT news.id, news.category_id, news.name, news.media_id, news.content, categories.name as category_name FROM news JOIN categories ON news.category_id = categories.id');
+        $query = $this->db->prepare('SELECT news.id, news.category_id, news.name, news.media_id, news.content,
+        categories.name as category_name
+        FROM news
+        JOIN categories ON news.category_id = categories.id');
         $query->execute();
         $fullNews = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -67,7 +71,7 @@ class NewsManager extends AbstractManager
     
     public function getAllNewsByCategoryId($categoryId) :array
     {
-        $query = $this->db->prepare('SELECT id, name, media_id, content FROM news WHERE category_id = :categories.id ');
+        $query = $this->db->prepare('SELECT id, name, media_id, content FROM news WHERE category_id = :categories.id');
         $parameters = [
             'categories.id' => $categoryId
         ];
@@ -110,7 +114,8 @@ class NewsManager extends AbstractManager
     
     public function getLastNews() : News
     {
-        $query = $this->db->prepare('SELECT id, category_id, name, media_id, content FROM news WHERE category_id != 3 ORDER BY id DESC LIMIT 1');
+        $query = $this->db->prepare('SELECT id, category_id, name, media_id, content
+        FROM news WHERE category_id != 3 ORDER BY id DESC LIMIT 1');
         // $parameters = [
         //     'id' => $id
         // ];
@@ -135,7 +140,8 @@ class NewsManager extends AbstractManager
     
     public function getLastRecipe() : News
     {
-        $query = $this->db->prepare('SELECT id, category_id, name, media_id, content FROM news WHERE category_id = 3 ORDER BY id DESC LIMIT 1');
+        $query = $this->db->prepare('SELECT id, category_id, name, media_id, content
+        FROM news WHERE category_id = 3 ORDER BY id DESC LIMIT 1');
         $query->execute();
         $result = $query->fetchAll(PDO::FETCH_ASSOC);
         
@@ -157,7 +163,8 @@ class NewsManager extends AbstractManager
     
     public function updateNews(News $news) : void
     {
-        $query = $this->db->prepare('UPDATE news SET category_id = :category_id, name = :name, content = :content WHERE id = :id');
+        $query = $this->db->prepare('UPDATE news SET category_id = :category_id, name = :name, content = :content
+        WHERE id = :id');
         $parameters = [
             'id' => $news->getId(),
             'category_id' => $news->getCategoryId(),

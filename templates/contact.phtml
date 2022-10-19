@@ -2,14 +2,21 @@
     
     <h1>Contactez moi</h1>
     
-    <p>Si vous avez une question, si vous désirez un renseignement, si vous voulez me faire une suggestion ou me transmettre une recette, n'hésitez pas!</p>
+    <p>Si vous avez une question, si vous désirez un renseignement, si vous voulez me faire une suggestion ou me
+    transmettre une recette, n'hésitez pas!</p>
     
     <?php require "_messages.phtml"; ?>
     
-    <form id="contactForm" method="POST" action="/Projet_Accou-ferme/envoye">
+    <form id="contactForm"
+          method="POST"
+          action="/Projet_Accou-ferme/envoye">
+        
         <fieldset id="contactFormInfo">
             
-            <input id="contactToken" type="hidden" name="contactToken"
+            <input id="contactToken"
+                   type="hidden"
+                   name="contactToken"
+                   
             <?php 
                 if(isset($data["token"]))
                 {
@@ -21,7 +28,10 @@
             > 
             
             <label id="contactFirstNameLab" for="contactFirstNameInp">Prénom : </label>
-            <input id="contactFirstNameInp" type="text" name="first_name" 
+            <input id="contactFirstNameInp"
+                   type="text"
+                   name="first_name"
+                   
                 <?php 
                 if(isset($data["contact"]))
                 {
@@ -33,7 +43,10 @@
             >
             
             <label id="contactNameLab" for="contactNameInp">Nom : </label>
-            <input id="contactNameInp" type="text" name="name" 
+            <input id="contactNameInp"
+                   type="text"
+                   name="name" 
+                   
                 <?php 
                 if(isset($data["contact"]))
                 {
@@ -44,7 +57,10 @@
                 ?>
             >
             <label id="contactEmailLab" for="contactEmailInp">Email : </label>
-            <input id="contactEmailInp" type="email" name="email" 
+            <input id="contactEmailInp"
+                   type="email"
+                   name="email"
+                   
                 <?php 
                 if(isset($data["contact"]))
                 {
@@ -55,7 +71,10 @@
                 ?>
             >            
             <label id="contactTelLab" for="contactEmailInp">Téléphone : </label>
-            <input id="contactTelInp" type="tel" name="tel" 
+            <input id="contactTelInp"
+                   type="tel"
+                   name="tel"
+                   
                 <?php 
                 if(isset($data["contact"]) && $data["contact"]["tel"] !== 0)
                 {
@@ -76,7 +95,9 @@
         
         <fieldset id="contactFormText">
             <label id="contactMesLab" for="contactText">Entrez votre message :</label>
-            <textarea id="contactText" name="message">
+            <textarea id="contactText"
+                      name="message">
+                
             <?php 
                 if(isset($data["contact"]))
                 {
@@ -85,11 +106,16 @@
                     <?php 
                 }
                 ?>
+                
                 </textarea>
+                
         </fieldset>
 
         <fieldset id="contactFormSubmit">
-            <button type="submit" class="button">Envoyer</button>
+            
+            <button type="submit"
+                    class="button">Envoyer</button>
+            
         </fieldset>
     </form>
     

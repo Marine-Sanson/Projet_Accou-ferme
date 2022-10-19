@@ -22,77 +22,86 @@
     
     <section>
         <?php
-            foreach($data['products'] as $key => $product)
+        foreach($data['products'] as $key => $product)
+        {
+        ?>
+        <h2 class="productName" data-product="<?=$product["product"]["id"];?>">
+            <?= $product["product"]["name"]; ?>
+        </h2>
+            <?php foreach($product["varieties"] as $key => $variety) 
             {
-                ?>
-                    <h2 class="productName" data-product="<?=$product["product"]["id"];?>">
-                        <?= $product["product"]["name"]; ?>
-                    </h2>
-                        <?php foreach($product["varieties"] as $key => $variety) 
+            ?>
+            
+            <article class="varietyDetail card" data-product="<?=$product["product"]["id"];?>">
+                <?php 
+                $medias = $data["medias"];
+                foreach($medias as $item)
+                {
+                    if($item["variety"]["id"] === $variety["id"])
+                    {
+                        if(!is_null($item["media"]))
                         {
-                        ?>
-                            <article class="varietyDetail card" data-product="<?=$product["product"]["id"];?>">
-                                <?php 
-                                $medias = $data["medias"];
-                                foreach($medias as $item)
-                                {
-                                    if($item["variety"]["id"] === $variety["id"])
-                                    {
-                                        if(!is_null($item["media"]))
-                                        {
-                                            ?>
-                                            <figure class="varietyDetailFigure">
-                                                <img src="<?= $item["media"]->getUrl(); ?>"
-                                                alt="<?= $item["media"]->getAlt(); ?>">
-                                            </figure>
-                                            <?php
-                                            }
-                                            else
-                                            {
-                                           ?>
-                                            <figure class="varietyDetailFigure">
-                                                <img src="./assets/img/varieties/panierVide.jpg"
-                                                alt="Photo non disponible">
-                                            </figure>
-                                        <?php 
-                                        }
-                                    }
-                                }
-                                ?>
-                                <header class="varietyDetailTitle">
-                                    <h3>
-                                        <?= $variety['name']; ?>
-                                    </h3>
-                                </header>
-                                <section class="varietyDetailMain">
-                                    <p class="varietyDetailDescription">
-                                        <?= $variety['description']; ?>
-                                    </p>
-                                </section>
-                                <footer class="varietyDetailFooter">
-                                    <p class="varietyDetailSeason">
-                                        De
-                                        <?= $variety['season_start']; ?>
-                                        à 
-                                        <?= $variety['season_end']; ?>
-                                    </p>
-                                    <p class="varietyDetailAvailablity">
-                                        <?php
-                                        if($variety['availablity'] === 1){
-                                            echo "Disponible actuellement";
-                                        }
-                                        else {
-                                            echo "Indisponible actuellement";
-                                        }
-                                        ?>
-                                    </p>
-                                </footer>
+                            ?>
+                            <figure class="varietyDetailFigure">
                                 
-                            </article>
+                                <img src="<?= $item["media"]->getUrl(); ?>"
+                                     alt="<?= $item["media"]->getAlt(); ?>">
+                                     
+                            </figure>
+                            
+                            <?php
+                            }
+                            else
+                            {
+                           ?>
+                           
+                            <figure class="varietyDetailFigure">
+                                
+                                <img src="./assets/img/varieties/panierVide.jpg"
+                                     alt="Photo non disponible">
+                                     
+                            </figure>
+                            
+                        <?php 
+                        }
+                    }
+                }
+                ?>
+                <header class="varietyDetailTitle">
+                    
+                    <h3><?= $variety['name']; ?></h3>
+                    
+                </header>
+                
+                <section class="varietyDetailMain">
+                    
+                    <p class="varietyDetailDescription"><?= $variety['description']; ?></p>
+                    
+                </section>
+                
+                <footer class="varietyDetailFooter">
+                    
+                    <p class="varietyDetailSeason">
+                        De <?= $variety['season_start']; ?> à <?= $variety['season_end']; ?></p>
+                        
+                    <p class="varietyDetailAvailablity">
+                        
                         <?php
+                        if($variety['availablity'] === 1){
+                            echo "Disponible actuellement";
+                        }
+                        else {
+                            echo "Indisponible actuellement";
                         }
                         ?>
+                        
+                    </p>
+                    
+                </footer>
+                
+            </article>
                 <?php
+                }
             }
         ?>
 

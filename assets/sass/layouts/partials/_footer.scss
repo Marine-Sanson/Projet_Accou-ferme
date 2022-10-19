@@ -2,6 +2,11 @@
 
 /* Général */
 
+.footer{
+    margin:0;
+    padding:0;
+}
+
 .footer > p{
     margin:1rem;
     text-align:center;
@@ -12,8 +17,9 @@
 }
 
 .logoImg{
+    max-width:7rem;
     text-align:center;
-    margin-left:auto;
+    margin:auto;
 }
 
 #homeLink{
@@ -128,6 +134,7 @@
 @media (min-width: 992px)
 {
     .footerNav > ul{
+        padding-bottom:2rem;
         display:grid;
         grid-auto-flow: column;
         grid-template-columns:repeat(5,1fr);
@@ -140,10 +147,6 @@
         grid-row:1/4;
     }
 
-    .footerNav > ul{
-        padding-bottom:2rem;
-    }
-    
     .cssValid{
         width:88px;
         height:31px;

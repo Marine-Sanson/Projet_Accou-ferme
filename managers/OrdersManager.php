@@ -10,7 +10,8 @@ class OrdersManager extends AbstractManager
 
     public function createOrder(Order $order) : int
     {
-        $query = $this->db->prepare('INSERT INTO orders (name, first_name, email, tel, date_commande, day, total_price ) VALUES (:name, :first_name, :email, :tel, :date_commande, :day, :total_price)');
+        $query = $this->db->prepare('INSERT INTO orders (name, first_name, email, tel, date_commande, day, total_price )
+        VALUES (:name, :first_name, :email, :tel, :date_commande, :day, :total_price)');
         $parameters = [
             'name' => $order->getName(),
             'first_name' => $order->getFirstName(),
@@ -33,9 +34,12 @@ class OrdersManager extends AbstractManager
      * @return 
      */
     
-    public function createVarietyOrdered(int $idOrder, int $varietyId, string $varietyName, int $amount, string $units, float $price, float $totalVariety) :void
+    public function createVarietyOrdered(int $idOrder, int $varietyId, string $varietyName, int $amount, string $units,
+    float $price, float $totalVariety) :void
     {
-        $query = $this->db->prepare('INSERT INTO varietyOrdered (id_order, variety_id, variety_name, amount, units, price, total_variety) VALUES (:id_order, :variety_id, :variety_name, :amount, :units, :price, :total_variety)');
+        $query = $this->db->prepare('INSERT INTO varietyOrdered (id_order, variety_id, variety_name, amount, units,
+        price, total_variety)
+        VALUES (:id_order, :variety_id, :variety_name, :amount, :units, :price, :total_variety)');
         $parameters = [
             'id_order' => $idOrder,
             'variety_id' => $varietyId,
@@ -56,7 +60,8 @@ class OrdersManager extends AbstractManager
 
     public function getAllOrders(string $day, bool $endOrder) :array
     {
-        $query = $this->db->prepare('SELECT id, name, first_name, email, tel, date_commande, day, total_price, end_order FROM orders WHERE day = :day AND end_order = :end_order ORDER BY orders.date_commande');
+        $query = $this->db->prepare('SELECT id, name, first_name, email, tel, date_commande, day, total_price, end_order
+        FROM orders WHERE day = :day AND end_order = :end_order ORDER BY orders.date_commande');
         $parameters = [
             'day' => $day,
             'end_order' => $endOrder
@@ -86,7 +91,8 @@ class OrdersManager extends AbstractManager
 
     public function getVarietiesOrderedByOrderId(int $idOrder) :array
     {
-        $query = $this->db->prepare('SELECT variety_id, variety_name, amount, units, price, total_variety FROM varietyOrdered WHERE id_order = :id_order');
+        $query = $this->db->prepare('SELECT variety_id, variety_name, amount, units, price, total_variety
+        FROM varietyOrdered WHERE id_order = :id_order');
         $parameters = [
             'id_order' => $idOrder
         ];
@@ -111,19 +117,4 @@ class OrdersManager extends AbstractManager
         ];
         $query->execute($parameters);
     }
-
-    // public function getAllOrders(string $day) :array
-    // {
-    //     $query = $this->db->prepare('SELECT orders.id, orders.name, orders.first_name, orders.email, orders.tel, orders.date_commande, orders.day, orders.total_price, varietyOrdered.variety_id, varietyOrdered.variety_name, varietyOrdered.amount, varietyOrdered.units, varietyOrdered.price, varietyOrdered.total_variety FROM orders JOIN varietyOrdered ON varietyOrdered.id_order = orders.id WHERE orders.day = :day ORDER BY orders.date_commande DESC');
-    //     $parameters = [
-    //         'day' => $day
-    //     ];
-    //     $query->execute($parameters);
-    //     $allOrders = $query->fetchAll(PDO::FETCH_ASSOC);
-
-    //     return $allOrders;
-    // }
-
-    
-
 }

@@ -96,7 +96,11 @@
         </select>
 
         <label id="varietyNameLabel" for="name">Nom :</label>  
-        <input id="varietyNameInput" class="productName" type="text" name="name" 
+        <input id="varietyNameInput"
+               class="productName"
+               type="text"
+               name="name"
+               
         <?php
         if(isset($name))
         {
@@ -108,7 +112,11 @@
         >
 
         <label id="seasonStartLabel" for="seasonStart">Début de saison :</label>  
-        <input id="seasonStartInput" class="productSeasonStart" type="text" name="seasonStart"
+        <input id="seasonStartInput"
+               class="productSeasonStart"
+               type="text"
+               name="seasonStart"
+               
         <?php
         if(isset($seasonStart))
         {
@@ -120,7 +128,11 @@
         >
         
         <label id="seasonEndLabel" for="seasonEnd">Fin de saison :</label>  
-        <input id="seasonEndInput" class="productSeasonEnd" type="text" name="seasonEnd"
+        <input id="seasonEndInput"
+               class="productSeasonEnd"
+               type="text"
+               name="seasonEnd"
+               
         <?php
         if(isset($seasonEnd))
         {
@@ -132,7 +144,9 @@
         >
 
         <label id="descriptionLabel" for="description">Description :</label>  
-        <textarea id="descriptionTextarea" name="description">
+        <textarea id="descriptionTextarea"
+                  name="description">
+            
             <?php
             if(isset($description))
             {
@@ -145,7 +159,10 @@
         <legend id="productAvailablityLegend" >Disponible :</legend>
         <span id="productAvailablity">
 
-            <input type="radio" name="availablity" value="1"
+            <input type="radio"
+                   name="availablity"
+                   value="1"
+                   
             <?php
             if(isset($availablity) && $availablity)
             {
@@ -155,8 +172,12 @@
             }
             ?>
             >
+            
             <label for="availablity">oui</label>
-            <input type="radio" name="availablity" value="0"
+            <input type="radio"
+                   name="availablity"
+                   value="0"
+                   
             <?php
             if(isset($availablity) && !$availablity)
             {
@@ -167,11 +188,15 @@
             ?>
             >
             <label for="availablity">non</label>
+            
         </span>
         
         <legend id="productOfferLegend">Produit du moment :</legend>
         <span id="productOffer">
-            <input type="radio" name="offer" value="1"
+            <input type="radio"
+                   name="offer"
+                   value="1"
+                   
             <?php
             if(isset($offer) && $offer)
             {
@@ -182,7 +207,10 @@
             ?>
             >
             <label for="offer">oui</label>
-            <input type="radio" name="offer" value="0"
+            <input type="radio"
+                   name="offer"
+                   value="0"
+                   
             <?php
             if(isset($offer) && !$offer)
             {
@@ -193,10 +221,14 @@
             ?>
             >
             <label for="offer">non</label>
+            
         </span>
 
-        <label id="quantityAvailableLabel" for="quantityAvailable">Quantité dispo :</label>
-        <input id="quantityAvailableInput" type="number" name="quantityAvailable"
+        <label id="quantityAvailableLabel" for="quantityAvailableInput">Quantité dispo :</label>
+        <input id="quantityAvailableInput"
+               type="number"
+               name="quantityAvailable"
+               
         <?php
         if(isset($quantityAvailable))
         {
@@ -207,8 +239,11 @@
         ?>
         >
 
-        <label id="unitsLabel" for="units">Unité de vente :</label>  
-        <input id="unitsInput" type="text" name="units"
+        <label id="unitsLabel" for="unitsInput">Unité de vente :</label>  
+        <input id="unitsInput"
+               type="text"
+               name="units"
+               
         <?php
         if(isset($units))
         {
@@ -219,8 +254,12 @@
         ?>
         >
 
-        <label id="priceLabel" for="price">Prix :</label>  
-        <input id="priceInput" type="number" step="0.05" name="price"
+        <label id="priceLabel" for="priceInput">Prix :</label>  
+        <input id="priceInput"
+               type="number"
+               step="0.05"
+               name="price"
+               
         <?php
         if(isset($price))
         {
@@ -265,7 +304,10 @@
     }
     ?>
     
-        <input class="productMediaId" type="hidden" name="mediaId"
+        <input class="productMediaId"
+               type="hidden"
+               name="mediaId"
+               
         <?php
         if(isset($mediaId) && $mediaId !== 0)
         {

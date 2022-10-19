@@ -11,7 +11,8 @@ class AdminManager extends AbstractManager
     
     public function createAdmin(Admin $admin) : Admin
     {
-        $query = $this->db->prepare('INSERT INTO admin ( name, email, password, role ) VALUES ( :name, :email, :password, :role )');
+        $query = $this->db->prepare('INSERT INTO admin ( name, email, password, role )
+        VALUES ( :name, :email, :password, :role )');
         $parameters = [
             'name' => $admin->getName(),
             'email' => $admin->getEmail(),
@@ -72,7 +73,8 @@ class AdminManager extends AbstractManager
 
     public function updateAdmin(User $user) : User
     {
-        $query = $this->db->prepare('UPDATE admin SET email = :email, password = :password FROM admin WHERE admin.name = :name');
+        $query = $this->db->prepare('UPDATE admin SET email = :email, password = :password
+        FROM admin WHERE admin.name = :name');
         $parameters = [
             'email' => $email,
             'password' => $password,

@@ -11,8 +11,15 @@
     $newsMedia = $data["news"]->getMediaId();
     $newsContent = $data["news"]->getContent();
     ?>
-    <form class="updateNews" method="POST" action="/Projet_Accou-ferme/adminNewsUpdated">
-        <input type="hidden" name="id" value="<?= $newsId ?>" >
+    
+    <form class="updateNews"
+          method="POST"
+          action="/Projet_Accou-ferme/adminNewsUpdated">
+        
+        <input type="hidden"
+               name="id"
+               value="<?= $newsId ?>" >
+               
         <select class="selectNews" name="category_id">
             <option value="0">Selectionner une catégorie</option>
 
@@ -36,15 +43,26 @@
         </select>
 
         <label for="title">Titre</label>  
-        <input class="newsTitle" type="text" name="name" value="<?= $newsName ?>">
+        <input class="newsTitle"
+               type="text"
+               name="name"
+               value="<?= $newsName ?>">
         
-        <label for="content">Contenu</label>  
-        <input class="newsContent" type="text" name="content" value="<?= $newsContent ?>">
+        <label for="content">Contenu</label>
+        <input class="newsContent"
+               type="text"
+               name="content"
+               value="<?= $newsContent ?>">
         
         <label for="media_id">Image</label>
-        <input class="mediaId" type="number" name="media_id" value="<?= $newsMedia ?>">
+        <input class="mediaId"
+               type="number"
+               name="media_id"
+               value="<?= $newsMedia ?>">
         
-        <button class="button" type"submit" value="Modifier" >Modifier</button>
+        <button class="button"
+                type"submit"
+                value="Modifier">Modifier</button>
         
     </form>
 

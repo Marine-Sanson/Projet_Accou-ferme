@@ -33,7 +33,6 @@ require "./controllers/HomeController.php";
 require "./controllers/AboutController.php";
 require "./controllers/GalleryController.php";
 require "./controllers/ProductController.php";
-require "./controllers/VarietyController.php";
 require "./controllers/ContactController.php";
 require "./controllers/BasketController.php";
 require "./controllers/OrdersController.php";
@@ -45,6 +44,8 @@ require "./controllers/AdminOrdersController.php";
 require "./controllers/AdminDisplayOrdersController.php";
 require "./controllers/AdminNewsController.php";
 require "./controllers/AdminContactController.php";
+require "./controllers/LegalController.php";
+
 
 $routes = [];
 

@@ -11,7 +11,8 @@ class RecipeManager extends AbstractManager
     
     public function createRecipe(Recipe $recipe) : void
     {
-        $query = $this->db->prepare('INSERT INTO recipes ( news_id, product_id, ingredients, steps ) VALUES ( :news_id, :product_id, :ingredients, :steps )');
+        $query = $this->db->prepare('INSERT INTO recipes ( news_id, product_id, ingredients, steps )
+        VALUES ( :news_id, :product_id, :ingredients, :steps )');
         $parameters = [
             'news_id' => $recipe->getNewsId(),
             'product_id' => $recipe->getProductId(),
@@ -64,7 +65,9 @@ class RecipeManager extends AbstractManager
     
     public function getRecipeByNews(News $newsDetail) : Recipe
     {
-        $query = $this->db->prepare('SELECT recipe_id, product_id, ingredients, steps FROM recipes WHERE news_id = :news_id');
+        $query = $this->db->prepare('SELECT recipe_id, product_id, ingredients, steps
+        FROM recipes
+        WHERE news_id = :news_id');
         $parameters = [
             'news_id' => $newsDetail->getId()
         ];
@@ -119,7 +122,9 @@ class RecipeManager extends AbstractManager
 
     public function updateRecipe(Recipe $recipe) : void
     {
-        $query = $this->db->prepare('UPDATE recipes SET product_id = :product_id, ingredients = :ingredients, steps = :steps WHERE recipe_id = :recipe_id');
+        $query = $this->db->prepare('UPDATE recipes
+        SET product_id = :product_id, ingredients = :ingredients, steps = :steps
+        WHERE recipe_id = :recipe_id');
         $parameters = [
             'recipe_id' => $recipe->getRecipeId(),
             'product_id' => $recipe->getProductId(),

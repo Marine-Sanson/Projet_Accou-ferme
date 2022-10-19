@@ -9,18 +9,28 @@
     <section id="product">
         <h2>Produit</h2>
     
-        <form id="adminCreateProductForm" method="POST" action="/Projet_Accou-ferme/productCreated">
+        <form id="adminCreateProductForm"
+              method="POST"
+              action="/Projet_Accou-ferme/productCreated">
     
             <label for="newProd">Créer un nouveau produit</label>
-            <input type="text" name="newProd">
-            <button class="button" id="createNewProd" type="submit">Valider</button>
+            <input type="text"
+                   name="newProd">
+                   
+            <button class="button"
+                    id="createNewProd"
+                    type="submit">Valider</button>
+                    
         </form>
     
-        <form id="adminDeleteProductForm" method="POST" action="/Projet_Accou-ferme/deleteProduct">
+        <form id="adminDeleteProductForm"
+              method="POST"
+              action="/Projet_Accou-ferme/deleteProduct">
     
             <label for="suprProd">Supprimer un produit</label>
             <select class="selectProducts" name="productId">
                 <option value = "0">Selectionner un produit</option>
+                
                 <?php
                 foreach($data['allProducts'] as $key => $product)
                 {
@@ -30,17 +40,31 @@
             		<?php
                 }
                 ?>
+                
             </select>
-            <button  class="button" id="suprProd" type="submit">Supprimer</button>
+            
+            <button class="button"
+                    id="suprProd"
+                    type="submit">Supprimer</button>
+                    
         </form>
     </section>
     
     <section id="createVariety">
         <h2>Créer une varieté</h2>
         
-        <form id="createVarietyForm" method="POST" action="/Projet_Accou-ferme/adminCrudVariety">
-            <input type="hidden" name="action" value="create">
-            <input class="button" type="submit" value="Créer">
+        <form id="createVarietyForm"
+              method="POST"
+              action="/Projet_Accou-ferme/adminCrudVariety">
+            
+            <input type="hidden"
+                   name="action"
+                   value="create">
+                   
+            <input class="button"
+                   type="submit"
+                   value="Créer">
+                   
         </form>
     </section>
 
@@ -53,29 +77,72 @@
             {
             ?>
             <li class="udVarietyLi">
+                
                 <article class="udVariety">
                     <h3><?= $variety["name"] ?></h3>
-                    <form class="updateVarietyForm" method="POST" action="/Projet_Accou-ferme/adminCrudVariety">
-                        <input type="hidden" name="action" value="update">
-                        <input type="hidden" name="crudId" value="<?= $variety["id"] ?>">
-                        <input class="button updateVarietyFormButton" type="submit" value="Modifier">
+                    
+                    <form class="updateVarietyForm"
+                          method="POST"
+                          action="/Projet_Accou-ferme/adminCrudVariety">
+                        
+                        <input type="hidden"
+                               name="action"
+                               value="update">
+                               
+                        <input type="hidden"
+                               name="crudId"
+                               value="<?= $variety["id"] ?>">
+                               
+                        <input class="button updateVarietyFormButton"
+                               type="submit"
+                               value="Modifier">
+                               
                     </form>
-                    <form class="deleteVarietyForm" method="POST" action="/Projet_Accou-ferme/adminCrudVariety">
-                        <input type="hidden" name="action" value="delete">
-                        <input type="hidden" name="crudId" value="<?= $variety["id"] ?>">
-                        <input class="button deleteVarietyFormButton" type="submit" value="Supprimer" data-news-id="<?= $variety["id"] ?>">
+                    
+                    <form class="deleteVarietyForm"
+                          method="POST"
+                          action="/Projet_Accou-ferme/adminCrudVariety">
+                        
+                        <input type="hidden"
+                               name="action"
+                               value="delete">
+                               
+                        <input type="hidden"
+                               name="crudId"
+                               value="<?= $variety["id"] ?>">
+                               
+                        <input class="button deleteVarietyFormButton"
+                               type="submit"
+                               value="Supprimer"
+                               data-news-id="<?= $variety["id"] ?>">
+                               
                     </form>
+                    
                     <?php
                     if(isset($variety[0]) && $variety[0] !== null)
                     {
                         $mediaUrl = $variety[0]->getUrl();
                         $mediaAlt = $variety[0]->getAlt();
                     ?>
+                    
                         <img class="udVarietyImg" src=" <?= $mediaUrl ?> " alt=" <?= $mediaAlt ?> ">
-                        <form class="changeVarietyImage" name="changeVarietyImage" method="POST" action="/Projet_Accou-ferme/chooseVarietyImage">
-                            <input type="hidden" name="id" value="<?= $variety["id"]; ?>">
-                            <input class="button changeVarietyImageButton" type="submit" value="Changer d'image" name="changeVarietyImage">
+                        
+                        <form class="changeVarietyImage"
+                              name="changeVarietyImage"
+                              method="POST"
+                              action="/Projet_Accou-ferme/chooseVarietyImage">
+                            
+                            <input type="hidden"
+                                   name="id"
+                                   value="<?= $variety["id"]; ?>">
+                                   
+                            <input class="button changeVarietyImageButton"
+                                   type="submit"
+                                   value="Changer d'image"
+                                   name="changeVarietyImage">
+                                   
                         </form>
+                        
                     <?php
                     }
                     else
@@ -83,21 +150,33 @@
                     ?>
                         <p>Pas d'image choisie pour le moment</p>
                         
-                        <form class="chooseVarietyImage" name="chooseVarietyImage" method="POST" action="/Projet_Accou-ferme/chooseVarietyImage">
-                            <input type="hidden" name="id" value="<?= $variety["id"]; ?>">
-                            <input class="button" type="submit" value="En choisir une" name="chooseVarietyImage">
+                        <form class="chooseVarietyImage"
+                              name="chooseVarietyImage"
+                              method="POST"
+                              action="/Projet_Accou-ferme/chooseVarietyImage">
+                            
+                            <input type="hidden"
+                                   name="id"
+                                   value="<?= $variety["id"]; ?>">
+                                   
+                            <input class="button"
+                                   type="submit"
+                                   value="En choisir une"
+                                   name="chooseVarietyImage">
+                                   
                         </form>
-                        <?php
+                        
+                    <?php
                     }
                     ?>
             
                 </article>
             </li>
+            
             <?php
             }
             ?>
     
         </ul>
-    </section>    
-
+    </section>
 </main>

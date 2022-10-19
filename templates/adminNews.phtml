@@ -9,11 +9,17 @@
     <section>
         <h2>Créer une catégorie</h2>
         
-        <form id="adminCategoryForm" method="POST" action="/Projet_Accou-ferme/_categoryCreated">
+        <form id="adminCategoryForm"
+              method="POST"
+              action="/Projet_Accou-ferme/_categoryCreated">
     
             <label for="newCat">Créer une nouvelle catégorie</label>
-            <input type="text" name="newCat">
-            <button class="button" id="createNewCat" type="submit">Valider</button>
+            <input type="text"
+                   name="newCat">
+                   
+            <button class="button"
+                    id="createNewCat"
+                    type="submit">Valider</button>
     
         </form>
         
@@ -23,14 +29,32 @@
     
     <section id="createNews">
     
-    <form id="createNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
-        <input type="hidden" name="action" value="createNews">
-        <input class="button" type="submit" value="Créer une actu">
+    <form id="createNewsForm"
+          method="POST"
+          action="/Projet_Accou-ferme/adminCrudNews">
+        
+        <input type="hidden"
+               name="action"
+               value="createNews">
+               
+        <input class="button"
+               type="submit"
+               value="Créer une actu">
+               
     </form>
     
-    <form id="createRecipeForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
-        <input type="hidden" name="action" value="createRecipe">
-        <input class="button" type="submit" value="Créer une recette">
+    <form id="createRecipeForm"
+          method="POST"
+          action="/Projet_Accou-ferme/adminCrudNews">
+        
+        <input type="hidden"
+               name="action"
+               value="createRecipe">
+               
+        <input class="button"
+               type="submit"
+               value="Créer une recette">
+               
     </form>
     
     </section>
@@ -45,17 +69,45 @@
             {
             ?>
             <li class="updateNewsLi">
+                
                 <article class="udNews">
                     <h3><?= $singleNews["name"] ?></h3>
-                    <form class="updateNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
-                        <input type="hidden" name="action" value="update">
-                        <input type="hidden" name="crudId" value="<?= $singleNews["id"] ?>">
-                        <input class="button" type="submit" value="Modifier">
+                    
+                    <form class="updateNewsForm"
+                          method="POST"
+                          action="/Projet_Accou-ferme/adminCrudNews">
+                        
+                        <input type="hidden"
+                               name="action"
+                               value="update">
+                               
+                        <input type="hidden"
+                               name="crudId"
+                               value="<?= $singleNews["id"] ?>">
+                               
+                        <input class="button"
+                               type="submit"
+                               value="Modifier">
+                               
                     </form>
-                    <form class="deleteNewsForm" method="POST" action="/Projet_Accou-ferme/adminCrudNews">
-                        <input type="hidden" name="action" value="delete">
-                        <input type="hidden" name="crudId" value="<?= $singleNews["id"] ?>">
-                        <input class="button" type="submit" value="Supprimer" data-news-id="<?= $singleNews["id"] ?>">
+                    
+                    <form class="deleteNewsForm"
+                          method="POST"
+                          action="/Projet_Accou-ferme/adminCrudNews">
+                        
+                        <input type="hidden"
+                               name="action"
+                               value="delete">
+                               
+                        <input type="hidden"
+                               name="crudId"
+                               value="<?= $singleNews["id"] ?>">
+                               
+                        <input class="button"
+                               type="submit"
+                               value="Supprimer"
+                               data-news-id="<?= $singleNews["id"] ?>">
+                               
                     </form>
                     
                     <?php
@@ -64,10 +116,24 @@
                         $mediaUrl = $singleNews[0]->getUrl();
                         $mediaAlt = $singleNews[0]->getAlt();
                     ?>
-                        <img class="newsFormImg" src=" <?= $mediaUrl; ?>" alt=" <?= $mediaAlt; ?>">
-                        <form class="changeNewsImage" name="changeNewsImage" method="POST" action="/Projet_Accou-ferme/chooseNewsImage">
-                            <input type="hidden" name="id" value="<?= $singleNews["id"]; ?>">
-                            <input class="button changeNewsImageButton" type="submit" value="Changer d'image" name="changeNewsImage">
+                        <img class="newsFormImg"
+                             src=" <?= $mediaUrl; ?>"
+                             alt=" <?= $mediaAlt; ?>">
+                             
+                        <form class="changeNewsImage"
+                              name="changeNewsImage"
+                              method="POST"
+                              action="/Projet_Accou-ferme/chooseNewsImage">
+                            
+                            <input type="hidden"
+                                   name="id"
+                                   value="<?= $singleNews["id"]; ?>">
+                                   
+                            <input class="button changeNewsImageButton"
+                                   type="submit"
+                                   value="Changer d'image"
+                                   name="changeNewsImage">
+                                   
                         </form>
                     <?php
                     }
@@ -76,19 +142,33 @@
                     ?>
                         <p>Pas d'image choisie pour le moment</p>
                         
-                        <form class="chooseNewsImage" name="chooseNewsImage" method="POST" action="/Projet_Accou-ferme/chooseNewsImage">
-                            <input type="hidden" name="id" value="<?= $singleNews["id"]; ?>">
-                            <input class="button" type="submit" value="En choisir une" name="chooseNewsImage" >
+                        <form class="chooseNewsImage"
+                              name="chooseNewsImage"
+                              method="POST"
+                              action="/Projet_Accou-ferme/chooseNewsImage">
+                            
+                            <input type="hidden"
+                                   name="id"
+                                   value="<?= $singleNews["id"]; ?>">
+                                   
+                            <input class="button"
+                                   type="submit"
+                                   value="En choisir une"
+                                   name="chooseNewsImage">
+                                   
                         </form>
-                        <?php
+                        
+                    <?php
                     }
                     ?>
     
                 </article>
             </li>
+            
             <?php
             }
             ?>
+            
         </ul>
     </section>
 

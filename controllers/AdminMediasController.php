@@ -35,16 +35,19 @@ class AdminMediasController extends AbstractController
 
                     $result = $_POST;
                     
-                    $newMedia = new Media($id, $_FILES["fileToUpload"]["name"], $_FILES["fileToUpload"]["tmp_name"], $_FILES["fileToUpload"]["type"], $_FILES["fileToUpload"]["url"], $_FILES["fileToUpload"]["alt"]);
+                    $newMedia = new Media($id, $_FILES["fileToUpload"]["name"], $_FILES["fileToUpload"]["tmp_name"],
+                    $_FILES["fileToUpload"]["type"], $_FILES["fileToUpload"]["url"], $_FILES["fileToUpload"]["alt"]);
                     
                     $media = $uploader->upload($newMedia);
                     $errors = $media["errors"];
                     
                 
-                    if(isset($errors) && $errors !== [] || empty($media["fileToUpload"]) || $media["fileToUpload"] === null)
+                    if(isset($errors) && $errors !== [] || empty($media["fileToUpload"]) ||
+                    $media["fileToUpload"] === null)
                     {
                         $allMedias = $this->mm->getAllMedias();
-                        $this->render("adminMedias", ["errors" => $errors, "validation" => $validation, "allMedias" => $allMedias]);
+                        $this->render("adminMedias", ["errors" => $errors, "validation" => $validation,
+                        "allMedias" => $allMedias]);
                     }
                     else
                     {
@@ -55,7 +58,8 @@ class AdminMediasController extends AbstractController
                         
                         $allMedias = $this->mm->getAllMedias();
 
-                        $this->render("adminMedias", ["img" => $img, "errors" => $errors, "validation" => $validation, "allMedias" => $allMedias]);
+                        $this->render("adminMedias", ["img" => $img, "errors" => $errors, "validation" => $validation,
+                        "allMedias" => $allMedias]);
                     }
                 }
             }

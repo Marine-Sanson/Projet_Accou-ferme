@@ -13,12 +13,29 @@
         {
         ?>
             <li class="updateImageLi" >
-                <form name="chooseImage" method="POST" action="/Projet_Accou-ferme/updateVarietyImage">
-                    <img src="<?= $media["url"]; ?>" alt=" <?= $media["alt"]; ?>">
-                    <input type="hidden" name="mediaId" value=" <?= $media["id"] ?>">
-                    <input type="hidden" name="varietyId" value=" <?= $data["varietyId"] ?>">
-                    <input class="button" type="submit" name="chooseImage" value="choisir cette image">
+                
+                <form name="chooseImage"
+                      method="POST"
+                      action="/Projet_Accou-ferme/updateVarietyImage">
+                    
+                    <img src="<?= $media["url"]; ?>"
+                         alt=" <?= $media["alt"]; ?>">
+                         
+                    <input type="hidden"
+                           name="mediaId"
+                           value=" <?= $media["id"] ?>">
+                           
+                    <input type="hidden"
+                           name="varietyId"
+                           value=" <?= $data["varietyId"] ?>">
+                           
+                    <input class="button"
+                           type="submit"
+                           name="chooseImage"
+                           value="choisir cette image">
+                           
                 </form>
+                
             </li>
         <?php
         }

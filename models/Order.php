@@ -12,7 +12,8 @@ class Order
     private float $totalPrice;
     private bool $endOrder;
 
-    function __construct (?int $id, string $name, string $firstName, string $email, int $tel, DateTime $dateCommande, string $day, float $totalPrice, bool $endOrder)
+    function __construct (?int $id, string $name, string $firstName, string $email, int $tel, DateTime $dateCommande,
+    string $day, float $totalPrice, bool $endOrder)
     {
         $this->id = $id;
         $this->name = $name;
@@ -95,7 +96,7 @@ class Order
         $this->day = $day;
     }
     
-    public function getTotalPrice() : int
+    public function getTotalPrice() : float
     {
         return $this->totalPrice;
     }

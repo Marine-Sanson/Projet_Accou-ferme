@@ -11,7 +11,8 @@ class FileUploader
 
     private string $uploadFile = "/uploads/";
     private array $allowedFileTypes = ["png", "PNG", "jpg", "JPG", "jpeg", "JPEG"];
-    private array $mimeTypes = ['png' => 'image/png', 'PNG' => 'image/PNG', 'jpeg' => 'image/jpeg', 'JPG' => 'image/JPG', 'jpg' => 'image/jpg', 'JPEG' => 'image/JPEG'];
+    private array $mimeTypes = ['png' => 'image/png', 'PNG' => 'image/PNG', 'jpeg' => 'image/jpeg',
+    'JPG' => 'image/JPG', 'jpg' => 'image/jpg', 'JPEG' => 'image/JPEG'];
     private int $maxFileSize = 2000000; // 2 Mo
 
     private function generateFileName() : string

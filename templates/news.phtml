@@ -24,93 +24,119 @@
     <section id="displayArticles">
 
         <?php
-            foreach($data["news"] as $key => $singleNews)
-            {
-            ?>
-            <article class="newsArticle card" data-category="<?= $singleNews["category_id"] ?>">
-                <header class="newsHeader">
-                    <h2> <?= $singleNews["name"] ?> </h2>
-                </header>
-                <section class="newsMain">
-                    <?php
-                        if(!is_null($singleNews["media_id"]))
-                        {
-                            ?>
-                            <figure class="newsImg">
-                                <img src="<?= $singleNews[0]->getUrl(); ?>" 
-                                     alt="<?= $singleNews[0]->getAlt(); ?>">
-                            </figure>
-                            <?php
-                        }
-                        else if($singleNews["category_name"] === 'Actu')
-                        {
-                           ?>
-                            <figure class="newsImg">
-                                <img src="./assets/img/news/news.jpg"
-                                     alt="Photo non disponible">
-                            </figure>
-                        <?php 
-                        }
-                        else if($singleNews["category_name"] === 'Divers')
-                        {
-                           ?>
-                            <figure class="newsImg">
-                                <img src="./assets/img/legumes.jpg" 
-                                     alt="Photo non disponible">
-                            </figure>
-                        <?php 
-                        }
-                        else if($singleNews["category_name"] === 'Recette')
-                        {
-                           ?>
-                            <figure class="newsImg">
-                                <img src="./assets/img/news/recette.jpg" 
-                                     alt="Photo non disponible">
-                            </figure>
-                            <?php
-                        }
-                        else
-                        {
-                            ?>
-                            <figure class="newsImg">
-                                <img src="./assets/img/panierVide.jpg" 
-                                     alt="Photo non disponible">
-                            </figure>
-                            <?php
-                        }
+        foreach($data["news"] as $key => $singleNews)
+        {
+        ?>
+        <article class="newsArticle card" data-category="<?= $singleNews["category_id"] ?>">
+            
+            <header class="newsHeader">
+                <h2> <?= $singleNews["name"] ?> </h2>
+            </header>
+            
+            <section class="newsMain">
+                
+                <?php
+                    if(!is_null($singleNews["media_id"]))
+                    {
+                        ?>
+                        <figure class="newsImg">
+                            <img src="<?= $singleNews[0]->getUrl(); ?>" 
+                                 alt="<?= $singleNews[0]->getAlt(); ?>">
+                        </figure>
+                        <?php
+                    }
+                    else if($singleNews["category_name"] === 'Actu')
+                    {
+                       ?>
+                        <figure class="newsImg">
+                            
+                            <img src="./assets/img/news/news.jpg"
+                                 alt="Photo non disponible">
+                                 
+                        </figure>
                         
+                    <?php 
+                    }
+                    else if($singleNews["category_name"] === 'Divers')
+                    {
+                       ?>
+                       
+                        <figure class="newsImg">
+                            
+                            <img src="./assets/img/legumes.jpg" 
+                                 alt="Photo non disponible">
+                                 
+                        </figure>
+                        
+                    <?php 
+                    }
+                    else if($singleNews["category_name"] === 'Recette')
+                    {
+                       ?>
+                       
+                        <figure class="newsImg">
+                            
+                            <img src="./assets/img/news/recette.jpg" 
+                                 alt="Photo non disponible">
+                                 
+                        </figure>
+                        
+                    <?php
+                    }
+                    else
+                    {
+                        ?>
+                        
+                        <figure class="newsImg">
+                            
+                            <img src="./assets/img/panierVide.jpg" 
+                                 alt="Photo non disponible">
+                                 
+                        </figure>
+                        
+                    <?php
+                    }
                     ?>
-                    <p class="newsContent">
-                    <?= $singleNews["content"] ?>
-                    </p>
-                </section>
-                <footer  class="newsFooter">
-                    <h3 class="newsH3">Catégorie : <?= $singleNews["category_name"] ?> </h3>
-                    <form class="newsButton" 
-                          method="POST"
-                          action="/Projet_Accou-ferme/actus_show/<?= $singleNews["id"] ?>">
-                        <input type="hidden" name="id" value="<?= $singleNews["id"] ?>">
-                        <button class="button">
-                            <?php 
-                            if($singleNews["category_name"] === 'Recette'){
-                            ?>
-                            Voir la recette
-                            <?php 
-                            }
-                            else{
-                            ?>
-                            En savoir plus
-                            <?php
-                            }
-                            ?>
-                        </button>
-                    </form>
-                </footer>
+                    
+                <p class="newsContent"><?= $singleNews["content"] ?></p>
+                
+            </section>
+            
+            <footer  class="newsFooter">
+                
+                <h3 class="newsH3">Catégorie : <?= $singleNews["category_name"] ?> </h3>
+                
+                <form class="newsButton" 
+                      method="POST"
+                      action="/Projet_Accou-ferme/actus_show/<?= $singleNews["id"] ?>">
+                    
+                    <input type="hidden"
+                           name="id"
+                           value="<?= $singleNews["id"] ?>">
+                           
+                    <button class="button">
+                        <?php 
+                        if($singleNews["category_name"] === 'Recette'){
+                        ?>
+                        Voir la recette
+                        <?php 
+                        }
+                        else{
+                        ?>
+                        En savoir plus
+                        <?php
+                        }
+                        ?>
+                    </button>
+                    
+                </form>
+            </footer>
 
         </article>
+        
         <?php
-            }
+        }
         ?>
+        
     </section>
-    
 </main>

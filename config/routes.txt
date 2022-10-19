@@ -39,3 +39,4 @@
 /adminContacts AdminContactController:index
 /closeMessage AdminContactController:closeMessage
 /adminDisconnect AdminController:adminDisconnect
+/mentions-legales LegalController:index

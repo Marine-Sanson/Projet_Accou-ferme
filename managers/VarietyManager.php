@@ -36,7 +36,10 @@ class VarietyManager extends AbstractManager
             $mediaId = $variety->getMediaId();
         }
 
-        $query = $this->db->prepare('INSERT INTO varieties (product_id, name, season_start, season_end, description, media_id, availablity, offer, quantity_available, units, price) VALUES (:product_id, :name, :season_start, :season_end, :description, :media_id, :availablity, :offer, :quantity_available, :units, :price)');
+        $query = $this->db->prepare('INSERT INTO varieties (product_id, name, season_start, season_end, description,
+        media_id, availablity, offer, quantity_available, units, price)
+        VALUES (:product_id, :name, :season_start, :season_end, :description, :media_id, :availablity, :offer,
+        :quantity_available, :units, :price)');
         $parameters = [
             'product_id' => $variety->getProductId(),
             'name' => $variety->getName(),
@@ -79,7 +82,12 @@ class VarietyManager extends AbstractManager
     
     public function getVarietyByProduct($productName) :array
     {
-        $query = $this->db->prepare("SELECT varieties.id, varieties.name, varieties.season_start, varieties.season_end, varieties.description, varieties.media_id, varieties.availablity, varieties.quantity_available, varieties.offer, varieties.units, varieties.price FROM varieties JOIN products ON products.id = varieties.product_id WHERE products.name = :name") or die($this->db->errorInfo());
+        $query = $this->db->prepare("SELECT varieties.id, varieties.name, varieties.season_start, varieties.season_end,
+        varieties.description, varieties.media_id, varieties.availablity, varieties.quantity_available, varieties.offer,
+        varieties.units, varieties.price
+        FROM varieties
+        JOIN products ON products.id = varieties.product_id
+        WHERE products.name = :name") or die($this->db->errorInfo());
         $parameters = [
             'name' => $productName
         ];
@@ -97,7 +105,11 @@ class VarietyManager extends AbstractManager
     
     public function getAllVarieties() :array
     {
-        $query = $this->db->prepare("SELECT varieties.id, varieties.product_id, varieties.name, varieties.season_start, varieties.season_end, varieties.description, varieties.media_id, varieties.availablity, varieties.offer, varieties.quantity_available, varieties.units, varieties.price, products.name AS product_name FROM varieties JOIN products ON products.id = varieties.product_id ");
+        $query = $this->db->prepare("SELECT varieties.id, varieties.product_id, varieties.name, varieties.season_start,
+        varieties.season_end, varieties.description, varieties.media_id, varieties.availablity, varieties.offer,
+        varieties.quantity_available, varieties.units, varieties.price, products.name AS product_name
+        FROM varieties
+        JOIN products ON products.id = varieties.product_id ");
         // or die($this->db->errorInfo());
         $query->execute();
         // or die($this->db->errorInfo());
@@ -114,7 +126,10 @@ class VarietyManager extends AbstractManager
     
     public function getVarietyById(int $id) : Variety
     {
-        $query = $this->db->prepare('SELECT product_id, name, season_start, season_end, description, media_id, availablity, offer, quantity_available, units, price FROM varieties WHERE varieties.id = :id');
+        $query = $this->db->prepare('SELECT product_id, name, season_start, season_end, description, media_id,
+        availablity, offer, quantity_available, units, price
+        FROM varieties
+        WHERE varieties.id = :id');
         $parameters = [
             'id' => $id
         ];
@@ -134,7 +149,9 @@ class VarietyManager extends AbstractManager
         $varietyUnits = $result["units"];
         $varietyPrice = $result["price"];
         
-        $variety = new Variety($varietyId, $varietyProductId, $varietyName, $varietySeasonStart, $varietySeasonEnd, $varietyDescription, $varietyMediaId, $varietyAvailablity, $varietyOffer, $varietyQuantityAvailable, $varietyUnits, $varietyPrice);
+        $variety = new Variety($varietyId, $varietyProductId, $varietyName, $varietySeasonStart, $varietySeasonEnd,
+        $varietyDescription, $varietyMediaId, $varietyAvailablity, $varietyOffer, $varietyQuantityAvailable,
+        $varietyUnits, $varietyPrice);
         
         return $variety;
     }
@@ -146,7 +163,11 @@ class VarietyManager extends AbstractManager
      */
     
     public function getAllAvailableVarieties() :array{
-        $query = $this->db->prepare('SELECT products.name AS product_name, varieties.id, varieties.name, varieties.media_id, varieties.quantity_available, varieties.offer, varieties.units, varieties.price FROM varieties JOIN products ON varieties.product_id = products.id WHERE varieties.quantity_available > 0 ');
+        $query = $this->db->prepare('SELECT products.name AS product_name, varieties.id, varieties.name,
+        varieties.media_id, varieties.quantity_available, varieties.offer, varieties.units, varieties.price
+        FROM varieties
+        JOIN products ON varieties.product_id = products.id
+        WHERE varieties.quantity_available > 0 ');
         $query->execute();
         $allAvailableVarieties = $query->fetchAll(PDO::FETCH_ASSOC);
         
@@ -161,7 +182,9 @@ class VarietyManager extends AbstractManager
     
     public function getAvailableVariety() :array
     {
-        $query = $this->db->prepare('SELECT product_id, name, quantity_available, units, price FROM varieties WHERE varieties.quantity_available > 0');
+        $query = $this->db->prepare('SELECT product_id, name, quantity_available, units, price
+        FROM varieties
+        WHERE varieties.quantity_available > 0');
         $query->execute();
         $availableVariety = $query->fetchAll(PDO::FETCH_ASSOC);
         
@@ -176,7 +199,9 @@ class VarietyManager extends AbstractManager
     
     public function getOfferVarieties() :array
     {
-        $query = $this->db->prepare('SELECT product_id, name, description, media_id, quantity_available, units, price FROM varieties WHERE varieties.offer = 1 LIMIT 3');
+        $query = $this->db->prepare('SELECT product_id, name, description, media_id, quantity_available, units, price
+        FROM varieties
+        WHERE varieties.offer = 1 LIMIT 3');
         $query->execute();
         $offerVariety = $query->fetchAll(PDO::FETCH_ASSOC);
         
@@ -216,7 +241,11 @@ class VarietyManager extends AbstractManager
             $mediaId = $variety->getMediaId();
         }
 
-        $query = $this->db->prepare('UPDATE varieties SET name = :name, product_id = :product_id, season_start = :season_start, season_end = :season_end, description = :description, media_id = :media_id, availablity = :availablity, offer = :offer, quantity_available = :quantity_available, units = :units, price = :price WHERE id = :id');
+        $query = $this->db->prepare('UPDATE varieties
+        SET name = :name, product_id = :product_id, season_start = :season_start, season_end = :season_end,
+        description = :description, media_id = :media_id, availablity = :availablity, offer = :offer,
+        quantity_available = :quantity_available, units = :units, price = :price
+        WHERE id = :id');
         $parameters = [
             'id' => $variety->getId(),
             'name' => $variety->getName(),

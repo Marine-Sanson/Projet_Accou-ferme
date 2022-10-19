@@ -42,7 +42,8 @@ class AdminProductsController extends AbstractController
             $allProducts = $this->pm->getProducts();
             $allVarieties = $this->vm->getAllVarieties();
             
-            $this->render("adminProducts", ["allProducts" => $allProducts, "allVarieties" => $allVarieties, "validation" => $validation]);
+            $this->render("adminProducts", ["allProducts" => $allProducts, "allVarieties" => $allVarieties,
+            "validation" => $validation]);
         }
         else
         {
@@ -72,12 +73,14 @@ class AdminProductsController extends AbstractController
                 
                 $allProducts = $this->pm->getProducts();
 
-                $this->render("adminProducts", ["allProducts" => $allProducts, "allVarieties" => $allVarieties, "validation" => $validation]);
+                $this->render("adminProducts", ["allProducts" => $allProducts, "allVarieties" => $allVarieties,
+                "validation" => $validation]);
             }
             
             $allProducts = $this->pm->getProducts();
 
-            $this->render("adminProducts", ["allProducts" => $allProducts, "allVarieties" => $allVarieties, "errors" => $errors]);
+            $this->render("adminProducts", ["allProducts" => $allProducts, "allVarieties" => $allVarieties,
+            "errors" => $errors]);
         }
         else
         {
@@ -115,7 +118,8 @@ class AdminProductsController extends AbstractController
             $media = [];
         }
         
-        $this->render("adminCrudVariety", ["action" => $action, "allProducts" => $allProducts, "variety" => $variety, "media" => $media]);
+        $this->render("adminCrudVariety", ["action" => $action, "allProducts" => $allProducts, "variety" => $variety,
+        "media" => $media]);
     }
     
     public function chooseVarietyImage(array $post) :void
@@ -148,7 +152,8 @@ class AdminProductsController extends AbstractController
             }
         }
         
-        $this->render("adminProducts", ["allProducts" => $allProducts, "allVarieties" => $allVarieties, "validation" => $validation]);
+        $this->render("adminProducts", ["allProducts" => $allProducts, "allVarieties" => $allVarieties,
+        "validation" => $validation]);
     }
     
     public function createVariety(array $post) :void
@@ -177,14 +182,16 @@ class AdminProductsController extends AbstractController
 
                 $validation = "Votre varieté a bien été créée !";
                 
-                $this->render("adminProducts", ["validation" => $validation, "allProducts" => $allProducts, "allVarieties" => $allVarieties]);
+                $this->render("adminProducts", ["validation" => $validation, "allProducts" => $allProducts,
+                "allVarieties" => $allVarieties]);
             }
             else
             {
                 $errors = $varietyVerified["errors"];
                 $action = "create";
                 $variety = $varietyVerified["variety"];
-                $this->render("adminCrudVariety", ["variety" => $variety, "allProducts" => $allProducts, "errors" => $errors, "action" => $action]);
+                $this->render("adminCrudVariety", ["variety" => $variety, "allProducts" => $allProducts,
+                "errors" => $errors, "action" => $action]);
             }
         }
         else
@@ -220,13 +227,15 @@ class AdminProductsController extends AbstractController
                 
                 $validation = "Votre varieté a bien été modifiée !";
     
-                $this->render("adminProducts", ["validation" => $validation, "allVarieties" => $allVarieties, "allProducts" => $allProducts]);
+                $this->render("adminProducts", ["validation" => $validation, "allVarieties" => $allVarieties,
+                "allProducts" => $allProducts]);
             }
             else
             {
                 $errors = $varietyVerified["errors"];
 
-                $this->render("adminCrudVariety", ["variety" => $variety, "allProducts" => $allProducts, "errors" => $errors, "action" => $action]);
+                $this->render("adminCrudVariety", ["variety" => $variety, "allProducts" => $allProducts,
+                "errors" => $errors, "action" => $action]);
             }
         }
     }
@@ -257,14 +266,16 @@ class AdminProductsController extends AbstractController
                 
                 $validation = "Votre varieté a bien été suprimée !";
     
-                $this->render("adminProducts", ["validation" => $validation, "allVarieties" => $allVarieties, "allProducts" => $allProducts]);
+                $this->render("adminProducts", ["validation" => $validation, "allVarieties" => $allVarieties,
+                "allProducts" => $allProducts]);
             }
             else
             {
                 $errors = $varietyVerified["errors"];
                 $variety = $varietyVerified["variety"];
 
-                $this->render("adminCrudVariety", ["variety" => $variety, "allProducts" => $allProducts, "errors" => $errors, "action" => $action]);
+                $this->render("adminCrudVariety", ["variety" => $variety, "allProducts" => $allProducts,
+                "errors" => $errors, "action" => $action]);
             }
         }
     }
@@ -545,7 +556,8 @@ class AdminProductsController extends AbstractController
                 $errors[] = "Veuillez entrer un prix valide";
             }
         }
-        $variety = new Variety($id, $productId, $name, $seasonStart, $seasonEnd, $description, $mediaId, $availablity, $offer, $quantityAvailable, $units, $price);
+        $variety = new Variety($id, $productId, $name, $seasonStart, $seasonEnd, $description, $mediaId, $availablity,
+        $offer, $quantityAvailable, $units, $price);
         
         $verifyVariety = [
             "errors" => $errors,

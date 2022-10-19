@@ -31,34 +31,37 @@ class OrdersController extends AbstractController
 
         foreach($orderVarieties["items"] as $key => $orderVariety)
         {
-            $orderVarietyName = $orderVariety["variety"];
-            $orderVarietyAmount = $orderVariety["amount"];
-            $orderVarietyUnits = $orderVariety["units"];
-            $orderVarietyPrice = $orderVariety["price"];
-            
-            $tmpId = $this->vm->getVarietyId($orderVarietyName);
-            $orderVarietyId = $tmpId["id"];
-            
-            $variety = $this->vm->getVarietyById($orderVarietyId);
-            $varietyQuantityAvailable = $variety->getQuantityAvailable();
-
-            if($orderVarietyAmount > $varietyQuantityAvailable)
-            {
-                $errors[] = "stock insuffisant pour la variété $orderVarietyName, nous l'avons remplacé par $varietyQuantityAvailable, quantité maximum possible";
-                $orderVarietyAmount = $varietyQuantityAvailable;
-            }
-
-            $totalVariety = $this->totalVariety($orderVarietyAmount, $orderVarietyPrice);
+            if($orderVariety["amount"] > 0){
+                $orderVarietyName = $orderVariety["variety"];
+                $orderVarietyAmount = $orderVariety["amount"];
+                $orderVarietyUnits = $orderVariety["units"];
+                $orderVarietyPrice = $orderVariety["price"];
+                
+                $tmpId = $this->vm->getVarietyId($orderVarietyName);
+                $orderVarietyId = $tmpId["id"];
+                
+                $variety = $this->vm->getVarietyById($orderVarietyId);
+                $varietyQuantityAvailable = $variety->getQuantityAvailable();
     
-            $totalOrder = $this->totalOrder($totalVariety, $totalOrder);
-            
-            $order["items"][]= [
-                "variety" => $orderVarietyName,
-                "amount" => $orderVarietyAmount,
-                "units" => $orderVarietyUnits,
-                "price" => $orderVarietyPrice,
-                "totalVariety" => $totalVariety
-            ];
+                if($orderVarietyAmount > $varietyQuantityAvailable)
+                {
+                    $errors[] = "stock insuffisant pour la variété $orderVarietyName,
+                    nous l'avons remplacé par $varietyQuantityAvailable, quantité maximum possible";
+                    $orderVarietyAmount = $varietyQuantityAvailable;
+                }
+    
+                $totalVariety = $this->totalVariety($orderVarietyAmount, $orderVarietyPrice);
+        
+                $totalOrder = $this->totalOrder($totalVariety, $totalOrder);
+                
+                $order["items"][]= [
+                    "variety" => $orderVarietyName,
+                    "amount" => $orderVarietyAmount,
+                    "units" => $orderVarietyUnits,
+                    "price" => $orderVarietyPrice,
+                    "totalVariety" => $totalVariety
+                ];
+            }
         }
         
         $order["totalPrice"] = $totalOrder;
@@ -106,7 +109,8 @@ class OrdersController extends AbstractController
     }
     
     /**
-     * récupère le $_SESSION["basket"] et le formulaire de validation de commande le clean et le vérifie puis le rentre dans la base de données
+     * récupère le $_SESSION["basket"] et le formulaire de validation de commande le clean et le vérifie
+     * puis le rentre dans la base de données
      * @param array $post
      * @return void
      */
@@ -181,30 +185,36 @@ class OrdersController extends AbstractController
     
             foreach($baskets as $key => $basket)
             {
-                $idOrder = $id;
-                $varietyName = $basket["variety"];
-                $amount = $basket["amount"];
-                $units = $basket["units"];
-                $price = $basket["price"];
-                
-                $tmpId = $this->vm->getVarietyId($varietyName);
-                $varietyId = $tmpId["id"];
-                
-                $variety = $this->vm->getVarietyById($varietyId);
-                $varietyQuantityAvailable = $variety->getQuantityAvailable();
-
-                if($amount > $varietyQuantityAvailable)
+                if($basket["amount"] > 0)
                 {
-                    $errors[] = "stock insuffisant pour la variété $varietyName, nous l'avons remplacé par $varietyQuantityAvailable, quantité maximum possible";
-                    $amount = $varietyQuantityAvailable;
+                    $idOrder = $id;
+                    $varietyName = $basket["variety"];
+                    $amount = $basket["amount"];
+                    $units = $basket["units"];
+                    $price = $basket["price"];
+                    
+                    $tmpId = $this->vm->getVarietyId($varietyName);
+                    $varietyId = $tmpId["id"];
+                    
+                    $variety = $this->vm->getVarietyById($varietyId);
+                    $varietyQuantityAvailable = $variety->getQuantityAvailable();
+    
+                    if($amount > $varietyQuantityAvailable)
+                    {
+                        $errors[] = "stock insuffisant pour la variété $varietyName, nous l'avons remplacé par
+                        $varietyQuantityAvailable, quantité maximum possible";
+                        $amount = $varietyQuantityAvailable;
+                    }
+    
+                    $totalVariety = $amount * $price;
+    
+                    $this->om->createVarietyOrdered($idOrder, $varietyId, $varietyName, $amount, $units, $price,
+                    $totalVariety);
+                    
+                    $newQuantityAvailable = $varietyQuantityAvailable - $amount;
+                    $this->vm->updateVarietyQuantityAvailable($varietyId, $newQuantityAvailable);
+
                 }
-
-                $totalVariety = $amount * $price;
-
-                $this->om->createVarietyOrdered($idOrder, $varietyId, $varietyName, $amount, $units, $price, $totalVariety);
-                
-                $newQuantityAvailable = $varietyQuantityAvailable - $amount;
-                $this->vm->updateVarietyQuantityAvailable($varietyId, $newQuantityAvailable);
             }
             
             $validation[] = "Votre commande à bien été prise en compte, à $day pour le retrait";
@@ -241,7 +251,8 @@ class OrdersController extends AbstractController
 
                 if($amount > $varietyQuantityAvailable)
                 {
-                    $errors[] = "stock insuffisant pour la variété $varietyName, nous l'avons remplacé par $varietyQuantityAvailable, quantité maximum possible";
+                    $errors[] = "stock insuffisant pour la variété $varietyName, nous l'avons remplacé par
+                    $varietyQuantityAvailable, quantité maximum possible";
                     $amount = $varietyQuantityAvailable;
                 }
 
@@ -285,7 +296,8 @@ class OrdersController extends AbstractController
             
             $template = "order";
             
-            $this->render($template, ["errors" => $errors, "customer" => $customer, "order" => $order, "allAvailableVarieties" => $allAvailableVarieties]);
+            $this->render($template, ["errors" => $errors, "customer" => $customer, "order" => $order,
+            "allAvailableVarieties" => $allAvailableVarieties]);
         }
     }
 }
