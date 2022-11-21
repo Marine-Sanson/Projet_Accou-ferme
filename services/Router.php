@@ -37,7 +37,7 @@ class Router {
         foreach($routes as $route)
         {
             $controller = $route["controller"];
-            $method = $route["method"];
+            $method =  trim($route["method"]);
             $parameter = $route["parameter"];
 
             if($route["path"] === $requestData["path"])
@@ -78,7 +78,7 @@ class Router {
 
                     $ctrl = new $controller();
                     $ctrl->init($om, $cm, $mm, $nm, $pm, $rm, $am, $vm, $ctm, $fu);
-                    $ctrl->$method($_POST);
+                    $ctrl-> $method($_POST);
                 }
             }
         }

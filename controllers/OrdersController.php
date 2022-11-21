@@ -109,13 +109,13 @@ class OrdersController extends AbstractController
     }
     
     /**
-     * récupère le $_SESSION["basket"] et le formulaire de validation de commande le clean et le vérifie
+     * récupère le $_SESSION["basket"] et le formulaire de validation de commande ($_POST) le clean et le vérifie
      * puis le rentre dans la base de données
-     * @param array $post
+     * @param
      * @return void
      */
     
-    public function validationOrder(array $post) :void
+    public function validationOrder() :void
     {
         $baskets = $_SESSION["basket"]["items"];
 
@@ -132,7 +132,7 @@ class OrdersController extends AbstractController
             $errors[] = "Veuillez renter votre nom";
         }
         
-        if(isset($_POST["firstName"]) || $_POST["firstName"] !== "")
+        if(isset($_POST["firstName"]) && $_POST["firstName"] !== "")
         {
             $firstName = $this->clean_input($_POST["firstName"]);
         }
@@ -213,17 +213,14 @@ class OrdersController extends AbstractController
                     
                     $newQuantityAvailable = $varietyQuantityAvailable - $amount;
                     $this->vm->updateVarietyQuantityAvailable($varietyId, $newQuantityAvailable);
-
                 }
             }
-            
-            $validation[] = "Votre commande à bien été prise en compte, à $day pour le retrait";
             
             $_SESSION["basket"] = [];
             
             $template = "_validationOrder";
             
-            $this->render($template, ["validation" => $validation]);
+            $this->render($template);
         }
         else
         {

@@ -3,7 +3,7 @@ function getData()
     return JSON.parse(sessionStorage.getItem("data"));
 }
 
-// update the cart in session storage
+// met à jour le panier dans le session storage
 function saveData(data)
 {
     sessionStorage.setItem("data", JSON.stringify(data));
@@ -29,6 +29,7 @@ function newFetch()
         });
 }
 
+// récupère les informations en fonction du boutton clické et les envoi à PHP
 function listenButtonAdd(event)
 {
     event.preventDefault();
@@ -66,6 +67,7 @@ function listenButtonAdd(event)
         });
 }
 
+// reclacule le montant total du panier
 function computeBasketTotal()
 {
     let $basket = getData();
@@ -80,7 +82,8 @@ function computeBasketTotal()
     newFetch($basket);
 }
 
-// get the item key in the cart.items array
+// récupère la clé de l'élément dans le tableau des items
+
 function findItem($varietyName)
 {
     let $basket = getData();
@@ -97,7 +100,7 @@ function findItem($varietyName)
     return null;
 }
 
-// update the item amount to + 1
+// met à jour le nombre d'items : +1
 function addItem(event)
 {
     let $varietyName = event.target.getAttribute("data-variety-name");
@@ -114,7 +117,7 @@ function addItem(event)
     }
 }
 
-// update the item amount to - 1
+// met à jour le nombre d'items : -1
 function removeItem(event)
 {
     let $varietyName = event.target.getAttribute("data-variety-name");
@@ -131,6 +134,7 @@ function removeItem(event)
     }
 }
 
+// initilaise les écouteurs d'évenements sur les boutons
 function loadListeners()
 {
     let $addButtons = document.getElementsByClassName("updateButtonAdd");
@@ -143,6 +147,7 @@ function loadListeners()
     }
 }
 
+// crée et prépare le html du panier
 function createBasketItem($item)
 {
     let $containerSection = document.createElement("section");
@@ -174,6 +179,7 @@ function createBasketItem($item)
     let $buttonSection = document.createElement("section");
     $buttonSection.classList.add("amountAddRemove");
 
+    // création du bouton ajouter et de ses attributs qui permettront de récupérer les infos concernant la variété
     let $newButtonAdd = document.createElement("button");
     $newButtonAdd.classList.add("updateButtonAdd");
     $newButtonAdd.classList.add("button");
@@ -182,10 +188,12 @@ function createBasketItem($item)
     let $textButtonAdd = document.createTextNode("+");
     $newButtonAdd.appendChild($textButtonAdd);
     
+    // quantité
     let $newAmount = document.createElement("p");
     let $textNewAmount = document.createTextNode($item.amount);
     $newAmount.appendChild($textNewAmount);
-
+    
+    // création du bouton ajouter et de ses attributs qui permettront de récupérer les infos concernant la variété
     let $newButtonRemove = document.createElement("button");
     $newButtonRemove.classList.add("updateButtonRemove");
     $newButtonRemove.classList.add("button");
@@ -200,15 +208,18 @@ function createBasketItem($item)
 
     $containerSection.appendChild($buttonSection);
 
+    // prix unitaire
     let $unitPrice = document.createElement("p");
     $unitPrice.classList.add("unitPrice");
 
+    // montant de la variété
     let $newPrice = document.createElement("span");
     $newPrice.classList.add("updatePrice");
     $newPrice.setAttribute("data-variety-name", $item.variety);
     let $textNewPrice = document.createTextNode($item.price);
     $newPrice.appendChild($textNewPrice);
 
+    // prix et unité de vente
     let $newEuros = document.createElement("span");
     let $textNewEuros = document.createTextNode("€");
     $newEuros.appendChild($textNewEuros);
@@ -232,6 +243,7 @@ function createBasketItem($item)
     
     $containerSection.appendChild($unitPrice);
     
+    // prix total de la commande
     let $totalVarietyPrice = document.createElement("section");
     $totalVarietyPrice.classList.add("updateTotalPrice");
 
@@ -292,6 +304,7 @@ function initBasket()
     // le bouton Ajouter au panier
     let $buttonsAddToBasket = document.getElementsByClassName("buttonAddToBasket");
 
+    // écoute le click et déclenche la fonction
     for(var i = 0; i < $buttonsAddToBasket.length; i++)
     {
         $buttonsAddToBasket[i].addEventListener('click', listenButtonAdd);
